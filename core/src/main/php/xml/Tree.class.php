@@ -30,7 +30,8 @@
 
     protected 
       $version  = '1.0',
-      $encoding = 'iso-8859-1';
+      $encoding = 'iso-8859-1',
+      $node_encoding_hint = 'iso-8859-1';
     
     /**
      * Constructor
@@ -40,6 +41,24 @@
     public function __construct($rootName= 'document') {
       $this->root= new Node($rootName);
       $this->nodeType= xp::reflect('xml.Node');
+    }
+
+    /*
+     * Set hint for the encoding of the tree nodes.
+     * 
+     * @param   string e encoding
+     */
+    public function setNodeEncodingHint($eh) {
+      $this->node_encoding_hint= $eh;
+    }
+    
+    /**
+     * Retrieve used hint for the encoding of the tree nodes
+     * 
+     * @return  string encoding
+     */
+    public function getNodeEncodingHint() {
+      return $this->node_encoding_hint;
     }
 
     /**
@@ -91,7 +110,12 @@
      * @return  string
      */
     public function getSource($indent= TRUE) {
-      return $this->root->getSource($indent, strtolower($this->encoding), '');
+      return $this->root->getSource(
+        $indent,
+        strtolower($this->encoding),
+        '',
+        strtolower($this->node_encoding_hint)
+      );
     }
 
     /**

@@ -227,17 +227,18 @@
      * </pre>
      *
      * @param   int indent default INDENT_WRAPPED
-     * @param   string encoding default 'iso-8859-1'
+     * @param   string encoding of source default 'iso-8859-1'
      * @param   string inset default ''
+     * @param   string encoding of tree nodes default 'iso-8859-1'
      * @return  string XML
      */
-    public function getSource($indent= INDENT_WRAPPED, $encoding= 'iso-8859-1', $inset= '') {
+    public function getSource($indent= INDENT_WRAPPED, $encoding= 'iso-8859-1', $inset= '',$tree_encoding= 'iso-8859-1') {
       $xml= $inset.'<'.$this->name;
-      $conv= 'iso-8859-1' != $encoding;
+      $conv= $tree_encoding != $encoding;
       
       if ('string' == ($type= gettype($this->content))) {
         $content= $conv
-          ? iconv('iso-8859-1', $encoding, htmlspecialchars($this->content))
+          ? iconv($tree_encoding, $encoding, htmlspecialchars($this->content))
           : htmlspecialchars($this->content)
         ;
       } else if ('float' == $type) {
@@ -247,12 +248,12 @@
         ;
       } else if ($this->content instanceof PCData) {
         $content= $conv
-          ? iconv('iso-8859-1', $encoding, $this->content->pcdata)
+          ? iconv($tree_encoding, $encoding, $this->content->pcdata)
           : $this->content->pcdata
         ;
       } else if ($this->content instanceof CData) {
         $content= '<![CDATA['.str_replace(']]>', ']]]]><![CDATA[>', $conv
-          ? iconv('iso-8859-1', $encoding, $this->content->cdata)
+          ? iconv($tree_encoding, $encoding, $this->content->cdata)
           : $this->content->cdata
         ).']]>';
       } else if ($this->content instanceof String) {
@@ -264,13 +265,13 @@
       if (INDENT_NONE === $indent) {
         foreach ($this->attribute as $key => $value) {
           $xml.= ' '.$key.'="'.htmlspecialchars($conv
-            ? iconv('iso-8859-1', $encoding, $value) 
+            ? iconv($tree_encoding, $encoding, $value) 
             : $value
           ).'"';
         }
         $xml.= '>'.$content;
         foreach ($this->children as $child) {
-          $xml.= $child->getSource($indent, $encoding, $inset);
+          $xml.= $child->getSource($indent, $encoding, $inset, $tree_encoding);
         }
         return $xml.'</'.$this->name.'>';
       } else {
@@ -278,7 +279,7 @@
           $sep= (sizeof($this->attribute) < 3) ? '' : "\n".$inset;
           foreach ($this->attribute as $key => $value) {
             $xml.= $sep.' '.$key.'="'.htmlspecialchars($conv
-              ? iconv('iso-8859-1', $encoding, $value) 
+              ? iconv($tree_encoding, $encoding, $value) 
               : $value
             ).'"';
           }
@@ -296,7 +297,7 @@
         if ($this->children) {
           $xml.= ($indent ? '' : $inset)."\n";
           foreach ($this->children as $child) {
-            $xml.= $child->getSource($indent, $encoding, $inset.'  ');
+            $xml.= $child->getSource($indent, $encoding, $inset.'  ', $tree_encoding);
           }
           $xml= ($indent ? substr($xml, 0, -1) : $xml).$inset;
         }
