@@ -11,6 +11,7 @@
     'text.doclet.ThrowsTaglet',
     'text.doclet.SimpleTaglet',
     'text.doclet.TestTaglet',
+    'text.doclet.AuthorTaglet',
     'text.doclet.ModelTaglet'
   );
 
@@ -33,7 +34,7 @@
         self::$instance->taglets['return']= new ReturnTaglet();
         self::$instance->taglets['throws']= new ThrowsTaglet();
         self::$instance->taglets['test']= new TestTaglet;
-        
+        self::$instance->taglets['author']= new AuthorTaglet; 
         // Simple taglets
         $s= new SimpleTaglet();
         self::$instance->taglets['purpose']= $s;
