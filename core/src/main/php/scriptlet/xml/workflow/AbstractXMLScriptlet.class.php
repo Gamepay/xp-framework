@@ -25,8 +25,8 @@
      * @param   string package
      * @param   string base default ''
      */
-    public function __construct($package, $base= '') {
-      parent::__construct($base);
+    public function __construct($package, $base= '', $profiling= '') {
+      parent::__construct($base, $profiling);
       $this->package= $package;
     }
 

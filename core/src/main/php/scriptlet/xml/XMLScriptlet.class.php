@@ -58,9 +58,10 @@
      *
      * @param   string base default ''
      */
-    public function __construct($base= '') {
+    public function __construct($base= '', $profiling= '') {
       $this->processor= $this->_processor();
       $this->processor->setBase($base);
+      $this->processor->setProfiling($profiling);
     }
     
     /**

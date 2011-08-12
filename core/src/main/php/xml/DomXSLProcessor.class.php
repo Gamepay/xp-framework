@@ -45,7 +45,8 @@
       $params         = array(),
       $output         = '',
       $outputEncoding = '',
-      $baseURI        = '';
+      $baseURI        = '',
+      $profiling      = '';
 
     public
       $_instances   = array(),
@@ -68,6 +69,24 @@
     public function __construct() {
       $this->registerInstance('xp.date', new XSLDateCallback());
       $this->registerInstance('xp.string', new XSLStringCallback());
+    }
+
+    /**
+     * Set and activate profiling output
+     *
+     * @param   string path location of output
+     */
+    public function setProfiling($path) {
+      $this->profiling = $path;
+    }
+   
+    /**
+     * Retrieve profiling setting
+     *
+     * @return string value
+     */
+    public function getProfiling() {
+      return $this->profiling;
     }
 
     /**
@@ -341,6 +360,10 @@
       $this->processor= new XSLTProcessor();
       $this->processor->importStyleSheet($this->stylesheet);
       $this->processor->setParameter('', $this->params);
+
+      if('' !== $this->getProfiling()) {
+        $this->processor->setProfiling($this->getProfiling());
+      }
 
       // If we have registered instances, register them in XSLCallback
       if (sizeof($this->_instances)) {
