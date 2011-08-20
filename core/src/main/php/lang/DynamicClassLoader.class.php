@@ -243,7 +243,7 @@
      */
     public function url_stat($path) {
       list($name)= sscanf($path, 'dyn://%s');
-      return array('size'  => strlen(self::$bytes[$name]));
+      return array('size'  => strlen(self::$bytes[$name]), 'dev' => crc32(self::$bytes[$name]));
     }
   }
 ?>

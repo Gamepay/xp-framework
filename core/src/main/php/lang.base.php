@@ -303,7 +303,6 @@
       if (!isset($archives[$archive])) {
         $archives[$archive]= array();
         $current= &$archives[$archive];
-        $current['stat']= stat($archive);
         $current['handle']= fopen($archive, 'rb');
         $header= unpack('a3id/c1version/V1indexsize/a*reserved', fread($current['handle'], 0x0100));
         if ('CCA' != $header['id']) raise('lang.FormatException', 'Malformed archive '.$archive);
@@ -393,7 +392,7 @@
       $current= self::acquire(urldecode($archive));
 
       return isset($current['index'][$file]) 
-        ? array('size' => $current['index'][$file][0], 'dev' => $current['stat']['ino'], 'ino' => $current['index'][$file][2])
+        ? array('size' => $current['index'][$file][0], 'dev' => crc32($archive), 'ino' => $current['index'][$file][2])
         : FALSE
       ;
     }
