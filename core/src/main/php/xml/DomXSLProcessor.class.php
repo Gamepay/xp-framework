@@ -22,6 +22,7 @@
    *   $proc= new DomXSLProcessor();
    *   $proc->setXSLFile('test.xsl');
    *   $proc->setXMLFile('test.xml');
+   *   $proc->setProfiling('/tmp/xsltprofiles.txt');
    *   
    *   try {
    *     $proc->run();
@@ -362,7 +363,7 @@
       $this->processor->setParameter('', $this->params);
 
       if('' !== $this->getProfiling()) {
-        $this->processor->setProfiling($this->getProfiling());
+        $this->processor->setProfiling($this->getProfiling() .'.'. getmypid());
       }
 
       // If we have registered instances, register them in XSLCallback
