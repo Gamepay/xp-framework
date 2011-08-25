@@ -23,7 +23,10 @@
  */
  
   uses(
+    'rdbms.Criteria',
     'rdbms.DataSet',
+    'rdbms.FieldType',
+    'rdbms.Peer',
     'util.HashmapIterator',
     '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>BaseInterface'
   );&#10;</xsl:text>

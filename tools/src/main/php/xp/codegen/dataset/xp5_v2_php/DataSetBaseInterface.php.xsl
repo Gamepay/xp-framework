@@ -27,11 +27,10 @@
   </xsl:template>
   
   <xsl:template match="table">
-    <xsl:variable name="primary_key_unique" select="index[@primary= 'true' and @unique= 'true']/key/text()"/>
-
+  
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
-   * (This class was auto-generated, so please do not change manually)
+   * (This interface was auto-generated, so please do not change manually)
    *
    * Please put your custom declarations into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>.
    *
@@ -69,12 +68,6 @@
     <xsl:variable name="keys4apidoc">
       <xsl:for-each select="key"><xsl:value-of select="@sourceattribute" />=><xsl:value-of select="@attribute" />
       <xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
-      </xsl:for-each>
-    </xsl:variable>
-    <xsl:variable name="keys4criteria">
-      <xsl:for-each select="key">
-        <xsl:text>          array('</xsl:text><xsl:value-of select="@sourceattribute" /><xsl:text>', $this->get</xsl:text><xsl:value-of select="my:ucfirst(@attribute)" /><xsl:text>(), EQUAL)</xsl:text>
-        <xsl:if test="position() != last()"><xsl:text>,&#10;</xsl:text></xsl:if>
       </xsl:for-each>
     </xsl:variable>
     <xsl:choose>
@@ -123,12 +116,6 @@
     <xsl:variable name="keys4apidoc">
       <xsl:for-each select="key">
         <xsl:value-of select="@attribute" />=><xsl:value-of select="@sourceattribute" /><xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
-      </xsl:for-each>
-    </xsl:variable>
-    <xsl:variable name="keys4criteria">
-      <xsl:for-each select="key">
-        <xsl:text>          array('</xsl:text><xsl:value-of select="@attribute" /><xsl:text>', $this->get</xsl:text><xsl:value-of select="my:ucfirst(@sourceattribute)" /><xsl:text>(), EQUAL)</xsl:text>
-        <xsl:if test="position() != last()"><xsl:text>,&#10;</xsl:text></xsl:if>
       </xsl:for-each>
     </xsl:variable>
 
