@@ -20,6 +20,14 @@
      * @param   string data
      */
     protected abstract function store($name, $data);
+    
+    /**
+     * Data for the given name already exists
+     * 
+     * @param string $name
+     * @return boolean
+     */
+    protected abstract function exists($name);
 
     /**
      * Append a file and its data to the output
@@ -27,10 +35,13 @@
      * @param   string name
      * @param   string data
      */
-    public function append($name, $data) {
+    public function append($name, $data, $overwrite= TRUE) {
+      if (!$overwrite && $this->exists($name)) {
+        return;
+      }
       $this->setChanged();
       $this->notifyObservers($name);
-      $this->store($name, $data);
+      $this->store($name, $data, $overwrite);
     }
     
     /**
