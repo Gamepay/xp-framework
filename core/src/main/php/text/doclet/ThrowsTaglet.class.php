@@ -26,6 +26,9 @@
      */ 
     public function tagFrom($holder, $kind, $text) {
       sscanf($text, '%s %[^$]', $class, $condition);
+      if('Exception' === $class) {
+        return new ThrowsTag($holder->root->classNamed('lang.XPException'), (string) $condition);
+      }
       try {
         $classDoc= $holder->root->classNamed($class);
       } catch (IllegalArgumentException $e) {

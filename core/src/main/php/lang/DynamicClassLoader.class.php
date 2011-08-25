@@ -195,7 +195,7 @@
         'size' => strlen(self::$bytes[$this->current]),
         'dev'  => self::DEVICE,
         'ino'  => crc32(self::$bytes[$this->current])
-      );
+      ); 
     }
 
     /**

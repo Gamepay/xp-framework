@@ -35,7 +35,7 @@
      * @param   string id session id
      * @return  bool
      */
-    public function initialize($id);
+    public function initialize($id= NULL);
     
     /**
      * Returns if this session is valid
