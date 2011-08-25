@@ -33,7 +33,16 @@
     protected function store($name, $data) {
       $this->writer->writeLine($data);
     }
-
+    
+    /**
+     * Data for the given name already exists
+     *
+     * @param string $name
+     * @return boolean
+     */
+    protected function exists($name) {
+      return FALSE;
+    }
     
     /**
      * Commit output

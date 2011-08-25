@@ -61,7 +61,9 @@
       $adapter  = NULL,
       $processor= NULL,
       $package  = '',
-      $naming  =  '';
+      $naming   = '',
+      $filename = NULL,
+      $protected= TRUE;
 
     static function __static() {
       self::$adapters['mysql']= XPClass::forName('rdbms.mysql.MySQLDBAdapter');
@@ -91,14 +93,35 @@
       $this->ptargets= explode('|', $args->value('ptargets', 'pt', ''));
       $this->pexclude= $args->value('pexclude', 'pe', FALSE);
 
-      // Setup generator
-      $this->processor= new DomXSLProcessor();
-      $this->processor->setXSLBuf($this->getClass()->getPackage()->getResource($args->value('lang', 'l', 'xp5.php').'.xsl'));
-      $this->processor->setParam('package', $this->package);
-
-      if ($this->prefix) {
-        $this->processor->setParam('prefix', $this->prefix);
-        $this->processor->setParam($this->pexclude ? 'exprefix' : 'incprefix', implode(',', $this->ptargets));
+      $xsls= array();
+      $lang= $args->value('lang', 'l', 'xp5.php');
+      if ($this->getClass()->getPackage()->providesPackage(strtr($lang, '.', '_'))) {
+        $resources= $this->getClass()->getPackage()->getPackage(strtr($lang, '.', '_'))->getResources();
+        foreach ($resources as $resource) {
+          $filename= substr($resource, strrpos($resource, DIRECTORY_SEPARATOR)+1);
+          if (substr($filename, -8, 8) !== '.php.xsl') {
+            continue;
+          }
+          
+          $xsls[]= $resource;
+        }
+      } else {
+        $packagepath= strtr($this->getClass()->getPackage()->getName(), '.', DIRECTORY_SEPARATOR);
+        $xsls[]= $packagepath.DIRECTORY_SEPARATOR.$lang.'.xsl';
+      }
+      
+      foreach ($xsls as $resource) {
+        $processor= new DomXSLProcessor();
+        $processor->setBase(__DIR__);
+        $processor->setXSLBuf(ClassLoader::getDefault()->getResource($resource));
+        $processor->setParam('package', $this->package);
+        
+        if ($this->prefix) {
+          $processor->setParam('prefix', $this->prefix);
+          $processor->setParam($this->pexclude ? 'exprefix' : 'incprefix', implode(',', $this->ptargets));
+        }
+        
+        $this->processor[]= $processor;
       }
     }
 
@@ -183,13 +206,30 @@
     public function generateCode($tables, $output) {
       $dir= strtr($this->package, '.', '/').'/';
 
-      $this->processor->setParam('definitionpath', $this->storage->getUri());
-      $this->processor->setParam('constraintfile', $this->storage->getUri().self::CONSTRAINT_FILE_NAME);
+      foreach ($this->processor as $processor) {
+        $processor->setParam('definitionpath', $this->storage->getUri());
+        $processor->setParam('constraintfile', $this->storage->getUri().self::CONSTRAINT_FILE_NAME);
+        
+        $processor->registerInstance('generator', $this);
+      }
+      
       foreach ($tables as $stored) {
-        $this->processor->setXMLBuf($stored->data());
-        $this->processor->run();
-
-        $output->append($dir.$stored->name().xp::CLASS_FILE_EXT, $this->processor->output());
+        
+        foreach ($this->processor as $processor) {
+          $this->filename= NULL;
+          $this->protected= TRUE;
+          
+          $processor->setXMLBuf($stored->data());
+          $processor->run();
+          
+          if (!isset($this->filename)) {
+            continue;
+          } else {
+            // TODO: validate filename in some way 
+          }
+          
+          $output->append($dir.$this->filename, $processor->output(), !$this->protected);
+        }
       }
     }
 
@@ -200,6 +240,26 @@
      */
     public function toString() {
       return $this->getClassName().'['.$this->adapter->conn->dsn->toString().']';
+    }
+    
+    /**
+     * Allows the DomXSLProcessor to communicate a filename.
+     *
+     * @param string $classname
+     */
+    #[@xslmethod]
+    public function setFilename($filename) {
+      $this->filename= $filename;
+    }
+    
+    /**
+     * Allows the DomXSLProcessor to communicate if existing files are protected.
+     *
+     * @param string $classname
+     */
+    #[@xslmethod]
+    public function setProtected($protected) {
+      $this->protected= $protected === 'false' ? FALSE : TRUE;
     }
   }
 ?>
