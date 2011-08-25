@@ -70,9 +70,10 @@
     <xsl:variable name="excludeSet" select="string:tokenize($exclude, ',')" />
     <xsl:variable name="excludetest" select="boolean(count($includeSet) = 0) and not(count($excludeSet) = 0) and not($excludeSet[text() = $tname])" />
     <xsl:variable name="includetest" select="not(count($includeSet) = 0) and boolean(count($excludeSet) = 0) and boolean($includeSet[text() = $tname])" />
+    <xsl:variable name="alltest" select="boolean(count($excludeSet) = 0) and boolean(count($includeSet) = 0) and boolean($prefix)" />
     <xsl:variable name="p">
       <xsl:choose>
-        <xsl:when test="$includetest or $excludetest"><xsl:value-of select="$prefix" /></xsl:when>
+        <xsl:when test="$includetest or $excludetest or $alltest"><xsl:value-of select="$prefix" /></xsl:when>
         <xsl:otherwise><xsl:value-of select="''" /></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
