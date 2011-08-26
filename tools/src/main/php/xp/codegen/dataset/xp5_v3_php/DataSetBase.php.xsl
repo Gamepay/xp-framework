@@ -13,7 +13,7 @@
   <xsl:include href="xp5.func.xsl"/>
 
   <xsl:template match="/">
-    <xsl:value-of select="my:setFilename(concat(my:camelCase(/document/table/@class), 'Base.class.php'))" />
+    <xsl:value-of select="my:setFilename(concat('base/', my:camelCase(/document/table/@class), 'Base.class.php'))" />
     <xsl:value-of select="my:setProtected('false')" />
 
     <xsl:text>&lt;?php
@@ -28,7 +28,7 @@
     'rdbms.FieldType',
     'rdbms.Peer',
     'util.HashmapIterator',
-    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>BaseInterface'
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', my:camelCase(/document/table/@class))" /><xsl:text>BaseInterface'
   );&#10;</xsl:text>
     <xsl:apply-templates/>
   <xsl:text>?></xsl:text>
@@ -43,10 +43,10 @@
    *
    * Please put your custom code into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>
    *
-   * @purpose  Datasource accessor
+   * @purpose Datasource accessor
    */
-  class </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>Base extends DataSet implements </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>BaseInterface {
-    public&#10;</xsl:text>
+  abstract class </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>Base extends DataSet implements </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>BaseInterface {
+    protected&#10;</xsl:text>
 
   <!-- Attributes -->
   <xsl:for-each select="attribute">
@@ -147,80 +147,6 @@
       return Peer::forName('</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>')->column($name);
     }
   </xsl:text>
-
-  <!-- Create a static method for indexes -->
-  <xsl:for-each select="my:distinctIndex(index[@name != '' and string-length (key/text()) != 0])">
-    <xsl:text>
-    /**
-     * Gets an instance of this object by index "</xsl:text><xsl:value-of select="@name"/><xsl:text>"
-     * </xsl:text><xsl:for-each select="key"><xsl:variable name="key" select="text()"/><xsl:text>
-     * @param   </xsl:text><xsl:value-of select="concat(../../attribute[@name= $key]/@typename, ' ', my:camelCase($key))"/></xsl:for-each><xsl:text>
-     * @return  </xsl:text><xsl:value-of select="concat(../@package, '.', my:camelCase(../@class))"/><xsl:if test="not(@unique= 'true')">[] entity objects</xsl:if><xsl:if test="@unique= 'true'"> entity object</xsl:if><xsl:text>
-     * @throws  rdbms.SQLException in case an error occurs
-     */
-    public static function getBy</xsl:text>
-    <xsl:for-each select="key"><xsl:value-of select="my:ucfirst(my:camelCase(text()))" /></xsl:for-each>
-    <xsl:text>(</xsl:text>
-    <xsl:for-each select="key">
-      <xsl:value-of select="concat('$', my:camelCase(text()))"/>
-    <xsl:if test="position() != last()">, </xsl:if>
-    </xsl:for-each>
-    <xsl:text>) {&#10;</xsl:text>
-      <xsl:choose>
-
-        <xsl:when test="count(key) = 1">
-          <!-- Single key -->
-          <xsl:choose>
-            <xsl:when test="@unique = 'true'">
-              <xsl:text>      $r= self::getPeer()-&gt;doSelect(new Criteria(array('</xsl:text>
-              <xsl:value-of select="key"/>
-              <xsl:text>', $</xsl:text>
-              <xsl:value-of select="my:camelCase(key)"/>
-              <xsl:text>, EQUAL)));&#10;      return $r ? $r[0] : NULL;</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text>      return self::getPeer()-&gt;doSelect(new Criteria(array('</xsl:text>
-              <xsl:value-of select="key"/>
-              <xsl:text>', $</xsl:text>
-              <xsl:value-of select="my:camelCase(key)"/>
-              <xsl:text>, EQUAL)));</xsl:text>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
-
-        <xsl:otherwise>
-        
-          <!-- Multiple keys -->
-          <xsl:choose>
-            <xsl:when test="@unique = 'true'">
-              <xsl:text>      $r= self::getPeer()-&gt;doSelect(new Criteria(&#10;</xsl:text>
-              <xsl:for-each select="key">
-                <xsl:text>        array('</xsl:text>
-                <xsl:value-of select="."/>
-                <xsl:text>', $</xsl:text>
-                <xsl:value-of select="my:camelCase(.)"/>
-                <xsl:text>, EQUAL)</xsl:text>
-                <xsl:if test="position() != last()">,</xsl:if><xsl:text>&#10;</xsl:text>
-              </xsl:for-each>
-              <xsl:text>      ));&#10;      return $r ? $r[0] : NULL;</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text>      return self::getPeer()-&gt;doSelect(new Criteria(&#10;</xsl:text>
-              <xsl:for-each select="key">
-                <xsl:text>        array('</xsl:text>
-                <xsl:value-of select="."/>
-                <xsl:text>', $</xsl:text>
-                <xsl:value-of select="my:camelCase(.)"/>
-                <xsl:text>, EQUAL)</xsl:text>
-                <xsl:if test="position() != last()">,</xsl:if><xsl:text>&#10;</xsl:text>
-              </xsl:for-each>
-              <xsl:text>      ));</xsl:text>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:otherwise>
-      </xsl:choose>
-    <xsl:text>&#10;    }&#10;</xsl:text>
-  </xsl:for-each>
 
   <!-- Create getters and setters -->
     <xsl:for-each select="attribute">

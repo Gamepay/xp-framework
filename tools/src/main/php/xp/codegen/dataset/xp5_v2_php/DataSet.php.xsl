@@ -23,7 +23,7 @@
  */
  
   uses(
-    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>Base',
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', /document/table/@class)" /><xsl:text>Base',
     '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>Interface'
   );&#10;</xsl:text>
     <xsl:apply-templates/>
@@ -36,7 +36,7 @@
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
    *
-   * @purpose  Datasource accessor
+   * @purpose Datasource accessor
    */
   class </xsl:text><xsl:value-of select="@class"/><xsl:text> extends </xsl:text><xsl:value-of select="@class"/><xsl:text>Base implements </xsl:text><xsl:value-of select="@class"/><xsl:text>Interface {
   }</xsl:text>

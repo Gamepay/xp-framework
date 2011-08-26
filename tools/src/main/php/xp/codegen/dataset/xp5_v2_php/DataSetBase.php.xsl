@@ -13,7 +13,7 @@
   <xsl:include href="xp5.func.xsl"/>
 
   <xsl:template match="/">
-    <xsl:value-of select="my:setFilename(concat(/document/table/@class, 'Base.class.php'))" />
+    <xsl:value-of select="my:setFilename(concat('base/', /document/table/@class, 'Base.class.php'))" />
     <xsl:value-of select="my:setProtected('false')" />
 
     <xsl:text>&lt;?php
@@ -28,7 +28,7 @@
     'rdbms.FieldType',
     'rdbms.Peer',
     'util.HashmapIterator',
-    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>BaseInterface'
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', /document/table/@class)" /><xsl:text>BaseInterface'
   );&#10;</xsl:text>
     <xsl:apply-templates/>
   <xsl:text>?></xsl:text>
@@ -43,9 +43,9 @@
    *
    * Please put your custom code into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>.
    *
-   * @purpose  Datasource accessor
+   * @purpose Datasource accessor
    */
-  class </xsl:text><xsl:value-of select="@class"/><xsl:text>Base extends DataSet implements </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
+  abstract class </xsl:text><xsl:value-of select="@class"/><xsl:text>Base extends DataSet implements </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
     public&#10;</xsl:text>
 
   <!-- Attributes -->

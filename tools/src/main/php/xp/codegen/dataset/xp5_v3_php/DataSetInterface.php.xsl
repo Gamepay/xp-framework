@@ -23,7 +23,7 @@
  */
  
   uses(
-    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>BaseInterface'
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', my:camelCase(/document/table/@class))" /><xsl:text>BaseInterface'
   );&#10;</xsl:text>
     <xsl:apply-templates/>
   <xsl:text>?></xsl:text>
@@ -35,7 +35,7 @@
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
    *
-   * @purpose  Datasource accessor
+   * @purpose Datasource accessor
    */
   interface </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>Interface extends </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>BaseInterface {
   }</xsl:text>
