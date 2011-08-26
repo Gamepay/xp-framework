@@ -13,7 +13,7 @@
   <xsl:include href="xp5.func.xsl"/>
   
   <xsl:template match="/">
-    <xsl:value-of select="my:setFilename(concat(/document/table/@class, 'BaseInterface.class.php'))" />
+    <xsl:value-of select="my:setFilename(concat('base/', /document/table/@class, 'BaseInterface.class.php'))" />
     <xsl:value-of select="my:setProtected('false')" />
 
     <xsl:text>&lt;?php
@@ -34,7 +34,7 @@
    *
    * Please put your custom declarations into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>.
    *
-   * @purpose  Datasource accessor
+   * @purpose Datasource accessor
    */
   interface </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
     </xsl:text>

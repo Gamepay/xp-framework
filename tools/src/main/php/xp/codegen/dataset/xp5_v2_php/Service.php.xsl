@@ -9,21 +9,21 @@
   extension-element-prefixes="func exslt string"
 >
   <xsl:output method="text" omit-xml-declaration="yes"/>
-  
+
   <xsl:include href="xp5.func.xsl"/>
-   
+  
   <xsl:template match="/">
-    <xsl:value-of select="my:setFilename(concat(/document/table/@class, 'Interface.class.php'))" />
+    <xsl:value-of select="my:setFilename(concat(/document/table/@class, 'Service.class.php'))" />
     <xsl:value-of select="my:setProtected('true')" />
 
     <xsl:text>&lt;?php
-/* This interface is part of the XP framework
+/* This class is part of the XP framework
  *
  * $Id$
  */
  
   uses(
-    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', /document/table/@class)" /><xsl:text>BaseInterface'
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', /document/table/@class)" /><xsl:text>ServiceBase'
   );&#10;</xsl:text>
     <xsl:apply-templates/>
   <xsl:text>?></xsl:text>
@@ -33,11 +33,11 @@
     <xsl:variable name="primary_key_unique" select="index[@primary= 'true' and @unique= 'true']/key/text()"/>
 
     <xsl:text>/**
-   * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
+   * Service for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
    *
    * @purpose Datasource accessor
    */
-  interface </xsl:text><xsl:value-of select="@class"/><xsl:text>Interface extends </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
+  class </xsl:text><xsl:value-of select="@class"/>Service<xsl:text> extends </xsl:text><xsl:value-of select="@class"/><xsl:text>ServiceBase {
   }</xsl:text>
   </xsl:template>
   
