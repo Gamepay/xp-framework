@@ -33,8 +33,6 @@
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
    * (This class was auto-generated, so please do not change manually)
-   *
-   * @purpose  Datasource accessor
    */
   class </xsl:text><xsl:value-of select="@class"/><xsl:text> extends DataSet {
     public&#10;</xsl:text>

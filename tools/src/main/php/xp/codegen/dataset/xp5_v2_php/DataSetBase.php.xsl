@@ -35,15 +35,12 @@
   </xsl:template>
   
   <xsl:template match="table">
-    <xsl:variable name="primary_key_unique" select="index[@primary= 'true' and @unique= 'true']/key/text()"/>
 
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
    * (This class was auto-generated, so please do not change manually)
    *
    * Please put your custom code into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>.
-   *
-   * @purpose Datasource accessor
    */
   abstract class </xsl:text><xsl:value-of select="@class"/><xsl:text>Base extends DataSet implements </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
     public&#10;</xsl:text>

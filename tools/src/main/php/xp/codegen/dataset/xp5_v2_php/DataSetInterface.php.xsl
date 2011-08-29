@@ -30,12 +30,9 @@
   </xsl:template>
   
   <xsl:template match="table">
-    <xsl:variable name="primary_key_unique" select="index[@primary= 'true' and @unique= 'true']/key/text()"/>
 
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
-   *
-   * @purpose Datasource accessor
    */
   interface </xsl:text><xsl:value-of select="@class"/><xsl:text>Interface extends </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
   }</xsl:text>

@@ -35,8 +35,6 @@
 
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
-   *
-   * @purpose Datasource accessor
    */
   class </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text> extends </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>Base implements </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>Interface {
   }</xsl:text>

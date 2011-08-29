@@ -39,10 +39,8 @@
    * (This class was auto-generated, so please do not change manually)
    *
    * Please put your custom code into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" />Service<xsl:text>.
-   *
-   * @purpose Datasource accessor
    */
-  abstract class </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>ServiceBase {
+  abstract class </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>ServiceBase implements </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>ServiceBaseInterface {
   
     /**
      * @var </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>Service
