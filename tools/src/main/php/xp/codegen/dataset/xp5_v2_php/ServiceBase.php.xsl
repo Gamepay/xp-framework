@@ -25,6 +25,7 @@
   uses(
     'rdbms.Criteria',
     'rdbms.Peer',
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>BaseServiceInterface',
     '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>Service'
   );&#10;</xsl:text>
     <xsl:apply-templates/>
@@ -32,17 +33,14 @@
   </xsl:template>
   
   <xsl:template match="table">
-    <xsl:variable name="primary_key_unique" select="index[@primary= 'true' and @unique= 'true']/key/text()"/>
 
     <xsl:text>/**
    * Service for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
    * (This class was auto-generated, so please do not change manually)
    *
    * Please put your custom code into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" />Service<xsl:text>.
-   *
-   * @purpose Datasource accessor
    */
-  abstract class </xsl:text><xsl:value-of select="@class"/><xsl:text>ServiceBase {
+  abstract class </xsl:text><xsl:value-of select="@class"/><xsl:text>ServiceBase implements </xsl:text><xsl:value-of select="@class"/><xsl:text>ServiceBaseInterface {
   
     /**
      * @var </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>Service

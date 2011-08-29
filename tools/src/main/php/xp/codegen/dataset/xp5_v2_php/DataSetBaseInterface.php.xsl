@@ -33,8 +33,6 @@
    * (This interface was auto-generated, so please do not change manually)
    *
    * Please put your custom declarations into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>.
-   *
-   * @purpose Datasource accessor
    */
   interface </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
     </xsl:text>

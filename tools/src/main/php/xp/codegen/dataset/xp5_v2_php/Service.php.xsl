@@ -30,14 +30,11 @@
   </xsl:template>
   
   <xsl:template match="table">
-    <xsl:variable name="primary_key_unique" select="index[@primary= 'true' and @unique= 'true']/key/text()"/>
 
     <xsl:text>/**
    * Service for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
-   *
-   * @purpose Datasource accessor
    */
-  class </xsl:text><xsl:value-of select="@class"/>Service<xsl:text> extends </xsl:text><xsl:value-of select="@class"/><xsl:text>ServiceBase {
+  class </xsl:text><xsl:value-of select="@class"/>Service<xsl:text> extends </xsl:text><xsl:value-of select="@class"/><xsl:text>ServiceBase implements </xsl:text><xsl:value-of select="@class"/><xsl:text>ServiceInterface {
   }</xsl:text>
   </xsl:template>
   

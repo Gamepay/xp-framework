@@ -42,8 +42,6 @@
    * (This class was auto-generated, so please do not change manually)
    *
    * Please put your custom code into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>
-   *
-   * @purpose Datasource accessor
    */
   abstract class </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>Base extends DataSet implements </xsl:text><xsl:value-of select="my:camelCase(@class)"/><xsl:text>BaseInterface {
     protected&#10;</xsl:text>
