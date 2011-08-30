@@ -23,7 +23,8 @@
  */
  
   uses(
-    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', /document/table/@class)" /><xsl:text>ServiceBase'
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', /document/table/@class)" /><xsl:text>ServiceBase',
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>ServiceInterface'
   );&#10;</xsl:text>
     <xsl:apply-templates/>
   <xsl:text>?></xsl:text>
