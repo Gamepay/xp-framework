@@ -37,7 +37,7 @@
      */
     protected function store($name, $data, $overwrite= TRUE) {
       $file= new File($this->path, $name);
-      mkdir($file->getPath(), 0700, true);
+      mkdir($file->getPath(), 0755, true);
       FileUtil::setContents($file, $data);
     }
     
