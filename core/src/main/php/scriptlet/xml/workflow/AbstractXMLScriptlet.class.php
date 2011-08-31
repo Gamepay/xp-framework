@@ -27,7 +27,7 @@
      */
     public function __construct($package, $base= '', $profiling= '') {
       parent::__construct($base, $profiling);
-      $this->package= $package;
+      $this->package= strtr($package, '\\', '.');
     }
 
     /**
