@@ -4,7 +4,8 @@
  * $Id$ 
  */
 
-  $package= 'lang.reflect';
+  namespace lang\reflect;
+  $package= TRUE;
 
   /**
    * Represents a method's parameter
@@ -14,7 +15,7 @@
    * @see   xp://lang.reflect.Method#numParameters
    * @test  xp://net.xp_framework.unittest.reflection.ReflectionTest
    */
-  class lang·reflect·Parameter extends Object {
+  class Parameter extends \Object {
     protected
       $_reflect = NULL,
       $_details = NULL;
@@ -46,12 +47,12 @@
      */
     public function getType() {
       if (
-        !($details= XPClass::detailsForMethod($this->_details[0], $this->_details[1])) ||  
+        !($details= \XPClass::detailsForMethod($this->_details[0], $this->_details[1])) ||
         !isset($details[DETAIL_ARGUMENTS][$this->_details[2]])
       ) {   // Unknown or unparseable, return ANYTYPE
-        return Type::$VAR;
+        return \Type::$VAR;
       }
-      return Type::forName(ltrim($details[DETAIL_ARGUMENTS][$this->_details[2]], '&'));
+      return \Type::forName(ltrim($details[DETAIL_ARGUMENTS][$this->_details[2]], '&'));
     }
 
     /**
@@ -61,7 +62,7 @@
      */
     public function getTypeName() {
       if (
-        !($details= XPClass::detailsForMethod($this->_details[0], $this->_details[1])) ||  
+        !($details= \XPClass::detailsForMethod($this->_details[0], $this->_details[1])) ||  
         !isset($details[DETAIL_ARGUMENTS][$this->_details[2]])
       ) {   // Unknown or unparseable, return ANYTYPE
         return 'var';
@@ -76,9 +77,9 @@
      */
     public function getTypeRestriction() {
       if ($this->_reflect->isArray()) {
-        return Primitive::$ARRAY;
+        return \Primitive::$ARRAY;
       } else if ($c= $this->_reflect->getClass()) {
-        return new XPClass($c);
+        return new \XPClass($c);
       } else {
         return NULL;
       }
@@ -104,7 +105,7 @@
         return $this->_reflect->isDefaultValueAvailable() ? $this->_reflect->getDefaultValue() : NULL;
       }
 
-      throw new IllegalStateException('Parameter "'.$this->_reflect->getName().'" has no default value');
+      throw new \IllegalStateException('Parameter "'.$this->_reflect->getName().'" has no default value');
     }
     
     /**
@@ -118,7 +119,7 @@
         $this->getClassName(),
         $this->getType()->toString(),
         $this->_reflect->getName(),
-        $this->_reflect->isOptional() ? '= '.xp::stringOf($this->_reflect->getDefaultValue()) : ''
+        $this->_reflect->isOptional() ? '= '.\xp::stringOf($this->_reflect->getDefaultValue()) : ''
       );
     }
   }
