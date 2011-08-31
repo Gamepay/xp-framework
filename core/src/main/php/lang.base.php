@@ -441,6 +441,7 @@
   function uses() {
     $scope= NULL;
     foreach (func_get_args() as $str) {
+      $str= strtr($str, '\\', '.');
       $class= xp::$registry['loader']->loadClass0($str);
       if (method_exists($class, '__import')) {
         if (NULL === $scope) {
