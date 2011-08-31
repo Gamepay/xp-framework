@@ -22,6 +22,10 @@
    * @purpose  Database connection
    */
   class MySQLConnection extends DBConnection {
+    
+    public
+      $transactionNesting     = FALSE,
+      $transactionNestingLevel= 0;
 
     /**
      * Constructor
@@ -30,6 +34,7 @@
      */
     public function __construct($dsn) { 
       parent::__construct($dsn);
+      $this->transactionNesting= $dsn->getProperty('nesting') === 'true';
       $this->formatter= new StatementFormatter($this, new MysqlDialect());
     }
 
@@ -200,7 +205,19 @@
      * @return  rdbms.Transaction
      */
     public function begin($transaction) {
-      if (!$this->query('begin')) return FALSE;
+      $name= $transaction->name.'_';
+      if (empty($name)) {
+        $name= 'XP_RDBMS_';
+      }
+      $name.= ++$this->transactionNestingLevel;
+      
+      if (!$this->transactionNesting || $this->transactionNestingLevel == 1) {
+        $ret= $this->query('start transaction');
+      } else {
+      	$ret= $this->query('savepoint %c', $name);
+      }
+      
+      if (!$ret) return FALSE;
       $transaction->db= $this;
       return $transaction;
     }
@@ -211,8 +228,26 @@
      * @param   string name
      * @return  bool success
      */
-    public function rollback($name) { 
-      return $this->query('rollback');
+    public function rollback($name) {
+      if ($this->transactionNestingLevel == 0) {
+        throw new IllegalStateException('no transaction running!');
+      }
+      
+      $name= $name.'_';
+      if (empty($name)) {
+        $name= 'XP_RDBMS_';
+      }
+      $name.= $this->transactionNestingLevel;
+      
+      if (!$this->transactionNesting || $this->transactionNestingLevel == 1) {
+        $this->transactionNestingLevel = 0;
+        $ret= $this->query('rollback');
+      } else {
+        $ret= $this->query('rollback to savepoint %c', $name);
+        --$this->transactionNestingLevel;
+      }
+      
+      return $ret;
     }
     
     /**
@@ -221,8 +256,25 @@
      * @param   string name
      * @return  bool success
      */
-    public function commit($name) { 
-      return $this->query('commit');
+    public function commit($name) {
+      if ($this->transactionNestingLevel == 0) {
+        throw new IllegalStateException('no transaction running!');
+      }
+      
+      $name= $name.'_';
+      if (empty($name)) {
+        $name= 'XP_RDBMS_';
+      }
+      $name.= $this->transactionNestingLevel;
+      
+      if (!$this->transactionNesting || $this->transactionNestingLevel == 1) {
+        $ret= $this->query('commit');
+      } else {
+        $ret= $this->query('release savepoint %c', $name);
+      }
+      --$this->transactionNestingLevel;
+      
+      return $ret;
     }
   }
 ?>
