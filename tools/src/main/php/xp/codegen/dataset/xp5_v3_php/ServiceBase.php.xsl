@@ -26,6 +26,7 @@
     'rdbms.Criteria',
     'rdbms.Peer',
     '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', my:camelCase(/document/table/@class))" /><xsl:text>ServiceBaseInterface',
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>',
     '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>Service'
   );&#10;</xsl:text>
     <xsl:apply-templates/>

@@ -50,7 +50,7 @@
   <xsl:for-each select="attribute">
     <xsl:value-of select="concat('      $', @name, substring('                                ', 0, 20 - string-length(@name)))"/>
     <xsl:choose>
-      <xsl:when test="@nullable = 'true'">= NULL</xsl:when>
+      <xsl:when test="@nullable= 'true'">= NULL</xsl:when>
       <xsl:when test="@typename= 'int'">= 0</xsl:when>
       <xsl:when test="@typename= 'string'">= ''</xsl:when>
       <xsl:when test="@typename= 'float'">= 0.0</xsl:when>
