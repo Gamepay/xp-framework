@@ -276,6 +276,82 @@
     }
     
     /**
+     * Test beginn commit
+     *
+     */
+    #[@test]
+    public function commit() {
+      $this->createTable();
+      $transaction= new Transaction('test');
+      
+      try {
+        $this->db()->begin($transaction);
+        
+        $q= $this->db()->query('update unittest set username="stein" where pk=1');
+        $this->assertEquals(TRUE, $q);
+        
+        $transaction->commit();
+      } catch (Exception $e) {
+        $transaction->rollback();
+        $this->fail('commit failed', '', '');
+      }
+      
+      $this->assertEquals('stein', $this->db()->query('select username from unittest where pk=1')->next('username'));
+    }
+    
+    /**
+     * Test beginn rollback
+     *
+     */
+    #[@test]
+    public function rollback() {
+      $this->createTable();
+      $transaction= new Transaction('test');
+    
+      $this->db()->begin($transaction);
+  
+      $q= $this->db()->query('update unittest set username="stein" where pk=1');
+      $this->assertEquals(TRUE, $q);
+  
+      $transaction->rollback();
+      
+      $this->assertEquals('kiesel', $this->db()->query('select username from unittest where pk=1')->next('username'));
+    }
+    
+    /**
+     * Test nested transactions
+     *
+     */
+    #[@test]
+    public function nested() {
+      $this->createTable();
+      $transaction1= new Transaction('test1');
+      $transaction2= new Transaction('test2');
+    
+      try {
+        $this->db()->begin($transaction1);
+        
+        $q= $this->db()->query('update unittest set username="stein" where pk=1');
+        $this->assertEquals(TRUE, $q);
+        
+        $this->db()->begin($transaction2);
+        
+        $q= $this->db()->query('update unittest set username="fels" where pk=2');
+        $this->assertEquals(TRUE, $q);
+        
+        $transaction2->rollback();
+        
+        $transaction1->commit();
+      } catch (Exception $e) {
+        $transaction1->rollback();
+        $this->fail('commit failed', '', '');
+      }
+    
+      $this->assertEquals('stein', $this->db()->query('select username from unittest where pk=1')->next('username'));
+      $this->assertEquals('kiesel', $this->db()->query('select username from unittest where pk=2')->next('username'));
+    }
+    
+    /**
      * Test observers are being called
      *
      */
