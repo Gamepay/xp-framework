@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.xp-framework</groupId>
+    <artifactId>xp-framework</artifactId>
+    <name>XP- Framework</name>
+    <version>5.8.2-dev</version>
+    <build>
+      <sourceDirectory>src/main/php</sourceDirectory>
+      <testSourceDirectory>src/test/php</testSourceDirectory>
+    </build>
+    <properties>
+      <sonar.language>php</sonar.language>
+    </properties>
+</project>
