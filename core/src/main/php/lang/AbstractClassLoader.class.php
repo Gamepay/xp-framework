@@ -45,10 +45,16 @@
     public function loadClass0($class) {
       if (isset(xp::$registry['classloader.'.$class])) return xp::reflect($class);
 
+      // This is one fugly hack to fix up namespacing. Just don't ask.
+      $fullclass= $class;
+      $class=strtr($class, '\\', '.');
+
       // Load class
       $package= NULL;
+
       xp::$registry['classloader.'.$class]= $this->getClassName().'://'.$this->path;
       xp::$registry['cl.level']++;
+
       try {
         $r= include($this->classUri($class));
       } catch (ClassLoadingException $e) {
@@ -78,7 +84,10 @@
       }
       
       // Register it
-      $name= ($package ? strtr($package, '.', '·').'·' : '').substr($class, (FALSE === ($p= strrpos($class, '.')) ? 0 : $p + 1));
+        
+      $name= ($package ? strtr($package, '.', '·').'·' : '').substr($fullclass, (FALSE === ($p= strrpos($fullclass, '.')) ? 0 : $p + 1));
+
+      var_dump($name);
       if (!class_exists($name, FALSE) && !interface_exists($name, FALSE)) {
         unset(xp::$registry['classloader.'.$class]);
         raise('lang.ClassFormatException', 'Class "'.$name.'" not declared in loaded file');

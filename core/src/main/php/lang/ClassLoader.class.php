@@ -142,6 +142,8 @@
      * @throws  lang.ClassNotFoundException if given parent class does not exist
      */
     public static function defineClass($class, $parent, $interfaces, $bytes= '{}') {
+      $class= strtr($class, '.', '\\');
+
       $name= xp::reflect($class);
       if (!isset(xp::$registry['classloader.'.$class])) {
         $super= xp::reflect($parent);

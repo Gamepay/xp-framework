@@ -33,7 +33,7 @@
      * @return  string
      */
     public function loadClassBytes($name) {
-      return file_get_contents($this->path.strtr($name, '.', DIRECTORY_SEPARATOR).xp::CLASS_FILE_EXT);
+      return file_get_contents($this->path.strtr($name, '.\\', DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR).xp::CLASS_FILE_EXT);
     }
     
     /**
@@ -43,7 +43,7 @@
      * @return  bool
      */
     public function providesClass($class) {
-      return is_file($this->path.strtr($class, '.', DIRECTORY_SEPARATOR).xp::CLASS_FILE_EXT);
+      return is_file($this->path.strtr($class, '.\\', DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR).xp::CLASS_FILE_EXT);
     }
     
     /**
@@ -63,7 +63,7 @@
      * @return  bool
      */
     public function providesPackage($package) {
-      return is_dir($this->path.strtr($package, '.', DIRECTORY_SEPARATOR));
+      return is_dir($this->path.strtr($package, '.\\', DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR));
     }
     
     /**
@@ -73,7 +73,7 @@
      * @return  string
      */
     protected function classUri($class) {
-      return $this->path.strtr($class, '.', DIRECTORY_SEPARATOR).xp::CLASS_FILE_EXT;
+      return $this->path.strtr($class, '.\\', DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR).xp::CLASS_FILE_EXT;
     }
 
     /**
@@ -130,7 +130,7 @@
      */
     public function packageContents($package) {
       $contents= array();
-      if ($d= @dir($this->path.strtr($package, '.', DIRECTORY_SEPARATOR))) {
+      if ($d= @dir($this->path.strtr($package, '.\\', DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR))) {
         while ($e= $d->read()) {
           if ('.' != $e{0}) $contents[]= $e.(is_dir($d->path.DIRECTORY_SEPARATOR.$e) ? '/' : '');
         }
