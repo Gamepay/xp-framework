@@ -38,7 +38,7 @@
           $(document).ready(function() {
             $('.code').hide();
 
-            $('.file > h4 > a').click(function() {
+            $('.file > h4 > a').click(function(event) {
               event.preventDefault();
               var target= $(event.target)
               var code= target.closest('.file').find('.code').first();
@@ -60,7 +60,10 @@
           <xsl:value-of select="/files/@time" />
         </h1>
 
-        <xsl:apply-templates select="/files/file" />
+        <xsl:for-each select="/files/file">
+          <xsl:sort select="@name" />
+          <xsl:apply-templates select="." />
+        </xsl:for-each>
 
       </body>
     </html>
