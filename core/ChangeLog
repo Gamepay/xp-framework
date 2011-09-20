@@ -2,6 +2,26 @@ XP Framework ChangeLog
 ========================================================================
 $Id$
 
+Version ?.?.?, released ????-??-??
+----------------------------------
+Git commit: ?????
+
+Heads up!
+~~~~~~~~~
+
+Bugfixes
+~~~~~~~~
+
+Features
+~~~~~~~~
+- Added lang.types support for webservices.soap implementations, as
+  proposed in issue #18
+  (kiesel)
+- Added util.Properties::removeSection() and ::removeKey() methods, as
+  proposed in issue #54
+  (kiesel)
+
+
 Version 5.8.2, released 2011-09-07
 ----------------------------------
 Git commit: 7e7f1463274fe70a851b93609e03bbb33f242cff
