@@ -196,7 +196,7 @@
      * Retrieves the </xsl:text><xsl:value-of select="$classname"/><xsl:text> entity
      * referenced by </xsl:text><xsl:value-of select="$keys4apidoc" /><xsl:text>
      *
-     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text> entity
+     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>Interface entity
      * @throws  rdbms.SQLException in case an error occurs
      */
     public function get</xsl:text><xsl:value-of select="my:camelCase(@role)" /><xsl:text>() {
@@ -217,7 +217,7 @@
      * Retrieves an array of all </xsl:text><xsl:value-of select="$classname"/><xsl:text> entities
      * referenced by </xsl:text><xsl:value-of select="$keys4apidoc" /><xsl:text>
      *
-     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>[] entities
+     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>Interface[] entities
      * @throws  rdbms.SQLException in case an error occurs
      */
     public function get</xsl:text><xsl:value-of select="my:camelCase(@role)" /><xsl:text>List() {
@@ -234,7 +234,7 @@
      * Retrieves an iterator for all </xsl:text><xsl:value-of select="$classname"/><xsl:text> entities
      * referenced by </xsl:text><xsl:value-of select="$keys4apidoc" /><xsl:text>
      *
-     * @return  rdbms.ResultIterator&lt;</xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>&gt;
+     * @return  rdbms.ResultIterator&lt;</xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>Interface&gt;
      * @throws  rdbms.SQLException in case an error occurs
      */
     public function get</xsl:text><xsl:value-of select="my:camelCase(@role)" /><xsl:text>Iterator() {
@@ -276,7 +276,7 @@
      * Retrieves the </xsl:text><xsl:value-of select="$classname"/><xsl:text> entity referencing
      * this entity by </xsl:text><xsl:value-of select="$keys4apidoc" /><xsl:text>
      *
-     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text> entity
+     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>Interface entity
      * @throws  rdbms.SQLException in case an error occurs
      */
     public function get</xsl:text><xsl:value-of select="my:camelCase(@role)" /><xsl:text>() {
@@ -297,7 +297,7 @@
      * Retrieves an array of all </xsl:text><xsl:value-of select="$classname"/><xsl:text> entities referencing
      * this entity by </xsl:text><xsl:value-of select="$keys4apidoc" /><xsl:text>
      *
-     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>[] entities
+     * @return  </xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>Interface[] entities
      * @throws  rdbms.SQLException in case an error occurs
      */
     public function get</xsl:text><xsl:value-of select="my:camelCase(@role)" /><xsl:text>List() {
@@ -314,7 +314,7 @@
      * Retrieves an iterator for all </xsl:text><xsl:value-of select="$classname"/><xsl:text> entities referencing
      * this entity by </xsl:text><xsl:value-of select="$keys4apidoc" /><xsl:text>
      *
-     * @return  rdbms.ResultIterator&lt;</xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>&gt;
+     * @return  rdbms.ResultIterator&lt;</xsl:text><xsl:value-of select="$fullclassname"/><xsl:text>Interface&gt;
      * @throws  rdbms.SQLException in case an error occurs
      */
     public function get</xsl:text><xsl:value-of select="my:camelCase(@role)" /><xsl:text>Iterator() {

@@ -44,7 +44,7 @@
      * Gets an instance of this object by index "</xsl:text><xsl:value-of select="@name"/><xsl:text>"
      * </xsl:text><xsl:for-each select="key"><xsl:variable name="key" select="text()"/><xsl:text>
      * @param   </xsl:text><xsl:value-of select="concat(../../attribute[@name= $key]/@typename, ' ', my:camelCase($key))"/></xsl:for-each><xsl:text>
-     * @return  </xsl:text><xsl:value-of select="concat(../@package, '.', my:camelCase(../@class))"/><xsl:if test="not(@unique= 'true')">[] entity objects</xsl:if><xsl:if test="@unique= 'true'"> entity object</xsl:if><xsl:text>
+     * @return  </xsl:text><xsl:value-of select="concat(../@package, '.', my:camelCase(../@class), 'Interface')"/><xsl:if test="not(@unique= 'true')">[] entity objects</xsl:if><xsl:if test="@unique= 'true'"> entity object</xsl:if><xsl:text>
      * @throws  rdbms.SQLException in case an error occurs
      */
     public function getBy</xsl:text>
