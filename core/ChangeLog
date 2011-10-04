@@ -8,21 +8,50 @@ Git commit: ?????
 
 Heads up!
 ~~~~~~~~~
+- Changed JSON parser to use a generated parser instead of hand-crafted
+  one. Implements functionality suggested in pull request #37 
+  (friebe, Rebecca Dietrich)
+- Deprecated scriptlet.xml.workflow.Handler class. See issue #55 - use 
+  the new scriptlet.xml.workflow.AbstractHandler class instead!
+  (friebe)
 
 Bugfixes
 ~~~~~~~~
+- Fixed fatal error in webservices testsuite when running on PHP
+  without ext/soap
+  (friebe, kiesel)
+- Fixed request value is not unset/disabled when set via setFormValue()
+  when using new AbstractHandler class, old behavior retained for BC 
+  reasons - see issue #55
+  (friebe, apenciu)
+- Fixed annotation parsing:
+  . Support for @anno(array(...)) 
+  . Support for @anno(...) where ... is any scalar value
+  . Fix for strings containing a) annotations b) braces c) equal signs
+  . Fix for arrays containing strings
+  See pull request #56 and comments.
+  (mrosoiu, friebe)
 - Fixed timeout for FTP connections - see pull request #58
   (kiesel, Thomas Reuter)
 
 Features
 ~~~~~~~~
+- Added Unicode support to webservices.json.JsonDecoder - characters are
+  now correctly converted to escape sequences and back.
+  (friebe)
+- Added lang.types.String::$EMPTY constant
+  (friebe)
+- Added webservices.json.JsonDecoder::encodeTo() and ::decodeFrom()
+  methods to work with io.streams API
+  (friebe, Rebecca Dietrich)
 - Added lang.types support for webservices.soap implementations, as
   proposed in issue #18
   (kiesel)
 - Added util.Properties::removeSection() and ::removeKey() methods, as
   proposed in issue #54
   (kiesel)
-
+- Added peer.Header::equals() as proposed in pull request #61
+  (apenciu)
 
 Version 5.8.2, released 2011-09-07
 ----------------------------------
