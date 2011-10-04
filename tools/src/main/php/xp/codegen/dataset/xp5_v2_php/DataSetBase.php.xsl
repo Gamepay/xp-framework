@@ -11,9 +11,9 @@
   <xsl:output method="text" omit-xml-declaration="yes"/>
   
   <xsl:include href="xp5.func.xsl"/>
-  
+
   <xsl:template match="/">
-    <xsl:value-of select="my:setFilename(concat(/document/table/@class, '.class.php'))" />
+    <xsl:value-of select="my:setFilename(concat('base/', /document/table/@class, 'Base.class.php'))" />
     <xsl:value-of select="my:setProtected('false')" />
 
     <xsl:text>&lt;?php
@@ -22,19 +22,27 @@
  * $Id$
  */
  
-  uses('rdbms.DataSet', 'util.HashmapIterator');&#10;</xsl:text>
+  uses(
+    'rdbms.Criteria',
+    'rdbms.DataSet',
+    'rdbms.FieldType',
+    'rdbms.Peer',
+    'util.HashmapIterator',
+    '</xsl:text><xsl:value-of select="concat(/document/table/@package, '.base.', /document/table/@class)" /><xsl:text>BaseInterface'
+  );&#10;</xsl:text>
     <xsl:apply-templates/>
   <xsl:text>?></xsl:text>
   </xsl:template>
   
   <xsl:template match="table">
-    <xsl:variable name="primary_key_unique" select="index[@primary= 'true' and @unique= 'true']/key/text()"/>
 
     <xsl:text>/**
    * Class wrapper for table </xsl:text><xsl:value-of select="@name"/>, database <xsl:value-of select="./@database"/><xsl:text>
    * (This class was auto-generated, so please do not change manually)
+   *
+   * Please put your custom code into </xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>.
    */
-  class </xsl:text><xsl:value-of select="@class"/><xsl:text> extends DataSet {
+  abstract class </xsl:text><xsl:value-of select="@class"/><xsl:text>Base extends DataSet implements </xsl:text><xsl:value-of select="@class"/><xsl:text>BaseInterface {
     public&#10;</xsl:text>
 
   <!-- Attributes -->
@@ -122,7 +130,7 @@
      * @return  rdbms.Peer
      */
     public static function getPeer() {
-      return Peer::forName(__CLASS__);
+      return Peer::forName('</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>');
     }
 
     /**
@@ -133,7 +141,7 @@
      * @throws  lang.IllegalArgumentException
      */
     public static function column($name) {
-      return Peer::forName(__CLASS__)->column($name);
+      return Peer::forName('</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', /document/table/@class)" /><xsl:text>')->column($name);
     }
   </xsl:text>
 

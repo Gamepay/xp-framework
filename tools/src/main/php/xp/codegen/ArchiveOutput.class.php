@@ -36,12 +36,25 @@
      * @param   string data
      */
     protected function store($name, $data) {
+      if (!$overwrite && $archive->contains($name)) {
+        return;
+      }
       $this->archive->addFileBytes(
         $name,
         dirname($name),
         basename($name),
         $data
       );
+    }
+    
+    /**
+     * Data for the given name already exists
+     *
+     * @param string $name
+     * @return boolean
+     */
+    protected function exists($name) {
+      return $archive->contains($name);
     }
     
     /**

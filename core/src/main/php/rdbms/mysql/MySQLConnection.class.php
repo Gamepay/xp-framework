@@ -1,7 +1,7 @@
 <?php
 /* This class is part of the XP framework
  *
- * $Id$ 
+ * $Id$
  */
 
   uses(
@@ -23,13 +23,18 @@
    */
   class MySQLConnection extends DBConnection {
 
+    public
+      $transactionNesting     = FALSE,
+      $transactionNestingLevel= 0;
+
     /**
      * Constructor
      *
      * @param   rdbms.DSN dsn
      */
-    public function __construct($dsn) { 
+    public function __construct($dsn) {
       parent::__construct($dsn);
+      $this->transactionNesting= $dsn->getProperty('nesting') === 'true';
       $this->formatter= new StatementFormatter($this, new MysqlDialect());
     }
 
@@ -56,19 +61,19 @@
 
       if ($this->flags & DB_PERSISTENT) {
         $this->handle= mysql_pconnect(
-          $this->dsn->getHost().':'.$this->dsn->getPort(3306), 
-          $this->dsn->getUser(), 
+          $this->dsn->getHost().':'.$this->dsn->getPort(3306),
+          $this->dsn->getUser(),
           $this->dsn->getPassword()
         );
       } else {
         $this->handle= mysql_connect(
-          $this->dsn->getHost().':'.$this->dsn->getPort(3306), 
-          $this->dsn->getUser(), 
+          $this->dsn->getHost().':'.$this->dsn->getPort(3306),
+          $this->dsn->getUser(),
           $this->dsn->getPassword(),
           ($this->flags & DB_NEWLINK)
         );
       }
-      
+
       $this->_obs && $this->notifyObservers(new DBEvent(__FUNCTION__, $reconnect));
 
       if (!is_resource($this->handle)) {
@@ -82,13 +87,13 @@
       // - Possible values: http://dev.mysql.com/doc/refman/5.0/en/server-sql-mode.html
       // "modes is a list of different modes separated by comma (,) characters."
       $modes= array_flip(explode(',', current(mysql_fetch_row(mysql_query(
-        "show variables like 'sql_mode'", 
+        "show variables like 'sql_mode'",
         $this->handle
       )))));
-      
-      // NO_BACKSLASH_ESCAPES: Disable the use of the backslash character 
-      // (\) as an escape character within strings. With this mode enabled, 
-      // backslash becomes any ordinary character like any other. 
+
+      // NO_BACKSLASH_ESCAPES: Disable the use of the backslash character
+      // (\) as an escape character within strings. With this mode enabled,
+      // backslash becomes any ordinary character like any other.
       // (Implemented in MySQL 5.0.1)
       isset($modes['NO_BACKSLASH_ESCAPES']) && $this->formatter->dialect->setEscapeRules(array(
         '"'   => '""'
@@ -96,20 +101,20 @@
 
       return parent::connect();
     }
-    
+
     /**
      * Disconnect
      *
      * @return  bool success
      */
-    public function close() { 
+    public function close() {
       if ($this->handle && $r= mysql_close($this->handle)) {
         $this->handle= NULL;
         return $r;
       }
       return FALSE;
     }
-    
+
     /**
      * Select database
      *
@@ -120,7 +125,7 @@
     public function selectdb($db) {
       if (!mysql_select_db($db, $this->handle)) {
         throw new SQLStatementFailedException(
-          'Cannot select database: '.mysql_error($this->handle), 
+          'Cannot select database: '.mysql_error($this->handle),
           'use '.$db,
           mysql_errno($this->handle)
         );
@@ -146,8 +151,8 @@
      */
     protected function affectedRows() {
       return mysql_affected_rows($this->handle);
-    }    
-    
+    }
+
     /**
      * Execute any statement
      *
@@ -160,17 +165,17 @@
       if (!is_resource($this->handle)) {
         if (!($this->flags & DB_AUTOCONNECT)) throw new SQLStateException('Not connected');
         $c= $this->connect();
-        
+
         // Check for subsequent connection errors
         if (FALSE === $c) throw new SQLStateException('Previously failed to connect.');
       }
-      
+
       if (!$buffered || $this->flags & DB_UNBUFFERED) {
         $result= mysql_unbuffered_query($sql, $this->handle);
       } else {
         $result= mysql_query($sql, $this->handle);
       }
-      
+
       if (FALSE === $result) {
         $code= mysql_errno($this->handle);
         $message= 'Statement failed: '.mysql_error($this->handle).' @ '.$this->dsn->getHost();
@@ -181,12 +186,12 @@
 
           case 1213: // Deadlock
             throw new SQLDeadlockException($message, $sql, $code);
-          
+
           default:   // Other error
             throw new SQLStatementFailedException($message, $sql, $code);
         }
       }
-      
+
       return (TRUE === $result
         ? $result
         : new MySQLResultSet($result, $this->tz)
@@ -200,29 +205,80 @@
      * @return  rdbms.Transaction
      */
     public function begin($transaction) {
-      if (!$this->query('begin')) return FALSE;
+      $name= $transaction->name;
+      if (empty($name)) {
+        $name= 'XP_RDBMS_';
+      } else {
+        $name.= '_';
+      }
+      $name.= ++$this->transactionNestingLevel;
+
+      if (!$this->transactionNesting || $this->transactionNestingLevel == 1) {
+        $ret= $this->query('start transaction');
+      } else {
+      	$ret= $this->query('savepoint %c', $name);
+      }
+
+      if (!$ret) return FALSE;
       $transaction->db= $this;
       return $transaction;
     }
-    
+
     /**
      * Rollback a transaction
      *
      * @param   string name
      * @return  bool success
      */
-    public function rollback($name) { 
-      return $this->query('rollback');
+    public function rollback($name) {
+      if ($this->transactionNestingLevel == 0) {
+        throw new IllegalStateException('no transaction running!');
+      }
+
+      if (empty($name)) {
+        $name= 'XP_RDBMS_';
+      } else {
+        $name.= '_';
+      }
+      $name.= $this->transactionNestingLevel;
+
+      if (!$this->transactionNesting || $this->transactionNestingLevel == 1) {
+        $this->transactionNestingLevel = 0;
+        $ret= $this->query('rollback');
+      } else {
+        $ret= $this->query('rollback to savepoint %c', $name);
+        --$this->transactionNestingLevel;
+      }
+
+      return $ret;
     }
-    
+
     /**
      * Commit a transaction
      *
      * @param   string name
      * @return  bool success
      */
-    public function commit($name) { 
-      return $this->query('commit');
+    public function commit($name) {
+      if ($this->transactionNestingLevel == 0) {
+        throw new IllegalStateException('no transaction running!');
+      }
+
+      if (empty($name)) {
+        $name= 'XP_RDBMS_';
+      } else {
+        $name.= '_';
+      }
+      $name.= $this->transactionNestingLevel;
+
+      if (!$this->transactionNesting || $this->transactionNestingLevel == 1) {
+        $ret= $this->query('commit');
+      } else {
+        $ret= $this->query('release savepoint %c', $name);
+      }
+      --$this->transactionNestingLevel;
+
+      return $ret;
     }
   }
 ?>

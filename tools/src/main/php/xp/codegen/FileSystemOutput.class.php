@@ -35,8 +35,21 @@
      * @param   string name
      * @param   string data
      */
-    protected function store($name, $data) {
-      FileUtil::setContents(new File($this->path, $name), $data);
+    protected function store($name, $data, $overwrite= TRUE) {
+      $file= new File($this->path, $name);
+      mkdir($file->getPath(), 0755, true);
+      FileUtil::setContents($file, $data);
+    }
+    
+    /**
+     * Data for the given name already exists
+     *
+     * @param string $name
+     * @return boolean
+     */
+    protected function exists($name) {
+      $file= new File($this->path, $name);
+      return $file->exists();
     }
     
     /**
