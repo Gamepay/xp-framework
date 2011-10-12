@@ -129,40 +129,46 @@
             continue;
           }
 
-          $results[$fileName]= $data;
+          $results[dirname($fileName)][basename($fileName)]= $data;
           break;
         }
       }
 
-      $filesNode= new Node('files');
-      foreach ($results as $fileName => $data) {
-        $fileNode= new Node('file');
-        $fileNode->setAttribute('name', $fileName);
+      $pathsNode= new Node('paths');
+      foreach ($results as $pathName => $files) {
+        $pathNode= new Node('path');
+        $pathNode->setAttribute('name', $pathName);
 
-        $num= 1;
-        $handle= fopen($fileName, 'r');
-        while (!feof($handle)) {
-          $line= stream_get_line($handle, 1000, "\n");
+        foreach ($files as $fileName => $data) {
+          $fileNode= new Node('file');
+          $fileNode->setAttribute('name', $fileName);
 
-          $lineNode = new Node('line', new CData($line));
-          if (isset($data[$num])) {
-            if ($data[$num] > 0 || $data[$num] < -1) {
-              $lineNode->setAttribute('checked', 'checked');
-            } elseif ($data[$num] > -2) {
-              $lineNode->setAttribute('unchecked', 'unchecked');
+          $num= 1;
+          $handle= fopen($pathName.'/'.$fileName, 'r');
+          while (!feof($handle)) {
+            $line= stream_get_line($handle, 1000, "\n");
+
+            $lineNode = new Node('line', new CData($line));
+            if (isset($data[$num])) {
+              if ($data[$num] > 0 || $data[$num] < -1) {
+                $lineNode->setAttribute('checked', 'checked');
+              } elseif ($data[$num] > -2) {
+                $lineNode->setAttribute('unchecked', 'unchecked');
+              }
             }
+
+            $fileNode->addChild($lineNode);
+            ++$num;
           }
 
-          $fileNode->addChild($lineNode);
-          ++$num;
+          $pathNode->addChild($fileNode);
         }
-
-        $filesNode->addChild($fileNode);
+        $pathsNode->addChild($pathNode);
       }
       $now= time();
-      $filesNode->setAttribute('time', date('Y-m-d H:i:s'));
+      $pathsNode->setAttribute('time', date('Y-m-d H:i:s'));
 
-      $this->processor->setXMLBuf($filesNode->getSource());
+      $this->processor->setXMLBuf($pathsNode->getSource());
       $this->processor->run();
 
       $reportfile= 'coverage-'.date('Y-m-d-H-i-s').'.html';

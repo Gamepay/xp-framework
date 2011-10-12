@@ -8,21 +8,85 @@
   extension-element-prefixes="func exslt string"
 >
   <xsl:strip-space elements="*"/>
-
+    
   <xsl:template match="/">
     <html>
       <head>
         <title><xsl:value-of select="'Code Coverage Report'" /></title>
         <style>
         <![CDATA[
+          body {
+            padding: 10px;
+            color: #373737;
+            font-size: 12px;
+            font-family: Arial, Verdana, Tahoma, sans-serif;
+          }
+          
+          body > h1 {
+            font-size: 18px;
+            font-weight: normal;
+            text-transform: uppercase;
+          }
+          
+          body > h1 > span.title {
+            padding: 5px 10px 5px 0;
+            color: #006AB3;
+            font-weight: bold;
+          }
+          
+          body > h1 > span.date {
+            padding: 5px 0 5px 10px;
+            border-left: 1px solid #CBCBCB;
+          }
+        
+          body > div {
+            background-color: #E2E2E2;
+            border: 1px solid #CBCBCB;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+          }
+          
+          body > div > h2 {
+            font-size: 16px;
+            margin-bottom: 20px;
+          }
+          
+          body > div > div {
+            padding: 5px 0;
+            position: relative;
+            border-bottom: 1px solid #CBCBCB;
+            background-color: rgba(255, 255, 255, 0.5)
+          }
+          
+          body > div > div:nth-child(2n) {
+            background-color: rgba(255, 255, 255, 1.0)
+          }
+          
+          body > div > div > label {
+            font-weight: bold;
+          }
+          
+          body > div > div > span.locinfo {
+            float: right;
+            width: 15%;
+            margin-right: 5;
+            padding: 1px 5px;
+            font-weight: bold;
+            text-align: right;
+            background-color: rgba(0, 0, 0, 0.3)
+          }
+          
           div.code {
             border: 1px solid #CBCBCB;
             padding: 10px;
-            background-color: #E2E2E2;
+            background-color: rgba(255, 255, 255, 0.5)
           }
           pre.line {
             margin:0px;
-            height:1.3em;
+            padding: 2px 0;
+            height:1.0em;
           }
           pre.line[checked] {
             background-color: 99ff66;
@@ -36,19 +100,20 @@
         <script type="text/javascript">
         <![CDATA[
           $(document).ready(function() {
-            $('.code').hide();
+            $('.folder').hide();
+            $('.file').hide();
 
-            $('.file > h4 > a').click(function(event) {
-              event.preventDefault();
-              var target= $(event.target)
-              var code= target.closest('.file').find('.code').first();
-              if (target.html() == 'open') {
-                target.html('close');
-                code.slideDown(300);
-              } else {
-                target.html('open');
-                code.slideUp(300);
-              }
+            $('input[name=folder]').change(function(event) {
+              $('.folder, .file').slideUp(300);
+              $('#fs' + $(event.target).attr('id').substr(2)).slideDown(300);
+              $('.folder input').each(function(index, elem) {
+                $(elem).removeAttr('checked');
+              });
+            });
+            
+            $('input[name=file]').change(function(event) {
+              $('.file').slideUp(300);
+              $('#fs' + $(event.target).attr('id').substr(2)).slideDown(300);
             });
           });
         ]]>
@@ -56,11 +121,36 @@
       </head>
       <body>
         <h1>
-          <xsl:value-of select="'Code Coverage Report - '" />
-          <xsl:value-of select="/files/@time" />
+          <span class="title"><xsl:value-of select="'Code Coverage Report'" /></span>
+          <span class="date"><xsl:value-of select="/paths/@time" /></span>
         </h1>
-
-        <xsl:for-each select="/files/file">
+        
+        <div>
+          <h2>Folder</h2>
+          <xsl:for-each select="/paths/path">
+            <xsl:sort select="@name" />
+            
+            <xsl:variable name="clocs" select="count(file/line[@checked])" />
+            <xsl:variable name="ulocs" select="count(file/line[@unchecked])" />
+            <xsl:variable name="alocs" select="$clocs + $ulocs" />
+            
+            <div>
+              <input type="radio" id="rb{string:replace(@name, '/', '_')}" name="folder" />
+              <label for="rb{string:replace(@name, '/', '_')}"><xsl:value-of select="@name"/></label>
+              
+              <span class="locinfo">
+                <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
+              </span>
+            </div>
+          </xsl:for-each>
+        </div>
+        
+        <xsl:for-each select="/paths/path">
+          <xsl:sort select="@name" />
+          <xsl:apply-templates select="." />
+        </xsl:for-each>
+        
+        <xsl:for-each select="/paths/path/file">
           <xsl:sort select="@name" />
           <xsl:apply-templates select="." />
         </xsl:for-each>
@@ -68,22 +158,39 @@
       </body>
     </html>
   </xsl:template>
+  
+  <xsl:template match="path">
+    <div id="fs{string:replace(@name, '/', '_')}" class="folder">
+      <h2><xsl:value-of select="@name" /></h2>
+      <xsl:for-each select="file">
+        <xsl:sort select="@name" />
+        
+        <xsl:variable name="clocs" select="count(line[@checked])" />
+        <xsl:variable name="ulocs" select="count(line[@unchecked])" />
+        <xsl:variable name="alocs" select="$clocs + $ulocs" />
+        
+        <div>
+          <input type="radio" id="rb{string:replace(concat(../@name, '/', string:replace(@name, '.', '_')), '/', '_')}" name="file" />
+          <label for="rb{string:replace(concat(../@name, '/', string:replace(@name, '.', '_')), '/', '_')}"><xsl:value-of select="@name" /></label>
+        
+          <span class="locinfo">
+            <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
+          </span>
+        </div>
+      </xsl:for-each>
+    </div>
+  </xsl:template>
 
   <xsl:template match="file">
     <xsl:variable name="clocs" select="count(line[@checked])" />
     <xsl:variable name="ulocs" select="count(line[@unchecked])" />
     <xsl:variable name="alocs" select="$clocs + $ulocs" />
 
-    <div class="file">
-      <h4>
-        <xsl:value-of select="@name" />
-        <br/>
-        <span>
-          <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
-        </span>
-        <xsl:value-of select="' '" />
-        <a href="#">open</a>
-      </h4>
+    <div id="fs{string:replace(concat(../@name, '/', string:replace(@name, '.', '_')), '/', '_')}" class="file">
+      <h2><xsl:value-of select="@name" /></h2>
+      <span>
+        <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
+      </span>
       <div class="code">
         <xsl:apply-templates select="line" />
       </div>
@@ -102,8 +209,10 @@
           <xsl:value-of select="'unchecked'" />
         </xsl:attribute>
       </xsl:if>
+      <xsl:variable name="padlen" select="string-length(last()) - string-length(position())" />
+      <xsl:value-of select="concat(string:padding($padlen, ' '), position(), ' ')" />
       <xsl:value-of select="." />
     </pre>
   </xsl:template>
-
+  
 </xsl:stylesheet>
