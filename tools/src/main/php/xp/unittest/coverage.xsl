@@ -75,7 +75,12 @@
             padding: 1px 5px;
             font-weight: bold;
             text-align: right;
-            background-color: rgba(0, 0, 0, 0.3)
+            background-color: #FF9999;
+            position: relative;
+          }
+          
+          span.locinfo div.locinfoText {
+            position: relative;
           }
           
           div.code {
@@ -93,6 +98,15 @@
           }
           pre.line[unchecked] {
             background-color: ff9999;
+          }
+          div.statusBar {
+            background-color: #99FF66; 
+            display: block; 
+            height: 100%; 
+            top: 0; 
+            right: 0; 
+            position: absolute; 
+            width: 0%;  
           }
         ]]>
         </style>
@@ -133,13 +147,17 @@
             <xsl:variable name="clocs" select="count(file/line[@checked])" />
             <xsl:variable name="ulocs" select="count(file/line[@unchecked])" />
             <xsl:variable name="alocs" select="$clocs + $ulocs" />
+            <xsl:variable name="locsRate" select="round($clocs div $alocs * 100)" />
             
             <div>
               <input type="radio" id="rb{string:replace(@name, '/', '_')}" name="folder" />
               <label for="rb{string:replace(@name, '/', '_')}"><xsl:value-of select="@name"/></label>
               
-              <span class="locinfo">
-                <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
+              <span class="locinfo" title="{$locsRate}%">
+                <div class="statusBar" style="width:{$locsRate}%"></div>
+                <div class="locinfoText">
+                  <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
+                </div>
               </span>
             </div>
           </xsl:for-each>
@@ -168,13 +186,17 @@
         <xsl:variable name="clocs" select="count(line[@checked])" />
         <xsl:variable name="ulocs" select="count(line[@unchecked])" />
         <xsl:variable name="alocs" select="$clocs + $ulocs" />
+        <xsl:variable name="locsRate" select="round($clocs div $alocs * 100)" />
         
         <div>
           <input type="radio" id="rb{string:replace(concat(../@name, '/', string:replace(@name, '.', '_')), '/', '_')}" name="file" />
           <label for="rb{string:replace(concat(../@name, '/', string:replace(@name, '.', '_')), '/', '_')}"><xsl:value-of select="@name" /></label>
         
-          <span class="locinfo">
-            <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
+          <span class="locinfo" title="{$locsRate}%">
+            <div class="statusBar" style="width:{$locsRate}%"></div>
+            <div class="locinfoText">
+              <xsl:value-of select="concat($clocs, ' of ', $alocs, ' lines checked')" />
+            </div>
           </span>
         </div>
       </xsl:for-each>
