@@ -9,6 +9,7 @@
   uses(
     'xp.unittest.DefaultListener',
     'xp.unittest.VerboseListener',
+    'xp.unittest.CoverageListener',
     'xp.unittest.sources.PropertySource',
     'xp.unittest.sources.ClassSource',
     'xp.unittest.sources.ClassFileSource',
@@ -158,6 +159,7 @@
       // Parse arguments
       $sources= new Vector();
       $verbose= FALSE;
+      $coverage= NULL;
       $arguments= array();
       try {
         for ($i= 0, $s= sizeof($args); $i < $s; $i++) {
@@ -169,6 +171,11 @@
             }
           } else if ('-e' === $args[$i]) {
             $sources->add(new EvaluationSource($this->arg($args, ++$i, 'e')));
+          } else if ('-c' == $args[$i]) {
+            $coverage= new CoverageListener();
+            foreach (explode(PATH_SEPARATOR, $this->arg($args, ++$i, 'c')) as $path) {
+              $coverage->registerPath($path);
+            }
           } else if ('-l' === $args[$i]) {
             $class= XPClass::forName($this->arg($args, ++$i, 'l'));
             $output= $this->streamWriter($this->arg($args, ++$i, 'l'));
@@ -198,6 +205,10 @@
       if ($sources->isEmpty()) {
         $this->err->writeLine('*** No tests specified');
         return 1;
+      }
+
+      if (isset($coverage)) {
+        $suite->addListener($coverage);
       }
       
       $suite->addListener($verbose 
