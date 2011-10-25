@@ -3,26 +3,26 @@
  *
  * $Id$
  */
- 
+
   uses('lang.Generic');
- 
+
   /**
-   * Class Object is the root of the class hierarchy. Every class has 
-   * Object as a superclass. 
+   * Class Object is the root of the class hierarchy. Every class has
+   * Object as a superclass.
    *
    * @test     xp://net.xp_framework.unittest.core.ObjectTest
    * @purpose  Base class for all others
    */
   class Object implements Generic {
     public $__id;
-    
+
     /**
      * Cloning handler
      *
      */
     public function __clone() {
-      if (!$this->__id) $this->__id= microtime();
-      $this->__id= microtime();
+      if (!$this->__id) $this->__id= microtime().' '.spl_object_hash($this);
+      $this->__id= microtime().' '.spl_object_hash($this);
     }
 
     /**
@@ -84,7 +84,7 @@
       }
       $this->{$name}= $value;
     }
-    
+
     /**
      * Method handler
      *
@@ -113,10 +113,10 @@
      * @return  string
      */
     public function hashCode() {
-      if (!$this->__id) $this->__id= microtime();
+      if (!$this->__id) $this->__id= microtime().' '.spl_object_hash($this);
       return $this->__id;
     }
-    
+
     /**
      * Indicates whether some other object is "equal to" this one.
      *
@@ -125,15 +125,15 @@
      */
     public function equals($cmp) {
       if (!$cmp instanceof Generic) return FALSE;
-      if (!$this->__id) $this->__id= microtime();
-      if (!$cmp->__id) $cmp->__id= microtime();
+      if (!$this->__id) $this->__id= microtime().' '.spl_object_hash($this);
+      if (!$cmp->__id) $cmp->__id= microtime().' '.spl_object_hash($cmp);
       return $this === $cmp;
     }
-    
-    /** 
-     * Returns the fully qualified class name for this class 
+
+    /**
+     * Returns the fully qualified class name for this class
      * (e.g. "io.File")
-     * 
+     *
      * @return  string fully qualified class name
      */
     public function getClassName() {
@@ -149,18 +149,18 @@
     public function getClass() {
       return new XPClass($this);
     }
-    
+
     /**
-     * Creates a string representation of this object. In general, the toString 
-     * method returns a string that "textually represents" this object. The result 
-     * should be a concise but informative representation that is easy for a 
+     * Creates a string representation of this object. In general, the toString
+     * method returns a string that "textually represents" this object. The result
+     * should be a concise but informative representation that is easy for a
      * person to read. It is recommended that all subclasses override this method.
-     * 
+     *
      * Per default, this method returns:
      * <xmp>
      *   [fully-qualified-class-name] '{' [members-and-value-list] '}'
      * </xmp>
-     * 
+     *
      * Example:
      * <xmp>
      *   lang.Object {
@@ -171,7 +171,7 @@
      * @return  string
      */
     public function toString() {
-      if (!$this->__id) $this->__id= microtime();
+      if (!$this->__id) $this->__id= microtime().' '.spl_object_hash($this);
       return xp::stringOf($this);
     }
   }

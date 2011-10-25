@@ -602,7 +602,7 @@
     // so that the constructur can already use generic types.
     $class= XPClass::forName(strstr($base, '.') ? $base : xp::nameOf($base));
     if ($class->hasField('__generic')) {
-      $__id= microtime();
+      $__id= microtime().' '.spl_object_hash(new stdClass());
       $name= xp::reflect($classname);
       $instance= unserialize('O:'.strlen($name).':"'.$name.'":1:{s:4:"__id";s:'.strlen($__id).':"'.$__id.'";}');
       foreach ($typeargs as $type) {
