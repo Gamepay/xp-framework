@@ -15,8 +15,24 @@ Heads up!
   the new scriptlet.xml.workflow.AbstractHandler class instead!
   (friebe)
 
+RFCs
+~~~~
+- Implemented RFC #0216 - REST server API implementation
+  (ohinckel)
+
 Bugfixes
 ~~~~~~~~
+- Fixed timezone issues when runnning complete test suite - see issue #72
+  (friebe)
+- Allowed for deprecated multi-value annotations - see issue #69
+  http://news.planet-xp.net/article/422/2011/10/19/
+  (friebe)
+- Fixed rdbms.mysqlx.AbstractMysqlxResultSet::record() method to return
+  only a single field value if its field parameter is set
+  (friebe)
+- Changed program's exit code to 0xff in case an uncaught exception occurs. 
+  http://news.planet-xp.net/article/424/2011/10/14/
+  (kiesel)
 - Fixed fatal error in webservices testsuite when running on PHP
   without ext/soap
   (friebe, kiesel)
@@ -36,6 +52,9 @@ Bugfixes
 
 Features
 ~~~~~~~~
+- Made usage of encoding names consistant to all lowercase,
+  see issue #73
+  (ppetermann, kiesel)
 - Added support to DomXSLProcessor to load XML or XSL files by stream
   wrappers, e.g. using res:// to load files with ResourceProvider
   (ohinckel)

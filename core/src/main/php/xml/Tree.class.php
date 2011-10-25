@@ -67,7 +67,7 @@
      * @param   string e encoding
      */
     public function setEncoding($e) {
-      $this->encoding= $e;
+      $this->encoding= strtolower($e);
     }
 
     /**
@@ -77,7 +77,7 @@
      * @return  xml.Tree
      */
     public function withEncoding($e) {
-      $this->encoding= $e;
+      $this->setEncoding($e);
       return $this;
     }
     
@@ -99,7 +99,7 @@
       return sprintf(
         '<?xml version="%s" encoding="%s"?>',
         $this->version,
-        $this->encoding
+        strtoupper($this->encoding)
       );
     }
     
