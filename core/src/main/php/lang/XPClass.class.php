@@ -404,7 +404,7 @@
     }
 
     /**
-     * Determines if this XPClass object represents an interface type.
+     * Determines if this XPClass object is derived from lang.Enum.
      *
      * @return  bool
      */
