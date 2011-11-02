@@ -238,8 +238,8 @@
       
       if ('string' == ($type= gettype($this->content))) {
         $content= $conv
-          ? iconv($tree_encoding, $encoding, htmlspecialchars($this->content, ENT_COMPAT, 'iso-8859-1'))
-          : htmlspecialchars($this->content, ENT_COMPAT, 'iso-8859-1')
+          ? iconv($tree_encoding, $encoding, htmlspecialchars($this->content, ENT_COMPAT, $tree_encoding))
+          : htmlspecialchars($this->content, ENT_COMPAT, $tree_encoding)
         ;
       } else if ('float' == $type) {
         $content= ($this->content - floor($this->content) == 0)
@@ -267,7 +267,7 @@
           $xml.= ' '.$key.'="'.htmlspecialchars(
             $conv ? iconv($tree_encoding, $encoding, $value) : $value,
             ENT_COMPAT,
-            'iso-8859-1'
+            $tree_encoding
           ).'"';
         }
         $xml.= '>'.$content;
@@ -282,7 +282,7 @@
             $xml.= $sep.' '.$key.'="'.htmlspecialchars(
               $conv ? iconv($tree_encoding, $encoding, $value) : $value,
               ENT_COMPAT,
-              'iso-8859-1'
+              $tree_encoding
             ).'"';
           }
           $xml.= $sep;
