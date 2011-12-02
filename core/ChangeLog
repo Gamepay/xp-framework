@@ -27,6 +27,9 @@ RFCs
 
 Bugfixes
 ~~~~~~~~
+- Fixed rdbms.DSN::equals() method to no longer regard differing observer
+  params as equal
+  (friebe)
 - Fixed timezone issues when runnning complete test suite - see issue #72
   (friebe)
 - Allowed for deprecated multi-value annotations - see issue #69
@@ -57,6 +60,8 @@ Bugfixes
 
 Features
 ~~~~~~~~
+- Include more information in output produced by XmlTestListener
+  (ohinckel)
 - Made usage of encoding names consistant to all lowercase,
   see issue #73
   (ppetermann, kiesel)
@@ -79,6 +84,7 @@ Features
   (kiesel)
 - Added peer.Header::equals() as proposed in pull request #61
   (apenciu)
+
 
 Version 5.8.2, released 2011-09-07
 ----------------------------------
