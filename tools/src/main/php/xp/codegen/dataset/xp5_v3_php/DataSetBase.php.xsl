@@ -142,7 +142,7 @@
      * @throws  lang.IllegalArgumentException
      */
     public static function column($name) {
-      return Peer::forName('</xsl:text><xsl:value-of select="concat(/document/table/@package, '.', my:camelCase(/document/table/@class))" /><xsl:text>')->column($name);
+      return self::getPeer()->column($name);
     }
   </xsl:text>
 
