@@ -18,10 +18,11 @@
     /**
      * Constructor
      *
-     * @param   string address
+     * @param   string addr
+     * @param   bool   binary
      */
-    public function __construct($addr, $packed= FALSE) {
-      if ($packed) {
+    public function __construct($addr, $binary= FALSE) {
+      if ($binary) {
         $this->addr= $addr;
       } else {
         $this->addr= pack('H*', self::normalize($addr));
