@@ -28,6 +28,10 @@
       $transactionNesting     = FALSE,
       $transactionNestingLevel= 0;
 
+    static function __static() {
+      DriverManager::register('mysql+std', new XPClass(__CLASS__));
+    }
+
     /**
      * Constructor
      *
