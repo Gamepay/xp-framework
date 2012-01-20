@@ -45,6 +45,12 @@
         throw new XMLFormatException('Tried to access nonexistant node.');
       }
 
+      // Simple form: If no subnode indicating the type exists, the type
+      // is string, e.g. <value>Test</value>
+      if (!isset($node->children[0])) return (string)$node->getContent();
+
+      // Long form - with subnode, the type is derived from the node's name,
+      // e.g. <value><string>Test</string></value>.
       $c= $node->children[0];
       switch ($c->getName()) {
         case 'struct':
