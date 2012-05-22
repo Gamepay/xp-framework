@@ -59,7 +59,7 @@
 * @param string local local, unqualified name
 * @return string qualified name
 */
-    protected function nameOf($namespace, $imports, $local) {
+    protected function nameOf($namespace, $imports, $local, $file) {
       static $special= array('self', 'parent', 'static', 'xp', '$this', '$class');
 
       // Leave special class names
@@ -80,7 +80,7 @@
       // PHP classes are global
       if (0 === strncmp($qualified, 'php\\', 4)) {
         if (!class_exists($local, FALSE) && !interface_exists($local, FALSE)) {
-          throw new IllegalStateException('Cannot resolve name "'.$local.'"');
+          throw new IllegalStateException('Cannot resolve name "'.$local.'" in ' . $file->uri);
         }
         return '\\'.$local;
       }
@@ -165,7 +165,7 @@
             break;
           
           case self::ST_DECL.T_STRING:
-            $out->write($this->nameOf($namespace, $imports, $tokens[$i][1]));
+            $out->write($this->nameOf($namespace, $imports, $tokens[$i][1], $e));
             break;
 
           case self::ST_DECL.'{':
@@ -175,16 +175,16 @@
           
           case self::ST_BODY.T_STRING:
             if (T_DOUBLE_COLON === $tokens[$i+ 1][0]) {
-              $out->write($this->nameOf($namespace, $imports, $tokens[$i][1])); // Static method calls
+              $out->write($this->nameOf($namespace, $imports, $tokens[$i][1], $e)); // Static method calls
             } else if (T_WHITESPACE === $tokens[$i+ 1][0] && T_VARIABLE === $tokens[$i+ 2][0]) {
-              $out->write($this->nameOf($namespace, $imports, $tokens[$i][1])); // Typehint
+              $out->write($this->nameOf($namespace, $imports, $tokens[$i][1], $e)); // Typehint
             } else {
               $out->write($tokens[$i][1]);
             }
             break;
 
           case self::ST_BODY.T_NEW:
-            $out->write('new '.$this->nameOf($namespace, $imports, $tokens[$i+ 2][1]));
+            $out->write('new '.$this->nameOf($namespace, $imports, $tokens[$i+ 2][1], $e));
             $i+= 2; // Skip over whitespace and class name
             break;
           
