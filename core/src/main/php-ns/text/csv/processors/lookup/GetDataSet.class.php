@@ -1,0 +1,46 @@
+<?php
+/* This class is part of the XP framework
+ *
+ * $Id: GetDataSet.class.php 11512 2009-09-15 18:13:54Z friebe $
+ */
+
+  namespace text\csv\processors\lookup;
+ use text\csv\CellProcessor, rdbms\finder\FinderMethod;
+
+  /**
+   * Returns cell values as a DataSet
+   *
+   * @test    xp://net.xp_framework.unittest.text.csv.DataSetCellProcessorTest
+   * @see     xp://text.csv.CellProcessor
+   */
+  class GetDataSet extends CellProcessor {
+    protected $method= NULL;
+
+    /**
+     * Creates a new instance of this processor.
+     *
+     * @param   rdbms.finder.FinderMethod
+     * @param   rdbms.Criteria c if omitted, the peer's primary key is used
+     * @param   text.csv.CellProcessor if omitted, no further processing will be done
+     */
+    public function __construct(FinderMethod $method, CellProcessor $next= NULL) {
+      parent::__construct($next);
+      $this->method= $method;
+    }
+    
+    /**
+     * Processes cell value
+     *
+     * @param   var in
+     * @return  var
+     * @throws  lang.FormatException
+     */
+    public function process($in) {
+      try {
+        return $this->method->getFinder()->get($this->method->invoke(array($in)));
+      } catch (\rdbms\finder\FinderException $e) {
+        throw new \lang\FormatException($e->getMessage());
+      }
+    }
+  }
+?>
