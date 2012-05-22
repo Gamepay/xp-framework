@@ -66,7 +66,7 @@
     public static function fromValue($value) {
       if (!preg_match('/^Basic (.*)$/', $value, $matches)) return FALSE;
       list($user, $password)= explode(':', base64_decode($matches[1]), 2);
-      return new BasicAuthorization($user, $password);
+      return new self($user, $password);
     }
     
     /**

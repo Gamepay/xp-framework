@@ -4,6 +4,7 @@
  * $Id$ 
  */
 
+ uses('util.Observer');
   /**
    * Observable - base class for Model/View/Controller architecture.
    *

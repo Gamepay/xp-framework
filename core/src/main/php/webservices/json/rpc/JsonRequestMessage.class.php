@@ -23,7 +23,7 @@
     public static function fromString($string) {
       $decoder= JsonFactory::create();
 
-      $msg= new JsonRequestMessage();
+      $msg= new self();
       $data= $decoder->decode($string);
 
       $msg->data= $data;

@@ -28,11 +28,11 @@
      *
      * @return  text.format.Format
      */
-    public function getInstance($name) {
+    public function getInstance($class) {
       static $instance= array();
       
-      if (!isset($instance[$name])) $instance[$name]= new $name();
-      return $instance[$name];
+      if (!isset($instance[$class])) $instance[$class]= new $class();
+      return $instance[$class];
     }
       
     /**

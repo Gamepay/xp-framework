@@ -491,7 +491,7 @@
       if (NULL === $node) {
         $this->fail('Failed to locate a form named "'.$name.'"', NULL, '[form]');
       }
-      return new unittest·web·Form($this, $node);
+      return new Form($this, $node);
     }
 
     /**

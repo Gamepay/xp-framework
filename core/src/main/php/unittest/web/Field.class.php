@@ -6,6 +6,7 @@
 
   $package= 'unittest.web';
 
+  uses('unittest.web.Form');
   /**
    * Represents a HTML field
    *
@@ -23,7 +24,7 @@
      * @param   unittest.web.Form form owner form
      * @param   php.DOMNode node
      */
-    public function __construct(unittest·web·Form $form, DOMNode $node) {
+    public function __construct(Form $form, DOMNode $node) {
       $this->form= $form;
       $this->node= $node;
     }

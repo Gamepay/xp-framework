@@ -70,7 +70,7 @@
 
       $entry= $this->it->current();
       if ($entry instanceof FtpDir) {
-        $next= new FtpCollection($entry);
+        $next= new self($entry);
       } else {
         $next= new FtpElement($entry);
       }

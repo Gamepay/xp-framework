@@ -4,8 +4,6 @@
  * $Id$ 
  */
 
-  $package= 'unittest.web';
-
   uses(
     'unittest.web.Field', 
     'unittest.web.Fields',
@@ -19,7 +17,7 @@
    * @see      xp://unittest.web.WebTestCase#getForm
    * @purpose  Value object
    */
-  class unittest·web·Form extends Object {
+  class Form extends Object {
     protected
       $test   = NULL,
       $node   = NULL,

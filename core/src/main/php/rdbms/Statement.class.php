@@ -4,7 +4,8 @@
  * $Id$ 
  */
 
-  uses('rdbms.SQLExpression');
+  uses('rdbms.SQLExpression',
+       'rdbms.Peer');
 
   /**
    * Represents an SQL statement

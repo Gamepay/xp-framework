@@ -36,7 +36,7 @@
      * @return  security.checksum.CRC32
      */
     public static function fromString($str) {
-      return new CRC32(crc32($str));
+      return new self(crc32($str));
     }
     
     /**
@@ -58,7 +58,7 @@
       $file->open(FILE_MODE_READ);
       $data= $file->read($file->size());
       $file->close();
-      return CRC32::fromString($data);
+      return self::fromString($data);
     }
     
     /**

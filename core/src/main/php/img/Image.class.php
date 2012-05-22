@@ -9,7 +9,11 @@
     'img.Color',
     'img.ImgStyle',
     'img.ImgBrush',
-    'lang.CloneNotSupportedException'
+    'lang.CloneNotSupportedException',
+    'img.Image',
+    'img.convert.ImageConverter',
+    'img.filter.ImageFilter',
+    'img.util.ImageInfo'
   );
 
   define('IMG_PALETTE',   0x0000);

@@ -4,8 +4,10 @@
  * $Id$ 
  */
 
-  uses('lang.reflect.Routine');
-
+  uses('lang.reflect.Routine',
+       'lang.SystemExit'
+  );
+  
   /**
    * Represents a class method
    *

@@ -34,7 +34,7 @@
     }
     
     static function __static() {
-      self::$instance= new NamingDirectory();
+      self::$instance= new self();
     }
       
     /**

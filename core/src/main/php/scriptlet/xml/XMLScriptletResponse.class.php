@@ -8,7 +8,8 @@
     'scriptlet.HttpScriptletResponse',
     'scriptlet.xml.OutputDocument',
     'scriptlet.TemplateProcessorInterface',
-    'peer.http.HttpConstants'
+    'peer.http.HttpConstants',
+    'xml.TransformerException'
   );
   
   // Deprecated
