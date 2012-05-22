@@ -4,7 +4,7 @@
  * $Id$ 
  */
 
-  uses('text.csv.CellProcessor', 'util.Date', 'text.DateFormat');
+  uses('text.csv.CellProcessor', 'util.Date', 'text.MyDateFormat');
 
   /**
    * Returns cell values as a date objects

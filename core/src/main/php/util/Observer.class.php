@@ -4,6 +4,7 @@
  * $Id$ 
  */
 
+
   /**
    * Observer interface
    *

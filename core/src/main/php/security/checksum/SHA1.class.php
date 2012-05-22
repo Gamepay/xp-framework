@@ -22,7 +22,7 @@
      * @return  security.checksum.SHA1
      */
     public static function fromString($str) {
-      return new SHA1(sha1($str));
+      return new self(sha1($str));
     }
 
     /**
@@ -41,7 +41,7 @@
      * @return  security.checksum.SHA1
      */
     public static function fromFile($file) {
-      return new SHA1(sha1_file($file->uri));
+      return new self(sha1_file($file->uri));
     }
   }
 ?>

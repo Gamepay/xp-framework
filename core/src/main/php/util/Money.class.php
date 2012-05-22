@@ -4,7 +4,7 @@
  * $Id$ 
  */
 
-  uses('util.Currency', 'lang.types.Double');
+  uses('util.Currency', 'lang.types.Double', 'util.Money');
 
   /**
    * Represents money.

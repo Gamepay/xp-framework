@@ -59,7 +59,7 @@
    * @see      php://strptime
    * @test     xp://net.xp_framework.unittest.text.DateFormatTest
    */
-  class DateFormat extends Object {
+  class MyDateFormat extends Object {
     protected $format= array();
     
     /**

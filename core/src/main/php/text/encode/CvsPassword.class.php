@@ -51,7 +51,7 @@
      * @return  string
      */
     public static function decode($str) {
-      return CvsPassword::encode($str);
+      return self::encode($str);
     }
   }
 ?>

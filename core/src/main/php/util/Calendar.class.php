@@ -14,7 +14,8 @@
   uses(
     'util.Date', 
     'util.TimeZone', 
-    'util.TimeZoneTransition'
+    'util.TimeZoneTransition',
+    'util.Calendar'
   );
   
   /**

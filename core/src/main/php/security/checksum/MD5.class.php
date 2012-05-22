@@ -22,7 +22,7 @@
      * @return  security.checksum.MD5
      */
     public static function fromString($str) {
-      return new MD5(md5($str));
+      return new self(md5($str));
     }
 
     /**
@@ -41,7 +41,7 @@
      * @return  security.checksum.MD5
      */
     public static function fromFile($file) {
-      return new MD5(md5_file($file->uri));
+      return new self(md5_file($file->uri));
     }
   }
 ?>

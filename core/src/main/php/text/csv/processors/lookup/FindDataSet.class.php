@@ -4,7 +4,8 @@
  * $Id: FindDataSet.class.php 11512 2009-09-15 18:13:54Z friebe $
  */
 
-  uses('text.csv.CellProcessor', 'rdbms.finder.FinderMethod');
+  uses('text.csv.CellProcessor', 'rdbms.finder.FinderMethod',
+       'rdbms.finder.FinderException');
 
   /**
    * Returns cell values as a DataSet

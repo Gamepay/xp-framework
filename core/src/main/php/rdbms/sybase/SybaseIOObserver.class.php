@@ -57,7 +57,7 @@
      * @return  rdbms.sybase.SybaseIOObserver
      */
     public static function instanceFor($arg) {
-      return new SybaseIOObserver($arg);
+      return new self($arg);
     }
     
     /**

@@ -4,6 +4,7 @@
  * $Id$ 
  */
 
+  uses('peer.ftp.FtpFile');
   /**
    * Base class for up- and downloads
    *

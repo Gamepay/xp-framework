@@ -111,7 +111,7 @@
       
       if (FALSE === ($p= strpos($fmt, '{'))) return $fmt;
       if (!isset($instance)) {
-        $instance= MessageFormat::getInstance();
+        $instance= self::getInstance();
       }
       if (!is_array($argument)) $argument= array($argument);
       $level++;

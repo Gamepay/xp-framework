@@ -69,7 +69,7 @@
      * @param   text.doclet.PackageDoc other
      * @return  bool
      */
-    public function contains(PackageDoc $other) {
+    public function contains(self $other) {
       if (FALSE === ($p= strrpos($other->name, '.'))) return FALSE;
       return $this->name === substr($other->name, 0, $p);
     }

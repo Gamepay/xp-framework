@@ -77,7 +77,7 @@
           $dir= substr($name, 0, $baselen+ 1+ $p);
           if (isset($this->_dirs[$dir])) continue;
           $this->_dirs[$dir]= TRUE;
-          $next= new ArchiveCollection($this->archive, $dir);
+          $next= new self($this->archive, $dir);
         } else {
           $next= new ArchiveElement($this->archive, $name);
         }

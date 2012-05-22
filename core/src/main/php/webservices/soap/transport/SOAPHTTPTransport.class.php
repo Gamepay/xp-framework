@@ -8,7 +8,8 @@
     'scriptlet.rpc.transport.AbstractRpcTransport',
     'webservices.soap.SOAPFaultException',
     'peer.http.HttpConnection',
-    'peer.http.HttpConstants'
+    'peer.http.HttpConstants',
+    'webservices.soap.xp.XPSoapMessage'
   );
   
   // Different modes for SOAP-Action announcement (you can use NULL to obey any SOAPAction header)

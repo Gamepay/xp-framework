@@ -4,7 +4,11 @@
  * $Id$ 
  */
 
-  uses('io.collections.IOElement', 'io.streams.FileInputStream', 'io.streams.FileOutputStream');
+  uses('io.collections.IOElement',
+       'io.streams.FileInputStream',
+       'io.streams.FileOutputStream',
+       'unittest.TestCase'
+      );
 
   /**
    * Represents a file element

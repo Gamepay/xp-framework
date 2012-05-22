@@ -153,9 +153,9 @@
      * @return  xml.Tree
      * @throws  xml.XMLFormatException in case of a parser error
      */
-    public static function fromString($string, $c= __CLASS__) {
+    public static function fromString($string, $class= __CLASS__) {
       $parser= new XMLParser();
-      $tree= new $c();
+      $tree= new $class();
 
       $parser->setCallback($tree);
       $parser->parse($string, 1);
@@ -180,9 +180,9 @@
      * @throws  xml.XMLFormatException in case of a parser error
      * @throws  io.IOException in case reading the file fails
      */ 
-    public static function fromFile($file, $c= __CLASS__) {
+    public static function fromFile($file, $class= __CLASS__) {
       $parser= new XMLParser();
-      $tree= new $c();
+      $tree= new $class();
       
       $parser->setCallback($tree);
       $file->open(FILE_MODE_READ);

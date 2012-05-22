@@ -12,7 +12,8 @@
     'peer.news.Newsgroup',
     'peer.news.Article',
     'util.Date',
-    'util.log.Traceable'
+    'util.log.Traceable',
+    'security.auth.AuthenticatorException'
   );
   
   /**

@@ -42,7 +42,7 @@
           $sum= (1 === ($sum & 1) ? ($sum >> 1) ^ 0xA001 : $sum >> 1);
         }
       }
-      return new CRC16($sum);
+      return new self($sum);
     }
 
     /**
@@ -64,7 +64,7 @@
       $file->open(FILE_MODE_READ);
       $data= $file->read($file->size());
       $file->close();
-      return CRC16::fromString($data);
+      return self::fromString($data);
     }
   }
 ?>

@@ -70,7 +70,7 @@
      * @return  rdbms.sybase.SybaseShowplanObserver
      */
     public static function instanceFor($arg) {
-      return new SybaseShowplanObserver($arg);
+      return new self($arg);
     }
     
     /**
