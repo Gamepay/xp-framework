@@ -60,7 +60,7 @@
 * @return string qualified name
 */
     protected function nameOf($namespace, $imports, $local, $file) {
-      static $special= array('self', 'parent', 'static', 'xp', '$this', '$class');
+      static $special= array('self', 'parent', 'static', 'xp', '$this', '$class', 'com');
 
       // Leave special class names
       if (in_array($local, $special)) return $local;
