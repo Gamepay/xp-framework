@@ -33,7 +33,7 @@
      */
     public function __construct() {
       $this->processor= new DomXSLProcessor();
-      $this->processor->setXSLBuf($this->getClass()->getPackage()->getResource('coverage.xsl'));
+      $this->processor->setTemplateBuffer($this->getClass()->getPackage()->getResource('coverage.xsl'));
 
       xdebug_start_code_coverage(XDEBUG_CC_UNUSED | XDEBUG_CC_DEAD_CODE);
     }
@@ -168,7 +168,7 @@
       $now= time();
       $pathsNode->setAttribute('time', date('Y-m-d H:i:s'));
 
-      $this->processor->setXMLBuf($pathsNode->getSource());
+      $this->processor->setInputBuffer($pathsNode->getSource());
       $this->processor->run();
 
       $reportfile= 'coverage-'.date('Y-m-d-H-i-s').'.html';

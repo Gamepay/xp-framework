@@ -30,9 +30,9 @@
     }
   
     /**
-     * Returns the XSL processor instance to be used
+     * Returns the template processor instance to be used.
      *
-     * @return  xml.IXSLProcessor
+     * @return  scriptlet.TemplateProcessorInterface
      */
     public function processorInstance() {
       return new DomXSLProcessor();
@@ -73,8 +73,8 @@
     #[@test]
     public function callXslHook() {
       $this->processor->registerInstance('proc', $this);
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXslBuf('<?xml version="1.0"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0"?>
         <xsl:stylesheet
          version="1.0"
          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -95,8 +95,8 @@
     #[@test, @expect('lang.ElementNotFoundException')]
     public function callNonXslHook() {
       $this->processor->registerInstance('proc', $this);
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXslBuf('<?xml version="1.0"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0"?>
         <xsl:stylesheet
          version="1.0"
          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -116,8 +116,8 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function callNonRegisteredInstance() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXslBuf('<?xml version="1.0"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0"?>
         <xsl:stylesheet
          version="1.0"
          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -137,7 +137,7 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function malformedXML() {
-      $this->processor->setXMLBuf('@@MALFORMED@@');
+      $this->processor->setInputBuffer('@@MALFORMED@@');
     }
     
     /**
@@ -146,7 +146,7 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function malformedXSL() {
-      $this->processor->setXSLBuf('@@MALFORMED@@');
+      $this->processor->setTemplateBuffer('@@MALFORMED@@');
     }
     
     /**
@@ -163,8 +163,8 @@
       $doc->loadXML('@@MALFORMED@@');
       
       // Should work
-      $i->setXMLBuf('<document/>');
-      $i->setXSLBuf('
+      $i->setInputBuffer('<document/>');
+      $i->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="xml" encoding="utf-8"/>
           <xsl:template match="/">
@@ -190,8 +190,8 @@
       
       // Should work
       $i= $this->processorInstance();
-      $i->setXMLBuf('<document/>');
-      $i->setXSLBuf('
+      $i->setInputBuffer('<document/>');
+      $i->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="xml" encoding="utf-8"/>
           <xsl:template match="/">
@@ -218,7 +218,7 @@
       // Should work
       $i= $this->processorInstance();
       try {
-        $i->setXMLBuf('<document>&nbsp;</document>');
+        $i->setInputBuffer('<document>&nbsp;</document>');
         $this->fail('Malformed XML did not trigger exception');
       } catch (TransformerException $e) {
         $this->assertTrue((bool)strstr($e->getMessage(), "Entity 'nbsp' not defined"));
@@ -233,8 +233,8 @@
     public function defaultCallbacks() {
 
       // Should work
-      $this->processor->setXMLBuf('<document><string>lower string</string></document>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document><string>lower string</string></document>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0"
          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
          xmlns:php="http://php.net/xsl"
@@ -299,7 +299,7 @@
      */
     #[@test]
     public function loadXSLFromStreamWrapper() {
-      $this->processor->setXSLFile('res://net/xp_framework/unittest/xml/include.xsl');
+      $this->processor->setTemplateFile('res://net/xp_framework/unittest/xml/include.xsl');
     }
     
     /**
@@ -309,7 +309,7 @@
      */
     #[@test, @expect('io.FileNotFoundException')]
     public function loadNonexistantXSLFromStreamWrapper() {
-      $this->processor->setXSLFile('res://nonexistant.xsl');
+      $this->processor->setTemplateFile('res://nonexistant.xsl');
     }
   }
 ?>

@@ -5,11 +5,11 @@
  */
 
   /**
-   * Interface IXSLProcessor
+   * Interface TemplateProcessorInterface
    *
-   * @purpose  Interface for XSL processor classes
+   * @purpose  Interface for custom template processor classes.
    */
-  interface IXSLProcessor {
+  interface TemplateProcessorInterface {
   
     /**
      * Retrieve messages generate during processing.
@@ -41,56 +41,56 @@
     public function getBase();
     
     /**
-     * Set XSL file
+     * Set template file.
      *
      * @param   string file file name
      */
-    public function setXSLFile($file);
+    public function setTemplateFile($file);
     
     /**
-     * Set XSL buffer
+     * Set template buffer from custom data such as an xml string or an array.
      *
-     * @param   string xsl the XSL as a string
+     * @param   mixed
      */
-    public function setXSLBuf($xsl);
+    public function setTemplateBuffer($data);
 
     /**
-     * Set XSL from a tree
+     * Set data from a xml-structure tree.
      *
      * @param   xml.Tree xsl
      */
-    public function setXSLTree(Tree $xsl);
+    public function setTemplateTree(Tree $xml);
     
     /**
-     * Set XML file
+     * Set data source file.
      *
      * @param   string file file name
      */
-    public function setXMLFile($file);    
+    public function setInputFile($file);
     
     /**
-     * Set XML buffer
+     * Set data buffer from custom data such as an xml string or an array.
      *
-     * @param   string xml the XML as a string
+     * @param   mixed
      */
-    public function setXMLBuf($xml);
+    public function setInputBuffer($data);
 
     /**
-     * Set XML from a tree
+     * Set data from a xml-structure tree.
      *
      * @param   xml.Tree xml
      */
-    public function setXMLTree(Tree $xml);
+    public function setInputTree(Tree $xml);
 
     /**
-     * Set XSL transformation parameters
+     * Set transformation parameters
      *
      * @param   array params associative array { param_name => param_value }
      */
     public function setParams($params);
     
     /**
-     * Set XSL transformation parameter
+     * Set transformation parameter
      *
      * @param   string name
      * @param   string value
@@ -98,7 +98,7 @@
     public function setParam($name, $value);
     
     /**
-     * Retrieve XSL transformation parameter
+     * Retrieve transformation parameter
      *
      * @param   string name
      * @return  string value
@@ -106,7 +106,7 @@
     public function getParam($name);
     
     /**
-     * Run the XSL transformation
+     * Run the transformation
      *
      * @return  bool success
      * @throws  xml.TransformerException

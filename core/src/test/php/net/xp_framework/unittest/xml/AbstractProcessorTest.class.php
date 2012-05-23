@@ -9,7 +9,7 @@
   /**
    * Test XSL processor
    *
-   * @see      xp://xml.IXSLProcessor
+   * @see      xp://scriptlet.TemplateProcessorInterface
    * @purpose  Unit Test
    */
   class AbstractProcessorTest extends TestCase {
@@ -55,9 +55,9 @@
     public function neededExtension() { }
 
     /**
-     * Returns the XSL processor instance to be used
+     * Returns the template processor instance to be used.
      *
-     * @return  xml.IXSLProcessor
+     * @return  scriptlet.TemplateProcessorInterface
      */
     public function processorInstance() { }
 
@@ -84,131 +84,131 @@
     }
 
     /**
-     * Tests setXMLFile() method
+     * Tests setInputFile() method
      *
      */
     #[@test, @expect('io.FileNotFoundException')]
     public function setNonExistantXMLFile() {
-      $this->processor->setXMLFile(':does-no-exist:');
+      $this->processor->setInputFile(':does-no-exist:');
     }
 
     /**
-     * Tests setXMLFile() method
+     * Tests setInputFile() method
      *
      */
     #[@test, @expect('xml.TransformerException')]
     public function setMalformedXMLFile() {
-      $this->processor->setXMLFile($this->includeUri('malformed'));
+      $this->processor->setInputFile($this->includeUri('malformed'));
     }
 
     /**
-     * Tests setXMLFile() method
+     * Tests setInputFile() method
      *
      */
     #[@test]
-    public function setXMLFile() {
-      $this->processor->setXMLFile($this->includeUri('include'));
+    public function setInputFile() {
+      $this->processor->setInputFile($this->includeUri('include'));
     }
 
     /**
-     * Tests setXMLBuf() method
+     * Tests setInputBuffer() method
      *
      */
     #[@test]
-    public function setXMLBuf() {
-      $this->processor->setXMLBuf('<document/>');
+    public function setInputBuffer() {
+      $this->processor->setInputBuffer('<document/>');
     }
 
     /**
-     * Tests setXMLTree() method
+     * Tests setInputTree() method
      *
      */
     #[@test]
-    public function setXMLTree() {
-      $this->processor->setXMLTree(new Tree('document'));
+    public function setInputTree() {
+      $this->processor->setInputTree(new Tree('document'));
     }
 
     /**
-     * Tests setXMLTree() method
+     * Tests setInputTree() method
      *
      */
     #[@test, @expect('xml.TransformerException')]
     public function setMalformedXMLTree() {
-      $this->processor->setXMLTree(new Tree('<!>'));    // xml.Tree does not check this!
+      $this->processor->setInputTree(new Tree('<!>'));    // xml.Tree does not check this!
     }
 
     /**
-     * Tests setXMLBuf() method
+     * Tests setInputBuffer() method
      *
      */
     #[@test, @expect('xml.TransformerException')]
     public function setMalformedXMLBuf() {
-      $this->processor->setXMLBuf('this-is-not-valid<XML>');
+      $this->processor->setInputBuffer('this-is-not-valid<XML>');
     }
 
     /**
-     * Tests setXSLFile() method
+     * Tests setTemplateFile() method
      *
      */
     #[@test, @expect('io.FileNotFoundException')]
     public function setNonExistantXSLFile() {
-      $this->processor->setXSLFile(':does-no-exist:');
+      $this->processor->setTemplateFile(':does-no-exist:');
     }
 
     /**
-     * Tests setXSLFile() method
+     * Tests setTemplateFile() method
      *
      */
     #[@test, @expect('xml.TransformerException')]
     public function setMalformedXSLFile() {
-      $this->processor->setXSLFile($this->includeUri('malformed'));
+      $this->processor->setTemplateFile($this->includeUri('malformed'));
     }
 
     /**
-     * Tests setXSLFile() method
+     * Tests setTemplateFile() method
      *
      */
     #[@test]
-    public function setXSLFile() {
-      $this->processor->setXSLFile($this->includeUri('include'));
+    public function setTemplateFile() {
+      $this->processor->setTemplateFile($this->includeUri('include'));
     }
 
     /**
-     * Tests setXSLBuf() method
+     * Tests setTemplateBuffer() method
      *
      */
     #[@test]
-    public function setXSLBuf() {
-      $this->processor->setXSLBuf('<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"/>');
+    public function setTemplateBuffer() {
+      $this->processor->setTemplateBuffer('<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"/>');
     }
 
     /**
-     * Tests setXSLBuf() method
+     * Tests setTemplateBuffer() method
      *
      */
     #[@test, @expect('xml.TransformerException')]
     public function setMalformedXSLBuf() {
-      $this->processor->setXSLBuf('<xsl stylsheet!');
+      $this->processor->setTemplateBuffer('<xsl stylsheet!');
     }
 
     /**
-     * Tests setXSLTree() method
+     * Tests setTemplateTree() method
      *
      */
     #[@test]
-    public function setXSLTree() {
+    public function setTemplateTree() {
       $t= new Tree('xsl:stylesheet');
       $t->root->setAttribute('xmlns:xsl', 'http://www.w3.org/1999/XSL/Transform');
-      $this->processor->setXSLTree($t);
+      $this->processor->setTemplateTree($t);
     }
 
     /**
-     * Tests setXSLTree() method
+     * Tests setTemplateTree() method
      *
      */
     #[@test, @expect('xml.TransformerException')]
     public function setMalformedXSLTree() {
-      $this->processor->setXSLTree(new Tree('<!>'));    // xml.Tree does not check this!
+      $this->processor->setTemplateTree(new Tree('<!>'));    // xml.Tree does not check this!
     }
 
     /**
@@ -265,8 +265,8 @@
      */
     #[@test]
     public function transformationWithEmptyResult() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="text"/>
         </xsl:stylesheet>
@@ -282,8 +282,8 @@
      */
     #[@test]
     public function iso88591XslWithoutOutputEncoding() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('<?xml version="1.0" encoding="iso-8859-1"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0" encoding="iso-8859-1"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="text"/>
           <xsl:template match="/">
@@ -294,7 +294,7 @@
       $this->processor->run();
       $this->assertEquals($this->processorCharset(), $this->processor->outputEncoding());
       $this->assertEquals(
-        iconv('iso-8859-1', $this->processorCharset(), 'Hällo'), 
+        iconv('iso-8859-1', $this->processorCharset(), 'Hällo'),
         $this->processor->output()
       );
     }
@@ -306,8 +306,8 @@
      */
     #[@test]
     public function iso88591XslWithUtf8OutputEncoding() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('<?xml version="1.0" encoding="iso-8859-1"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0" encoding="iso-8859-1"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="text" encoding="utf-8"/>
           <xsl:template match="/">
@@ -327,8 +327,8 @@
      */
     #[@test]
     public function utf8XslWithoutOutputEncoding() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('<?xml version="1.0" encoding="utf-8"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0" encoding="utf-8"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="text"/>
           <xsl:template match="/">
@@ -339,7 +339,7 @@
       $this->processor->run();
       $this->assertEquals($this->processorCharset(), $this->processor->outputEncoding());
       $this->assertEquals(
-        iconv('iso-8859-1', $this->processorCharset(), 'Hällo'), 
+        iconv('iso-8859-1', $this->processorCharset(), 'Hällo'),
         $this->processor->output()
       );
     }
@@ -351,8 +351,8 @@
      */
     #[@test]
     public function utf8XslWithUtf8OutputEncoding() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('<?xml version="1.0" encoding="utf-8"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0" encoding="utf-8"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="text" encoding="utf-8"/>
           <xsl:template match="/">
@@ -372,8 +372,8 @@
      */
     #[@test]
     public function utf8XslWithIso88591OutputEncoding() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('<?xml version="1.0" encoding="utf-8"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0" encoding="utf-8"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="text" encoding="iso-8859-1"/>
           <xsl:template match="/">
@@ -393,8 +393,8 @@
      */
     #[@test]
     public function iso88591XslWithIso88591OutputEncoding() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('<?xml version="1.0" encoding="iso-8859-1"?>
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('<?xml version="1.0" encoding="iso-8859-1"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="text" encoding="iso-8859-1"/>
           <xsl:template match="/">
@@ -413,8 +413,8 @@
      */
     #[@test]
     public function transformationWithResult() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="xml" encoding="utf-8"/>
           <xsl:template match="/">
@@ -432,8 +432,8 @@
      */
     #[@test]
     public function transformationToHtml() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="html" encoding="utf-8"/>
           <xsl:template match="/">
@@ -451,8 +451,8 @@
      */
     #[@test]
     public function javaScriptInCDataSection() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="html" encoding="utf-8"/>
           <xsl:template match="/">
@@ -473,8 +473,8 @@
      */
     #[@test]
     public function omitXmlDeclaration() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:output method="xml" encoding="utf-8" omit-xml-declaration="yes"/>
           <xsl:template match="/">
@@ -492,8 +492,8 @@
      */
     #[@test]
     public function transformationWithParameter() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:param name="input"/>
           <xsl:output method="xml" encoding="utf-8"/>
@@ -513,8 +513,8 @@
      */
     #[@test]
     public function transformationWithParameters() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:param name="left"/>
           <xsl:param name="right"/>
@@ -538,8 +538,8 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function malformedXML() {
-      $this->processor->setXMLBuf('@@MALFORMED@@');
-      $this->processor->setXSLBuf('<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"/>');
+      $this->processor->setInputBuffer('@@MALFORMED@@');
+      $this->processor->setTemplateBuffer('<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"/>');
       $this->processor->run();
     }
 
@@ -549,8 +549,8 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function malformedXSL() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('@@MALFORMED@@');
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('@@MALFORMED@@');
       $this->processor->run();
     }
 
@@ -560,8 +560,8 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function malformedExpression() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:template match="/">
             <xsl:value-of select="concat(\'Hello\', "/>
@@ -577,8 +577,8 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function unboundVariable() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:template match="/">
             <xsl:value-of select="$a"/>
@@ -595,8 +595,8 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function includeNotFound() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:include href=":@@FILE-DOES-NOT-EXIST@@:"/>
         </xsl:stylesheet>
@@ -611,8 +611,8 @@
      */
     #[@test, @expect('xml.TransformerException')]
     public function importNotFound() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:import href=":@@FILE-DOES-NOT-EXIST@@:"/>
         </xsl:stylesheet>
@@ -627,8 +627,8 @@
      */
     #[@test]
     public function includingAFile() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:include href="'.$this->includeUri('include').'"/>
           <xsl:template match="/">
@@ -647,8 +647,8 @@
      */
     #[@test]
     public function importingAFile() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:import href="'.$this->includeUri('include').'"/>
           <xsl:template match="/">
@@ -666,8 +666,8 @@
      */
     #[@test]
     public function outputEncodingFromIncludedFile() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:include href="'.$this->includeUri('include').'"/>
         </xsl:stylesheet>
@@ -682,8 +682,8 @@
      */
     #[@test]
     public function outputEncodingFromImportedFile() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:import href="'.$this->includeUri('include').'"/>
         </xsl:stylesheet>
@@ -699,8 +699,8 @@
      */
     #[@test]
     public function outputEncodingFromIncludedInImportedFile() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:import href="'.$this->includeUri('includer').'"/>
         </xsl:stylesheet>
@@ -716,8 +716,8 @@
      */
     #[@test]
     public function outputEncodingFromIncludedInIncludedFile() {
-      $this->processor->setXMLBuf('<document/>');
-      $this->processor->setXSLBuf('
+      $this->processor->setInputBuffer('<document/>');
+      $this->processor->setTemplateBuffer('
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:include href="'.$this->includeUri('includer').'"/>
         </xsl:stylesheet>

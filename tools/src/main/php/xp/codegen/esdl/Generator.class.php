@@ -39,7 +39,7 @@
    *
    * @purpose  Code generator
    */
-  class xp·codegen·esdl·Generator extends AbstractGenerator {
+  class xpï¿½codegenï¿½esdlï¿½Generator extends AbstractGenerator {
     const
       ESDL_PORT   = 6449;
       
@@ -71,7 +71,7 @@
       $this->jndi= $args->value(1);
 
       $this->processor= new DomXSLProcessor();
-      $this->processor->setXSLBuf($this->getClass()->getPackage()->getResource($args->value('lang', 'l', 'xp5').'.xsl'));
+      $this->processor->setTemplateBuffer($this->getClass()->getPackage()->getResource($args->value('lang', 'l', 'xp5').'.xsl'));
     }
     
     /**
@@ -136,7 +136,7 @@
           )));
         }
 
-        $this->processor->setXMLBuf($node->getSource(INDENT_NONE));
+        $this->processor->setInputBuffer($node->getSource(INDENT_NONE));
         $this->processor->run();
         try {
           $output->append(strtr($wrapper->getName(), '.', '/').xp::CLASS_FILE_EXT, $this->processor->output());
@@ -166,7 +166,7 @@
         $node->setAttribute('purpose', $purposes[$type]);
         $node->addChild(new Node('jndiName', $this->jndi));
 
-        $this->processor->setXMLBuf($node->getSource(INDENT_NONE));
+        $this->processor->setInputBuffer($node->getSource(INDENT_NONE));
         $this->processor->run();
         $output->append(strtr($interface->getClassName(), '.', '/').xp::CLASS_FILE_EXT, $this->processor->output());
       }
