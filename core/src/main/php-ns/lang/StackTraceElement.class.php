@@ -4,6 +4,7 @@
  * $Id$ 
  */
 
+  namespace lang;
   /**
    * An element in a stack trace, as returned by Throwable::getStackTrace(). 
    * Each element represents a single stack frame.

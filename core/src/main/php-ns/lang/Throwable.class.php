@@ -4,7 +4,7 @@
  * $Id$ 
  */
 
-  namespace lang;
+ namespace lang;
  use lang\Generic, lang\StackTraceElement;
 
   /**

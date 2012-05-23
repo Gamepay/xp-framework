@@ -3,7 +3,10 @@
  *
  * $Id$
  */
- 
+
+  namespace lang;
+
+  use lang\XPException; 
   /**
    * Thrown to indicate that a method has been passed an illegal or 
    * inappropriate argument.

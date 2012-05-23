@@ -5,6 +5,7 @@
  */
 
   namespace lang;
+
   define('MODIFIER_STATIC',       1);
   define('MODIFIER_ABSTRACT',     2);
   define('MODIFIER_FINAL',        4);
@@ -712,10 +713,8 @@
   //     SPL Autoload callback
   function __load($class) {
     $name= strtr($class, '\\', '.');
-
     $decl= xp::loadClass0($name);
 
-    var_dump($decl);
     strstr($decl, '\\') || class_alias($decl, $class);
     return TRUE;
   }
