@@ -41,7 +41,7 @@
    *
    * @purpose  Code generator
    */
-  class xp·codegen·wsdl·Generator extends AbstractGenerator {
+  class xpï¿½codegenï¿½wsdlï¿½Generator extends AbstractGenerator {
     const 
       BOUNDARY   = 'd4c3$bd1e091e.e245bfe04';
     
@@ -59,7 +59,7 @@
       $this->uri= $args->value(0);
       $this->package= $args->value('package', 'p', 'soap');
       $this->processor= new DomXSLProcessor();
-      $this->processor->setXSLBuf($this->getClass()->getPackage()->getResource($args->value('lang', 'l', 'xp5.php').'.xsl'));
+      $this->processor->setTemplateBuffer($this->getClass()->getPackage()->getResource($args->value('lang', 'l', 'xp5.php').'.xsl'));
       $this->processor->setParam('collection', $this->package);
       $this->processor->setParam('prefix', $args->value('prefix', 'P', ''));
       $this->processor->setParam('boundary', self::BOUNDARY);
@@ -87,7 +87,7 @@
      */
     #[@target(input= 'fetchWsdl')]
     public function applyStylesheet($wsdl) {
-      $this->processor->setXMLBuf($wsdl);
+      $this->processor->setInputBuffer($wsdl);
       $this->processor->run();
    
       return $this->processor->output();

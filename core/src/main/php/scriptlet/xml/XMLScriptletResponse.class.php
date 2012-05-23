@@ -7,7 +7,7 @@
   uses(
     'scriptlet.HttpScriptletResponse',
     'scriptlet.xml.OutputDocument',
-    'xml.IXSLProcessor',
+    'scriptlet.TemplateProcessorInterface',
     'peer.http.HttpConstants'
   );
   
@@ -45,7 +45,7 @@
     /**
      * Constructor
      *
-     * @param   xml.IXSLProcessor processor
+     * @param   scriptlet.TemplateProcessorInterface processor
      */
     public function __construct($processor= NULL) {
       $this->processor= $processor;
@@ -55,7 +55,7 @@
     /**
      * Set Processor
      *
-     * @param   xml.IXSLProcessor processor
+     * @param   scriptlet.TemplateProcessorInterface processor
      */
     public function setProcessor($processor) {
       $this->processor= $processor;
@@ -64,7 +64,7 @@
     /**
      * Get Processor
      *
-     * @return  xml.IXSLProcessor processor
+     * @return  scriptlet.TemplateProcessorInterface processor
      */
     public function getProcessor() {
       return $this->processor;
@@ -291,18 +291,18 @@
       switch ($this->_stylesheet[0]) {
         case self::XSLT_FILE:
           try {
-            $this->processor->setXSLFile($this->_stylesheet[1]);
+            $this->processor->setTemplateFile($this->_stylesheet[1]);
           } catch (FileNotFoundException $e) {
             throw new ScriptletException($e->getMessage(), HttpConstants::STATUS_NOT_FOUND);
           }
           break;
           
         case self::XSLT_BUFFER:
-          $this->processor->setXSLBuf($this->_stylesheet[1]);
+          $this->processor->setTemplateBuffer($this->_stylesheet[1]);
           break;
 
         case self::XSLT_TREE:
-          $this->processor->setXSLTree($this->_stylesheet[1]);
+          $this->processor->setTemplateTree($this->_stylesheet[1]);
           break;
         
         default:
@@ -312,7 +312,7 @@
       }
       
       $this->processor->setParams($this->params);
-      $this->processor->setXMLTree($this->document);
+      $this->processor->setInputTree($this->document);
       
       // Transform XML/XSL
       try {

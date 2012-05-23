@@ -63,7 +63,7 @@
       $style->load('res://two/ModuleOne.xsl');
       
       $proc->setXSLDoc($style);
-      $proc->setXmlBuf('<document/>');
+      $proc->setInputBuffer('<document/>');
       $proc->run();
 
       $this->assertTrue(0 < strpos($proc->output(), 'I\'ve been called.'));
@@ -93,7 +93,7 @@
         $style->load('res://two/IncludingStylesheet.xsl');
 
         $proc->setXSLDoc($style);
-        $proc->setXmlBuf('<document/>');
+        $proc->setInputBuffer('<document/>');
         $proc->run();
       } catch (Throwable $t) {
       } finally(); {

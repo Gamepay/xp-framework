@@ -67,7 +67,7 @@
     /**
      * Set our own processor object
      *
-     * @return  xml.IXSLProcessor
+     * @return  scriptlet.TemplateProcessorInterface
      */
     protected function _processor() {
       return new DomXSLProcessor();

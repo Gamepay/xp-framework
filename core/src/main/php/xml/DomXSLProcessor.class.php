@@ -5,10 +5,10 @@
  */
 
   uses(
+    'scriptlet.TemplateProcessorInterface',
     'xml.Tree',
     'xml.TransformerException',
     'io.FileNotFoundException',
-    'xml.IXSLProcessor',
     'xml.XSLCallback',
     'xml.xslt.XSLDateCallback',
     'xml.xslt.XSLStringCallback'
@@ -20,8 +20,8 @@
    * Usage example [Transform two files]
    * <code>
    *   $proc= new DomXSLProcessor();
-   *   $proc->setXSLFile('test.xsl');
-   *   $proc->setXMLFile('test.xml');
+   *   $proc->setTemplateFile('test.xsl');
+   *   $proc->setInputFile('test.xml');
    *   $proc->setProfiling('/tmp/xsltprofiles.txt');
    *   
    *   try {
@@ -38,7 +38,7 @@
    * @ext      xslt
    * @test     xp://net.xp_framework.unittest.xml.DomXslProcessorTest
    */
-  class DomXSLProcessor extends Object implements IXSLProcessor {
+  class DomXSLProcessor extends Object implements TemplateProcessorInterface {
     public 
       $processor      = NULL,
       $stylesheet     = NULL,
@@ -126,7 +126,7 @@
      * @param   string file file name
      * @throws  io.FileNotFoundException
      */
-    public function setXSLFile($file) {
+    public function setTemplateFile($file) {
       if (!file_exists($this->_base.urldecode($file)))
         throw new FileNotFoundException($this->_base.$file.' not found');
 
@@ -153,7 +153,7 @@
      *
      * @param   string xsl the XSL as a string
      */
-    public function setXSLBuf($xsl) {
+    public function setTemplateBuffer($xsl) {
       libxml_get_last_error() && libxml_clear_errors();
 
       $this->stylesheet= new DOMDocument();
@@ -169,15 +169,15 @@
      *
      * @param   xml.Tree xsl
      */
-    public function setXSLTree(Tree $xsl) {
+    public function setTemplateTree(Tree $xml) {
       libxml_get_last_error() && libxml_clear_errors();
 
       $this->stylesheet= new DOMDocument();
-      $this->stylesheet->loadXML($xsl->getDeclaration().$xsl->getSource(INDENT_NONE));
+      $this->stylesheet->loadXML($xml->getDeclaration().$xml->getSource(INDENT_NONE));
       strlen($this->_base) && $this->stylesheet->documentURI= $this->_base;
       $this->baseURI= $this->_base.':tree';
       
-      $this->_checkErrors($xsl);
+      $this->_checkErrors($xml);
     }
 
     /**
@@ -185,7 +185,7 @@
      *
      * @param   string file file name
      */
-    public function setXMLFile($file) {
+    public function setInputFile($file) {
       if (!file_exists($this->_base.urldecode($file))) {
         throw new FileNotFoundException($this->_base.$file.' not found');
       }
@@ -203,13 +203,13 @@
      *
      * @param   string xml the XML as a string
      */
-    public function setXMLBuf($xml) {
+    public function setInputBuffer($data) {
       libxml_get_last_error() && libxml_clear_errors();
 
       $this->document= new DOMDocument();
-      $this->document->loadXML($xml);
+      $this->document->loadXML($data);
 
-      $this->_checkErrors($xml);
+      $this->_checkErrors($data);
     }
 
     /**
@@ -217,7 +217,7 @@
      *
      * @param   xml.Tree xml
      */
-    public function setXMLTree(Tree $xml) {
+    public function setInputTree(Tree $xml) {
       libxml_get_last_error() && libxml_clear_errors();
 
       $this->document= new DOMDocument();

@@ -46,7 +46,7 @@
    *
    * @purpose  Code generator
    */
-  class xp·codegen·dataset·Generator extends AbstractGenerator {
+  class xpï¿½codegenï¿½datasetï¿½Generator extends AbstractGenerator {
     const
       CONSTRAINT_FILE_NAME= '__Constraints';
 
@@ -113,7 +113,7 @@
       foreach ($xsls as $resource) {
         $processor= new DomXSLProcessor();
         $processor->setBase(__DIR__);
-        $processor->setXSLBuf(ClassLoader::getDefault()->getResource($resource));
+        $processor->setTemplateBuffer(ClassLoader::getDefault()->getResource($resource));
         $processor->setParam('package', $this->package);
         
         if ($this->prefix) {
@@ -219,7 +219,7 @@
           $this->filename= NULL;
           $this->protected= TRUE;
           
-          $processor->setXMLBuf($stored->data());
+          $processor->setInputBuffer($stored->data());
           $processor->run();
           
           if (!isset($this->filename)) {

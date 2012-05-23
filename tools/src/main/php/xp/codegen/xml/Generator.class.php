@@ -46,7 +46,7 @@
    *
    * @purpose  Code generator
    */
-  class xp·codegen·xml·Generator extends AbstractGenerator {
+  class xpï¿½codegenï¿½xmlï¿½Generator extends AbstractGenerator {
     const
       CONSTRAINT_FILE_NAME= '__Constraints';
 
@@ -93,7 +93,7 @@
 
       // Setup generator
       $this->processor= new DomXSLProcessor();
-      $this->processor->setXSLBuf($this->getClass()->getPackage()->getResource($args->value('lang', 'l', 'xp5.php').'.xsl'));
+      $this->processor->setTemplateBuffer($this->getClass()->getPackage()->getResource($args->value('lang', 'l', 'xp5.php').'.xsl'));
       $this->processor->setParam('package', $this->package);
 
       if ($this->prefix) {
@@ -186,7 +186,7 @@
       $this->processor->setParam('definitionpath', $this->storage->getUri());
       $this->processor->setParam('constraintfile', $this->storage->getUri().self::CONSTRAINT_FILE_NAME);
       foreach ($tables as $stored) {
-        $this->processor->setXMLBuf($stored->data());
+        $this->processor->setInputBuffer($stored->data());
         $this->processor->run();
 
         $output->append($dir.$stored->name().".xml", $this->processor->output());

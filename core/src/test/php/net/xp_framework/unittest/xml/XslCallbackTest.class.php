@@ -45,8 +45,8 @@
       sscanf($callback, '%[^:]::%s', $name, $method);
       $p= new DomXSLProcessor();
       $p->registerInstance('this', $this);
-      $p->setXMLBuf($xml);
-      $p->setXSLBuf(sprintf('<?xml version="1.0" encoding="%s"?>
+      $p->setInputBuffer($xml);
+      $p->setTemplateBuffer(sprintf('<?xml version="1.0" encoding="%s"?>
         <xsl:stylesheet 
          version="1.0" 
          xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
