@@ -275,6 +275,32 @@
       $this->_obs && $this->notifyObservers(new DBEvent('queryend', $result));
       return $result;
     }
+
+    /**
+     * Execute a select statement and returns an array containing the content
+     * of the first row.
+     *
+     * Usage:
+     * Use this instead of self::select() to simplify the selection of single
+     * data rows.
+     *
+     * @param   var* args
+     * @return  string[]
+     * @throws  rdbms.SQLStatementFailedException
+     */
+    public function getRow() {
+      $args= func_get_args();
+      $sql = current($args);
+
+      $result= $this->select($sql);
+
+      $data= array();
+      foreach ($result as $row) {
+        $data[]= current($row);
+      }
+
+      return $data;
+    }
     
     /**
      * Execute any statement
