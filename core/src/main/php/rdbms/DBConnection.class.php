@@ -301,6 +301,31 @@
 
       return $data;
     }
+
+    /**
+     * Execute a select statement and returns first element of the first row.
+     *
+     * Usage:
+     * Use this instead of self::select() to simplify the selection of a single
+     * piece of information of a single row result.
+     *
+     * @param   var* args
+     * @return  string
+     * @throws  rdbms.SQLStatementFailedException
+     */
+    public function getOne() {
+      $args= func_get_args();
+      $sql = current($args);
+
+      $result= $this->select($sql);
+
+      $data= null;
+      if (!empty($result)) {
+        $data = current(current($result));
+      }
+
+      return $data;
+    }
     
     /**
      * Execute any statement
