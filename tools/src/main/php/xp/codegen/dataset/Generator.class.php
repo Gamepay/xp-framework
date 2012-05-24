@@ -46,7 +46,7 @@
    *
    * @purpose  Code generator
    */
-  class xpï¿½codegenï¿½datasetï¿½Generator extends AbstractGenerator {
+  class xp·codegen·dataset·Generator extends AbstractGenerator {
     const
       CONSTRAINT_FILE_NAME= '__Constraints';
 
