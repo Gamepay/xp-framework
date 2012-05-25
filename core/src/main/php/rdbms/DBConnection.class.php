@@ -288,7 +288,7 @@
      * @return  string[]
      * @throws  rdbms.SQLStatementFailedException
      */
-    public function getCol() {
+    public function getColumn() {
       $args= func_get_args();
       $sql = current($args);
 
