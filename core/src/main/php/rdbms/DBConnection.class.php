@@ -94,6 +94,18 @@
     }
 
     /**
+     * @param string method
+     * @param array arguments
+     * @return mixed
+     */
+    public function callArgumentsMethod($method, $arguments) {
+      return call_user_func_array(
+        array($this, $method),
+        $arguments
+      );
+    }
+
+    /**
      * Set Timeout
      *
      * @param   int timeout
@@ -289,10 +301,7 @@
      * @throws  rdbms.SQLStatementFailedException
      */
     public function getColumn() {
-      $args= func_get_args();
-      $sql = current($args);
-
-      $result= $this->select($sql);
+      $result= $this->callArgumentsMethod('select', func_get_args());
 
       $data= array();
       foreach ($result as $row) {
@@ -314,14 +323,11 @@
      * @throws  rdbms.SQLStatementFailedException
      */
     public function getOne() {
-      $args= func_get_args();
-      $sql = current($args);
-
-      $result= $this->select($sql);
+      $result= $this->callArgumentsMethod('select', func_get_args());
 
       $data= null;
       if (!empty($result)) {
-        $data = current(current($result));
+        $data= current(current($result));
       }
 
       return $data;
