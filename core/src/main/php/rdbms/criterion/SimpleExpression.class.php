@@ -88,8 +88,10 @@
      * @return  string
      */
     public function asSql(DBConnection $conn, Peer $peer) {
-      $lhs= ($this->lhs instanceof SQLFragment) ? $this->lhs : $peer->column($this->lhs);
-      
+      $lhs= ($this->lhs instanceof SQLFragment)
+        ? $this->lhs
+        : $peer->column($this->lhs);
+
       return $conn->prepare(
         '%c '.str_replace('?', $lhs->getType(), $this->op), 
         $lhs, 

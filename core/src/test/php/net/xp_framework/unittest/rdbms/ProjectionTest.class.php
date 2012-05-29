@@ -100,10 +100,10 @@
     #[@test]
     function countColumnTest() {
       $this->assertProjection(
-        'count(job_id) as `count_job_id`',
-        'count(job_id) as \'count_job_id\'',
-        'count(job_id) as "count_job_id"',
-        'count(job_id) as \'count_job_id\'',
+        'count(`job_id`) as `count_job_id`',
+        'count(`job_id`) as \'count_job_id\'',
+        'count(`job_id`) as "count_job_id"',
+        'count(`job_id`) as \'count_job_id\'',
         create(new Criteria())->setProjection(Projections::count(Job::column('job_id')), 'count_job_id')
       );
     }
@@ -115,10 +115,10 @@
     #[@test]
     function countColumnAliasTest() {
       $this->assertProjection(
-        'count(job_id) as `counting all`',
-        'count(job_id) as \'counting all\'',
-        'count(job_id) as "counting all"',
-        'count(job_id) as \'counting all\'',
+        'count(`job_id`) as `counting all`',
+        'count(`job_id`) as \'counting all\'',
+        'count(`job_id`) as "counting all"',
+        'count(`job_id`) as \'counting all\'',
         create(new Criteria())->setProjection(Projections::count(Job::column('job_id')), "counting all")
       );
     }
@@ -145,10 +145,10 @@
     #[@test]
     function avgTest() {
       $this->assertProjection(
-        'avg(job_id)',
-        'avg(job_id)',
-        'avg(job_id)',
-        'avg(job_id)',
+        'avg(`job_id`)',
+        'avg(`job_id`)',
+        'avg(`job_id`)',
+        'avg(`job_id`)',
         create(new Criteria())->setProjection(Projections::average(Job::column("job_id")))
       );
     }
@@ -160,10 +160,10 @@
     #[@test]
     function sumTest() {
       $this->assertProjection(
-        'sum(job_id)',
-        'sum(job_id)',
-        'sum(job_id)',
-        'sum(job_id)',
+        'sum(`job_id`)',
+        'sum(`job_id`)',
+        'sum(`job_id`)',
+        'sum(`job_id`)',
         create(new Criteria())->setProjection(Projections::sum(Job::column("job_id")))
       );
     }
@@ -175,10 +175,10 @@
     #[@test]
     function minTest() {
       $this->assertProjection(
-        'min(job_id)',
-        'min(job_id)',
-        'min(job_id)',
-        'min(job_id)',
+        'min(`job_id`)',
+        'min(`job_id`)',
+        'min(`job_id`)',
+        'min(`job_id`)',
         create(new Criteria())->setProjection(Projections::min(Job::column("job_id")))
       );
     }
@@ -190,10 +190,10 @@
     #[@test]
     function maxTest() {
       $this->assertProjection(
-        'max(job_id)',
-        'max(job_id)',
-        'max(job_id)',
-        'max(job_id)',
+        'max(`job_id`)',
+        'max(`job_id`)',
+        'max(`job_id`)',
+        'max(`job_id`)',
         create(new Criteria())->setProjection(Projections::max(Job::column("job_id")))
       );
     }
@@ -205,10 +205,10 @@
     #[@test]
     function propertyTest() {
       $this->assertProjection(
-        'job_id',
-        'job_id',
-        'job_id',
-        'job_id',
+        '`job_id`',
+        '`job_id`',
+        '`job_id`',
+        '`job_id`',
         create(new Criteria())->setProjection(Projections::property(Job::column("job_id")))
       );
     }
@@ -220,10 +220,10 @@
     #[@test]
     function propertyListTest() {
       $this->assertProjection(
-        'job_id, title',
-        'job_id, title',
-        'job_id, title',
-        'job_id, title',
+        '`job_id`, `title`',
+        '`job_id`, `title`',
+        '`job_id`, `title`',
+        '`job_id`, `title`',
         create(new Criteria())->setProjection(Projections::projectionList()
           ->add(Projections::property(Job::column('job_id')))
           ->add(Projections::property(Job::column('title')))
@@ -241,10 +241,10 @@
     #[@test]
     function propertyListAliasTest() {
       $this->assertProjection(
-        'job_id as `id`, title',
-        'job_id as \'id\', title',
-        'job_id as "id", title',
-        'job_id as \'id\', title',
+        '`job_id` as `id`, `title`',
+        '`job_id` as \'id\', `title`',
+        '`job_id` as "id", `title`',
+        '`job_id` as \'id\', `title`',
         create(new Criteria())->setProjection(Projections::projectionList()
           ->add(Projections::property(Job::column('job_id')), 'id')
           ->add(Job::column('title'))

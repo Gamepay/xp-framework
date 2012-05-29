@@ -97,10 +97,10 @@
     #[@test]
     function projectionTest() {
       $this->assertProjection(
-        'day(valid_from)',
-        'day(valid_from)',
-        'day(valid_from)',
-        'php(\'idate\', \'d\', php(\'strtotime\', valid_from))',
+        'day(`valid_from`)',
+        'day(`valid_from`)',
+        'day(`valid_from`)',
+        'php(\'idate\', \'d\', php(\'strtotime\', `valid_from`))',
         create(new Criteria())->setProjection(SQLFunctions::day(Job::column('valid_from')))
       );
     }
@@ -112,19 +112,19 @@
     #[@test]
     function prepareProjectionTest() {
       $this->assertEquals(
-        '- datepart(hour, valid_from) -',
+        '- datepart(hour, `valid_from`) -',
         $this->syconn->prepare('- %s -', SQLFunctions::datepart('hour', Job::column('valid_from')))
       );
       $this->assertEquals(
-        '- extract(hour from valid_from) -',
+        '- extract(hour from `valid_from`) -',
         $this->myconn->prepare('- %s -', SQLFunctions::datepart('hour', Job::column('valid_from')))
       );
       $this->assertEquals(
-        '- datepart(hour, valid_from) -',
+        '- datepart(hour, `valid_from`) -',
         $this->pgconn->prepare('- %s -', SQLFunctions::datepart('hour', Job::column('valid_from')))
       );
       $this->assertEquals(
-        '- php(\'idate\', "H", php(\'strtotime\', valid_from)) -',
+        '- php(\'idate\', "H", php(\'strtotime\', `valid_from`)) -',
         $this->sqconn->prepare('- %s -', SQLFunctions::datepart('hour', Job::column('valid_from')))
       );
     }
@@ -414,10 +414,10 @@
         create(new Criteria())->setProjection(SQLFunctions::cast('345', 'decimal'))
       );
       $this->assertProjection(
-        'cast(job_id as char)',
-        'convert(char, job_id)',
-        'cast(job_id as char)',
-        'cast(job_id as char)',
+        'cast(`job_id` as char)',
+        'convert(char, `job_id`)',
+        'cast(`job_id` as char)',
+        'cast(`job_id` as char)',
         create(new Criteria())->setProjection(SQLFunctions::cast(Job::column('job_id'), 'char'))
       );
     }
@@ -429,17 +429,17 @@
     #[@test]
     function restrictionTest() {
       $this->assertSQL(
-        'where job_id = ceil(asin(sin(0.125)))',
-        'where job_id = ceiling(asin(sin(0.125)))',
-        'where job_id = ceil(asin(sin(0.125)))',
-        'where job_id = php(\'ceil\', php(\'asin\', php(\'sin\', 0.125)))',
+        'where `job_id` = ceil(asin(sin(0.125)))',
+        'where `job_id` = ceiling(asin(sin(0.125)))',
+        'where `job_id` = ceil(asin(sin(0.125)))',
+        'where `job_id` = php(\'ceil\', php(\'asin\', php(\'sin\', 0.125)))',
         create(new Criteria())->add(Restrictions::equal('job_id', SQLFunctions::ceil(SQLFunctions::asin(SQLFunctions::sin(0.125)))))
       );
       $this->assertSQL(
-        'where job_id = ceil(asin(sin(0.125)))',
-        'where job_id = ceiling(asin(sin(0.125)))',
-        'where job_id = ceil(asin(sin(0.125)))',
-        'where job_id = php(\'ceil\', php(\'asin\', php(\'sin\', 0.125)))',
+        'where `job_id` = ceil(asin(sin(0.125)))',
+        'where `job_id` = ceiling(asin(sin(0.125)))',
+        'where `job_id` = ceil(asin(sin(0.125)))',
+        'where `job_id` = php(\'ceil\', php(\'asin\', php(\'sin\', 0.125)))',
         create(new Criteria())->add(Restrictions::equal(Job::column('job_id'), SQLFunctions::ceil(SQLFunctions::asin(SQLFunctions::sin(0.125)))))
       );
     }
