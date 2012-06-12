@@ -46,7 +46,7 @@
      */
     public function format($fmt, $args) {
       static $tokens= 'cdefstul';
-      
+
       $statement= '';
       $argumentOffset= 0;
       $offset= 0;
@@ -59,7 +59,9 @@
         $offset+= $span;
         
         // If offset == length, it was the last token, so return
-        if ($offset >= $length) return $statement;
+        if ($offset >= $length) {
+          return $statement;
+        }
 
         if ('"' === $fmt{$offset} || "'" === $fmt{$offset}) {
 
@@ -68,7 +70,9 @@
           $strlen= $offset+ 1;
           do {
             $strlen+= strcspn($fmt, $quote, $strlen);
-            if ($strlen >= $length || $quote !== $fmt{$strlen+ 1}) break;
+            if ($strlen >= $length || $quote !== $fmt{$strlen+ 1}) {
+              break;
+            }
             $strlen+= 2;
           } while (TRUE);
 
@@ -111,9 +115,11 @@
         } else {
           throw new SQLStateException('Unknown token "'.$fmt{$offset+ 1}.'"');
         }
-        
+
         $statement.= $this->prepare($type, $argument);
       }
+
+      return NULL;
     }
     
     /**
@@ -124,18 +130,19 @@
      * @return  string
      */
     public function prepare($type, $var) {
-      $r= '';
+      $result= array();
+
       $traversable= is_array($var) ? $var : array($var);
       foreach ($traversable as $arg) {
         if (NULL === $arg) {
-          $r.= 'NULL, '; 
+          $result[]= 'NULL';
           continue; 
         } else if ($arg instanceof Date) {
           $type= 's';
           $this->conn->tz && $arg= $this->conn->tz->translate($arg);
           $p= $arg->toString($this->dialect->dateFormat);
         } else if ($arg instanceof SQLRenderable) {
-          $r.= $arg->asSql($this->conn).', ';
+          $result[]= $arg->asSql($this->conn);
           continue;
         } else if ($arg instanceof Generic) {
           $p= $arg->toString();
@@ -144,19 +151,41 @@
         }
 
         switch ($type) {
-          case 'c': $r.= $p; break; // plain source code
-          case 'd': $r.= $this->numval($p); break; // digits
-          case 'e': $r.= $this->dialect->datatype($p); break; // datatype name
-          case 'f': $r.= $this->numval($p); break; // digit
-          case 's': $r.= $this->dialect->escapeString($p); break; // string
-          case 't': $r.= $this->dialect->datepart($p); break; // datepart name
-          case 'u': $r.= $this->dialect->quoteString($this->dialect->formatDate($p)); break; // date
-          case 'l': $r.= $this->dialect->escapeLabelString($p); break; // label
+          case 'c':
+            $result[]= $p;
+            break; // plain source code
+
+          case 'd':
+            $result[]= $this->numval($p);
+            break; // digits
+
+          case 'e':
+            $result[]= $this->dialect->datatype($p);
+            break; // datatype name
+
+          case 'f':
+            $result[]= $this->numval($p);
+            break; // digit
+
+          case 's':
+            $result[]= $this->dialect->escapeString($p);
+            break; // string
+
+          case 't':
+            $result[]= $this->dialect->datepart($p);
+            break; // datepart name
+
+          case 'u':
+            $result[]= $this->dialect->quoteString($this->dialect->formatDate($p));
+            break; // date
+
+          case 'l':
+            $result[]= $this->dialect->escapeLabelString($p);
+            break; // label
         }
-        $r.= ', ';
       }
 
-      return substr($r, 0, -2);
+      return implode(', ', $result);
     }
     
     /**
