@@ -94,6 +94,18 @@
     }
 
     /**
+     * @param string method
+     * @param array arguments
+     * @return mixed
+     */
+    public function callArgumentsMethod($method, $arguments) {
+      return call_user_func_array(
+        array($this, $method),
+        $arguments
+      );
+    }
+
+    /**
      * Set Timeout
      *
      * @param   int timeout
@@ -278,21 +290,18 @@
 
     /**
      * Execute a select statement and returns an array containing the content
-     * of the first row.
+     * of the first element (column) of each row.
      *
      * Usage:
      * Use this instead of self::select() to simplify the selection of single
-     * data rows.
+     * data columns.
      *
      * @param   var* args
      * @return  string[]
      * @throws  rdbms.SQLStatementFailedException
      */
-    public function getRow() {
-      $args= func_get_args();
-      $sql = current($args);
-
-      $result= $this->select($sql);
+    public function getColumn() {
+      $result= $this->callArgumentsMethod('select', func_get_args());
 
       $data= array();
       foreach ($result as $row) {
@@ -314,14 +323,11 @@
      * @throws  rdbms.SQLStatementFailedException
      */
     public function getOne() {
-      $args= func_get_args();
-      $sql = current($args);
-
-      $result= $this->select($sql);
+      $result= $this->callArgumentsMethod('select', func_get_args());
 
       $data= null;
       if (!empty($result)) {
-        $data = current(current($result));
+        $data= current(current($result));
       }
 
       return $data;
