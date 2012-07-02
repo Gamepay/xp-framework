@@ -14,8 +14,10 @@
     'xp.unittest.sources.ClassFileSource',
     'xp.unittest.sources.PackageSource',
     'xp.unittest.sources.EvaluationSource',
+    'xp.unittest.sources.FolderSource',
     'io.streams.FileOutputStream',
     'io.File',
+    'io.Folder',
     'unittest.TestSuite',
     'util.Properties',
     'util.collections.Vector',
@@ -41,6 +43,12 @@
    *     multiple times)</li>
    *   <li>-l {listener.class.Name} {output}, where output is either "-"
    *     for console output or a file name</li>
+   *   <li>--color={mode} : Enable / disable color; mode can be one of
+   *     . "on" - activate color mode
+   *     . "off" - disable color mode
+   *     . "auto" - try to determine whether colors are supported and enable
+   *       accordingly.
+   *   </li>
    * </ul>
    * Tests can be one or more of:
    * <ul>
@@ -50,6 +58,7 @@
    *   <li>{Test}.class.php: A class file</li>
    *   <li>{test.class.Name}: A fully qualified class name</li>
    *   <li>{test.class.Name}::{testName}: A fully qualified class name and a test name</li>
+   *   <li>path/with/tests: All classes inside a given directory and all subdirectories</li>
    *   <li>-e {test method sourcecode}: Evaluate source</li>
    * </ul>
    *
@@ -163,6 +172,14 @@
       $listener= TestListeners::$DEFAULT;
       $coverage= NULL;
       $arguments= array();
+      $colors= NULL;
+      $cmap= array(
+        ''      => NULL,
+        '=on'   => TRUE,
+        '=off'  => FALSE,
+        '=auto' => NULL
+      );
+
       try {
         for ($i= 0, $s= sizeof($args); $i < $s; $i++) {
           if ('-v' == $args[$i]) {
@@ -175,8 +192,8 @@
               $coverage->registerPath($path);
             }
           } else if ('-cp' == $args[$i]) {
-            foreach (explode(PATH_SEPARATOR, $this->arg($args, ++$i, 'cp')) as $path) {
-              ClassLoader::getDefault()->registerPath($path);
+            foreach (explode(PATH_SEPARATOR, $this->arg($args, ++$i, 'cp')) as $element) {
+              ClassLoader::registerPath($element, NULL);
             }
           } else if ('-e' == $args[$i]) {
             $sources->add(new xp暉nittest新ources幌valuationSource($this->arg($args, ++$i, 'e')));
@@ -188,6 +205,12 @@
             return $this->usage();
           } else if ('-a' == $args[$i]) {
             $arguments[]= $this->arg($args, ++$i, 'a');
+          } else if ('--color' == substr($args[$i], 0, 7)) {
+            $remainder= (string)substr($args[$i], 7);
+            if (!array_key_exists($remainder, $cmap)) {
+              throw new IllegalArgumentException('Unsupported argument for --color (must be <empty>, "on", "off", "auto" (default))');
+            }
+            $colors= $cmap[$remainder];
           } else if (strstr($args[$i], '.ini')) {
             $sources->add(new xp暉nittest新ources感ropertySource(new Properties($args[$i])));
           } else if (strstr($args[$i], xp::CLASS_FILE_EXT)) {
@@ -198,6 +221,8 @@
             $sources->add(new xp暉nittest新ources感ackageSource(Package::forName(substr($args[$i], 0, -2))));
           } else if (FALSE !== ($p= strpos($args[$i], '::'))) {
             $sources->add(new xp暉nittest新ources嵩lassSource(XPClass::forName(substr($args[$i], 0, $p)), substr($args[$i], $p+ 2)));
+          } else if (is_dir($args[$i])) {
+            $sources->add(new xp暉nittest新ources幹olderSource(new Folder($args[$i])));
           } else {
             $sources->add(new xp暉nittest新ources嵩lassSource(XPClass::forName($args[$i])));
           }
@@ -218,7 +243,11 @@
       }
 
       // Set up suite
-      $suite->addListener($listener->newInstance($this->out));
+      $l= $suite->addListener($listener->newInstance($this->out));
+      if ($l instanceof ColorizingListener) {
+        $l->setColor($colors);
+      }
+
       foreach ($sources as $source) {
         try {
           $tests= $source->testCasesWith($arguments);
@@ -235,7 +264,6 @@
           $this->err->writeLine('*** Error: ', $e->getMessage(), ': ', $e->method, '()');
           return 1;
         }
-
       }
 
       // Run it!
