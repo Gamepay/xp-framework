@@ -6,6 +6,30 @@ Version ?.?.?, released ????-??-??
 ----------------------------------
 Git commit: ?????
 
+Bugfixes
+~~~~~~~~
+- Changed drivers for Sybase and MSSQL to also emit seconds of a given 
+  util.Date - see pull request #169
+
+RFCs
+~~~~
+- Implemented RFC #0255 - Allow multiple @beforeClass / @afterClass methods.
+  See also pull request #100.
+  (friebe)
+
+Features
+~~~~~~~~
+- Added colored output for unittest runner - see issue #25 / pull #172
+  (kiesel, friebe)
+- Added support for supplying a path to the unittest command - will run
+  all test case classes inside the given directory and its subdirectories.
+  See pull request #170
+  (friebe, kiesel)
+- Added unittest listener to update terminal title - pull request #171
+  (kiesel, friebe)
+- Added support for ! in classpaths - see pull request #168
+  (mrosoiu)
+
 
 Version 5.8.5, released 2012-06-08
 ----------------------------------
