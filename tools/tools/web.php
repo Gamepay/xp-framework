@@ -1,13 +1,24 @@
 <?php
   // {{{ string scanpath(string[] path, string home)
-  //     Scans a path file 
+  //     Scans a path file
+  /*
+  * read .pth file line by line
+  * switch:
+  * if *first* character is
+  *      '#': comment - do not do anything
+  *      '!': prepend path to include_path
+  *      '~': substitute with $home (=$webroot)
+  *      '/': skip path (add only relative paths, absolute paths may break)
+  * if *second* character is
+  *      ':' followed by '\\': skip
+  * else: append path to include_path
+  */
   function scanpath($paths, $home) {
     $inc= '';
     foreach ($paths as $path) {
       if (!($d= @opendir($path))) continue;
       while ($e= readdir($d)) {
         if ('.pth' !== substr($e, -4)) continue;
-
         foreach (file($path.DIRECTORY_SEPARATOR.$e) as $line) {
           if ('#' === $line{0}) {
             continue;
