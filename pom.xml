@@ -50,11 +50,36 @@
       <plugin>
         <groupId>net.xp-forge.maven.plugins</groupId>
         <artifactId>xp-maven-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.1</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>
   </build>
+
+  <!--
+   ! Dependency Management
+   !
+   ! Add [net.xp-framework:pom] as 'import' dependency. It will be replaced with both
+   ! [net.xp-framework:core] and [net.xp-framework:tools] dependencies
+   !
+   ! @since 5.8.7
+   !-->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>net.xp-framework</groupId>
+        <artifactId>core</artifactId>
+        <version>${project.version}</version>
+        <type>xar</type>
+      </dependency>
+      <dependency>
+        <groupId>net.xp-framework</groupId>
+        <artifactId>tools</artifactId>
+        <version>${project.version}</version>
+        <type>xar</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <!-- Source code management -->
   <scm>
