@@ -79,8 +79,11 @@
      * @throws  rdbms.SQLStateException
      */
     public function asSql(DBConnection $conn) {
-      if (JoinProcessor::isJoinContext()) return JoinProcessor::pathToKey($this->path).'.'.$this->name;
-      return $this->name;
+      if (JoinProcessor::isJoinContext()) {
+        return JoinProcessor::pathToKey($this->path).'.'.$this->name;
+      }
+
+      return "`{$this->name}`";
     }
 
     /**

@@ -94,6 +94,18 @@
     }
 
     /**
+     * @param string method
+     * @param array arguments
+     * @return mixed
+     */
+    public function callArgumentsMethod($method, $arguments) {
+      return call_user_func_array(
+        array($this, $method),
+        $arguments
+      );
+    }
+
+    /**
      * Set Timeout
      *
      * @param   int timeout
@@ -274,6 +286,51 @@
       $result= $this->query0($sql, FALSE);
       $this->_obs && $this->notifyObservers(new DBEvent('queryend', $result));
       return $result;
+    }
+
+    /**
+     * Execute a select statement and returns an array containing the content
+     * of the first element (column) of each row.
+     *
+     * Usage:
+     * Use this instead of self::select() to simplify the selection of single
+     * data columns.
+     *
+     * @param   var* args
+     * @return  string[]
+     * @throws  rdbms.SQLStatementFailedException
+     */
+    public function getColumn() {
+      $result= $this->callArgumentsMethod('select', func_get_args());
+
+      $data= array();
+      foreach ($result as $row) {
+        $data[]= current($row);
+      }
+
+      return $data;
+    }
+
+    /**
+     * Execute a select statement and returns first element of the first row.
+     *
+     * Usage:
+     * Use this instead of self::select() to simplify the selection of a single
+     * piece of information of a single row result.
+     *
+     * @param   var* args
+     * @return  string
+     * @throws  rdbms.SQLStatementFailedException
+     */
+    public function getOne() {
+      $result= $this->callArgumentsMethod('select', func_get_args());
+
+      $data= null;
+      if (!empty($result)) {
+        $data= current(current($result));
+      }
+
+      return $data;
     }
     
     /**

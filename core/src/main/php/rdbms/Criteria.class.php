@@ -140,8 +140,7 @@
     public function setProjection(SQLRenderable $projection= NULL, $alias= '') {
       $this->projection= (is_null($projection) || ($projection instanceof ProjectionList))
         ? $projection
-        : $projection= Projections::ProjectionList()->add($projection, $alias)
-      ;
+        : $projection= Projections::ProjectionList()->add($projection, $alias);
       return $this;
     }
 
@@ -190,8 +189,6 @@
      * @throws  rdbms.SQLStateException
      */
     public function toSQL(DBConnection $conn, Peer $peer) {
-      $sql= '';
-
       // Process conditions
       if ($this->isJoin()) {
         $sql= (empty($this->conditions) ? '1 = 1' : $this->conditions($conn, $peer));
@@ -224,9 +221,14 @@
      * @return  string
      */
     private function conditions(DBConnection $conn, Peer $peer) {
-      $cond= '';
-      foreach ($this->conditions as $condition) $cond.= $condition->asSql($conn, $peer).' and ';
-      return substr($cond, 0, -5);
+      $conditions= array();
+
+      /** @var Criterion $condition */
+      foreach ($this->conditions as $condition) {
+        $conditions[]= $condition->asSql($conn, $peer);
+      }
+
+      return implode(' and ', $conditions);
     }
 
     /**
@@ -239,7 +241,6 @@
      * @throws  rdbms.SQLStateException
      */
     public function projections(DBConnection $conn, Peer $peer, $jp= NULL) {
-      $result= '';
       if ($this->isProjection()) {
         if ($this->isJoin()) $jp->enterJoinContext();
         $result= $this->projection->asSql($conn);
@@ -249,6 +250,13 @@
       } else {
         $result= array_keys($peer->types);
       }
+
+      if (is_array($result)) {
+        foreach ($result as &$field) {
+          $field = "`{$field}`";
+        }
+      }
+
       return $result;
     }
 
@@ -292,7 +300,10 @@
      * @return  rdbms.ResultSet
      */
     public function getSelectQueryString(DBConnection $conn, Peer $peer, $jp= NULL) {
-      if ($this->isJoin()) $jp->setFetchmodes($this->fetchmode);
+      if ($this->isJoin()) {
+        $jp->setFetchmodes($this->fetchmode);
+      }
+
       return $conn->prepare(
         'select %c from %c %c',
         $this->projections($conn, $peer, $jp),

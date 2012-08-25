@@ -46,7 +46,7 @@
    *
    * @purpose  Code generator
    */
-  class xpï¿½codegenï¿½datasetï¿½Generator extends AbstractGenerator {
+  class xp·codegen·dataset·Generator extends AbstractGenerator {
     const
       CONSTRAINT_FILE_NAME= '__Constraints';
 
@@ -187,9 +187,15 @@
 
         // Add extra information
         with ($node= $gen->root->children[0]); {
+        
+          // Namespace, e.g.: de\common\db
+          // cgen -O . dataset mysql://user:pass@localhost/db -l xp5.v3.php -h db -p de.common.db
+          $namespace= str_replace('.', "\\", $this->package);
+                  
           $node->setAttribute('dbtype', $this->adapter->conn->dsn->getDriver());
           $node->setAttribute('class', $className);
           $node->setAttribute('package', $this->package);
+          $node->setAttribute('namespace', $namespace);
         }
 
         $xml[]= $storage->write($className, $gen->getSource(INDENT_DEFAULT));

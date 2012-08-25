@@ -75,7 +75,7 @@
      */
     #[@test]
     public function simpleCriteria() {
-      $this->assertSql('where job_id = 1', new Criteria(array('job_id', 1, EQUAL)));
+      $this->assertSql('where `job_id` = 1', new Criteria(array('job_id', 1, EQUAL)));
     }
 
     /**
@@ -103,7 +103,7 @@
       }
 
       $this->assertSql(
-        'where job_id = 1 and valid_from >= "2006-01-01 12:00AM" and title like "Hello%" order by valid_from asc', 
+        'where `job_id` = 1 and `valid_from` >= "2006-01-01 12:00AM" and `title` like "Hello%" order by valid_from asc',
         $c
       );
     }
@@ -117,7 +117,7 @@
       $c= new Criteria();
       $c->add('job_id', array(1, 2), IN);
       
-      $this->assertSql('where job_id in (1, 2)', $c);
+      $this->assertSql('where `job_id` in (1, 2)', $c);
     }
     
     /**
@@ -129,7 +129,7 @@
       $c= new Criteria();
       $c->add('job_id', array(1, 2), NOT_IN);
       
-      $this->assertSql('where job_id not in (1, 2)', $c);
+      $this->assertSql('where `job_id` not in (1, 2)', $c);
     }
     
     /**
@@ -141,7 +141,7 @@
       $c= new Criteria();
       $c->add('title', '%keyword%', LIKE);
       
-      $this->assertSql('where title like "%keyword%"', $c);
+      $this->assertSql('where `title` like "%keyword%"', $c);
     }
     
     /**
@@ -153,7 +153,7 @@
       $c= new Criteria();
       $c->add('job_id', 1, EQUAL);
       
-      $this->assertSql('where job_id = 1', $c);
+      $this->assertSql('where `job_id` = 1', $c);
     }
     
     /**
@@ -165,7 +165,7 @@
       $c= new Criteria();
       $c->add('job_id', 1, NOT_EQUAL);
       
-      $this->assertSql('where job_id != 1', $c);
+      $this->assertSql('where `job_id` != 1', $c);
     }
     
     /**
@@ -177,7 +177,7 @@
       $c= new Criteria();
       $c->add('job_id', 100, LESS_THAN);
       
-      $this->assertSql('where job_id < 100', $c);
+      $this->assertSql('where `job_id` < 100', $c);
     }
     
     /**
@@ -189,7 +189,7 @@
       $c= new Criteria();
       $c->add('job_id', 100, GREATER_THAN);
       
-      $this->assertSql('where job_id > 100', $c);
+      $this->assertSql('where `job_id` > 100', $c);
     }
     
     /**
@@ -201,7 +201,7 @@
       $c= new Criteria();
       $c->add('job_id', 100, LESS_EQUAL);
       
-      $this->assertSql('where job_id <= 100', $c);
+      $this->assertSql('where `job_id` <= 100', $c);
     }
     
     /**
@@ -213,7 +213,7 @@
       $c= new Criteria();
       $c->add('job_id', 100, GREATER_EQUAL);
       
-      $this->assertSql('where job_id >= 100', $c);
+      $this->assertSql('where `job_id` >= 100', $c);
     }
     
     /**
@@ -225,7 +225,7 @@
       $c= new Criteria();
       $c->add('job_id', 100, BIT_AND);
       
-      $this->assertSql('where job_id & 100 != 0', $c);
+      $this->assertSql('where `job_id` & 100 != 0', $c);
     }
     
     /**
@@ -251,10 +251,10 @@
       ));
 
       $this->assertSql(
-        'where (not (job_id in (1, 2, 3))'
-        .' or (title like "Hello%" and valid_from > "2006-01-01 12:00AM")'
-        .' or (title like "Hello%" and valid_from > "2006-01-01 12:00AM")'
-        .' or job_id between 1 and 5)',
+        'where (not (`job_id` in (1, 2, 3))'
+        .' or (`title` like "Hello%" and `valid_from` > "2006-01-01 12:00AM")'
+        .' or (`title` like "Hello%" and `valid_from` > "2006-01-01 12:00AM")'
+        .' or `job_id` between 1 and 5)',
         $c
       );
     }
@@ -266,7 +266,7 @@
     #[@test]
     public function constructorAcceptsVarArgArrays() {
       $this->assertSql(
-        'where job_id = 1 and title = "Hello"', 
+        'where `job_id` = 1 and `title` = "Hello"',
         new Criteria(array('job_id', 1, EQUAL), array('title', 'Hello', EQUAL))
       );
     }
@@ -322,7 +322,7 @@
         $c->addOrderBy(Job::column('expire_at'));
       }
       $this->assertSql(
-        'order by valid_from asc, expire_at asc',
+        'order by `valid_from` asc, `expire_at` asc',
         $c
       );
     }
@@ -356,7 +356,7 @@
         $c->addGroupBy(Job::column('expire_at'));
       }
       $this->assertSql(
-        'group by valid_from, expire_at',
+        'group by `valid_from`, `expire_at`',
         $c
       );
     }
