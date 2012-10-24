@@ -15,8 +15,9 @@
   // {{{ final class xp
   final class xp {
     const CLASS_FILE_EXT= '.class.php';
+    const ENCODING= 'iso-8859-1';
 
-    public static $registry  = array(
+    public static $registry = array(
       'errors'     => array(),
       'sapi'       => array(),
       'class.xp'   => '<xp>',
@@ -187,7 +188,7 @@
     }
     // }}}
     
-    // {{{ public var sapi(string* sapis)
+    // {{{ deprecated public var sapi(string* sapis)
     //     Sets an SAPI
     static function sapi() {
       foreach ($a= func_get_args() as $name) {
@@ -341,7 +342,7 @@
             $unpack[$header['version']], 
             fread($current['handle'], 0x0100)
           );
-          $current['index'][$entry['id']]= array($entry['size'], $entry['offset'], $i);
+          $current['index'][rtrim($entry['id'], "\0")]= array($entry['size'], $entry['offset'], $i);
         }
       }
 
@@ -499,9 +500,10 @@
   }
   // }}}
 
-  // {{{ void finally (void)
-  //     Syntactic sugar. Intentionally empty
-  function finally() {
+  // {{{ void ensure ($t)
+  //     Replacement for finally() which clashes with PHP 5.5.0's finally
+  function ensure(&$t) {
+    if (!isset($t)) $t= NULL;
   }
   // }}}
 

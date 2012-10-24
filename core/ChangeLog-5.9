@@ -8,6 +8,12 @@ Git commit: ?????
 
 Heads up!
 ~~~~~~~~~
+- The finally() function is replaced by ensure($t) - see pull request #187
+  This way we're forward-compatible with PHP 5.5 - see issue #186.
+  http://news.planet-xp.net/article/481/2012/09/30/
+  (friebe)
+- The SAPI feature is now deprecated and will be removed in next major series!
+  (friebe)
 - Changed newinstance() to declare classes inside the package of the 
   base class (or interface)
   (friebe, kiesel)
@@ -17,9 +23,12 @@ Heads up!
 - Merged pull request #93: Access to private constructors, methods and fields
   (friebe)
 
-
 RFCs
 ~~~~
+- Implemented first part of RFC #0186 - deprecated SAPI feature.
+  (friebe)
+- Implemented RFC #0218: Parameter annotations (pull request #116)
+  (friebe)
 - Implemented RFC #0229: New util.UUID class (pull request #149)
   http://news.planet-xp.net/article/459/2012/04/23/
   (friebe)
@@ -28,7 +37,6 @@ RFCs
 - Implemented RFC #0222: Optional support for PHP 5.3 namespaces
   http://news.planet-xp.net/article/433/2012/01/06/
   (kiesel, friebe)
-
 
 Bugfixes
 ~~~~~~~~
@@ -41,3 +49,6 @@ Bugfixes
 
 Features
 ~~~~~~~~
+- Added xp::ENCODING constant and replaced hardcoded values througout
+  the framework's source code. See issue #35 for details.
+  (friebe, kiesel)
