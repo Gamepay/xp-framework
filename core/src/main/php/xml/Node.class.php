@@ -362,5 +362,53 @@
       }
       return $s.'}';
     }
+
+    /**
+     * remove a child node by index
+     *
+     * @param xml.Node child
+     */
+    private function removeChild($index) {
+      try {
+        unset($this->children[$index]);
+        $this->children= array_values($this->children);
+        return TRUE;
+      } catch (Exception $exc) {
+        return FALSE;
+      }
+    }
+
+    /**
+     * remove a child node by node
+     *
+     * @param xml.Node child
+     */
+    public function removeChildByNode(Node $node) {
+      $index= array_search($node, $this->children);
+
+      if (!$index) {
+        throw new Exception("Node not found");
+      }
+
+      $this->removeChild($index);
+    }
+
+    /**
+     * remove a child node by tag
+     *
+     * @param string tag
+     */
+    public function removeChildByTag($tag) {
+      $found= FALSE;
+      foreach ($this->children as $key => $child) {
+        if ($child->getName() == $tag) {
+          $found= $this->removeChild($key);
+        }
+      }
+
+      if (!$found) {
+        throw new Exception("Node '.$tag.' not found");
+      }
+    }
   }
 ?>
