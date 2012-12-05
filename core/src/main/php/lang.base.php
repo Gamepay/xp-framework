@@ -596,29 +596,33 @@
 
     // Check for an anonymous generic 
     if (strstr($spec, '<')) {
-      $class= Type::forName($spec)->genericDefinition();
-      $spec= $class->getName();
+      $class= Type::forName($spec);
       $type= $class->literal();
+      $p= strrpos(substr($type, 0, strpos($type, '··')), '·');
     } else {
-      $type= xp::reflect(FALSE === strrpos($spec, '.') ? xp::nameOf($spec) : $spec);
+      FALSE === strrpos($spec, '.') && $spec= xp::nameOf($spec);
+      $type= xp::reflect($spec);
       if (!class_exists($type, FALSE) && !interface_exists($type, FALSE)) {
         xp::error(xp::stringOf(new Error('Class "'.$spec.'" does not exist')));
         // Bails
       }
+      $p= strrpos($type, '·');
     }
 
     // Create unique name
     $n= '·'.(++$u);
-    $spec.= $n;
-    if (FALSE !== ($p= strrpos($type, '·'))) {
+    if (FALSE !== $p) {
       $ns= '$package= "'.strtr(substr($type, 0, $p), '·', '.').'"; ';
+      $spec= strtr(substr($type, 0, $p), '·', '.').'.'.substr($type, $p+ 1).$n;
       $decl= $type.$n;
     } else if (FALSE === ($p= strrpos($type, '\\'))) {
       $ns= '';
       $decl= $type.$n;
+      $spec= substr($spec, 0, strrpos($spec, '.')).'.'.$type.$n;
     } else {
       $ns= 'namespace '.substr($type, 0, $p).'; ';
       $decl= substr($type, $p+ 1).$n;
+      $spec= strtr($type, '\\', '.').$n;
       $type= '\\'.$type;
     }
 
@@ -657,8 +661,8 @@
     // so that the constructur can already use generic types.
     $class= XPClass::forName(strstr($base, '.') ? $base : xp::nameOf($base));
     if ($class->hasField('__generic')) {
-      $__id= microtime().' '.spl_object_hash(new stdClass());
-      $name= xp::reflect($classname);
+      $__id= microtime();
+      $name= $class->literal();
       $instance= unserialize('O:'.strlen($name).':"'.$name.'":1:{s:4:"__id";s:'.strlen($__id).':"'.$__id.'";}');
       foreach ($typeargs as $type) {
         $instance->__generic[]= xp::reflect($type->getName());
@@ -673,23 +677,20 @@
       return $instance;
     }
     
+    // Instantiate, passing the rest of any arguments passed to create()
     // BC: Wrap IllegalStateExceptions into IllegalArgumentExceptions
     try {
-      $type= $class->newGenericType($typeargs);
+      $reflect= new ReflectionClass(XPClass::createGenericType($class, $typeargs));
+      if ($reflect->hasMethod('__construct')) {
+        $a= func_get_args();
+        return $reflect->newInstanceArgs(array_slice($a, 1));
+      } else {
+        return $reflect->newInstance();
+      }
     } catch (IllegalStateException $e) {
       throw new IllegalArgumentException($e->getMessage());
-    }
-
-    // Instantiate
-    if ($type->hasConstructor()) {
-      $args= func_get_args();
-      try {
-        return $type->getConstructor()->newInstance(array_slice($args, 1));
-      } catch (TargetInvocationException $e) {
-        throw $e->getCause();
-      }
-    } else {
-      return $type->newInstance();
+    } catch (ReflectionException $e) {
+      throw new IllegalAccessException($e->getMessage());
     }
   }
   // }}}

@@ -5,14 +5,17 @@
   <parent>
     <groupId>net.xp-framework</groupId>
     <artifactId>pom</artifactId>
-    <version>5.8.8</version>
+    <version>5.8.10-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <!-- The Basics -->
+  <!-- The basics -->
+  <groupId>net.xp-framework</groupId>
   <artifactId>tools</artifactId>
+  <version>5.8.10-SNAPSHOT</version>
   <packaging>xar</packaging>
 
-  <!-- More Project Information -->
+  <!-- More project information -->
   <name>XP-Framework tools</name>
 
   <!-- Copy resources (not in the default Maven layout) -->
@@ -37,6 +40,7 @@
                   <directory>src/main/php/</directory>
                   <includes>
                     <include>xp/runtime/usage.txt</include>
+                    <include>xp/scriptlet/xpws.txt</include>
                     <include>xp/scriptlet/*.html</include>
                     <include>xp/codegen/**/*.xsl</include>
                   </includes>
