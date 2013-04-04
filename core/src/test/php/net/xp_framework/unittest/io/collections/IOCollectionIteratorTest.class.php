@@ -19,6 +19,7 @@
     'io.collections.iterate.NameMatchesFilter',
     'io.collections.iterate.NameEqualsFilter',
     'io.collections.iterate.ExtensionEqualsFilter',
+    'io.collections.iterate.UriMatchesFilter',
     'io.collections.iterate.SizeBiggerThanFilter',
     'io.collections.iterate.SizeEqualsFilter',
     'io.collections.iterate.SizeSmallerThanFilter',
@@ -137,7 +138,7 @@
     #[@test]
     public function nameMatches() {
       $this->assertEquals(
-        array('first.txt', 'second.txt'), 
+        array('./first.txt', './second.txt'), 
         $this->filterFixtureWith(new NameMatchesFilter('/\.txt$/'), FALSE)
       );
     }
@@ -150,7 +151,7 @@
     #[@test]
     public function nameMatchesRecursive() {
       $this->assertEquals(
-        array('first.txt', 'second.txt', 'sub/IMG_6100.txt'), 
+        array('./first.txt', './second.txt', './sub/IMG_6100.txt'), 
         $this->filterFixtureWith(new NameMatchesFilter('/\.txt$/'), TRUE)
       );
     }
@@ -176,7 +177,7 @@
     #[@test]
     public function nameEqualsRecursive() {
       $this->assertEquals(
-        array('sub/sec/__xp__.php'), 
+        array('./sub/sec/__xp__.php'), 
         $this->filterFixtureWith(new NameEqualsFilter('__xp__.php'), TRUE)
       );
     }
@@ -202,8 +203,67 @@
     #[@test]
     public function extensionEqualsRecursive() {
       $this->assertEquals(
-        array('sub/sec/lang.base.php', 'sub/sec/__xp__.php'), 
+        array('./sub/sec/lang.base.php', './sub/sec/__xp__.php'), 
         $this->filterFixtureWith(new ExtensionEqualsFilter('.php'), TRUE)
+      );
+    }
+
+    /**
+     * Test UriMatchesFilter
+     *
+     * @see     xp://io.collections.iterate.UriMatchesFilter
+     */
+    #[@test]
+    public function uriMatches() {
+      $this->assertEquals(
+        array('./first.txt', './second.txt'),
+        $this->filterFixtureWith(new UriMatchesFilter('/\.txt$/'), FALSE)
+      );
+    }
+
+    /**
+     * Test UriMatchesFilter
+     *
+     * @see     xp://io.collections.iterate.UriMatchesFilter
+     */
+    #[@test]
+    public function uriMatchesRecursive() {
+      $this->assertEquals(
+        array('./sub/', './sub/IMG_6100.jpg', './sub/IMG_6100.txt', './sub/sec/', './sub/sec/lang.base.php', './sub/sec/__xp__.php'),
+        $this->filterFixtureWith(new UriMatchesFilter('/sub/'), TRUE)
+      );
+    }
+
+    /**
+     * Test UriMatchesFilter
+     *
+     * @see     xp://io.collections.iterate.UriMatchesFilter
+     */
+    #[@test]
+    public function uriMatchesDirectorySeparators() {
+      with ($src= $this->addElement($this->fixture, new MockCollection('./sub/src'))); {
+        $this->addElement($src, new MockElement('./sub/src/Generic.xp')); 
+      }
+      $this->assertEquals(
+        array('./sub/src/Generic.xp'),
+        $this->filterFixtureWith(new UriMatchesFilter('/sub\/src\/.+/'), TRUE)
+      );
+    }
+
+    /**
+     * Test UriMatchesFilter
+     *
+     * @see     xp://io.collections.iterate.UriMatchesFilter
+     */
+    #[@test]
+    public function uriMatchesPlatformDirectorySeparators() {
+      $mockName= '.'.DIRECTORY_SEPARATOR.'sub'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Generic.xp';
+      with ($src= $this->addElement($this->fixture, new MockCollection('.'.DIRECTORY_SEPARATOR.'sub'.DIRECTORY_SEPARATOR.'src'))); {
+        $this->addElement($src, new MockElement($mockName));
+      }
+      $this->assertEquals(
+        array($mockName),
+        $this->filterFixtureWith(new UriMatchesFilter('/sub\/src\/.+/'), TRUE)
       );
     }
     
@@ -215,7 +275,7 @@
     #[@test]
     public function zeroBytes() {
       $this->assertEquals(
-        array('zerobytes.png'), 
+        array('./zerobytes.png'), 
         $this->filterFixtureWith(new SizeEqualsFilter(0), FALSE)
       );
     }
@@ -228,7 +288,7 @@
     #[@test]
     public function bigFiles() {
       $this->assertEquals(
-        array('sub/IMG_6100.jpg'), 
+        array('./sub/IMG_6100.jpg'), 
         $this->filterFixtureWith(new SizeBiggerThanFilter(500000), TRUE)
       );
     }
@@ -241,7 +301,7 @@
     #[@test]
     public function smallFiles() {
       $this->assertEquals(
-        array('second.txt', 'zerobytes.png'), 
+        array('./second.txt', './zerobytes.png'), 
         $this->filterFixtureWith(new SizeSmallerThanFilter(500), TRUE)
       );
     }
@@ -254,7 +314,7 @@
     #[@test]
     public function accessedAfter() {
       $this->assertEquals(
-        array('first.txt', 'second.txt', 'sub/sec/lang.base.php', 'sub/sec/__xp__.php'), 
+        array('./first.txt', './second.txt', './sub/sec/lang.base.php', './sub/sec/__xp__.php'), 
         $this->filterFixtureWith(new AccessedAfterFilter(new Date('Oct  1  2006')), TRUE)
       );
     }
@@ -267,7 +327,7 @@
     #[@test]
     public function accessedBefore() {
       $this->assertEquals(
-        array('third.jpg', 'zerobytes.png'), 
+        array('./third.jpg', './zerobytes.png'), 
         $this->filterFixtureWith(new AccessedBeforeFilter(new Date('Dec 14  2004')), TRUE)
       );
     }
@@ -280,7 +340,7 @@
     #[@test]
     public function modifiedAfter() {
       $this->assertEquals(
-        array('sub/sec/lang.base.php', 'sub/sec/__xp__.php'), 
+        array('./sub/sec/lang.base.php', './sub/sec/__xp__.php'), 
         $this->filterFixtureWith(new ModifiedAfterFilter(new Date('Oct  7  2006')), TRUE)
       );
     }
@@ -293,7 +353,7 @@
     #[@test]
     public function modifiedBefore() {
       $this->assertEquals(
-        array('third.jpg', 'zerobytes.png'), 
+        array('./third.jpg', './zerobytes.png'), 
         $this->filterFixtureWith(new ModifiedBeforeFilter(new Date('Dec 14  2004')), TRUE)
       );
     }
@@ -306,7 +366,7 @@
     #[@test]
     public function createdAfter() {
       $this->assertEquals(
-        array('sub/sec/__xp__.php'), 
+        array('./sub/sec/__xp__.php'), 
         $this->filterFixtureWith(new CreatedAfterFilter(new Date('Jul  1  2006')), TRUE)
       );
     }
@@ -319,7 +379,7 @@
     #[@test]
     public function createdBefore() {
       $this->assertEquals(
-        array('sub/sec/lang.base.php'), 
+        array('./sub/sec/lang.base.php'), 
         $this->filterFixtureWith(new CreatedBeforeFilter(new Date('Feb 22  2002')), TRUE)
       );
     }
@@ -332,7 +392,7 @@
     #[@test]
     public function allOf() {
       $this->assertEquals(
-        array('third.jpg'), 
+        array('./third.jpg'), 
         $this->filterFixtureWith(new AllOfFilter(array(
           new ModifiedBeforeFilter(new Date('Dec 14  2004')),
           new ExtensionEqualsFilter('jpg')
@@ -348,7 +408,7 @@
     #[@test]
     public function anyOf() {
       $this->assertEquals(
-        array('first.txt', 'second.txt', 'zerobytes.png', 'sub/IMG_6100.txt'), 
+        array('./first.txt', './second.txt', './zerobytes.png', './sub/IMG_6100.txt'), 
         $this->filterFixtureWith(new AnyOfFilter(array(
           new SizeSmallerThanFilter(500),
           new ExtensionEqualsFilter('txt')

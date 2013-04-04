@@ -56,9 +56,10 @@
    *   </rss>
    * </xmp>
    *
-   * @see http://www.w3.org/RDF/
-   * @see http://dublincore.org/2001/08/14/dces#
-   * @see http://dublincore.org/2001/08/14/dces_deDE
+   * @see   http://www.w3.org/RDF/
+   * @see   http://dublincore.org/2001/08/14/dces#
+   * @see   http://dublincore.org/2001/08/14/dces_deDE
+   * @test  xp://net.xp_framework.unittest.xml.RDFNewsFeedTest
    */
   class RDFNewsFeed extends Tree {
     public 
@@ -75,9 +76,9 @@
      */
     public function __construct() {
       parent::__construct('rdf:RDF');
-      $this->root->setAttribute('xmlns:rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
-      $this->root->setAttribute('xmlns:dc',  'http://purl.org/dc/elements/1.1/');
-      $this->root->setAttribute('xmlns',     'http://purl.org/rss/1.0/');
+      $this->root()->setAttribute('xmlns:rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+      $this->root()->setAttribute('xmlns:dc',  'http://purl.org/dc/elements/1.1/');
+      $this->root()->setAttribute('xmlns',     'http://purl.org/rss/1.0/');
 
       $this->channel= new stdClass();
       $this->image= new stdClass();
@@ -100,14 +101,14 @@
       $title, 
       $link, 
       $description= '', 
-      $date= NULL, 
+      Date $date= NULL,
       $language= '',
       $creator= '', 
       $publisher= '', 
       $rights= ''
     ) {
       if (NULL === $date) $date= Date::now();
-      
+
       $this->channel->title= $title;
       $this->channel->link= $link;
       $this->channel->description= $description;
@@ -117,23 +118,25 @@
       $this->channel->publisher= $publisher;
       $this->channel->copyright= $rights;
      
-      $node= Node::fromArray(array(
-        'title'         => $title,
-        'link'          => $link,
-        'description'   => $description,
-        'dc:language'   => $language,
-        'dc:date'       => $date->toString(DATE_ATOM),
-        'dc:creator'    => $creator,
-        'dc:publisher'  => $publisher,
-        'dc:rights'     => $rights
-      ), 'channel');
+      $node= create(new Node('channel'))
+        ->withChild(new Node('title', $title))
+        ->withChild(new Node('link', $link))
+        ->withChild(new Node('description', $description))
+        ->withChild(new Node('dc:language', $language))
+        ->withChild(new Node('dc:date', $date->toString(DATE_ATOM)))
+        ->withChild(new Node('dc:creator', $creator))
+        ->withChild(new Node('dc:publisher', $publisher))
+        ->withChild(new Node('dc:rights', $rights))
+      ;
+
       $node->setAttribute('rdf:about', $link);
       $items= $node->addChild(new Node('items'));;
 
       $this->channel->node= $node;
       $this->channel->sequence= $items->addChild(new Node('rdf:Seq'));
 
-      $this->root->children[0]= $node;
+      $this->root()->clearChildren();
+      $this->root()->addChild($node);
     }
     
     /**
@@ -148,12 +151,12 @@
       $this->image->url= $url;
       $this->image->title= $title;
 
-      $node= Node::fromArray(array(
-        'title'         => $title,
-        'url'           => $url,
-        'link'          => $link
-      ), 'image');
-      if (!isset($this->image->node)) $node= $this->root->addChild($node);
+      $node= create(new Node('image'))
+        ->withChild(new Node('title', $title))
+        ->withChild(new Node('url', $url))
+        ->withChild(new Node('link', $link))
+      ;
+      if (!isset($this->image->node)) $node= $this->root()->addChild($node);
       $this->image->node= $node;
     }
     
@@ -163,8 +166,8 @@
      * @param   string str
      * @return  xml.rdf.RDFNewsfeed
      */
-    public static function fromString($str) {
-      return parent::fromString($str, __CLASS__);
+    public static function fromString($str, $c= __CLASS__) {
+      return parent::fromString($str, $c);
     }
 
     /**
@@ -173,8 +176,8 @@
      * @param   io.File file
      * @return  xml.rdf.RDFNewsfeed
      */
-    public static function fromFile($file) {
-      return parent::fromFile($file, __CLASS__);
+    public static function fromFile($file, $c= __CLASS__) {
+      return parent::fromFile($file, $c);
     }
     
     /**
@@ -186,7 +189,7 @@
      * @param   string util.Date default NULL date defaulting to current date/time
      * @return  object the added item
      */
-    public function addItem($title, $link, $description= '', $date= NULL) {
+    public function addItem($title, $link, $description= '', Date $date= NULL) {
       if (NULL === $date) {
         $date= isset($this->channel->date) ? $this->channel->date : Date::now();
       }
@@ -196,14 +199,14 @@
       $item->link= $link;
       $item->description= $description;
       
-      $node= Node::fromArray(array(
-        'title'         => $title,
-        'link'          => $link,
-        'description'   => $description,
-        'dc:date'       => $date->toString(DATE_ATOM)
-      ), 'item');
+      $node= create(new Node('item'))
+        ->withChild(new Node('title', $title))
+        ->withChild(new Node('link', $link))
+        ->withChild(new Node('description', $description))
+        ->withChild(new Node('dc:date', $date->toString(DATE_ATOM)))
+      ;
       $node->setAttribute('rdf:about', $link);
-      $item->node= $this->root->addChild($node);
+      $item->node= $this->root()->addChild($node);
       $this->items[]= $item;
       $this->channel->sequence->addChild(new Node('rdf:li', NULL, array('rdf:resource' => $link)));
       
@@ -259,7 +262,7 @@
           $this->items[sizeof($this->items)- 1]->node= $this->_objs[$this->_cnt];
           break;
       }
-    }          
+    }
 
     /**
      * Callback for XML parser

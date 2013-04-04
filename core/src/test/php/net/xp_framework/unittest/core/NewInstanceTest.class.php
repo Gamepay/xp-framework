@@ -7,7 +7,8 @@
   uses(
     'unittest.TestCase',
     'lang.Runnable',
-    'lang.Runtime'
+    'lang.Runtime',
+    'net.xp_framework.unittest.core.PackagedClass'
   );
 
   /**
@@ -25,8 +26,7 @@
      * @return  var[] an array with three elements: exitcode, stdout and stderr contents
      */
     protected function runInNewRuntime($uses, $src) {
-      with ($out= $err= '', $p= Runtime::getInstance()->newInstance(NULL, NULL)); {
-        $p->in->write('<?php require("lang.base.php");');
+      with ($out= $err= '', $p= Runtime::getInstance()->newInstance(NULL, 'class', 'xp.runtime.Evaluate', array())); {
         $uses && $p->in->write('uses("'.implode('", "', $uses).'");');
         $p->in->write($src);
         $p->in->close();
@@ -127,6 +127,32 @@
     }
 
     /**
+     * Tests package retrieval on newinstance() created namespaced class
+     *
+     */
+    #[@test]
+    public function packageOfNewInstancedClass() {
+      $i= newinstance('lang.Object', array(), '{}');
+      $this->assertEquals(
+        Package::forName('lang'),
+        $i->getClass()->getPackage()
+      );
+    }
+
+    /**
+     * Tests package retrieval on newinstance() created namespaced class
+     *
+     */
+    #[@test]
+    public function packageOfNewInstancedFullyQualifiedClass() {
+      $i= newinstance('net.xp_framework.unittest.core.PackagedClass', array(), '{}');
+      $this->assertEquals(
+        Package::forName('net.xp_framework.unittest.core'),
+        $i->getClass()->getPackage()
+      );
+    }
+
+    /**
      * Test class name of a anonymous generic instance
      *
      */
@@ -135,7 +161,7 @@
       $instance= newinstance('Object', array(), '{ }');
       $n= $instance->getClassName();
       $this->assertEquals(
-        'Object',
+        'lang.Object',
         substr($n, 0, strrpos($n, '·')),
         $n
       );
@@ -150,7 +176,7 @@
       $instance= newinstance('lang.Object', array(), '{ }');
       $n= $instance->getClassName();
       $this->assertEquals(
-        'Object',
+        'lang.Object',
         substr($n, 0, strrpos($n, '·')),
         $n
       );

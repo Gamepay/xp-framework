@@ -52,10 +52,10 @@
       $delegates  = array();
 
     static function __static() {
-      xp::$registry['loader']= new self();
+      xp::$loader= new self();
       
       // Scan include-path, setting up classloaders for each element
-      foreach (xp::$registry['classpath'] as $element) {
+      foreach (xp::$classpath as $element) {
         if ('!' === $element{0}) {
           $before  = TRUE;
           $element = substr($element, 1);
@@ -65,12 +65,13 @@
 
         $resolved= realpath($element);
         if (is_dir($resolved)) {
-          self::registerLoader(FileSystemClassLoader::instanceFor($resolved, FALSE), $before);
+          $cl= FileSystemClassLoader::instanceFor($resolved, FALSE);
         } else if (is_file($resolved)) {
-          self::registerLoader(ArchiveClassLoader::instanceFor($resolved, FALSE), $before);
+          $cl= ArchiveClassLoader::instanceFor($resolved, FALSE);
         } else {
           xp::error('[bootstrap] Classpath element ['.$element.'] not found');
         }
+        isset(self::$delegates[$cl->instanceId()]) || self::registerLoader($cl, $before);
       }
     }
     
@@ -80,7 +81,7 @@
      * @return  lang.ClassLoader
      */
     public static function getDefault() {
-      return xp::$registry['loader'];
+      return xp::$loader;
     }
 
     /**
@@ -96,13 +97,13 @@
       if (NULL === $before && '!' === $element{0}) {
         $before  = TRUE;
         $element = substr($element, 1);
+      } else {
+        $before= (bool)$before;
       }
-      $before= (bool)$before;
-      $resolved= realpath($element);
-      if (is_dir($resolved)) {
-        return self::registerLoader(FileSystemClassLoader::instanceFor($resolved), $before);
-      } else if (is_file($resolved)) {
-        return self::registerLoader(ArchiveClassLoader::instanceFor($resolved), $before);
+      if (is_dir($element)) {
+        return self::registerLoader(FileSystemClassLoader::instanceFor($element), $before);
+      } else if (is_file($element)) {
+        return self::registerLoader(ArchiveClassLoader::instanceFor($element), $before);
       }
       raise('lang.ElementNotFoundException', 'Element "'.$element.'" not found');
     }
@@ -116,9 +117,9 @@
      */
     public static function registerLoader(IClassLoader $l, $before= FALSE) {
       if ($before) {
-        self::$delegates= array_merge(array($l->hashCode() => $l), self::$delegates);
+        self::$delegates= array_merge(array($l->instanceId() => $l), self::$delegates);
       } else {
-        self::$delegates[$l->hashCode()]= $l;
+        self::$delegates[$l->instanceId()]= $l;
       }
       return $l;
     }
@@ -130,8 +131,9 @@
      * @return  bool TRUE if the delegate was unregistered
      */
     public static function removeLoader(IClassLoader $l) {
-      if (!isset(self::$delegates[$l->hashCode()])) return FALSE;
-      unset(self::$delegates[$l->hashCode()]);
+      $id= $l->instanceId();
+      if (!isset(self::$delegates[$id])) return FALSE;
+      unset(self::$delegates[$id]);
       return TRUE;
     }
 
@@ -157,7 +159,7 @@
      */
     public static function defineClass($class, $parent, $interfaces, $bytes= '{}') {
       $name= xp::reflect($class);
-      if (!isset(xp::$registry['classloader.'.$class])) {
+      if (!isset(xp::$cl[$class])) {
         $super= xp::reflect($parent);
 
         // Test for existance        
@@ -173,7 +175,7 @@
           }
         }
 
-        with ($dyn= DynamicClassLoader::instanceFor(__METHOD__)); {
+        with ($dyn= self::registerLoader(DynamicClassLoader::instanceFor(__METHOD__))); {
           $dyn->setClassBytes($class, sprintf(
             'class %s extends %s%s %s',
             $name,
@@ -201,7 +203,7 @@
      */
     public static function defineInterface($class, $parents, $bytes= '{}') {
       $name= xp::reflect($class); $if= array();
-      if (!isset(xp::$registry['classloader.'.$class])) {
+      if (!isset(xp::$cl[$class])) {
         if (!empty($parents)) {
           $if= array_map(array('xp', 'reflect'), (array)$parents);
           foreach ($if as $i => $super) {
@@ -210,7 +212,7 @@
           }
         }
 
-        with ($dyn= DynamicClassLoader::instanceFor(__METHOD__)); {
+        with ($dyn= self::registerLoader(DynamicClassLoader::instanceFor(__METHOD__))); {
           $dyn->setClassBytes($class, sprintf(
             'interface %s%s %s',
             $name,
@@ -234,7 +236,7 @@
      * @throws  lang.ClassFormatException in case the class format is invalud
      */
     public function loadClass0($class) {
-      if (isset(xp::$registry['classloader.'.$class])) return xp::reflect($class);
+      if (isset(xp::$cl[$class])) return xp::reflect($class);
       
       // Ask delegates
       foreach (self::$delegates as $delegate) {
@@ -380,6 +382,24 @@
         $contents= array_merge($contents, $delegate->packageContents($package));
       }
       return array_unique($contents);
+    }
+
+    /**
+     * Creates a string representation
+     *
+     * @return string
+     */
+    public function toString() {
+      return $this->getClassName();
+    }
+
+    /**
+     * Returns a unique identifier for this class loader instance
+     *
+     * @return  string
+     */
+    public function instanceId() {
+      return '*';
     }
   }
 ?>

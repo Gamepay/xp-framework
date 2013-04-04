@@ -15,10 +15,10 @@
    * PHP itself and will also rely on the API docs being consistent and 
    * correct.
    *
-   * @test     xp://net.xp_framework.unittest.reflection.ReflectionTest
-   * @see      xp://lang.reflect.Method
-   * @see      xp://lang.reflect.Constructor
-   * @purpose  Reflection
+   * @test  xp://net.xp_framework.unittest.reflection.ReflectionTest
+   * @see   xp://lang.reflect.Method
+   * @see   xp://lang.reflect.Constructor
+   * @see   http://de3.php.net/manual/en/reflectionmethod.setaccessible.php
    */
   class Routine extends Object {
     protected
@@ -27,6 +27,12 @@
 
     public 
       $_reflect   = NULL;
+
+    protected static $SETACCESSIBLE_AVAILABLE;    // 5.3.0 .. 5.3.2
+
+    static function __static() {
+      self::$SETACCESSIBLE_AVAILABLE= method_exists('ReflectionMethod', 'setAccessible');
+    }
 
     /**
      * Constructor
@@ -91,8 +97,9 @@
      */
     public function getParameters() {
       $r= array();
+      $c= $this->_reflect->getDeclaringClass()->getName();
       foreach ($this->_reflect->getParameters() as $offset => $param) {
-        $r[]= new lang斟eflect感arameter($param, array($this->_class, $this->_reflect->getName(), $offset));
+        $r[]= new lang斟eflect感arameter($param, array($c, $this->_reflect->getName(), $offset));
       }
       return $r;
     }
@@ -106,7 +113,7 @@
     public function getParameter($offset) {
       $list= $this->_reflect->getParameters();
       return isset($list[$offset]) 
-        ? new lang斟eflect感arameter($list[$offset], array($this->_class, $this->_reflect->getName(), $offset))
+        ? new lang斟eflect感arameter($list[$offset], array($this->_reflect->getDeclaringClass()->getName(), $this->_reflect->getName(), $offset))
         : NULL
       ;
     }
@@ -128,7 +135,9 @@
      */
     public function getReturnType() {
       if (!($details= XPClass::detailsForMethod($this->_reflect->getDeclaringClass()->getName(), $this->_reflect->getName()))) return Type::$VAR;
-      if ('self' === ($t= ltrim($details[DETAIL_RETURNS], '&'))) {
+      if (NULL === $details[DETAIL_RETURNS]) {
+        return Type::$VAR;
+      } else if ('self' === ($t= ltrim($details[DETAIL_RETURNS], '&'))) {
         return new XPClass($this->_reflect->getDeclaringClass());
       } else {
         return Type::forName($t);
@@ -142,7 +151,7 @@
      */
     public function getReturnTypeName() {
       if (!($details= XPClass::detailsForMethod($this->_reflect->getDeclaringClass()->getName(), $this->_reflect->getName()))) return 'var';
-      return ltrim($details[DETAIL_RETURNS], '&');
+      return NULL === $details[DETAIL_RETURNS] ? 'var' : ltrim($details[DETAIL_RETURNS], '&');
     }
 
     /**
@@ -255,6 +264,9 @@
      * @return  lang.reflect.Routine this
      */
     public function setAccessible($flag) {
+      if (!self::$SETACCESSIBLE_AVAILABLE && $this->_reflect->isPrivate()) {
+        throw new IllegalAccessException('Cannot make private fields accessible');
+      }
       $this->accessible= $flag;
       return $this;
     }

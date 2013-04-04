@@ -233,5 +233,102 @@
       ');
       $this->assertEquals('int', $details[DETAIL_RETURNS]);
     }
+
+    /**
+     * Tests parsing of classes with closures inside
+     *
+     * @see   https://github.com/xp-framework/xp-framework/issues/230
+     */
+    #[@test]
+    public function withClosure() {
+      $details= XPClass::parseDetails('<?php
+        class WithClosure_1 extends Object {
+
+          /**
+           * Creates a new answer
+           *
+           * @return  php.Closure
+           */
+          public function newAnswer() {
+            return function() { return 42; };
+          }
+        }
+      ?>');
+      $this->assertEquals('Creates a new answer', $details[1]['newAnswer'][DETAIL_COMMENT]);
+    }
+
+    /**
+     * Tests parsing of classes with closures inside
+     *
+     * @see   https://github.com/xp-framework/xp-framework/issues/230
+     */
+    #[@test]
+    public function withClosures() {
+      $details= XPClass::parseDetails('<?php
+        class WithClosure_2 extends Object {
+
+          /**
+           * Creates a new answer
+           *
+           * @return  php.Closure
+           */
+          public function newAnswer() {
+            return function() { return 42; };
+          }
+
+          /**
+           * Creates a new question
+           *
+           * @return  php.Closure
+           */
+          public function newQuestion() {
+            return function() { return NULL; };   /* TODO: Remember question */
+          }
+        }
+      ?>');
+      $this->assertEquals('Creates a new question', $details[1]['newQuestion'][DETAIL_COMMENT]);
+    }
+
+    /**
+     * Returns dummy details
+     *
+     * @return var details
+     */
+    protected function dummyDetails() {
+      return XPClass::parseDetails('<?php
+        class DummyDetails extends Object {
+          protected $test = TRUE;
+
+          #[@test]
+          public function test() { }
+        }
+      ?>');
+    }
+
+    /**
+     * Tests detailsForClass() caching via xp::$meta
+     */
+    #[@test]
+    public function canBeCached() {
+      with (xp::$meta[$fixture= 'DummyDetails']= $details= $this->dummyDetails()); {
+        $actual= XPClass::detailsForClass($fixture);
+        unset(xp::$meta[$fixture]);
+      }
+      $this->assertEquals($details, $actual);
+    }
+
+    /**
+     * Tests detailsForClass() caching via xp::registry
+     *
+     * @deprecated See https://github.com/xp-framework/xp-framework/issues/270
+     */
+    #[@test]
+    public function canBeCachedViaXpRegistry() {
+      with (xp::$registry['details.'.($fixture= 'DummyDetails')]= $details= $this->dummyDetails()); {
+        $actual= XPClass::detailsForClass($fixture);
+        unset(xp::$registry['details.'.$fixture]);
+      }
+      $this->assertEquals($details, $actual);
+    }
   }
 ?>

@@ -84,5 +84,114 @@
       $this->r->getOutputStream()->write('Hello');
       $this->assertEquals('Hello', $this->r->getContent());
     }
+
+    /**
+     * Test sendContent()
+     *
+     */
+    #[@test]
+    public function sendContent() {
+      $this->r->setContent('Test');
+      ob_start();
+      $this->r->sendContent();
+      $content= ob_get_contents();
+      ob_end_clean();
+      $this->assertEquals('Test', $content);
+    }
+
+    /**
+     * Test sendContent()
+     *
+     */
+    #[@test]
+    public function doNotSendNullContent() {
+      $this->r->setContent(NULL);
+      ob_start();
+      $this->r->sendContent();
+      $content= ob_get_contents();
+      ob_end_clean();
+      $this->assertEquals('', $content);
+    }
+
+    /**
+     * Test flush()
+     *
+     */
+    #[@test]
+    public function flush() {
+      $this->r->flush();
+    }
+
+    /**
+     * Test flush()
+     *
+     */
+    #[@test, @expect('lang.IllegalStateException')]
+    public function flushCalledTwice() {
+      $this->r->flush();
+      $this->r->flush();
+    }
+
+    /**
+     * Test isCommitted()
+     *
+     */
+    #[@test]
+    public function isCommitted() {
+      $this->assertFalse($this->r->isCommitted());
+    }
+
+    /**
+     * Test isCommitted()
+     *
+     */
+    #[@test]
+    public function isCommittedAfterFlush() {
+      $this->r->flush();
+      $this->assertTrue($this->r->isCommitted());
+    }
+
+    /**
+     * Test write()
+     *
+     */
+    #[@test]
+    public function writeToBuffer() {
+      $this->r->write('Hello');
+      $this->assertEquals('Hello', $this->r->getContent());
+    }
+
+    /**
+     * Test write()
+     *
+     */
+    #[@test]
+    public function writeDirectly() {
+      $this->r->flush();
+
+      ob_start();
+      $this->r->write('Hello');
+      $content= ob_get_contents();
+      ob_end_clean();
+
+      $this->assertEquals('Hello', $content);
+    }
+
+    /**
+     * Test write()
+     *
+     */
+    #[@test]
+    public function writeBufferedAndDirectWrites() {
+      $this->r->write('Hello');   // This will be buffered
+
+      ob_start();
+      $this->r->flush();          // This will flush the buffer
+      $this->r->write('World');
+      $content= ob_get_contents();
+      ob_end_clean();
+
+      $this->assertEquals('HelloWorld', $content);
+    }
   }
 ?>

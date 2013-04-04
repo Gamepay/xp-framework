@@ -8,8 +8,8 @@
     'unittest.TestCase',
     'util.log.Logger',
     'util.log.Appender',
-    'util.log.LogAppender',
-    'util.log.layout.PatternLayout'
+    'util.log.layout.PatternLayout',
+    'util.log.context.NestedLogContext'
   );
 
   /**
@@ -350,20 +350,6 @@
     }
 
     /**
-     * Tests adding a deprecated util.log.LogAppender results in it being
-     * wrapped in a util.log.LogAppenderAdapter
-     *
-     * @deprecated
-     */
-    #[@test]
-    public function logAppenderAdapter() {
-      $added= $this->cat->addAppender(newinstance('util.log.LogAppender', array(), '{
-        public function append() { }
-      }'));
-      $this->assertClass($added, 'util.log.LogAppenderAdapter');
-    }
-
-    /**
      * Tests getAppenders()
      *
      */
@@ -434,6 +420,29 @@
       $app3= $this->cat->addAppender($this->mockAppender(), LogLevel::INFO);
       $app4= $this->cat->addAppender($this->mockAppender(), LogLevel::DEBUG);
       $this->assertEquals(array($app1, $app2, $app3, $app4), $this->cat->getAppenders());
+    }
+
+
+    /**
+     * Tests LogCategory::hasContext()
+     *
+     */
+    #[@test]
+    public function hasContext() {
+      $this->assertFalse($this->cat->hasContext());
+      $this->cat->setContext(new NestedLogContext());
+      $this->assertTrue($this->cat->hasContext());
+    }
+
+    /**
+     * Tests LogCategory::getContext()
+     *
+     */
+    #[@test]
+    public function getContext() {
+      $context= new NestedLogContext();
+      $this->cat->setContext($context);
+      $this->assertEquals($context, $this->cat->getContext());
     }
   }
 ?>

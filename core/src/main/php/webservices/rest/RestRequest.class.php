@@ -48,7 +48,7 @@
      * Sets resource
      *
      * @param   string resource
-     * @return  webservices.rest.RestRequest
+     * @return  self
      */
     public function withResource($resource) {
       $this->resource= $resource;
@@ -77,7 +77,7 @@
      * Sets method
      *
      * @param   string method
-     * @return  webservices.rest.RestRequest
+     * @return  self
      */
     public function withMethod($method) {
       $this->method= $method;
@@ -106,7 +106,7 @@
      * Sets body
      *
      * @param   peer.http.RequestData body
-     * @return  webservices.rest.RestRequest
+     * @return  self
      */
     public function withBody(RequestData $body) {
       $this->body= $body;
@@ -130,7 +130,7 @@
      *
      * @param   string range
      * @param   string q
-     * @return  webservices.rest.RestRequest
+     * @return  self
      */
     public function withAccept($type, $q= NULL) {
       $this->addAccept($type, $q);
@@ -140,23 +140,37 @@
     /**
      * Sets payload
      *
-     * @param   var payload
-     * @param   webservices.rest.RestSerializer serializer
+     * @param   var payload either a RestFormat or a RestSerializer instance
+     * @param   var format
      */
-    public function setPayload($payload, RestSerializer $serializer) {
-      $this->body= new RequestData($serializer->serialize($payload));
-      $this->headers['Content-Type']= $serializer->contentType();
+    public function setPayload($payload, $format) {
+      if ($format instanceof RestFormat) {
+        $serializer= $format->serializer();
+      } else if ($format instanceof RestSerializer) {
+        $serializer= $format;
+      } else {
+        throw new IllegalArgumentException('Expected either a RestFormat or a RestSerializer instance, '.xp::typeOf($format).' given');
+      }
+      $this->body= new RequestData($serializer->serialize($payload));  
+
+      // Update content type header
+      foreach ($this->headers as $i => $header) {
+        if ('Content-Type' !== $header->getName()) continue;
+        $this->headers[$i]->value= $serializer->contentType();
+        return;
+      }
+      $this->headers[]= new Header('Content-Type', $serializer->contentType());
     }
 
     /**
      * Sets payload
      *
      * @param   var payload
-     * @param   string type The Content-Type
-     * @return  webservices.rest.RestRequest
+     * @param   var format
+     * @return  self
      */
-    public function withPayload($payload, $type) {
-      $this->setPayload($payload, $type);
+    public function withPayload($payload, $format) {
+      $this->setPayload($payload, $format);
       return $this;
     }
 
@@ -193,7 +207,7 @@
      *
      * @param   string name
      * @param   string value
-     * @return  webservices.rest.RestRequest this
+     * @return  self
      */
     public function withParameter($name, $value) {
       $this->parameters[$name]= $value;
@@ -215,7 +229,7 @@
      *
      * @param   string name
      * @param   string value
-     * @return  webservices.rest.RestRequest this
+     * @return  self
      */
     public function withSegment($name, $value) {
       $this->segments[$name]= $value;
@@ -244,7 +258,7 @@
      *
      * @param   var arg
      * @param   string value
-     * @return  webservices.rest.RestRequest this
+     * @return  self
      */
     public function withHeader($arg, $value= NULL) {
       $this->addHeader($arg, $value);
@@ -268,7 +282,7 @@
     /**
      * Returns all parameters
      *
-     * @param   [:string]
+     * @return  [:string]
      */
     public function getParameters() {
       return $this->parameters;
@@ -291,7 +305,7 @@
     /**
      * Returns all segments
      *
-     * @param   [:string]
+     * @return  [:string]
      */
     public function getSegments() {
       return $this->segments;
@@ -314,7 +328,7 @@
     /**
      * Returns all headers
      *
-     * @param   [:string]
+     * @return  [:string]
      */
     public function getHeaders() {
       $headers= array();
@@ -330,7 +344,7 @@
     /**
      * Returns all headers
      *
-     * @param   peer.Header[]
+     * @return  peer.Header[]
      */
     public function headerList() {
       return array_merge($this->headers, $this->accept
@@ -364,6 +378,24 @@
         $offset+= $e+ 1;
       } while ($offset < $l);
       return $target;
+    }
+
+
+    /**
+     * Creates a string representation
+     *
+     * @return string
+     */
+    public function toString() {
+      $headers= "\n";
+      foreach ($this->headers as $header) {
+        $headers.= '  '.$header->getName().': '.xp::stringOf($header->getValue())."\n";
+      }
+      if ($this->accept) {
+        $headers.='  Accept: '.implode(', ', $this->accept)."\n";
+      }
+
+      return $this->getClassName().'('.$this->method.' '.$this->resource.')@['.$headers.']';
     }
   }
 ?>

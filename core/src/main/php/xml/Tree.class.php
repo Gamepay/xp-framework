@@ -7,7 +7,8 @@
   uses(
     'xml.parser.XMLParser',
     'xml.Node',
-    'xml.parser.ParserCallback'
+    'xml.parser.ParserCallback',
+    'io.FileUtil'
   );
  
   /**
@@ -30,8 +31,8 @@
 
     protected 
       $version  = '1.0',
-      $encoding = 'iso-8859-1',
-      $node_encoding_hint = 'iso-8859-1';
+      $encoding = xp::ENCODING,
+      $node_encoding_hint = xp::ENCODING;
     
     /**
      * Constructor
@@ -59,6 +60,15 @@
      */
     public function getNodeEncodingHint() {
       return $this->node_encoding_hint;
+    }
+
+    /**
+     * Retrieve root node
+     *
+     * @return   xml.Node
+     */
+    public function root() {
+      return $this->root;
     }
 
     /**
@@ -185,10 +195,7 @@
       $tree= new $c();
       
       $parser->setCallback($tree);
-      $file->open(FILE_MODE_READ);
-      $string= $file->read($file->size());
-      $file->close();
-      $parser->parse($string);
+      $parser->parse(FileUtil::getContents($file));
 
       // Fetch actual encoding from parser
       $tree->setEncoding($parser->getEncoding());
@@ -229,12 +236,12 @@
     public function onEndElement($parser, $name) {
       if ($this->_cnt > 1) {
         $node= $this->_objs[$this->_cnt];
-        $node->content= $this->_cdata;
+        $node->setContent($this->_cdata);
         $parent= $this->_objs[$this->_cnt- 1];
         $parent->addChild($node);
         $this->_cdata= '';
       } else {
-        $this->root->content= $this->_cdata;
+        $this->root()->setContent($this->_cdata);
         $this->_cdata= '';
       }
       $this->_cnt--;
@@ -301,7 +308,7 @@
         $this->getClassName(),
         $this->version,
         $this->encoding,
-        str_replace("\n", "\n  ", xp::stringOf($this->root))
+        xp::stringOf($this->root, '  ')
       );
     }
   } 

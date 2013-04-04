@@ -10,8 +10,7 @@
     'peer.http.HttpConnection',
     'webservices.rest.RestRequest',
     'webservices.rest.RestResponse',
-    'webservices.rest.RestXmlDeserializer',
-    'webservices.rest.RestJsonDeserializer',
+    'webservices.rest.RestFormat',
     'webservices.rest.RestException'
   );
 
@@ -34,13 +33,6 @@
      */
     public function __construct($base= NULL) {
       if (NULL !== $base) $this->setBase($base);
-
-      $this->deserializers['application/xml']= new RestXmlDeserializer();
-      $this->deserializers['application/json']= new RestJsonDeserializer();
-      $this->deserializers['text/xml']= $this->deserializers['application/xml'];
-      $this->deserializers['text/json']= $this->deserializers['application/json'];
-      $this->deserializers['text/x-json']= $this->deserializers['application/json'];
-      $this->deserializers['text/javascript']= $this->deserializers['application/json'];
     }
 
     /**
@@ -65,7 +57,7 @@
      * Sets base and returns this connection
      *
      * @param   var base either a peer.URL or a string
-     * @return  webservices.rest.Restconnection
+     * @return  self
      */
     public function withBase($base) {
       $this->setBase($base);
@@ -91,6 +83,62 @@
     }
 
     /**
+     * Set connect timeout
+     *
+     * @param   float timeout
+     * @throws  lang.IllegalStateException if no connection is set
+     */
+    public function setConnectTimeout($timeout) {
+      if (NULL === $this->connection) {
+        throw new IllegalStateException('No connection set');
+      }
+
+      $this->connection->setConnectTimeout($timeout);
+    }
+
+    /**
+     * Retrieve connect timeout
+     *
+     * @return  float
+     * @throws  lang.IllegalStateException if no connection is set
+     */
+    public function getConnectTimeout() {
+      if (NULL === $this->connection) {
+        throw new IllegalStateException('No connection set');
+      }
+
+      return $this->connection->getConnectTimeout();
+    }
+
+    /**
+     * Set timeout
+     *
+     * @param   int timeout
+     * @throws  lang.IllegalStateException if no connection is set
+     */
+    public function setTimeout($timeout) {
+      if (NULL === $this->connection) {
+        throw new IllegalStateException('No connection set');
+      }
+
+      $this->connection->setTimeout($timeout);
+    }
+
+    /**
+     * Get timeout
+     *
+     * @return  int
+     * @throws  lang.IllegalStateException if no connection is set
+     */
+    public function getTimeout() {
+      if (NULL === $this->connection) {
+        throw new IllegalStateException('No connection set');
+      }
+
+      return $this->connection->getTimeout();
+    }
+
+    /**
      * Sets deserializer
      *
      * @param   string mediaType e.g. "text/xml"
@@ -108,10 +156,12 @@
      */
     public function deserializerFor($contentType) {
       $mediaType= substr($contentType, 0, strcspn($contentType, ';'));
-      return isset($this->deserializers[$mediaType])
-        ? $this->deserializers[$mediaType]
-        : NULL
-      ;
+      if (isset($this->deserializers[$mediaType])) {
+        return $this->deserializers[$mediaType];
+      } else {
+        $format= RestFormat::forMediaType($mediaType);
+        return RestFormat::$UNKNOWN->equals($format) ? NULL : $format->deserializer();
+      }
     }
 
     /**
@@ -175,6 +225,15 @@
 
       $this->cat && $this->cat->debug('<<<', $response->toString(), $rr->contentCopy());
       return $rr;
+    }
+
+    /**
+     * Creates a string representation
+     *
+     * @return string
+     */
+    public function toString() {
+      return $this->getClassName().'(->'.xp::stringOf($this->connection).')';
     }
   }
 ?>

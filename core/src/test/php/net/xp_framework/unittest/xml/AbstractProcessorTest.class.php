@@ -42,9 +42,21 @@
     protected function includeUri($stylesheet) {
       $name= $this->getClass()->getPackage()->getResourceAsStream($stylesheet.'.xsl')->getURI();
       
-      // FIXME: workaround for "xsl:include : invalid URI reference C:\cygwin\...\include.xsl"
-      // oddity in PHP's XSL libraries (needs forward-slash even on Windows)
-      return strstr($name, '://') ? $name : 'file:///'.strtr($name, array(DIRECTORY_SEPARATOR => '/', ' ' => '%20'));
+      // Normalize URI according to http://en.wikipedia.org/wiki/File_URI_scheme
+      // * "f:\a dir\c.xsl"       => "file:///f:/a%20dor/c.xsl"
+      // * "/a dir/c.xsl"         => "file:///a%20dir/c.xsl"
+      // * "xar://f:\a.xar?c.xsl" => "xar:///f:/a.xar;c.csl"
+      // * "xar:///a.xar?c.xsl"   => "xar:///a.xar;c.csl"
+      if (FALSE === ($p= strpos($name, '://'))) {
+        $scheme= 'file';
+      } else {
+        $scheme= substr($name, 0, $p);
+        $name= substr($name, $p+ 3);
+      }
+      if (':' === $name{1}) {
+        $name= '/'.$name;
+      }
+      return $scheme.'://'.strtr($name, array(DIRECTORY_SEPARATOR => '/', ' ' => '%20', '?' => ';'));
     }
 
     /**
@@ -198,7 +210,7 @@
     #[@test]
     public function setXSLTree() {
       $t= new Tree('xsl:stylesheet');
-      $t->root->setAttribute('xmlns:xsl', 'http://www.w3.org/1999/XSL/Transform');
+      $t->root()->setAttribute('xmlns:xsl', 'http://www.w3.org/1999/XSL/Transform');
       $this->processor->setXSLTree($t);
     }
 
@@ -227,7 +239,8 @@
      */
     #[@test]
     public function baseAccessors() {
-      $path= rtrim(realpath(dirname(__FILE__).'/../xml/'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+      $file= Runtime::getInstance()->getExecutable()->getFilename();
+      $path= rtrim(realpath(dirname($file)), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
       $this->processor->setBase($path);
       $this->assertEquals($path, $this->processor->getBase());
     }
@@ -238,7 +251,8 @@
      */
     #[@test]
     public function setBaseAddsTrailingDirectorySeparator() {
-      $path= rtrim(realpath(dirname(__FILE__).'/../xml/'), DIRECTORY_SEPARATOR);
+      $file= Runtime::getInstance()->getExecutable()->getFilename();
+      $path= rtrim(realpath(dirname($file)), DIRECTORY_SEPARATOR);
       $this->processor->setBase($path);
       $this->assertEquals($path.DIRECTORY_SEPARATOR, $this->processor->getBase());
     }

@@ -47,18 +47,18 @@
 
       // Simple form: If no subnode indicating the type exists, the type
       // is string, e.g. <value>Test</value>
-      if (!isset($node->children[0])) return (string)$node->getContent();
+      if (!$node->hasChildren()) return (string)$node->getContent();
 
       // Long form - with subnode, the type is derived from the node's name,
       // e.g. <value><string>Test</string></value>.
-      $c= $node->children[0];
+      $c= $node->nodeAt(0);
       switch ($c->getName()) {
         case 'struct':
           $ret= array();
-          foreach ($c->children as $child) {
+          foreach ($c->getChildren() as $child) {
             $data= array();
-            $data[$child->children[0]->getName()]= $child->children[0];
-            $data[$child->children[1]->getName()]= $child->children[1];
+            $data[$child->nodeAt(0)->getName()]= $child->nodeAt(0);
+            $data[$child->nodeAt(1)->getName()]= $child->nodeAt(1);
             $ret[$data['name']->getContent()]= $this->_unmarshall($data['value']);
             unset($data);
           }
@@ -68,7 +68,7 @@
           // Check whether this is a XP object. If so, load the class and
           // create an instance without invoking the constructor.
           $fields= XPClass::forName($ret['__xp_class'])->getFields();
-          $cname= substr(array_search($ret['__xp_class'], xp::$registry, TRUE), 6);
+          $cname= array_search($ret['__xp_class'], xp::$cn, TRUE);
           $s= ''; $n= 0;
           foreach ($fields as $field) {
             if (!isset($ret[$field->getName()])) continue;
@@ -80,7 +80,7 @@
             } else if ($m & MODIFIER_PROTECTED) {
               $name= "\0*\0".$field->getName();
             } else if ($m & MODIFIER_PRIVATE) {
-              $name= "\0".substr(array_search($field->getDeclaringClass()->getName(), xp::$registry, TRUE), 6)."\0".$field->getName();
+              $name= "\0".array_search($field->getDeclaringClass()->getName(), xp::$cn, TRUE)."\0".$field->getName();
             }
             $s.= 's:'.strlen($name).':"'.$name.'";'.serialize($ret[$field->getName()]);
             $n++;
@@ -89,7 +89,7 @@
           
         case 'array':
           $ret= array();
-          foreach ($c->children[0]->children as $child) {
+          foreach ($c->nodeAt(0)->getChildren() as $child) {
             $ret[]= $this->_unmarshall($child);
           }
           return $ret;

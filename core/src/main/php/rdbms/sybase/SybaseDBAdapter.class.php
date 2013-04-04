@@ -194,14 +194,14 @@
         //   ["number"] => int(0)
         //   ["status"] => int(0)
         // }
-        if (0 == $record['status'] + $record['number']) continue;
+        if ('' === ($k= trim($record['keys']))) continue;
 
-        if ($keys != $record['keys']) {
+        if ($keys != $k) {
           $index= $t->addIndex(new DBIndex(
             $record['name'],
-            explode(',', trim($record['keys']))
+            explode(',', $k)
           ));
-          $keys= $record['keys'];
+          $keys= $k;
         }
         if (2 == $record['number']) $index->unique= TRUE;
         if ($record['status'] & 2048) $index->primary= TRUE;
@@ -267,7 +267,7 @@
         
       } catch (SQLException $e) {
         delete($t);
-      } finally(); {
+      } ensure($e); {
         $this->dropTemporaryIndexesTable();
         if ($e) throw $e;
       }
@@ -288,7 +288,7 @@
         $t= $this->dbTableObjectFor($table, $database);
       } catch (SQLException $e) {
         delete($t);
-      } finally(); {
+      } ensure($e); {
         $this->dropTemporaryIndexesTable();
         if ($e) throw $e;
       }
