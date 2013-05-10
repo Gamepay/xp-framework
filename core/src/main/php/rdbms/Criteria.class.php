@@ -253,7 +253,7 @@
 
       if (is_array($result)) {
         foreach ($result as &$field) {
-          $field = "`{$field}`";
+          $field = strpos($field, "`" )!== false ? "{$field}" : "`{$field}`" ;
         }
       }
 

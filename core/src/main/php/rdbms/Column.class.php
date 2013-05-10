@@ -83,7 +83,7 @@
         return JoinProcessor::pathToKey($this->path).'.'.$this->name;
       }
 
-      return "`{$this->name}`";
+      return strpos($this->name, '`') === false ? "`{$this->name}`" : $this->name;
     }
 
     /**
