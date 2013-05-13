@@ -40,8 +40,15 @@
       $this->name= array_pop($path);
       $this->path= $path;
       $this->peer= $peer->getRelatedPeer($path);
-      if (!isset($this->peer->types[$this->name])) throw new IllegalArgumentException('field '.$this->name.' does not exist');
-      $this->type= $this->peer->types[$this->name][0];
+      if (!isset($this->peer->types[$this->name])) {
+        if(isset($this->peer->types['`' . $this->name . '`'])) {
+          $this->type=   $this->peer->types['`' . $this->name . '`'][0];
+        } else {
+          throw new IllegalArgumentException('field '.$this->name.' does not exist');
+        }
+      } else {
+        $this->type= $this->peer->types[$this->name][0];
+      }
     }
 
     /**
