@@ -97,7 +97,6 @@
         throw $e;
       }
 
-      mysqli_set_charset($this->handle, 'latin1');
 
       // Figure out sql_mode and update formatter's escaperules accordingly
       // - See: http://bugs.mysql.com/bug.php?id=10214
