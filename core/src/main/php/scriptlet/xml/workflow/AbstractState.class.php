@@ -216,9 +216,11 @@
             // the handler is simply telling us it's not finalized yet.
             if (!$handled) continue;
 
-            // Submitted data was handled successfully, now remove the handler
-            // from the session
-            $request->session->removeValue($this->handlers[$i]->identifier);
+            if (!$this->handlers[$i]->reloadAllowed) {
+              // Submitted data was handled successfully, now remove the handler
+              // from the session
+              $request->session->removeValue($this->handlers[$i]->identifier);
+            }
 
             // Tell the handler to finalize itself. This may include adding a 
             // node to the formresult or sending a redirect to another page

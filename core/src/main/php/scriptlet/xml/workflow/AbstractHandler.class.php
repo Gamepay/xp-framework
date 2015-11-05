@@ -33,7 +33,8 @@
       $errors           = array(),
       $identifier       = '',
       $name             = '',
-      $requestOverride  = FALSE;
+      $requestOverride  = FALSE,
+      $reloadAllowed    = FALSE;
 
     /**
      * Constructor
