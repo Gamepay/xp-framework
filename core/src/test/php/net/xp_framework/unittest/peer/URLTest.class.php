@@ -1961,5 +1961,17 @@
       $this->assertEquals('user', $u->getUser());
       $this->assertEquals('/@', $u->getPath());
     }
+    
+    /**
+     * Verifies URLs with hashed arrays do not fail to parse
+     *
+     * URL::parseQuery Fatal Error'd when a param is defined as a scalar value an then overwriten by treating it as an array
+     *
+     */
+    #[@test]
+    public function arrayParamOverwritesParamWithoutFatalError() {
+      $u= new URL('http://unittest.localhost/includes/orderSuccess.inc.php?&glob=1&cart_order_id=1&glob[rootDir]=http://cirt.net/rfiinc.txt?');
+      $this->assertEquals(array('rootDir' => 'http://cirt.net/rfiinc.txt?'), $u->getParam('glob'));
+    }    
   }
 ?>
