@@ -143,16 +143,24 @@
       // Call state's process() method. In case it returns FALSE, the
       // context's insertStatus() method will not be called. This, for
       // example, is useful when process() wants to send a redirect.
+      $doRender = TRUE;
       if (FALSE === ($r= $request->state->process($request, $response, $context))) {
-        return FALSE;
+        $doRender = FALSE;
       }
-      
+
       // If there is no context, we're finished
       if (!$context) return;
 
-      // Tell context to insert form elements. Then store it, if necessary
-      $context->insertStatus($response);
-      $context->getChanged() && $request->session->putValue($cidx, $context);
+      // Tell context to insert form elements. Then store it, if a xsl will be rendered
+      if ($doRender) {
+        $context->insertStatus($response);
+      }
+
+      if ($request->session) {
+        $context->getChanged() && $request->session->putValue($cidx, $context);
+      }
+
+      return $doRender ? NULL : FALSE;
     }
 
     /**
