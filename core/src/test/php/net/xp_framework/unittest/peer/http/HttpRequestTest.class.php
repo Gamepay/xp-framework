@@ -1,7 +1,7 @@
 <?php
 /* This class is part of the XP framework
  *
- * $Id$ 
+ * $Id$
  */
 
   uses(
@@ -19,7 +19,7 @@
    * @purpose  Unittest
    */
   class HttpRequestTest extends TestCase {
-  
+
     /**
      * Test HTTP GET
      *
@@ -115,6 +115,50 @@
       $r->setParameters(array('a' => 'b'));
       $this->assertEquals(
         "GET /?a=b HTTP/1.1\r\nConnection: close\r\nHost: example.com\r\n\r\n",
+        $r->getRequestString()
+      );
+    }
+
+    /**
+     * Test HTTP GET - parameters via setParameters(array<string, string>)
+     * BUT array key contains spaces!
+     *
+     * Example of assoc-array:
+     *  $test= array(
+     *      '10 EUR' => '100 teststeine',
+     *      '7.14 TRY' => '200 teststeine'
+     *  );
+     */
+    #[@test]
+    public function getUrlWithArrayParamsSpacedKey() {
+      $r= new HttpRequest(new URL('http://example.com/'));
+      $r->setMethod(HttpConstants::GET);
+      $r->setParameters(array('10 EUR' => 'test 123'));
+      $this->assertEquals(
+        "GET /?10+EUR=test+123 HTTP/1.1\r\nConnection: close\r\nHost: example.com\r\n\r\n",
+        $r->getRequestString()
+      );
+    }
+
+    /**
+     * Test HTTP GET - parameters via setParameters(array<array<string, string>>)
+     * BUT array contains array which might have keys containing spaces!
+     *
+     * Example of assoc-array:
+     *  $test= array(
+     *      'test' => array(
+     *          '10 EUR' => '100 teststeine',
+     *          '7.14 TRY' => '200 teststeine'
+     *      )
+     *  );
+     */
+    #[@test]
+    public function getUrlWithAssocArrayContaingAssocArray() {
+      $r= new HttpRequest(new URL('http://example.com/'));
+      $r->setMethod(HttpConstants::GET);
+      $r->setParameters(array('test' => array('10 EUR' => 'test 123')));
+      $this->assertEquals(
+        "GET /?test[10+EUR]=test+123 HTTP/1.1\r\nConnection: close\r\nHost: example.com\r\n\r\n",
         $r->getRequestString()
       );
     }
