@@ -106,5 +106,12 @@
       $this->handle= NULL;
       return $r;
     }
+
+    /**
+     * Closes resultset and free result memory when resultset object is destroyed
+     */
+    public function __destruct() {
+      $this->close();
+    }
   }
 ?>
