@@ -23,6 +23,7 @@
    * @purpose  Database connection
    */
   class MySQLiConnection extends DBConnection {
+    protected $result= NULL;
 
     static function __static() {
       if (extension_loaded('mysqli')) {
@@ -66,22 +67,21 @@
       // does not work with named pipes"). For mysqlnd, we default to mysqlx
       // anyways, so this works transparently.
       $host= $this->dsn->getHost();
-      $sock= null;
       if ('.' === $host) {
-        $sock= $this->dsn->getProperty('socket', null);
+        $sock= $this->dsn->getProperty('socket', NULL);
         if (0 === strncasecmp(PHP_OS, 'Win', 3)) {
-          $host= '.';
-          if (null !== $sock) $sock= substr($sock, 9);   // 9 = strlen("\\\\.\\pipe\\")
+          $connect= '.';
+          if (NULL !== $sock) $sock= substr($sock, 9);   // 9 = strlen("\\\\.\\pipe\\")
         } else {
-          $host= 'localhost';
+          $connect= 'localhost';
         }
       } else if ('localhost' === $host) {
-        $host= '127.0.0.1';   // Force TCP/IP
+        $connect= '127.0.0.1';   // Force TCP/IP
       }
 
       $this->handle= mysqli_connect(
-        ($this->flags & DB_PERSISTENT ? 'p:' : '').$host,
-        $this->dsn->getUser(),
+        ($this->flags & DB_PERSISTENT ? 'p:' : '').$connect,
+        $this->dsn->getUser(), 
         $this->dsn->getPassword(),
         $this->dsn->getDatabase(),
         $this->dsn->getPort(3306),
@@ -183,6 +183,12 @@
         // Check for subsequent connection errors
         if (FALSE === $c) throw new SQLStateException('Previously failed to connect.');
       }
+      
+      // Clean up previous results to prevent "Commands out of sync" errors
+      if (NULL !== $this->result) {
+        mysqli_free_result($this->result);
+        $this->result= NULL;
+      }
 
       // Execute query
       $r= mysqli_query($this->handle, $sql, !$buffered || $this->flags & DB_UNBUFFERED ? MYSQLI_USE_RESULT : 0);
@@ -202,8 +208,11 @@
         }
       } else if (TRUE === $r) {
         return TRUE;
-      } else {
+      } else if ($buffered) {
         return new MySQLiResultSet($r, $this->tz);
+      } else {
+        $this->result= $r;
+        return new MySQLiResultSet($this->result, $this->tz);
       }
     }
 

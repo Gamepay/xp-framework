@@ -381,7 +381,7 @@
      */
     #[@test]
     public function selectUmlautString() {
-      $this->assertEquals('Ãœbercoder', $this->db()->query('select %s as value', 'Ãœbercoder')->next('value'));
+      $this->assertEquals('Übercoder', $this->db()->query('select %s as value', 'Übercoder')->next('value'));
     }
     
     /**
@@ -745,7 +745,7 @@
      */
     #[@test]
     public function selectUmlautText() {
-      $this->assertEquals('Ãœbercoder', $this->db()->query('select cast("Ãœbercoder" as text) as value')->next('value'));
+      $this->assertEquals('Übercoder', $this->db()->query('select cast("Übercoder" as text) as value')->next('value'));
     }
 
     /**
@@ -781,7 +781,7 @@
      */
     #[@test]
     public function selectUmlautImage() {
-      $this->assertEquals('Ãœbercoder', $this->db()->query('select cast("Ãœbercoder" as image) as value')->next('value'));
+      $this->assertEquals('Übercoder', $this->db()->query('select cast("Übercoder" as image) as value')->next('value'));
     }
 
     /**
@@ -818,7 +818,7 @@
      */
     #[@test]
     public function selectUmlautBinary() {
-      $this->assertEquals('Ãœbercoder', $this->db()->query('select cast("Ãœbercoder" as binary) as value')->next('value'));
+      $this->assertEquals('Übercoder', $this->db()->query('select cast("Übercoder" as binary) as value')->next('value'));
     }
 
     /**
@@ -854,7 +854,7 @@
      */
     #[@test]
     public function selectUmlautVarBinary() {
-      $this->assertEquals('Ãœbercoder', $this->db()->query('select cast("Ãœbercoder" as varbinary) as value')->next('value'));
+      $this->assertEquals('Übercoder', $this->db()->query('select cast("Übercoder" as varbinary) as value')->next('value'));
     }
 
     /**
@@ -1139,6 +1139,15 @@
       );
     }
 
+    #[@test]
+    public function consecutiveQueryDoesNotAffectBufferedResults() {
+      $this->createTable();
+      $db= $this->db();
+      $result= $db->query('select * from %c where pk = 2', $this->tableName());
+      $db->query('update %c set username = "test" where pk = 1', $this->tableName());
+      $this->assertEquals([['pk' => 2, 'username' => 'kiesel']], iterator_to_array($result));
+    }
+
     /**
      * Test not reading until the end of a non-buffered result
      *
@@ -1162,7 +1171,7 @@
       $this->createTable();
       $db= $this->db();
 
-      $q= $db->query('select * from %c', $this->tableName());
+      $q= $db->open('select * from %c', $this->tableName());
       $this->assertEquals(array('pk' => 1, 'username' => 'kiesel'), $q->next());
 
       $this->assertEquals(1, $db->query('select 1 as num')->next('num'));
