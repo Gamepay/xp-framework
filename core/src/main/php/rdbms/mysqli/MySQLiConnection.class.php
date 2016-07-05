@@ -67,21 +67,22 @@
       // does not work with named pipes"). For mysqlnd, we default to mysqlx
       // anyways, so this works transparently.
       $host= $this->dsn->getHost();
+      $sock= null;
       if ('.' === $host) {
-        $sock= $this->dsn->getProperty('socket', NULL);
+        $sock= $this->dsn->getProperty('socket', null);
         if (0 === strncasecmp(PHP_OS, 'Win', 3)) {
-          $connect= '.';
-          if (NULL !== $sock) $sock= substr($sock, 9);   // 9 = strlen("\\\\.\\pipe\\")
+          $host= '.';
+          if (null !== $sock) $sock= substr($sock, 9);   // 9 = strlen("\\\\.\\pipe\\")
         } else {
-          $connect= 'localhost';
+          $host= 'localhost';
         }
       } else if ('localhost' === $host) {
-        $connect= '127.0.0.1';   // Force TCP/IP
+        $host= '127.0.0.1';   // Force TCP/IP
       }
 
       $this->handle= mysqli_connect(
-        ($this->flags & DB_PERSISTENT ? 'p:' : '').$connect,
-        $this->dsn->getUser(), 
+        ($this->flags & DB_PERSISTENT ? 'p:' : '').$host,
+        $this->dsn->getUser(),
         $this->dsn->getPassword(),
         $this->dsn->getDatabase(),
         $this->dsn->getPort(3306),
