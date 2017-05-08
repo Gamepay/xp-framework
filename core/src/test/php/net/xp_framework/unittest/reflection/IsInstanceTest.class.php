@@ -32,39 +32,39 @@
     }
  
     /**
-     * Tests a primitive string is not a lang.types.String
+     * Tests a primitive string is not a lang.types.XPString
      *
      */
     #[@test]
     public function stringIsNotAString() {
-      $this->assertFalse(XPClass::forName('lang.types.String')->isInstance('Hello'));
+      $this->assertFalse(XPClass::forName('lang.types.XPString')->isInstance('Hello'));
     }
 
     /**
-     * Tests lang.Object is not a lang.types.String
+     * Tests lang.XPObject is not a lang.types.XPString
      *
      */
     #[@test]
     public function objectIsNotAString() {
-      $this->assertFalse(XPClass::forName('lang.types.String')->isInstance(new Object()));
+      $this->assertFalse(XPClass::forName('lang.types.XPString')->isInstance(new XPObject()));
     }
 
     /**
-     * Tests lang.Object is a lang.Generic (in fact, any object is)
+     * Tests lang.XPObject is a lang.Generic (in fact, any object is)
      *
      */
     #[@test]
     public function objectIsAGeneric() {
-      $this->assertTrue(XPClass::forName('lang.Generic')->isInstance(new Object()));
+      $this->assertTrue(XPClass::forName('lang.Generic')->isInstance(new XPObject()));
     }
 
     /**
-     * Tests lang.Throwable is a lang.Generic (in fact, any object is)
+     * Tests lang.XPThrowable is a lang.Generic (in fact, any object is)
      *
      */
     #[@test]
     public function throwableIsAGeneric() {
-      $this->assertTrue(XPClass::forName('lang.Generic')->isInstance(new Throwable('')));
+      $this->assertTrue(XPClass::forName('lang.Generic')->isInstance(new XPThrowable('')));
     }
 
     /**

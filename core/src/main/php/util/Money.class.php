@@ -30,7 +30,7 @@
    * @see     xp://util.Currency
    * @see     http://martinfowler.com/eaaCatalog/money.html
    */
-  class Money extends Object {
+  class Money extends XPObject {
     protected $amount   = '';
     protected $currency = NULL;
 

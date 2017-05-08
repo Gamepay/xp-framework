@@ -11,7 +11,7 @@
    *
    * @purpose  OuputStream implementation
    */
-  class MemoryOutputStream extends Object implements OutputStream {
+  class MemoryOutputStream extends XPObject implements OutputStream {
     protected
       $bytes= '';
     

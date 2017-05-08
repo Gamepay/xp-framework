@@ -12,7 +12,7 @@
    * Shows details for all tests (succeeded, failed and skipped/ignored).
    * This listener has no options.
    */
-  class VerboseListener extends Object implements TestListener {
+  class VerboseListener extends XPObject implements TestListener {
     public
       $out= NULL;
     

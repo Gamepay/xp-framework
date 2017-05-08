@@ -31,7 +31,7 @@
    * @see       php://soap
    * @purpose   SOAP driver factory
    */
-  class SoapDriver extends Object {
+  class SoapDriver extends XPObject {
     public
       $drivers    = array();
     
@@ -106,7 +106,7 @@
      *
      * @param   string endpoint
      * @param   string preferred default NULL
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function forWsdl($endpoint, $preferred= NULL) {
       $s= XPClass::forName($this->drivers[$this->driverName($preferred, TRUE)]['fqcn'])->newInstance($endpoint, '');
@@ -120,7 +120,7 @@
      * @param   string endpoint
      * @param   string uri
      * @param   string preferred default NULL
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function forEndpoint($endpoint, $uri, $preferred= NULL) {
       return XPClass::forName($this->drivers[$this->driverName($preferred)]['fqcn'])->newInstance($endpoint, $uri);        

@@ -10,7 +10,7 @@
    * @see      xp://remote.Remote#begin
    * @purpose  Transaction
    */
-  class UserTransaction extends Object {
+  class UserTransaction extends XPObject {
     public
       $_handler= NULL;
 

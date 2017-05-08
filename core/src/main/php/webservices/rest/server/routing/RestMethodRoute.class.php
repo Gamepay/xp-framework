@@ -12,7 +12,7 @@
    * @test xp://net.xp_framework.unittest.rest.server.routing.RestMethodRouteTest
    * @purpose Route
    */
-  class RestMethodRoute extends Object implements RestRoute {
+  class RestMethodRoute extends XPObject implements RestRoute {
     protected $method= NULL;
     
     /**

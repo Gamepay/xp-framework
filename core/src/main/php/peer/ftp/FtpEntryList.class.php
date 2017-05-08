@@ -12,7 +12,7 @@
    * @see      xp://peer.ftp.FtpDir#entries
    * @purpose  List object
    */
-  class FtpEntryList extends Object implements IteratorAggregate {
+  class FtpEntryList extends XPObject implements IteratorAggregate {
     protected
       $connection   = NULL,
       $list         = array(),

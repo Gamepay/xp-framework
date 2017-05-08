@@ -35,7 +35,7 @@
    * @ext      openssl
    * @purpose  purpose
    */
-  class KeyPair extends Object {
+  class KeyPair extends XPObject {
   
     /**
      * Generates a new private and public key pair.

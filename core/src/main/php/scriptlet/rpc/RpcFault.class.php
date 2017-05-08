@@ -9,7 +9,7 @@
    *
    * @purpose  Wrap fault
    */
-  class RpcFault extends Object {
+  class RpcFault extends XPObject {
     public
       $faultCode=     0,
       $faultString=   '';

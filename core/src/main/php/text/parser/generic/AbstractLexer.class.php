@@ -10,7 +10,7 @@
    * @see      xp://text.parser.generic.AbstractParser
    * @purpose  Abstract base class
    */
-  abstract class AbstractLexer extends Object {
+  abstract class AbstractLexer extends XPObject {
     public
       $token    = NULL,
       $value    = NULL,

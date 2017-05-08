@@ -15,7 +15,7 @@
    *
    * @purpose  handler
    */
-  class ServerHandler extends Object {
+  class ServerHandler extends XPObject {
       
     /**
      * Set serializer
@@ -42,7 +42,7 @@
         $response= EascMessageFactory::forType(REMOTE_MSG_VALUE);
         $response->setValue($handler->getValue());
 
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         $response= EascMessageFactory::forType(REMOTE_MSG_EXCEPTION);
         $response->setValue($e);
       }

@@ -41,7 +41,7 @@
    * @see      xp://peer.mail.MailFolder
    * @purpose  Interface for different MailStores
    */
-  class MailStore extends Object {
+  class MailStore extends XPObject {
     public 
       $_hdl  = NULL,
       $cache = NULL;

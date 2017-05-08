@@ -178,7 +178,7 @@
 
         // Try to start the server
         $this->server->init();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         $this->server->shutdown();
         throw $e;
       }

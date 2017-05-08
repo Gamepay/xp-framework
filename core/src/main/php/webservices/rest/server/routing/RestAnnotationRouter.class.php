@@ -18,7 +18,7 @@
    * @test    xp://net.xp_framework.unittest.rest.server.RestAnnotationRouterTest
    * @purpose Router
    */
-  class RestAnnotationRouter extends Object implements RestRouter {
+  class RestAnnotationRouter extends XPObject implements RestRouter {
     protected $base= '';
     protected $table= NULL;
     

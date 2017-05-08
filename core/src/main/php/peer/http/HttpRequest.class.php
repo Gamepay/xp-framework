@@ -22,7 +22,7 @@
    * @see      rfc://2616
    * @purpose  HTTP request
    */
-  class HttpRequest extends Object {
+  class HttpRequest extends XPObject {
     public
       $url        = NULL,
       $method     = HttpConstants::GET,

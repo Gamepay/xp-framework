@@ -10,7 +10,7 @@
    * Expectation to a method call.
    *
    */
-  class Expectation extends Object {
+  class Expectation extends XPObject {
     private $methodName           = '';
     private $return               = NULL;
     private $repeat               = -1;
@@ -76,7 +76,7 @@
     /**
      * Gets the exception, that is thrown on a method call.
      *
-     * @return  lang.Throwable
+     * @return  lang.XPThrowable
      */
     public function getException() {
       return $this->exception;
@@ -85,9 +85,9 @@
     /**
      * Sets the exception that is to be thrown on a method call.
      *
-     * @param   lang.Throwable exception.
+     * @param   lang.XPThrowable exception.
      */
-    public function setException(Throwable $exception) {
+    public function setException(XPThrowable $exception) {
       $this->exception= $exception;
     }
     

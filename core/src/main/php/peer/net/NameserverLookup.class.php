@@ -22,7 +22,7 @@
    * @test    xp://net.xp_framework.unittest.peer.net.NameserverLookupTest
    * @see     php://dns_get_record
    */
-  class NameserverLookup extends Object {
+  class NameserverLookup extends XPObject {
 
     /**
      * Perform "real" dns lookup

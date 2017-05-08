@@ -27,7 +27,7 @@
      * 
      */
     public function setUp() {
-      $this->target= newinstance('lang.Object', array(), '{
+      $this->target= newinstance('lang.XPObject', array(), '{
         protected static $invoked= NULL;
         protected static $args= array();
         

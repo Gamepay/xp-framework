@@ -11,7 +11,7 @@
    * @see      xp://net.xp_framework.unittest.xml.DialogType
    * @purpose  Test class
    */
-  class ButtonType extends Object {
+  class ButtonType extends XPObject {
     public
       $id       = '',
       $caption  = '';

@@ -9,7 +9,7 @@
    *
    * @purpose  Manage beancontainer
    */
-  class ContainerManager extends Object {
+  class ContainerManager extends XPObject {
     public
       $containers= array();
     

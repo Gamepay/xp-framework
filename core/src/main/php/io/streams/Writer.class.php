@@ -13,7 +13,7 @@
    * no difference, obviously).
    *
    */
-  abstract class Writer extends Object {
+  abstract class Writer extends XPObject {
     protected $stream= NULL;
     
     /**

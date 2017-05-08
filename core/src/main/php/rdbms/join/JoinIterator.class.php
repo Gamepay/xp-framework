@@ -17,7 +17,7 @@
    * @see     xp://rdbms.Peer#iteratorFor
    * @purpose rdbms.join
    */
-  class JoinIterator extends Object implements XPIterator, JoinExtractable {
+  class JoinIterator extends XPObject implements XPIterator, JoinExtractable {
     private
       $resultObj= NULL,
       $record= array(),
@@ -73,7 +73,7 @@
      *
      * @param   string role
      * @param   string unique key
-     * @param   lang.Object obj
+     * @param   lang.XPObject obj
      */
     public function setCachedObj($role, $key, $obj) {
       $this->resultObj= $this->obj;

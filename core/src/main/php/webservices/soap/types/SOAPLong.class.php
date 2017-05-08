@@ -12,7 +12,7 @@
    * into a long (as PHP does automagically).
    *
    */
-  class SOAPLong extends Object implements SoapType {
+  class SOAPLong extends XPObject implements SoapType {
     public
       $long;
       

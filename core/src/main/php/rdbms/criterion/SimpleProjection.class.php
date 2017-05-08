@@ -16,7 +16,7 @@
    * @see     xp://rdbms.criterion.ProjectionList
    * @purpose rdbms.criterion
    */
-  class SimpleProjection extends Object implements Projection {
+  class SimpleProjection extends XPObject implements Projection {
     protected
       $field= '',
       $command= '';

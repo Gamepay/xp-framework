@@ -12,7 +12,7 @@
    * @test      xp://net.xp_framework.unittest.peer.net.Inet6AddressTest
    * @purpose   Represent an IPv6 address
    */
-  class Inet6Address extends Object implements InetAddress {
+  class Inet6Address extends XPObject implements InetAddress {
     protected $addr;
     
     /**
@@ -181,7 +181,7 @@
     /**
      * Equals method
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool
      */
     public function equals($cmp) {

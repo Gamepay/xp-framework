@@ -15,7 +15,7 @@
    * @see      rfc://2045#6.8
    * @purpose  UTF encoder / decoder
    */
-  class UTF8 extends Object {
+  class UTF8 extends XPObject {
   
     /**
      * Encode string

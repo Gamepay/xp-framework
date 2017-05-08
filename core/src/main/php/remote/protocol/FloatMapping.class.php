@@ -4,15 +4,15 @@
  * $Id$ 
  */
 
-  uses('lang.types.Float', 'remote.protocol.SerializerMapping');
+  uses('lang.types.XPFloat', 'remote.protocol.SerializerMapping');
 
   /**
-   * Mapping for lang.types.Float
+   * Mapping for lang.types.XPFloat
    *
    * @see      xp://remote.protocol.Serializer
    * @purpose  Mapping
    */
-  class FloatMapping extends Object implements SerializerMapping {
+  class FloatMapping extends XPObject implements SerializerMapping {
 
     /**
      * Returns a value for the given serialized string
@@ -23,7 +23,7 @@
      * @return  var
      */
     public function valueOf($serializer, $serialized, $context= array()) {
-      $value= new Float($serialized->consumeWord());
+      $value= new XPFloat($serialized->consumeWord());
       return $value;
     }
 
@@ -31,7 +31,7 @@
      * Returns an on-the-wire representation of the given value
      *
      * @param   server.protocol.Serializer serializer
-     * @param   lang.Object value
+     * @param   lang.XPObject value
      * @param   [:var] context default array()
      * @return  string
      */
@@ -45,7 +45,7 @@
      * @return  lang.XPClass
      */
     public function handledClass() {
-      return XPClass::forName('lang.types.Float');
+      return XPClass::forName('lang.types.XPFloat');
     }
   } 
 ?>

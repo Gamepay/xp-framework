@@ -10,7 +10,7 @@
    * @see      xp://peer.http.HttpRequest#setParameters
    * @purpose  Pass request data directly to
    */
-  class RequestData extends Object {
+  class RequestData extends XPObject {
     public
       $data = '';
 

@@ -10,7 +10,7 @@
    * @see      xp://net.xp_framework.unittest.core.AnnotationTest
    * @purpose  Helper
    */
-  class AnnotatedClass extends Object {
+  class AnnotatedClass extends XPObject {
 
     /**
      * Method annotated with one simple annotation

@@ -11,7 +11,7 @@
    *
    * @purpose  Comparator
    */
-  class Collator extends Object implements Comparator {
+  class Collator extends XPObject implements Comparator {
     protected static 
       $instance     = array();
 

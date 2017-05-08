@@ -15,7 +15,7 @@
    *
    * @test    xp://net.xp_framework.unittest.webservices.rest.RestRequestTest
    */
-  class RestRequest extends Object {
+  class RestRequest extends XPObject {
     protected $resource= '/';
     protected $method= '';
     protected $parameters= array();

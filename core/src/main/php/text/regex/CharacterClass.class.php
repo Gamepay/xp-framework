@@ -13,7 +13,7 @@
    * @see      http://en.wikipedia.org/wiki/Regular_expression
    * @test     xp://net.xp_framework.unittest.text.CharacterClassTest
    */
-  class CharacterClass extends Object {
+  class CharacterClass extends XPObject {
     public static 
       $ALNUM, 
       $WORD, 

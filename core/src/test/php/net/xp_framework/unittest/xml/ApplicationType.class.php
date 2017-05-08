@@ -12,6 +12,6 @@
    * @purpose  Test class
    */
   #[@xmlns(app = 'http://projects.xp-framework.net/xmlns/app')]
-  class ApplicationType extends Object {
+  class ApplicationType extends XPObject {
   }
 ?>

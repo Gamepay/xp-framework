@@ -116,8 +116,8 @@
      */
     #[@test]
     public function qualifiedGenericParam() {
-      $t= $this->makeParam('util.collection.HashTable<lang.types.Number, lang.types.String> map');
-      $this->assertEquals('util.collection.HashTable<lang.types.Number, lang.types.String>', $t->type);
+      $t= $this->makeParam('util.collection.HashTable<lang.types.Number, lang.types.XPString> map');
+      $this->assertEquals('util.collection.HashTable<lang.types.Number, lang.types.XPString>', $t->type);
       $this->assertEquals('map', $t->parameter);
       $this->assertEquals('', $t->text);
     }

@@ -23,7 +23,7 @@
 
     #[@beforeClass]
     public static function defineMockSocket() {
-      self::$mockSocket= ClassLoader::defineClass('net.xp_framework.unittest.remote.MockSocket', 'lang.Object', array(), '{
+      self::$mockSocket= ClassLoader::defineClass('net.xp_framework.unittest.remote.MockSocket', 'lang.XPObject', array(), '{
         public function __construct($bytes) {
           $this->bytes= $bytes;
           $this->offset= 0;

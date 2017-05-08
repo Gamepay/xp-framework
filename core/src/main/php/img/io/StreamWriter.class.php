@@ -15,7 +15,7 @@
    * @see      xp://img.Image#saveTo
    * @purpose  Abstract base class
    */
-  abstract class StreamWriter extends Object implements ImageWriter {
+  abstract class StreamWriter extends XPObject implements ImageWriter {
     public $stream= NULL;
     
     /**
@@ -69,7 +69,7 @@
         ob_end_flush();
         
         $this->stream->close();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         ob_end_clean();
         throw new ImagingException($e->getMessage());
       }

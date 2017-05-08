@@ -38,7 +38,7 @@
    * @see      http://xmlrpc.com
    * @purpose  Generic XML-RPC Client base class
    */
-  class XmlRpcClient extends Object {
+  class XmlRpcClient extends XPObject {
     public
       $transport  = NULL,
       $message    = NULL,

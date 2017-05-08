@@ -16,7 +16,7 @@
    *
    * @purpose   Base class
    */
-  abstract class AbstractParser extends Object {
+  abstract class AbstractParser extends XPObject {
     const ERROR   = 0x0000;
     const WARNING = 0x0001;
 
@@ -118,7 +118,7 @@
 
       try {
         $result= $this->yyparse($lexer);
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         throw new ParseException($e->getMessage(), $e);
       }
       

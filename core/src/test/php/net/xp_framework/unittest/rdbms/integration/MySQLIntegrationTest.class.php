@@ -216,7 +216,7 @@
     }
 
     /**
-     * Test selecting Float values
+     * Test selecting XPFloat values
      *
      */
     #[@test, @ignore('Cast to float not supported by MySQL')]
@@ -225,7 +225,7 @@
     }
 
     /**
-     * Test selecting Float values
+     * Test selecting XPFloat values
      *
      */
     #[@test, @ignore('Cast to float not supported by MySQL')]
@@ -234,7 +234,7 @@
     }
 
     /**
-     * Test selecting Float values
+     * Test selecting XPFloat values
      *
      */
     #[@test, @ignore('Cast to float not supported by MySQL')]
@@ -243,7 +243,7 @@
     }
 
     /**
-     * Test selecting Float values
+     * Test selecting XPFloat values
      *
      */
     #[@test, @ignore('Cast to float not supported by MySQL')]

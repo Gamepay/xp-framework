@@ -14,7 +14,7 @@
   // {{{ final class sapi新oap新ervice
   class sapi新oap新ervice {
   
-    // {{{ internal string fault(lang.Throwable exception, string code)
+    // {{{ internal string fault(lang.XPThrowable exception, string code)
     //     Convert an exception to XML
     static function fault($exception, $code) {
       $answer= new XPSoapMessage();
@@ -45,7 +45,7 @@
       // Check for fatal errors
       if (FALSE !== ($p= strpos($buf, EPREPEND_IDENTIFIER))) {
         return sapi新oap新ervice::fault(
-          new Error(str_replace(EPREPEND_IDENTIFIER, '', substr($buf, $p))),
+          new XPError(str_replace(EPREPEND_IDENTIFIER, '', substr($buf, $p))),
           'xp.internalerror'
         );
       }

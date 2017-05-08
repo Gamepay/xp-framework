@@ -90,7 +90,7 @@
     public function classType() {
       static $map= array(
         'lang.XPException' => EXCEPTION_CLASS,
-        'lang.Error'       => ERROR_CLASS,
+        'lang.XPError'       => ERROR_CLASS,
         'lang.Enum'        => ENUM_CLASS
       );
 

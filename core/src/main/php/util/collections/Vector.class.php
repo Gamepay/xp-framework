@@ -16,7 +16,7 @@
    * @purpose  IList implementation
    */
   #[@generic(self= 'T', implements= array('T'))]
-  class Vector extends Object implements IList {
+  class Vector extends XPObject implements IList {
     protected static
       $iterate   = NULL;
 

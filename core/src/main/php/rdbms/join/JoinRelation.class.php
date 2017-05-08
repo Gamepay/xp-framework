@@ -14,7 +14,7 @@
    * @purpose rdbms.join
    *
    */
-  class JoinRelation extends Object {
+  class JoinRelation extends XPObject {
     private
       $source= NULL,
       $target= NULL,

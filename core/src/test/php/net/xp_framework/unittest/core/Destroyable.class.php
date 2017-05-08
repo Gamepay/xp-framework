@@ -10,7 +10,7 @@
    * @see      xp://net.xp_framework.unittest.core.DestructorTest
    * @purpose  Test class
    */
-  class Destroyable extends Object {
+  class Destroyable extends XPObject {
     public
       $callback= NULL;
 

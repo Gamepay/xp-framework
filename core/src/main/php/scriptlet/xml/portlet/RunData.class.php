@@ -10,7 +10,7 @@
    * @see      xp://scriptlet.xml.portlet.Portlet
    * @purpose  purpose
    */
-  class RunData extends Object {
+  class RunData extends XPObject {
     public
       $request  = NULL,
       $context  = NULL;

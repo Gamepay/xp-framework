@@ -15,7 +15,7 @@
    * It cannot be instantiated.
    * 
    */
-  class System extends Object {
+  class System extends XPObject {
   
     /**
      * Private helper method. Tries to locate an environment

@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.Bz2DecompressingInputStreamTest
    * @purpose  InputStream implementation
    */
-  class Bz2DecompressingInputStream extends Object implements InputStream {
+  class Bz2DecompressingInputStream extends XPObject implements InputStream {
     protected $in = NULL;
     
     /**

@@ -11,7 +11,7 @@
    * @see      xp://net.xp_framework.unittest.xml.MarshallerTest
    * @purpose  Test class
    */
-  class TextInputType extends Object {
+  class TextInputType extends XPObject {
     protected $id = '';
     protected $disabled = FALSE;
 

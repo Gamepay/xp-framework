@@ -22,7 +22,7 @@
    * @see      xp://util.Hashmap
    * @purpose  Iterator
    */
-  class HashmapIterator extends Object implements XPIterator {
+  class HashmapIterator extends XPObject implements XPIterator {
     public
       $_hash    = NULL,
       $_key     = FALSE;

@@ -13,7 +13,7 @@
    * @see       php://ip2long
    * @purpose   Represent an IPv4 address
    */
-  class Inet4Address extends Object implements InetAddress {
+  class Inet4Address extends XPObject implements InetAddress {
   
     /**
      * Convert IPv4 address from dotted form into a long
@@ -111,7 +111,7 @@
     /**
      * Equals method
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      */
     public function equals($cmp) {
       return $cmp instanceof self && $this->addr === $cmp->addr;

@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.io.archive.vendors.SevenZipFileTest
    * @see      http://www.pkware.com/documents/casestudies/APPNOTE.TXT
    */
-  class ZipCipher extends Object {
+  class ZipCipher extends XPObject {
     protected $keys= NULL;
 
     // Calculated by Vbaccelerator.Components.Algorithms.CRC32 class seen at

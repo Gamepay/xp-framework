@@ -11,7 +11,7 @@
    *
    * @see   xp://net.xp_framework.unittest.core.NewInstanceTest
    */
-  class net·xp_framework·unittest·core·PackagedClass extends Object {
+  class net·xp_framework·unittest·core·PackagedClass extends XPObject {
     
   }
 ?>

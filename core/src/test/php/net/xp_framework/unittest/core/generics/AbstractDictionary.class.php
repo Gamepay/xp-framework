@@ -13,7 +13,7 @@
    *
    */
   #[@generic(self= 'K, V', implements= array('K, V'))]
-  abstract class net·xp_framework·unittest·core·generics·AbstractDictionary extends Object implements net·xp_framework·unittest·core·generics·IDictionary {
+  abstract class net·xp_framework·unittest·core·generics·AbstractDictionary extends XPObject implements net·xp_framework·unittest·core·generics·IDictionary {
     
     /**
      * Constructor

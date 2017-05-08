@@ -13,7 +13,7 @@
    * @see      reference
    * @purpose  purpose
    */
-  class RecursionTwo extends Object {
+  class RecursionTwo extends XPObject {
   
   }
 ?>

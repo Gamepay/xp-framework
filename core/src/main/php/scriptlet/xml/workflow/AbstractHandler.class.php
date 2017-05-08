@@ -25,7 +25,7 @@
    * @see      xp://scriptlet.xml.workflow.AbstractState#addHandler
    * @purpose  Base class
    */
-  class AbstractHandler extends Object implements Traceable {
+  class AbstractHandler extends XPObject implements Traceable {
     public
       $cat              = NULL,
       $wrapper          = NULL,

@@ -220,7 +220,7 @@
           try {
             Runtime::getInstance()->loadLibrary("standard");
             echo "+OK No exception thrown";
-          } catch (Throwable $e) {
+          } catch (XPThrowable $e) {
             echo "-ERR ".$e->getClassName();
           }
         ')
@@ -275,7 +275,7 @@
         try {
           $r= Runtime::getInstance()->loadLibrary("xsl");
           echo "+OK: ", $r ? "Loaded" : "Compiled";
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           echo "-ERR ".$e->toString();
         }
       ');

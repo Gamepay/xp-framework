@@ -5,13 +5,13 @@
  */
 
   /**
-   * An element in a stack trace, as returned by Throwable::getStackTrace(). 
+   * An element in a stack trace, as returned by XPThrowable::getStackTrace(). 
    * Each element represents a single stack frame.
    *
-   * @see      xp://lang.Throwable#getStackTrace
+   * @see      xp://lang.XPThrowable#getStackTrace
    * @test     xp://net.xp_framework.unittest.core.ExceptionsTest
    */
-  class StackTraceElement extends Object {
+  class StackTraceElement extends XPObject {
     public
       $file     = '',
       $class    = '',
@@ -97,7 +97,7 @@
     /**
      * Compares this stacktrace element to another object
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool
      */
     public function equals($cmp) {

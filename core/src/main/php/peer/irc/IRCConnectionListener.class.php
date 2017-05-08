@@ -10,7 +10,7 @@
    * @see      xp://peer.irc.IRCConnection#addListener
    * @purpose  Abstract base class
    */
-  class IRCConnectionListener extends Object {
+  class IRCConnectionListener extends XPObject {
 
     /**
      * Callback for Pings. Note that the PING has already been answered

@@ -17,7 +17,7 @@
    * @see      xp://remote.HandlerFactory
    * @purpose  Pool
    */
-  class HandlerInstancePool extends Object {
+  class HandlerInstancePool extends XPObject {
     public
       $pool = NULL,
       $cat  = NULL;

@@ -24,7 +24,7 @@
      * Unmarshal return value from a specified node
      *
      * @param   xml.Node node
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function unmarshalFrom($node);
   }

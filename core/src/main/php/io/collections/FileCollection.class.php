@@ -12,7 +12,7 @@
    * @see      xp://io.collections.IOCollection
    * @purpose  IOCollection implementation
    */
-  class FileCollection extends Object implements IOCollection {
+  class FileCollection extends XPObject implements IOCollection {
     public
       $uri = '';
     

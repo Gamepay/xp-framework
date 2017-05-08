@@ -32,7 +32,7 @@
    *
    * @purpose  Tool
    */
-  class xp톓nstall톀unner extends Object {
+  class xp톓nstall톀unner extends XPObject {
 
     /**
      * Converts api-doc "markup" to plain text w/ ASCII "art"
@@ -82,7 +82,7 @@
       // Perform action
       try {
         $class->newInstance()->perform(array_slice($args, 1));
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         Console::$err->writeLine('*** Error performing action ~ ', $e);
         exit(1);
       }

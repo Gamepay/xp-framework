@@ -17,7 +17,7 @@
    * @test     xp://net.xp_framework.unittest.text.encode.QuotedPrintableOutputStreamTest
    * @purpose  OuputStream implementation
    */
-  class QuotedPrintableOutputStream extends Object implements OutputStream {
+  class QuotedPrintableOutputStream extends XPObject implements OutputStream {
     protected $out= NULL;
     protected $l= 0;
     protected $buffer= '';

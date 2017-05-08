@@ -36,7 +36,7 @@
    * @ext gd
    * @see php://image
    */
-  class Image extends Object {
+  class Image extends XPObject {
     public
       $width    = 0,
       $height   = 0,

@@ -158,7 +158,7 @@
     public function boxString() {
       $this->assertEqualSoapVar(
         new SoapVar('Hello Soap World', XSD_STRING),
-        $this->fixture->box(new String('Hello Soap World'))
+        $this->fixture->box(new XPString('Hello Soap World'))
       );
     }
   }

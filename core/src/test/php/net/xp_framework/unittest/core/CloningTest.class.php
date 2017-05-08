@@ -28,7 +28,7 @@
      */
     #[@test]
     public function cloneOfObject() {
-      $original= new Object();
+      $original= new XPObject();
       $this->assertFalse($original == clone($original));
     }
 
@@ -38,7 +38,7 @@
      */
     #[@test]
     public function cloneInterceptorCalled() {
-      $original= newinstance('lang.Object', array(), '{
+      $original= newinstance('lang.XPObject', array(), '{
         var $cloned= FALSE;
 
         function __clone() {
@@ -58,7 +58,7 @@
      */
     #[@test, @expect('lang.CloneNotSupportedException')]
     public function cloneInterceptorThrowsException() {
-      clone(newinstance('lang.Object', array(), '{
+      clone(newinstance('lang.XPObject', array(), '{
         function __clone() {
           throw new CloneNotSupportedException("I am *UN*Cloneable");
         }

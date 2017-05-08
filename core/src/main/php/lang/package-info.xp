@@ -9,15 +9,15 @@
  *
  * Basics
  * ======
- * This includes the Object class from which all other classes extend 
- * and the Throwable class from which all exceptions and errors extend.
+ * This includes the XPObject class from which all other classes extend 
+ * and the XPThrowable class from which all exceptions and errors extend.
  * Both of these classes implement the Generic interface.
  *
  * Methods available in all objects and defined via the Generic
  * interface are:
  * <ul>
  *   <li>public string hashCode()</li>
- *   <li>public bool equals(lang.Object cmp)</li>
+ *   <li>public bool equals(lang.XPObject cmp)</li>
  *   <li>public string getClassName()</li>
  *   <li>public lang.XPClass getClass()</li>
  *   <li>public string toString()</li>
@@ -83,7 +83,7 @@
  * ==========================
  * These classes are guaranteed to be loaded at any given time:
  *
- * lang.Object, lang.StackTraceElement, lang.Throwable, lang.Error, 
+ * lang.XPObject, lang.StackTraceElement, lang.XPThrowable, lang.XPError, 
  * lang.XPException, lang.Type, lang.reflect.Routine, lang.reflect.Parameter, 
  * lang.reflect.TargetInvocationException, lang.reflect.Method, 
  * lang.reflect.Field, lang.reflect.Constructor, lang.reflect.Modifiers, 
@@ -97,8 +97,8 @@
  * lang.FormatException, lang.ClassNotFoundException, 
  * 
  * @see      http://news.xp-framework.net/article/11/2004/11/23/
- * @see      xp://lang.Throwable
- * @see      xp://lang.Object
+ * @see      xp://lang.XPThrowable
+ * @see      xp://lang.XPObject
  * @see      xp://lang.Generic
  * @see      xp://lang.XPClass
  * @see      xp://lang.Process

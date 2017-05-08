@@ -11,7 +11,7 @@
    *
    * @purpose  Base class.
    */
-  class AbstractRpcTransport extends Object implements Traceable {
+  class AbstractRpcTransport extends XPObject implements Traceable {
     public
       $cat  = NULL;
       

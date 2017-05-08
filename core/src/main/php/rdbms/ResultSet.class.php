@@ -22,7 +22,7 @@
    *
    * @purpose  Resultset wrapper
    */
-  class ResultSet extends Object implements Closeable {
+  class ResultSet extends XPObject implements Closeable {
     public
       $handle,
       $fields,

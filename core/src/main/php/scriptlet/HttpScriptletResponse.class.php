@@ -17,7 +17,7 @@
    * @see      xp://scriptlet.HttpScriptlet
    * @purpose  Provide a way to access the HTTP response
    */  
-  class HttpScriptletResponse extends Object implements Response {
+  class HttpScriptletResponse extends XPObject implements Response {
     protected
       $uri=             NULL;
     

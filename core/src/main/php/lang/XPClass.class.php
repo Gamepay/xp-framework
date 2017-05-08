@@ -53,7 +53,7 @@
    *   }
    * </code> 
    *
-   * @see      xp://lang.Object#getClass
+   * @see      xp://lang.XPObject#getClass
    * @see      xp://lang.XPClass#forName
    * @test     xp://net.xp_framework.unittest.reflection.ReflectionTest
    * @test     xp://net.xp_framework.unittest.reflection.ClassDetailsTest
@@ -140,7 +140,7 @@
      * </code>
      *
      * @param   var* args
-     * @return  lang.Object 
+     * @return  lang.XPObject 
      * @throws  lang.IllegalAccessException in case this class cannot be instantiated
      */
     public function newInstance() {
@@ -384,7 +384,7 @@
      * 
      *   var_dump($class->isInstance(new TempFile()));  // TRUE
      *   var_dump($class->isInstance(new File()));      // TRUE
-     *   var_dump($class->isInstance(new Object()));    // FALSE
+     *   var_dump($class->isInstance(new XPObject()));    // FALSE
      * </code>
      *
      * @param   var obj

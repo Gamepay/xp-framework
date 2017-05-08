@@ -26,7 +26,7 @@
      *
      */
     public function setUp() {
-      $this->events= create('new Vector<String>()');
+      $this->events= create('new Vector<XPString>()');
       $appender= newinstance('util.log.Appender', array($this->events), '{
         private $events= NULL;
 
@@ -35,7 +35,7 @@
         }
 
         public function append(LoggingEvent $event) {
-          $this->events[]= new String($this->layout->format($event));
+          $this->events[]= new XPString($this->layout->format($event));
         }
       }');
       $this->fixture= create(new LogCategory('default'))
@@ -50,7 +50,7 @@
     #[@test]
     public function info() {
       $this->fixture->info('Hello');
-      $this->assertEquals(new String('[info] Hello'), $this->events[0]);
+      $this->assertEquals(new XPString('[info] Hello'), $this->events[0]);
     }
 
     /**
@@ -60,7 +60,7 @@
     #[@test]
     public function infoWithMultipleArguments() {
       $this->fixture->info('Hello', 'World');
-      $this->assertEquals(new String('[info] Hello World'), $this->events[0]);
+      $this->assertEquals(new XPString('[info] Hello World'), $this->events[0]);
     }
 
     /**
@@ -70,7 +70,7 @@
     #[@test]
     public function warn() {
       $this->fixture->warn('Hello');
-      $this->assertEquals(new String('[warn] Hello'), $this->events[0]);
+      $this->assertEquals(new XPString('[warn] Hello'), $this->events[0]);
     }
 
     /**
@@ -80,7 +80,7 @@
     #[@test]
     public function debug() {
       $this->fixture->debug('Hello');
-      $this->assertEquals(new String('[debug] Hello'), $this->events[0]);
+      $this->assertEquals(new XPString('[debug] Hello'), $this->events[0]);
     }
 
     /**
@@ -90,7 +90,7 @@
     #[@test]
     public function error() {
       $this->fixture->error('Hello');
-      $this->assertEquals(new String('[error] Hello'), $this->events[0]);
+      $this->assertEquals(new XPString('[error] Hello'), $this->events[0]);
     }
   }
 ?>

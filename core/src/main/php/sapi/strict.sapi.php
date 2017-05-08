@@ -16,7 +16,7 @@
       case 1 == preg_match('/^Missing argument/', $msg):
       case 1 == preg_match('/^Illegal string offset/', $msg):
       case 1 == preg_match('/^Illegal offset type/', $msg):
-        xp::error(xp::stringOf(new Error('[strict] "'.$msg.'" at '.$file.':'.$line)));
+        xp::error(xp::stringOf(new XPError('[strict] "'.$msg.'" at '.$file.':'.$line)));
         // Bails
       
       default:        

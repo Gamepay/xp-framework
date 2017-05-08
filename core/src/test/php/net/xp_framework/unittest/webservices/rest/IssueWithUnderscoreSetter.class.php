@@ -10,7 +10,7 @@
    * Issue
    *
    */
-  class net·xp_framework·unittest·webservices·rest·IssueWithUnderscoreSetter extends Object {
+  class net·xp_framework·unittest·webservices·rest·IssueWithUnderscoreSetter extends XPObject {
     protected $issue_id= 0;
     protected $title= NULL;
     

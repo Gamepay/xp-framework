@@ -20,7 +20,7 @@
    *
    * @ext   iconv
    */
-  abstract class AbstractZipReaderImpl extends Object {
+  abstract class AbstractZipReaderImpl extends XPObject {
     public $skip= 0;
 
     protected $stream= NULL;

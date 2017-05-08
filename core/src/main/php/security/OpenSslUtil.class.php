@@ -10,7 +10,7 @@
    * @ext      openssl
    * @purpose  Utiltiy functions
    */
-  class OpenSslUtil extends Object {
+  class OpenSslUtil extends XPObject {
   
     /**
      * Retrieve errors

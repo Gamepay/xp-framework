@@ -11,7 +11,7 @@
    * --------------
    * No output at all. This listener has no options.
    */
-  class QuietListener extends Object implements TestListener {
+  class QuietListener extends XPObject implements TestListener {
 
 
     /**

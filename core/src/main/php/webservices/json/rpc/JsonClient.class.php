@@ -16,7 +16,7 @@
    * @see       http://json.org/
    * @purpose   Json RPC Client base class
    */
-  class JsonClient extends Object {
+  class JsonClient extends XPObject {
     public
       $transport  = NULL,
       $message    = NULL,

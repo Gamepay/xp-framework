@@ -14,7 +14,7 @@
    * @see   xp://lang.reflect.Method#numParameters
    * @test  xp://net.xp_framework.unittest.reflection.ReflectionTest
    */
-  class lang·reflect·Parameter extends Object {
+  class lang·reflect·Parameter extends XPObject {
     protected
       $_reflect = NULL,
       $_details = NULL;

@@ -18,7 +18,7 @@
    * @test     xp://net.xp_framework.unittest.util.TimerTest
    * @purpose  Provide a simple profiling timer
    */
-  class Timer extends Object {
+  class Timer extends XPObject {
     public
       $start = 0.0,
       $stop  = 0.0;

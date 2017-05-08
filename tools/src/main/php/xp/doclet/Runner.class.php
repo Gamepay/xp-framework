@@ -38,7 +38,7 @@
    *
    * @purpose  Tool
    */
-  class xp·doclet·Runner extends Object {
+  class xp·doclet·Runner extends XPObject {
 
     /**
      * Converts api-doc "markup" to plain text w/ ASCII "art"

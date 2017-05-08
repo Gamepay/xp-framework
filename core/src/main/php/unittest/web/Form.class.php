@@ -17,7 +17,7 @@
    * @see      xp://unittest.web.WebTestCase#getForm
    * @purpose  Value object
    */
-  class Form extends Object {
+  class Form extends XPObject {
     protected
       $test   = NULL,
       $node   = NULL,

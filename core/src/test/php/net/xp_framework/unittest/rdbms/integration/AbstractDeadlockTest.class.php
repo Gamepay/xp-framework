@@ -56,7 +56,7 @@
       try {
         $this->dropTables();
         $this->createTables();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         throw new PrerequisitesNotMetError($e->getMessage(), $e);
       }
     }

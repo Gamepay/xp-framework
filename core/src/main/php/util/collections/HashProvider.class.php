@@ -25,7 +25,7 @@
    * @see      xp://util.collections.Map
    * @purpose  Hashing
    */
-  class HashProvider extends Object {
+  class HashProvider extends XPObject {
     protected static
       $instance = NULL;
 

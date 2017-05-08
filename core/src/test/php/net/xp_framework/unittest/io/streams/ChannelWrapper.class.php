@@ -13,7 +13,7 @@
    * @see      xp://net.xp_framework.unittest.io.streams.ChannelStreamTest
    * @purpose  Stream wrapper
    */
-  class ChannelWrapper extends Object {
+  class ChannelWrapper extends XPObject {
     protected static 
       $streams = array();
 

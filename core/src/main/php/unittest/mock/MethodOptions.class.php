@@ -13,7 +13,7 @@
    * Implements a fluent interface for specifying mock expectation.
    *
    */
-  class MethodOptions extends Object implements IMethodOptions {
+  class MethodOptions extends XPObject implements IMethodOptions {
     private
       $expectation= NULL,
       $methodName= NULL;
@@ -50,10 +50,10 @@
     /**
      * Specifies the exception that is to be thrown.
      *
-     * @param   lang.Throwable the exception that is to be thrown on a method call.
+     * @param   lang.XPThrowable the exception that is to be thrown on a method call.
      * @return  unittest.mock.IMethodOptions
      */
-    public function throws(Throwable $exception) {
+    public function throws(XPThrowable $exception) {
       $this->expectation->setException($exception);
       return $this;
     }

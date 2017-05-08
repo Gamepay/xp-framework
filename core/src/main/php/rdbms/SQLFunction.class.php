@@ -13,7 +13,7 @@
    *
    * @purpose  SQL Fragment implementation
    */
-  class SQLFunction extends Object implements SQLFragment {
+  class SQLFunction extends XPObject implements SQLFragment {
     public
       $func = '',
       $type = '%s',

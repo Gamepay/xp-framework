@@ -26,7 +26,7 @@
    * @test     xp://net.xp_framework.unittest.scriptlet.workflow.WrapperTest
    * @purpose  Base class
    */
-  class Wrapper extends Object {
+  class Wrapper extends XPObject {
     const
       OCCURRENCE_UNDEFINED  = 0x0000,
       OCCURRENCE_OPTIONAL   = 0x0001,
@@ -79,7 +79,7 @@
      * Retrieve a checker instance
      *
      * @param   array defines
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function checkerInstanceFor($defines) {
       static $class= array();

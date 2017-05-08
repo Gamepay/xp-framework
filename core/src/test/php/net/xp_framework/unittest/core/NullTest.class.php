@@ -64,7 +64,7 @@
      */
     #[@test, @expect('lang.IllegalAccessException')]
     public function newInstance() {
-      new null();
+      new xpnull();
     }
 
     /**

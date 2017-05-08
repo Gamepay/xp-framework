@@ -20,7 +20,7 @@
    *
    * @see xp://img.Image
    */
-  class Arc extends Object implements Drawable {
+  class Arc extends XPObject implements Drawable {
     public
       $col=  NULL,
       $cx=   0,

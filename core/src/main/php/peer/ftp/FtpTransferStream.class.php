@@ -13,7 +13,7 @@
    * @see      xp://peer.ftp.FtpIntputStream
    * @purpose  Abstract base class
    */
-  abstract class FtpTransferStream extends Object {
+  abstract class FtpTransferStream extends XPObject {
     protected
       $eof    = FALSE,
       $file   = NULL,

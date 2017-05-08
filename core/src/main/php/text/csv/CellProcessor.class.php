@@ -8,7 +8,7 @@
    * Processes a cell's value
    *
    */
-  abstract class CellProcessor extends Object {
+  abstract class CellProcessor extends XPObject {
     protected $next= NULL;
 
     /**

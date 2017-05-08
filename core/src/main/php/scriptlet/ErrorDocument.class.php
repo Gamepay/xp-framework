@@ -46,7 +46,7 @@
    * @deprecated  Now handled by scriptlet runner
    * @see scriptlet.HttpScriptlet
    */
-  class ErrorDocument extends Object {
+  class ErrorDocument extends XPObject {
     public 
       $statusCode,
       $language,

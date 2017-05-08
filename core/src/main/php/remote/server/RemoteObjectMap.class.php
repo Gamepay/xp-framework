@@ -11,7 +11,7 @@
    *
    * @purpose  OID store
    */
-  class RemoteObjectMap extends Object {
+  class RemoteObjectMap extends XPObject {
     const
       CTX_KEY   = "RemoteObjectMap";
 
@@ -24,7 +24,7 @@
      * unique oid for the object if it is not yet associated
      * with one. Returns the associated oid otherwise.
      *
-     * @param   lang.Object object
+     * @param   lang.XPObject object
      * @return  int
      */
     public function oidFor(Generic $object) {
@@ -47,7 +47,7 @@
      * Retrieve object by oid.
      *
      * @param   int oid
-     * @return  lang.Object
+     * @return  lang.XPObject
      * @throws  lang.ElementNotFoundException if oid is not known
      */
     public function getByOid($oid) {

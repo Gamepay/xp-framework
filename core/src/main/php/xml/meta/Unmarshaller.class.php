@@ -28,7 +28,7 @@
    * @see      http://castor.org/xml-mapping.html
    * @purpose  XML databinding
    */
-  class Unmarshaller extends Object {
+  class Unmarshaller extends XPObject {
   
     static function __static() {
       libxml_use_internal_errors(TRUE);
@@ -69,7 +69,7 @@
      * @param   php.DomElement element
      * @param   lang.XPClass classname
      * @param   [:var] inject
-     * @return  lang.Object
+     * @return  lang.XPObject
      * @throws  lang.ClassNotFoundException
      * @throws  xml.XPathException
      */
@@ -182,7 +182,7 @@
      *
      * @param   string xml
      * @param   string classname
-     * @return  lang.Object
+     * @return  lang.XPObject
      * @throws  lang.ClassNotFoundException
      * @throws  xml.XMLFormatException
      * @deprecated  Use unmarshalFrom() instead
@@ -207,7 +207,7 @@
      * @param   xml.parser.InputSource source
      * @param   string classname
      * @param   [:var] inject
-     * @return  lang.Object
+     * @return  lang.XPObject
      * @throws  lang.ClassNotFoundException
      * @throws  xml.XMLFormatException
      * @throws  lang.reflect.TargetInvocationException

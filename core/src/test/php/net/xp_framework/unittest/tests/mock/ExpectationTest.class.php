@@ -225,7 +225,7 @@
       $this->assertTrue($this->sut->doesMatchArgs(array(NULL)));
       $this->assertTrue($this->sut->doesMatchArgs(array('test')));
       $this->assertTrue($this->sut->doesMatchArgs(array(42)));
-      $this->assertTrue($this->sut->doesMatchArgs(array(new Object())));
+      $this->assertTrue($this->sut->doesMatchArgs(array(new XPObject())));
     }
 
     /**

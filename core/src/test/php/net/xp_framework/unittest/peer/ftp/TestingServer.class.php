@@ -32,7 +32,7 @@
    *
    * @see   xp://net.xp_framework.unittest.peer.ftp.IntegrationTest
    */
-  class net·xp_framework·unittest·peer·ftp·TestingServer extends Object {
+  class net·xp_framework·unittest·peer·ftp·TestingServer extends XPObject {
 
     /**
      * Start server
@@ -42,7 +42,7 @@
     public static function main(array $args) {
       $stor= new FilesystemStorage(dirname(__FILE__).DIRECTORY_SEPARATOR.'ftproot'.DIRECTORY_SEPARATOR);
 
-      $auth= newinstance('lang.Object', array(), '{
+      $auth= newinstance('lang.XPObject', array(), '{
         public function authenticate($user, $password) {
           return ("testtest" == $user.$password);
         }
@@ -67,7 +67,7 @@
         Console::writeLinef('+ Service %s:%d', $s->socket->host, $s->socket->port);
         $s->service();
         Console::writeLine('+ Done');
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         Console::writeLine('- ', $e->getMessage());
       }
     }

@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.core.types.ArrayListTest
    * @purpose  Wrapper
    */
-  class ArrayList extends Object implements ArrayAccess, IteratorAggregate {
+  class ArrayList extends XPObject implements ArrayAccess, IteratorAggregate {
     public
       $values   = array(),
       $length   = 0;
@@ -164,7 +164,7 @@
     /**
      * Checks whether a given object is equal to this arraylist
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool
      */
     public function equals($cmp) {

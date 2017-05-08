@@ -77,7 +77,7 @@
    *
    * @purpose  Tool
    */
-  class xp·xar·Runner extends Object {
+  class xp·xar·Runner extends XPObject {
 
     /**
      * Set operation

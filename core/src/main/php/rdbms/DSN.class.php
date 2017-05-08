@@ -23,7 +23,7 @@
    * @test     xp://net.xp_framework.unittest.rdbms.DSNTest
    * @purpose  Unified connect string
    */
-  class DSN extends Object {
+  class DSN extends XPObject {
     public 
       $url      = NULL,
       $dsn      = array(),

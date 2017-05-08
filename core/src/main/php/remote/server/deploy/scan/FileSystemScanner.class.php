@@ -18,7 +18,7 @@
    *
    * @purpose  Interface
    */
-  class FileSystemScanner extends Object implements DeploymentScanner {
+  class FileSystemScanner extends XPObject implements DeploymentScanner {
     public
       $folder   = NULL,
       $pattern  = '',
@@ -63,7 +63,7 @@
         try {
           $ear->open(ARCHIVE_READ) &&
           $meta= $ear->extract('META-INF/bean.properties');
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           $this->deployments[$entry]= new IncompleteDeployment($entry, $e);
           continue;
         }

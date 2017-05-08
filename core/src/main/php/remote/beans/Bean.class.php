@@ -9,7 +9,7 @@
    *
    * @purpose  Base Bean
    */
-  class Bean extends Object {
+  class Bean extends XPObject {
   
   }
 ?>

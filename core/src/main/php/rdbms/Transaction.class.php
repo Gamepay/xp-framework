@@ -26,7 +26,7 @@
    * @see      xp://rdbms.DBConnection#begin
    * @purpose  Wrap a transaction
    */
-  class Transaction extends Object {
+  class Transaction extends XPObject {
     public
       $name     = '',
       $db       = NULL;

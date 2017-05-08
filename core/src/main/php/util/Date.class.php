@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.util.DateTest
    * @purpose  Represent a date
    */
-  class Date extends Object {
+  class Date extends XPObject {
     protected
       $date     = NULL;
     

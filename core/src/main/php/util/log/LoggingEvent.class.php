@@ -11,7 +11,7 @@
    *
    * @test    xp://net.xp_framework.unittest.logging.LoggingEventTest
    */
-  class LoggingEvent extends Object {
+  class LoggingEvent extends XPObject {
     protected $category= NULL;
     protected $timestamp= 0;
     protected $processId= 0;

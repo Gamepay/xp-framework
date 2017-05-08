@@ -15,7 +15,7 @@
    * @see      rfc://2045#6.8
    * @purpose  Base 64 encoder/decoder
    */
-  class Base64 extends Object {
+  class Base64 extends XPObject {
   
     /**
      * Encode string

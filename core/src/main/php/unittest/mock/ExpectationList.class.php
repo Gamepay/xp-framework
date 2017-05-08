@@ -14,7 +14,7 @@
    * A stateful list for expectations.
    *
    */
-  class ExpectationList extends Object {
+  class ExpectationList extends XPObject {
     private
       $list      = NULL,
       $called    = NULL,

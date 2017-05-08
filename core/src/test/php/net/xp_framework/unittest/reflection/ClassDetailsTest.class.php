@@ -27,7 +27,7 @@
     protected function parseComment($comment) {
       $details= XPClass::parseDetails('
         <?php
-          class Test extends Object {
+          class Test extends XPObject {
             '.$comment.'
             public function test() { }
           }
@@ -194,10 +194,10 @@
         /**
          * Abstract protected method
          *
-         * @param   util.collections.Vector<lang.Object> param1
+         * @param   util.collections.Vector<lang.XPObject> param1
          */
       ');
-      $this->assertEquals('util.collections.Vector<lang.Object>', $details[DETAIL_ARGUMENTS][0]);
+      $this->assertEquals('util.collections.Vector<lang.XPObject>', $details[DETAIL_ARGUMENTS][0]);
     }
     
     /**

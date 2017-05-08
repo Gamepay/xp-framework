@@ -35,7 +35,7 @@
    * @see      http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfSystemConsoleClassTopic.asp
    * @purpose  I/O functions
    */
-  class Console extends Object {
+  class Console extends XPObject {
     public static 
       $out= NULL,
       $err= NULL,

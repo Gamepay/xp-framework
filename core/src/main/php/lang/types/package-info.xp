@@ -16,7 +16,7 @@
  * The following numeric types are supported:
  * <ul>
  *   <li>Byte</li>
- *   <li>Float</li>
+ *   <li>XPFloat</li>
  *   <li>Long</li>
  *   <li>Short</li>
  *   <li>Integer</li>

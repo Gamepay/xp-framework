@@ -37,7 +37,7 @@
    *
    * @test     xp://net.xp_framework.unittest.logging.LogCategoryTest
    */
-  class LogCategory extends Object {
+  class LogCategory extends XPObject {
     protected static $DEFAULT_LAYOUT= NULL;
     protected $_appenders= array();
 

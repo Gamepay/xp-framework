@@ -10,7 +10,7 @@
    * Issue
    *
    */
-  class net·xp_framework·unittest·webservices·rest·IssueWithSetter extends Object {
+  class net·xp_framework·unittest·webservices·rest·IssueWithSetter extends XPObject {
     protected $issueId= 0;
     protected $title= NULL;
     

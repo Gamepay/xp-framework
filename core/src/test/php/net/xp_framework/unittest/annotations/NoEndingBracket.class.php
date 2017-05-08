@@ -11,7 +11,7 @@
    *
    */
   #[@attribute
-  class net·xp_framework·unittest·annotations·NoEndingBracket extends Object {
+  class net·xp_framework·unittest·annotations·NoEndingBracket extends XPObject {
     
   }
 ?>

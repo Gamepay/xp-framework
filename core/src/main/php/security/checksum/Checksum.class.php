@@ -33,7 +33,7 @@
    *
    * @purpose  Abstract base class to all other checksums
    */
-  class Checksum extends Object {
+  class Checksum extends XPObject {
     public $value = '';
       
     /**

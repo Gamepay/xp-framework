@@ -11,7 +11,7 @@
    *
    * @purpose  OutputStream implementation
    */
-  class SocketOutputStream extends Object implements OutputStream {
+  class SocketOutputStream extends XPObject implements OutputStream {
     protected
       $socket= NULL;
     

@@ -10,7 +10,7 @@
    * Person value object
    *
    */
-  class net·xp_framework·unittest·text·csv·Person extends Object {
+  class net·xp_framework·unittest·text·csv·Person extends XPObject {
     protected
       $id     = '', 
       $name   = '', 

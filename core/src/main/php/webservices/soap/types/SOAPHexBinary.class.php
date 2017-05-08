@@ -12,7 +12,7 @@
    * @see      xp://webservices.soap.xp.XPSoapNode
    * @purpose  Transport hex encoded data
    */
-  class SOAPHexBinary extends Object implements SoapType {
+  class SOAPHexBinary extends XPObject implements SoapType {
     public
       $string,
       $encoded;

@@ -65,7 +65,7 @@
         if (!$raw && isset($this->processors[$i])) {
           try {
             $value= $this->processors[$i]->process($value);
-          } catch (Throwable $e) {
+          } catch (XPThrowable $e) {
             $this->raise($e->getMessage());
           }
         }

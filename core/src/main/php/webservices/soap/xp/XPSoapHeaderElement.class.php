@@ -13,7 +13,7 @@
    * @see       http://www.w3.org/TR/2000/NOTE-SOAP-20000508/#_Toc478383497
    * @purpose   Represent SOAP header element.
    */
-  class XPSoapHeaderElement extends Object implements XPSoapHeader {
+  class XPSoapHeaderElement extends XPObject implements XPSoapHeader {
     public
       $name=              '',
       $mustUnderstand=    FALSE,
@@ -131,7 +131,7 @@
     /**
      * Set Value
      *
-     * @param   lang.Object value
+     * @param   lang.XPObject value
      */
     public function setValue($value) {
       $this->value= $value;
@@ -140,7 +140,7 @@
     /**
      * Get Value
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getValue() {
       return $this->value;

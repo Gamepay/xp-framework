@@ -16,7 +16,7 @@
    * @purpose Small and simple CSV Generator
    * @deprecated Use the text.csv package instead
    */ 
-  class CSVGenerator extends Object {
+  class CSVGenerator extends XPObject {
     public
       $stream;
       

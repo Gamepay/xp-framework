@@ -10,7 +10,7 @@
    * Wraps an xml.Node into an array-acessible form
    *
    */
-  class RestXmlMap extends Object implements IteratorAggregate, ArrayAccess {
+  class RestXmlMap extends XPObject implements IteratorAggregate, ArrayAccess {
     protected $node= NULL;
 
     protected static $iterate= NULL;

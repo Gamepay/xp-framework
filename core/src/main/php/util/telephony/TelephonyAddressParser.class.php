@@ -19,7 +19,7 @@
    * @see     http://www.wtng.info/
    * @see     http://www.construction-site.com/int_dial.htm
    */
-  class TelephonyAddressParser extends Object {
+  class TelephonyAddressParser extends XPObject {
     public 
       $defaultCountryCode=  NULL,
       $defaultAreaCode=     NULL,

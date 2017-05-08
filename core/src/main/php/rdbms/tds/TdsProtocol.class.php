@@ -14,7 +14,7 @@
    * @see   http://www.freetds.org/tds.html
    * @see   https://github.com/mono/mono/tree/master/mcs/class/Mono.Data.Tds/Mono.Data.Tds.Protocol
    */
-  abstract class TdsProtocol extends Object {
+  abstract class TdsProtocol extends XPObject {
     protected $stream= NULL;
     protected $done= FALSE;
     protected $records= array();

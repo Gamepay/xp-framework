@@ -16,7 +16,7 @@
    * @purpose  UDDI command container
    * @see      xp://webservices.uddi.InquiryCommand
    */
-  class FindBusinessesCommand extends Object implements InquiryCommand {
+  class FindBusinessesCommand extends XPObject implements InquiryCommand {
     public
       $names            = array(),
       $findQualifiers   = array(),

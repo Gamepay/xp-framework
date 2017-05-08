@@ -97,7 +97,7 @@
    *
    * @purpose  Send and receive System V IPC messages
    */
-  class IPCQueue extends Object {
+  class IPCQueue extends XPObject {
     public
       $key      = 0,
       $id       = 0,

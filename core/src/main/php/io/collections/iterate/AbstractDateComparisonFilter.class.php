@@ -11,7 +11,7 @@
    *
    * @purpose  Iteration Filter
    */
-  class AbstractDateComparisonFilter extends Object implements IterationFilter {
+  class AbstractDateComparisonFilter extends XPObject implements IterationFilter {
     public
       $date= NULL;
       

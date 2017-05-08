@@ -26,7 +26,7 @@
    * @see      http://photothumb.com/IPTCExt/
    * @see      http://www.controlledvocabulary.com/pdf/IPTC_mapped_fields.pdf
    */
-  class IptcData extends Object {
+  class IptcData extends XPObject {
     public static
       $EMPTY= NULL;
 

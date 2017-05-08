@@ -7,38 +7,38 @@
   uses('unittest.TestCase');
 
   /**
-   * Tests the lang.Object class
+   * Tests the lang.XPObject class
    *
-   * @see      xp://lang.Object
+   * @see      xp://lang.XPObject
    * @purpose  Testcase
    */
   class ObjectTest extends TestCase {
 
     /**
-     * Ensures lang.Object does not have a constructor
+     * Ensures lang.XPObject does not have a constructor
      *
      */
     #[@test]
     public function noConstructor() {
-      $this->assertFalse(XPClass::forName('lang.Object')->hasConstructor());
+      $this->assertFalse(XPClass::forName('lang.XPObject')->hasConstructor());
     }
 
     /**
-     * Ensures lang.Object does not have a parent class
+     * Ensures lang.XPObject does not have a parent class
      *
      */
     #[@test]
     public function baseClass() {
-      $this->assertNull(XPClass::forName('lang.Object')->getParentClass());
+      $this->assertNull(XPClass::forName('lang.XPObject')->getParentClass());
     }
 
     /**
-     * Ensures lang.Object implements the lang.Generic interface
+     * Ensures lang.XPObject implements the lang.Generic interface
      *
      */
     #[@test]
     public function genericInterface() {
-      $interfaces= XPClass::forName('lang.Object')->getInterfaces();
+      $interfaces= XPClass::forName('lang.XPObject')->getInterfaces();
       $this->assertEquals(1, sizeof($interfaces));
       $this->assertInstanceOf('lang.XPClass', $interfaces[0]);
       $this->assertEquals('lang.Generic', $interfaces[0]->getName());
@@ -46,55 +46,55 @@
 
     /**
      * Ensures the xp::typeOf() function returns the fully qualified 
-     * class name, "lang.Object"
+     * class name, "lang.XPObject"
      *
      */
     #[@test]
     public function typeOf() {
-      $this->assertEquals('lang.Object', xp::typeOf(new Object()));
+      $this->assertEquals('lang.XPObject', xp::typeOf(new XPObject()));
     }
 
     /**
      * Tests the hashCode() method
      *
-     * @see     xp://lang.Object#hashCode
+     * @see     xp://lang.XPObject#hashCode
      */
     #[@test]
     public function hashCodeMethod() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertTrue((bool)preg_match('/^0\.[0-9]+ [0-9]+ [0-9a-f]+$/', $o->hashCode()));
     }
 
     /**
      * Tests the equals() method
      *
-     * @see     xp://lang.Object#equals
+     * @see     xp://lang.XPObject#equals
      */
     #[@test]
     public function objectIsEqualToSelf() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertTrue($o->equals($o));
     }
 
     /**
      * Tests the equals() method
      *
-     * @see     xp://lang.Object#equals
+     * @see     xp://lang.XPObject#equals
      */
     #[@test]
     public function objectIsNotEqualToOtherObject() {
-      $o= new Object();
-      $this->assertFalse($o->equals(new Object()));
+      $o= new XPObject();
+      $this->assertFalse($o->equals(new XPObject()));
     }
 
     /**
      * Tests the equals() method
      *
-     * @see     xp://lang.Object#equals
+     * @see     xp://lang.XPObject#equals
      */
     #[@test]
     public function objectIsNotEqualToPrimitive() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertFalse($o->equals(0));
     }
     
@@ -102,38 +102,38 @@
      * Tests the getClassName() method returns the fully qualified
      * class name
      *
-     * @see     xp://lang.Object#getClassName
+     * @see     xp://lang.XPObject#getClassName
      */
     #[@test]
     public function getClassNameMethod() {
-      $o= new Object();
-      $this->assertEquals('lang.Object', $o->getClassName());
+      $o= new XPObject();
+      $this->assertEquals('lang.XPObject', $o->getClassName());
     }
 
     /**
      * Tests the getClassName() method returns the fully qualified
      * class name
      *
-     * @see     xp://lang.Object#getClass
+     * @see     xp://lang.XPObject#getClass
      */
     #[@test]
     public function getClassMethod() {
-      $o= new Object();
+      $o= new XPObject();
       $class= $o->getClass();
       $this->assertInstanceOf('lang.XPClass', $class);
-      $this->assertEquals('lang.Object', $class->getName());
+      $this->assertEquals('lang.XPObject', $class->getName());
     }
 
     /**
      * Tests the toString() method
      *
-     * @see     xp://lang.Object#toString
+     * @see     xp://lang.XPObject#toString
      */
     #[@test]
     public function toStringMethod() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertEquals(
-        'lang.Object {'."\n".
+        'lang.XPObject {'."\n".
         '  __id => "'.$o->hashCode().'"'."\n".
         '}', 
         $o->toString()
@@ -143,21 +143,21 @@
     /**
      * Tests call to undefined method
      *
-     * @see     xp://lang.Object#__call
+     * @see     xp://lang.XPObject#__call
      */
-    #[@test, @expect(class= 'lang.Error', withMessage= '/Call to undefined method .+::undefMethod\(\) from scope net\.xp_framework\.unittest\.core\.ObjectTest/')]
+    #[@test, @expect(class= 'lang.XPError', withMessage= '/Call to undefined method .+::undefMethod\(\) from scope net\.xp_framework\.unittest\.core\.ObjectTest/')]
     public function callUndefinedMethod() {
-      create(new Object())->undefMethod();
+      create(new XPObject())->undefMethod();
     }
 
     /**
      * Tests call to undefined method using call_user_func_array()
      *
-     * @see     xp://lang.Object#__call
+     * @see     xp://lang.XPObject#__call
      */
-    #[@test, @expect(class= 'lang.Error', withMessage= '/Call to undefined method .+::undefMethod\(\) from scope net\.xp_framework\.unittest\.core\.ObjectTest/')]
+    #[@test, @expect(class= 'lang.XPError', withMessage= '/Call to undefined method .+::undefMethod\(\) from scope net\.xp_framework\.unittest\.core\.ObjectTest/')]
     public function callUndefinedMethod_call_user_func_array() {
-      call_user_func_array(array(new Object(), 'undefMethod'), array());
+      call_user_func_array(array(new XPObject(), 'undefMethod'), array());
     }
   }
 ?>

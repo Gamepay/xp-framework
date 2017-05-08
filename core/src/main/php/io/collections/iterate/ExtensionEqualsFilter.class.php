@@ -11,7 +11,7 @@
    *
    * @purpose  Iteration Filter
    */
-  class ExtensionEqualsFilter extends Object implements IterationFilter {
+  class ExtensionEqualsFilter extends XPObject implements IterationFilter {
     public
       $extension= '';
       

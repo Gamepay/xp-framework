@@ -12,7 +12,7 @@
    * @see      xp://rdbms.DBTable
    * @purpose  RDBMS reflection
    */  
-  abstract class DBAdapter extends Object {
+  abstract class DBAdapter extends XPObject {
     public
       $conn=  NULL;
       

@@ -9,7 +9,7 @@
    *
    * @purpose  an abstract wrapper for addresses
    */
-  class TelephonyAddress extends Object {
+  class TelephonyAddress extends XPObject {
     public
       $number   = '';
 

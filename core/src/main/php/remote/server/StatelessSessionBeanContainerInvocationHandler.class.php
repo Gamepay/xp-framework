@@ -12,7 +12,7 @@
    *
    * @purpose  invocationhandler
    */
-  class StatelessSessionBeanContainerInvocationHandler extends Object implements InvocationHandler {
+  class StatelessSessionBeanContainerInvocationHandler extends XPObject implements InvocationHandler {
     public
       $container  = NULL,
       $type       = NULL;

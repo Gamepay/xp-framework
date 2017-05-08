@@ -13,7 +13,7 @@
    * @see      http://xmlrpc.com
    * @purpose  XML-RPC-Encoder
    */
-  class XmlRpcEncoder extends Object {
+  class XmlRpcEncoder extends XPObject {
   
     /**
      * Encode given data into XML-RPC format

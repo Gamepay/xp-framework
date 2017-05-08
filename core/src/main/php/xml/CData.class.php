@@ -22,7 +22,7 @@
    *
    * @purpose  Wrapper
    */
-  class CData extends Object {
+  class CData extends XPObject {
     public $cdata= '';
       
     /**

@@ -31,7 +31,7 @@
    * @see      http://openwddx.org
    * @purpose  Generic WDDX Client base class
    */
-  class WddxClient extends Object {
+  class WddxClient extends XPObject {
     public
       $transport  = NULL,
       $message    = NULL,

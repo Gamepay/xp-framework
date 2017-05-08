@@ -13,7 +13,7 @@
    * @see   xp://lang.reflect.Field#getModifiers
    * @test  xp://net.xp_framework.unittest.reflection.ModifiersTest
    */
-  class Modifiers extends Object {
+  class Modifiers extends XPObject {
 
     /**
      * Returns TRUE when the given modifiers include the public modifier.

@@ -7,7 +7,7 @@
   /**
    * Represents a database constaint
    */
-  abstract class DBConstraint extends Object {
+  abstract class DBConstraint extends XPObject {
 
     public 
       $name= '';

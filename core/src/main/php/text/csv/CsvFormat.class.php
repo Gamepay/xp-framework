@@ -26,7 +26,7 @@
    * @test     xp://net.xp_framework.unittest.text.csv.CsvFormatTest
    * @see      xp://text.csv.CsvReader
    */
-  class CsvFormat extends Object {
+  class CsvFormat extends XPObject {
     protected $delimiter= '';
     protected $quote= '';
     protected $quoting= NULL;

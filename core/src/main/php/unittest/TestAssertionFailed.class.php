@@ -11,7 +11,7 @@
    *
    * @see      xp://unittest.TestFailure
    */
-  class TestAssertionFailed extends Object implements TestFailure {
+  class TestAssertionFailed extends XPObject implements TestFailure {
     public
       $reason   = NULL,
       $test     = NULL,

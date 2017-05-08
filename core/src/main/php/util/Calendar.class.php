@@ -24,7 +24,7 @@
    * @test     xp://net.xp_framework.unittest.util.CalendarTest
    * @purpose  Utility functions for date calculations
    */
-  class Calendar extends Object {
+  class Calendar extends XPObject {
 
     /**
      * Calculates start of DST (daylight savings time).

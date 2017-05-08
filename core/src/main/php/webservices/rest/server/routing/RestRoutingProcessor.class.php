@@ -14,7 +14,7 @@
    *
    * @test    xp://net.xp_framework.unittest.rest.server.routing.RestRoutingProcessorTest
    */
-  class RestRoutingProcessor extends Object {
+  class RestRoutingProcessor extends XPObject {
     private
       $bindings= array(),
       $dataCaster= NULL;
@@ -36,7 +36,7 @@
      * Bind resource
      * 
      * @param string name The name of binding
-     * @param lang.Object resource The resource to bind
+     * @param lang.XPObject resource The resource to bind
      */
     public function bind($name, $resource) {
       $this->bindings[$name]= $resource;

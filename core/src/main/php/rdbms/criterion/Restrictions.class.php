@@ -17,7 +17,7 @@
    * @test     xp://net.xp_framework.unittest.rdbms.CriteriaTest
    * @purpose  Factory
    */
-  class Restrictions extends Object {
+  class Restrictions extends XPObject {
 
     /**
      * Apply an "in" constraint to the named property
@@ -53,6 +53,25 @@
     }
 
     /**
+     * Rebuilt PHP's removed function sql_regcase
+     *
+     * @see     php://sql_regcase
+     * @param   var value
+     * @return  string
+     */
+    private static function sql_regcase($value) {
+      $res= '';
+      foreach (str_split($value) as $char) {
+        if (preg_match('/[A-Za-z]/', $char)) {
+          $res.= '['.strtoupper($char).strtolower($char).']';
+        } else {
+          $res.= $char;
+        }
+      }
+      return $res;
+    }
+
+    /**
      * Apply a case-insensitive "like" constraint to the named property
      *
      * @see     php://sql_regcase
@@ -61,7 +80,7 @@
      * @return  rdbms.criterion.Criterion
      */
     public static function ilike($field, $value) {
-      return new SimpleExpression($field, sql_regcase($value), LIKE);
+      return new SimpleExpression($field, self::sql_regcase($value), LIKE);
     }
         
     /**

@@ -99,8 +99,8 @@
      */
     #[@test]
     public function qualifiedGenericReturn() {
-      $t= $this->makeReturn('util.collection.HashTable<lang.types.Number, lang.types.String> parameter');
-      $this->assertEquals('util.collection.HashTable<lang.types.Number, lang.types.String>', $t->type);
+      $t= $this->makeReturn('util.collection.HashTable<lang.types.Number, lang.types.XPString> parameter');
+      $this->assertEquals('util.collection.HashTable<lang.types.Number, lang.types.XPString>', $t->type);
       $this->assertEquals('parameter', $t->text);
     }
 

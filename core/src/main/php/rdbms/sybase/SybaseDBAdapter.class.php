@@ -19,7 +19,7 @@
     /**
      * Constructor
      *
-     * @param   Object conn database connection
+     * @param   XPObject conn database connection
      */
     public function __construct($conn) {
       $this->map= array(

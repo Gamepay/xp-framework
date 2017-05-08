@@ -12,7 +12,7 @@
    * @see      php://preg_match
    * @purpose  Iteration Filter
    */
-  class NameMatchesFilter extends Object implements IterationFilter {
+  class NameMatchesFilter extends XPObject implements IterationFilter {
     public
       $pattern= '';
       

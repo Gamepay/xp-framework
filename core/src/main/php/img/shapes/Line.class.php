@@ -20,7 +20,7 @@
    *
    * @see xp://img.Image
    */
-  class Line extends Object implements Drawable {
+  class Line extends XPObject implements Drawable {
     public
       $col=  NULL,
       $x1=   0,

@@ -9,7 +9,7 @@
    *
    * @test    xp://net.xp_framework.unittest.core.types.BooleanTest
    */
-  class Boolean extends Object {
+  class Boolean extends XPObject {
     public static $TRUE, $FALSE;
     public $value = FALSE;
 
@@ -74,7 +74,7 @@
     /**
      * Indicates whether some other object is "equal to" this one.
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool TRUE if the compared object is equal to this object
      */
     public function equals($cmp) {

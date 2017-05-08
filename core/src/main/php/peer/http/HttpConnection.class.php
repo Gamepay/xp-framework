@@ -35,7 +35,7 @@
    * @test     xp://net.xp_framework.unittest.peer.HttpTest
    * @purpose  Provide
    */
-  class HttpConnection extends Object {
+  class HttpConnection extends XPObject {
     protected
       $url          = NULL,
       $transport    = NULL,

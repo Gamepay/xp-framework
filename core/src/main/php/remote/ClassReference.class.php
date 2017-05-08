@@ -10,7 +10,7 @@
    * @see      xp://remote.Serializer
    * @purpose  Class reference
    */
-  class ClassReference extends Object {
+  class ClassReference extends XPObject {
     public 
       $classname = '';
 

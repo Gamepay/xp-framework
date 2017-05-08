@@ -11,7 +11,7 @@
    * @see      xp://peer.news.NntpConnection#getGroups
    * @purpose  Base class
    */
-  class Newsgroup extends Object {
+  class Newsgroup extends XPObject {
     public
       $name         = '',
       $last         = NULL,

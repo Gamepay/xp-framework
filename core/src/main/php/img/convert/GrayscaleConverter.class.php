@@ -31,7 +31,7 @@
    * @see      xp://img.convert.ImageConverter
    * @purpose  Converter
    */
-  class GrayscaleConverter extends Object implements ImageConverter {
+  class GrayscaleConverter extends XPObject implements ImageConverter {
 
     /**
      * Convert an image.

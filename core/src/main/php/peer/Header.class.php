@@ -9,7 +9,7 @@
    *
    * @purpose  Base class for Cookie, Authorization, etc.
    */
-  class Header extends Object {
+  class Header extends XPObject {
     public 
       $name     = '',
       $value    = '';

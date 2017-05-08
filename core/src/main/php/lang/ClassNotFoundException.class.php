@@ -26,7 +26,7 @@
      *
      * @param   string failedClass
      * @param   lang.IClassLoader[] loaders default array()
-     * @param   lang.Throwable cause default NULL
+     * @param   lang.XPThrowable cause default NULL
      */
     public function __construct($failedClass, $loaders= array(), $cause= NULL) {
       parent::__construct(sprintf($this->message(), $failedClass).($cause ? ': '.$cause->getMessage() : ''), $cause);

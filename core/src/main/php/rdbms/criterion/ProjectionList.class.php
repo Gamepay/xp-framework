@@ -42,7 +42,7 @@
    * @see      xp://rdbms.criterion.Projections
    * @purpose  Projections
    */
-  class ProjectionList extends Object implements Projection {
+  class ProjectionList extends XPObject implements Projection {
     protected
       $projections= array();
 

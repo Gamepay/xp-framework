@@ -27,7 +27,7 @@
    * @see      http://ldap.akbkhome.com/syntax/1%2E3%2E6%2E1%2E4%2E1%2E1466%2E115%2E121%2E1%2E24.html
    * @purpose  Parser
    */
-  class DateParser extends Object {
+  class DateParser extends XPObject {
 
     /**
      * Parse a date

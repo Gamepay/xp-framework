@@ -16,7 +16,7 @@
    * @see      xp://io.collections.FileCollection
    * @purpose  Interface
    */
-  class FileElement extends Object implements IOElement {
+  class FileElement extends XPObject implements IOElement {
     public
       $uri= '';
 

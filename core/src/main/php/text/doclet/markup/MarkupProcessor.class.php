@@ -10,7 +10,7 @@
    * @see      xp://text.doclet.markup.MarkupBuilder
    * @purpose  Base class
    */
-  abstract class MarkupProcessor extends Object {
+  abstract class MarkupProcessor extends XPObject {
     
     /**
      * Initializes the processor. Returns an empty string in this default

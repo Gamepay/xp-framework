@@ -9,7 +9,7 @@
    *
    * @purpose  EASC message
    */
-  abstract class EascMessage extends Object {
+  abstract class EascMessage extends XPObject {
     public
       $value  = NULL;
     
@@ -23,7 +23,7 @@
     /**
      * Set Value
      *
-     * @param   lang.Object value
+     * @param   lang.XPObject value
      */
     public function setValue($value) {
       $this->value= $value;
@@ -32,7 +32,7 @@
     /**
      * Get Value
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getValue() {
       return $this->value;

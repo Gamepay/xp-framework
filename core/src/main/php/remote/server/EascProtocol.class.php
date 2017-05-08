@@ -22,7 +22,7 @@
    * @see      reference
    * @purpose  purpose
    */
-  class EascProtocol extends Object implements ServerProtocol {
+  class EascProtocol extends XPObject implements ServerProtocol {
     public
       $serializer  = NULL,
       $context     = NULL,

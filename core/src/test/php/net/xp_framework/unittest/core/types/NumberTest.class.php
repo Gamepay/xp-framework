@@ -10,7 +10,7 @@
     'lang.types.Byte',
     'lang.types.Short',
     'lang.types.Integer',
-    'lang.types.Float',
+    'lang.types.XPFloat',
     'lang.types.Double'
   );
 
@@ -101,13 +101,13 @@
     }
 
     /**
-     * Tests the Float class
+     * Tests the XPFloat class
      *
-     * @see     xp://lang.types.Float
+     * @see     xp://lang.types.XPFloat
      */
     #[@test]
     public function floatType() {
-      $this->testType(new Float(0), 0, 0.0);
+      $this->testType(new XPFloat(0), 0, 0.0);
     }
 
     /**
@@ -118,7 +118,7 @@
     public function differentTypesNotEqual() {
       $this->assertNotEquals(new Integer(1), new Long(1), 'integer = long');
       $this->assertNotEquals(new Byte(1), new Short(1), 'byte = short');
-      $this->assertNotEquals(new Double(1.0), new Float(1.0), 'double = float');
+      $this->assertNotEquals(new Double(1.0), new XPFloat(1.0), 'double = float');
     }
 
     /**

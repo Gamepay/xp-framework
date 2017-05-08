@@ -56,7 +56,7 @@
    * @see      xp://lang.Runnable
    * @purpose  Base class
    */
-  class Thread extends Object {
+  class Thread extends XPObject {
     public
       $name     = '',
       $running  = FALSE;

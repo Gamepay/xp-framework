@@ -31,7 +31,7 @@
    *
    * @purpose  Parser
    */
-  class VFormatParser extends Object {
+  class VFormatParser extends XPObject {
     public
       $identifier   = '',
       $handlers     = array();

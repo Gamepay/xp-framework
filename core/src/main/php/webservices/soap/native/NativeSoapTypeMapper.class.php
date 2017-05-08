@@ -80,7 +80,7 @@
     /**
      * Box string
      *
-     * @param   lang.types.String object
+     * @param   lang.types.XPString object
      * @return  mixed
      */
     protected function boxString($object) {

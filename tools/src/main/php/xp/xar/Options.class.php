@@ -9,7 +9,7 @@
    *
    * @purpose  Constants
    */
-  abstract class Options extends Object {
+  abstract class Options extends XPObject {
     const SIMULATE = 0x0001;
     const VERBOSE  = 0x0002;
   }

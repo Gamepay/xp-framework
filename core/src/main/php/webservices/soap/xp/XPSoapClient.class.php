@@ -20,7 +20,7 @@
    * @test     xp://net.xp_framework.unittest.soap.SoapClientTest
    * @purpose  Generic SOAP client base class
    */
-  class XPSoapClient extends Object implements ISoapClient, Traceable {
+  class XPSoapClient extends XPObject implements ISoapClient, Traceable {
     protected
       $transport          = NULL,
       $encoding           = xp::ENCODING,

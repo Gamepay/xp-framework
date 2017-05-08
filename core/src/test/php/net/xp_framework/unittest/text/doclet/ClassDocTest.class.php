@@ -34,7 +34,7 @@
      */
     #[@test]
     public function name() {
-      $this->assertEquals('Object', $this->root->classNamed('lang.Object')->name());
+      $this->assertEquals('XPObject', $this->root->classNamed('lang.XPObject')->name());
     }
 
     /**
@@ -43,7 +43,7 @@
      */
     #[@test]
     public function qualifiedName() {
-      $this->assertEquals('lang.Object', $this->root->classNamed('lang.Object')->qualifiedName());
+      $this->assertEquals('lang.XPObject', $this->root->classNamed('lang.XPObject')->qualifiedName());
     }
 
     /**
@@ -82,7 +82,7 @@
     public function containingPackage() {
       $this->assertEquals(
         $this->root->packageNamed('lang'),
-        $this->root->classNamed('lang.Object')->containingPackage()
+        $this->root->classNamed('lang.XPObject')->containingPackage()
       );
     }
 
@@ -92,8 +92,8 @@
      */
     #[@test]
     public function sourceFile() {
-      $file= $this->root->classNamed('lang.Object')->sourceFile();
-      $this->assertEquals('Object.class.php', $file->getFilename());
+      $file= $this->root->classNamed('lang.XPObject')->sourceFile();
+      $this->assertEquals('XPObject.class.php', $file->getFilename());
     }
   }
 ?>

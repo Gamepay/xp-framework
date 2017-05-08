@@ -34,7 +34,7 @@
    * The option "-f" will force installation even if prerequisites
    * fail (e.g. PHP version, extensions).
    */
-  class UpgradeAction extends Object {
+  class UpgradeAction extends XPObject {
     const UPGRADE_URL = 'http://releases.xp-framework.net/upgrade/';
     const PROGRESS_INDICATOR_WIDTH= 10;
   

@@ -89,7 +89,7 @@
         $c->connect();
         $c->write("HALT\n");
         $c->close();
-      } catch (Throwable $ignored) {
+      } catch (XPThrowable $ignored) {
         // Fall through, below should terminate the process anyway
       }
       $status= self::$serverProcess->out->readLine();

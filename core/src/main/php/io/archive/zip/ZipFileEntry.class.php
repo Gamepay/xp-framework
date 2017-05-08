@@ -13,7 +13,7 @@
    * @see      xp://io.archive.zip.ZipEntry
    * @purpose  Interface
    */
-  class ZipFileEntry extends Object implements ZipEntry {
+  class ZipFileEntry extends XPObject implements ZipEntry {
     protected 
       $name         = '',
       $size         = 0,

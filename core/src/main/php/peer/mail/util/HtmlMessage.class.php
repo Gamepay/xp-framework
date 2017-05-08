@@ -86,7 +86,7 @@
      * @param   peer.URL source
      * @return  string content id
      * @throws  lang.MethodNotImplementedException in case no loader is present
-     * @throws  lang.Throwable
+     * @throws  lang.XPThrowable
      */
     public function loadImage($source) {
       $scheme= $source->getScheme('file');
@@ -106,7 +106,7 @@
      * as necessary and rewriting the image tags contained within the
      * HTML sourcecode to reference the MIME parts created.
      *
-     * @throws  lang.Throwable
+     * @throws  lang.XPThrowable
      */
     public function prepare() {
       if ($this->_prepared) return;
@@ -154,7 +154,7 @@
      * Return headers as string
      *
      * @return  string headers
-     * @throws  lang.Throwable if prepare() fails
+     * @throws  lang.XPThrowable if prepare() fails
      */
     public function getHeaderString() {
       $this->prepare();        

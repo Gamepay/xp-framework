@@ -5,7 +5,7 @@
  */
  
   uses(
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.Character',
     'io.streams.MemoryOutputStream',
     'io.streams.OutputStream',
@@ -41,7 +41,7 @@
    * @see       http://json.org
    * @purpose   JSON en- and decoder
    */
-  class JsonDecoder extends Object implements IJsonDecoder {
+  class JsonDecoder extends XPObject implements IJsonDecoder {
     protected static $parser= NULL;
   
     static function __static() {
@@ -221,7 +221,7 @@
 
         case 'object': {
           // Converts a string object into an normal json string
-          if ($data instanceof String) {
+          if ($data instanceof XPString) {
             $stream->write('"'.$this->escape((string)$data->getBytes('utf-8')).'"');
             break;
           }

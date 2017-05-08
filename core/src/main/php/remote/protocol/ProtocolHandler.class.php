@@ -26,7 +26,7 @@
      * Look up an object by its name
      *
      * @param   string name
-     * @param   lang.Object
+     * @param   lang.XPObject
      * @throws  remote.RemoteException
      */
     public function lookup($name);

@@ -45,7 +45,7 @@
         $this->assertEquals(-1, $p->exitValue(), 'Process should not have exited yet');
         $this->assertNotEquals(0, $p->getProcessId());
         $this->assertNotEquals('', $p->getFilename());
-        $this->assertTrue(create(new String($p->getCommandLine()))->contains('-v'));
+        $this->assertTrue(create(new XPString($p->getCommandLine()))->contains('-v'));
         $p->close();
       } catch (AssertionFailedError $e) {
         $p->close();    // Ensure process is closed

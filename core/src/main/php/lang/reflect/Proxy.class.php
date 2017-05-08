@@ -15,7 +15,7 @@
    * @purpose  Dynamically create classes
    * @see      http://java.sun.com/j2se/1.5.0/docs/api/java/lang/reflect/Proxy.html
    */
-  class Proxy extends Object {
+  class Proxy extends XPObject {
     const PREFIX = 'Proxy·';
 
     public $_h= NULL;

@@ -32,12 +32,12 @@
    * @see      http://castor.org/xml-mapping.html
    * @purpose  XML databinding
    */
-  class Marshaller extends Object {
+  class Marshaller extends XPObject {
   
     /**
      * Iterate over class methods with @xmlfactory annotation
      *
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      * @param   lang.XPClass class
      * @param   xml.Node node
      * @param   [:var] inject
@@ -129,7 +129,7 @@
     /**
      * Marshal an object to xml
      *
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      * @param   xml.QName qname default NULL
      * @return  string xml
      * @deprecated  Use marshalTo() instead
@@ -159,7 +159,7 @@
      * Marshal an object to xml
      *
      * @param   xml.Node target
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      * @param   [:var] inject
      * @return  xml.Node the given target
      */

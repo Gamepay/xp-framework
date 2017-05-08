@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.text.doclet.ClassIteratorTest
    * @purpose  Iterator
    */
-  class ClassIterator extends Object implements XPIterator {
+  class ClassIterator extends XPObject implements XPIterator {
     public
       $classes = array(),
       $root    = NULL;

@@ -6,7 +6,7 @@
  
   uses(
     'unittest.TestCase',
-    'lang.types.String',
+    'lang.types.XPString',
     'xml.Node'
   );
 
@@ -239,7 +239,7 @@
     public function sourceOfNodeWithStringContent() {
       $this->assertEquals(
         '<node>XP &amp; APC</node>',
-        $this->sourceOf(new Node('node', new String('XP & APC'))) 
+        $this->sourceOf(new Node('node', new XPString('XP & APC'))) 
       );
     }
 
@@ -256,13 +256,13 @@
         "  <name>Name goes here</name>\n".
         "  <__id/>\n".
         "</node>",
-        $this->sourceOf(Node::fromObject(newinstance('lang.Object', array(), '{
+        $this->sourceOf(Node::fromObject(newinstance('lang.XPObject', array(), '{
           public $id= 1549;
           public $color= "green";
           public $name;
 
           public function __construct() {
-            $this->name= new String("Name goes here");
+            $this->name= new XPString("Name goes here");
           } 
         }'), 'node'))
       );

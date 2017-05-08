@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'net.xp_framework.unittest.core.generics.Lookup',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -60,7 +60,7 @@
     #[@test]
     public function newGenericTypeIsGeneric() {
       $t= $this->fixture->newGenericType(array(
-        XPClass::forName('lang.types.String'), 
+        XPClass::forName('lang.types.XPString'), 
         XPClass::forName('unittest.TestCase')
       ));
       $this->assertTrue($t->isGeneric());
@@ -73,7 +73,7 @@
     #[@test]
     public function newLookupWithStringAndTestCase() {
       $arguments= array(
-        XPClass::forName('lang.types.String'), 
+        XPClass::forName('lang.types.XPString'), 
         XPClass::forName('unittest.TestCase')
       );
       $this->assertEquals(
@@ -89,8 +89,8 @@
     #[@test]
     public function newLookupWithStringAndObject() {
       $arguments= array(
-        XPClass::forName('lang.types.String'), 
-        XPClass::forName('lang.Object')
+        XPClass::forName('lang.types.XPString'), 
+        XPClass::forName('lang.XPObject')
       );
       $this->assertEquals(
         $arguments, 
@@ -106,7 +106,7 @@
     public function newLookupWithPrimitiveStringAndObject() {
       $arguments= array(
         Primitive::$STRING,
-        XPClass::forName('lang.Object')
+        XPClass::forName('lang.XPObject')
       );
       $this->assertEquals(
         $arguments, 
@@ -122,9 +122,9 @@
     #[@test]
     public function classesFromReflectionAndCreateAreEqual() {
       $this->assertEquals(
-        create('new net.xp_framework.unittest.core.generics.Lookup<String, TestCase>()')->getClass(),
+        create('new net.xp_framework.unittest.core.generics.Lookup<XPString, TestCase>()')->getClass(),
         $this->fixture->newGenericType(array(
-          XPClass::forName('lang.types.String'), 
+          XPClass::forName('lang.types.XPString'), 
           XPClass::forName('unittest.TestCase')
         ))
       );
@@ -138,11 +138,11 @@
     public function classesCreatedWithDifferentTypesAreNotEqual() {
       $this->assertNotEquals(
         $this->fixture->newGenericType(array(
-          XPClass::forName('lang.types.String'), 
-          XPClass::forName('lang.Object')
+          XPClass::forName('lang.types.XPString'), 
+          XPClass::forName('lang.XPObject')
         )),
         $this->fixture->newGenericType(array(
-          XPClass::forName('lang.types.String'), 
+          XPClass::forName('lang.types.XPString'), 
           XPClass::forName('unittest.TestCase')
         ))
       );

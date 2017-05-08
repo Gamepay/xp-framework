@@ -4,7 +4,7 @@
  * $Id$ 
  */
 
-  uses('lang.Throwable');
+  uses('lang.XPThrowable');
   
   /**
    * Fluent interface for specifying mock expectation.
@@ -23,10 +23,10 @@
     /**
      * Specifies an exception that should be thrown on exectution of that method.
      *
-     * @param   lang.Throwable The exception that should be thrown
+     * @param   lang.XPThrowable The exception that should be thrown
      * @return  IMethodOptions
      */
-    public function throws(Throwable $exception);
+    public function throws(XPThrowable $exception);
     
     /**
      * Specifies the number of returns for that method. -1 for unlimited.

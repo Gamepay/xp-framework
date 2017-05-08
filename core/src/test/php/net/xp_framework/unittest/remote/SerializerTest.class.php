@@ -279,7 +279,7 @@
     #[@test]
     public function valueOfFloat() {
       $this->assertEquals(
-        new Float(1.5),
+        new XPFloat(1.5),
         $this->serializer->valueOf(new SerializedData('f:1.5;'))
       );
     }
@@ -504,7 +504,7 @@
      */
     #[@test]
     public function bestMapping() {
-      $fooClass= ClassLoader::defineClass('net.xp_framework.unittest.remote.FooClass', 'lang.Object', NULL);
+      $fooClass= ClassLoader::defineClass('net.xp_framework.unittest.remote.FooClass', 'lang.XPObject', NULL);
       $barClass= ClassLoader::defineClass('net.xp_framework.unittest.remote.BarClass', 'FooClass', NULL);
       $bazClass= ClassLoader::defineClass('net.xp_framework.unittest.remote.BazClass', 'BarClass', NULL);
       $bazookaClass= ClassLoader::defineClass('net.xp_framework.unittest.remote.BazookaClass', 'BazClass', NULL);

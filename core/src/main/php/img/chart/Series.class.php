@@ -10,7 +10,7 @@
    * @see      xp://img.chart.Chart
    * @purpose  Value object
    */
-  class Series extends Object {
+  class Series extends XPObject {
     public
       $name   = '',
       $values = array();

@@ -11,7 +11,7 @@
    *
    * @purpose  Path condition
    */
-  class PathCondition extends Object implements InterceptorCondition {
+  class PathCondition extends XPObject implements InterceptorCondition {
     protected
       $path = NULL;
 

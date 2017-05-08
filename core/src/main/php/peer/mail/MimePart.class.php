@@ -20,7 +20,7 @@
    * @see      rfc://1521
    * @purpose  Wrap
    */
-  class MimePart extends Object {
+  class MimePart extends XPObject {
     public
       $contenttype      = '',
       $charset          = '',

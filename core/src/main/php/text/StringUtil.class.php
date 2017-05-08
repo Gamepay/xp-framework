@@ -9,7 +9,7 @@
    *
    * @purpose  purpose
    */
-  class StringUtil extends Object {
+  class StringUtil extends XPObject {
   
     /**
      * Delete a specified amount of characters from a string as

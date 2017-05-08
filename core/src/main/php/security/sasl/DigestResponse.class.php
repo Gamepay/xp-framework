@@ -12,7 +12,7 @@
    * @see      rfc://2831
    * @purpose  Challenge Response wrapper
    */
-  class DigestResponse extends Object {
+  class DigestResponse extends XPObject {
     public
       $qop          = '',
       $user         = '',

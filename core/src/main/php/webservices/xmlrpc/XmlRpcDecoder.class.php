@@ -13,7 +13,7 @@
    * @see      http://xmlrpc.com
    * @purpose  Decode XML-RPC data
    */
-  class XmlRpcDecoder extends Object {
+  class XmlRpcDecoder extends XPObject {
   
     /**
      * Decode XML node-set into the data structures they represent

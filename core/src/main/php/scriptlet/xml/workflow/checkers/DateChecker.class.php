@@ -16,7 +16,7 @@
    *
    * @purpose  Checker
    */
-  class DateChecker extends Object {
+  class DateChecker extends XPObject {
 
     /**
      * Check a given value

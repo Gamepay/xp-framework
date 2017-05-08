@@ -8,7 +8,7 @@
     'unittest.TestCase',
     'unittest.TestSuite',
     'util.collections.HashTable',
-    'lang.types.String', 
+    'lang.types.XPString', 
     'lang.types.ArrayList',
     'net.xp_framework.unittest.tests.SimpleTestCase'
   );

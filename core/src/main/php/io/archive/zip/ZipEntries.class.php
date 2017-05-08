@@ -11,7 +11,7 @@
    *
    * @test    xp://net.xp_framework.unittest.io.archive.ZipFileEntriesTest
    */
-  class ZipEntries extends Object implements Iterator {
+  class ZipEntries extends XPObject implements Iterator {
     protected $impl= NULL;
     protected $entry= NULL;
     protected $offset= 0;

@@ -34,7 +34,7 @@
    * @see      rfc://959
    * @purpose  FTP protocol implementation
    */
-  class FtpConnection extends Object implements Traceable {
+  class FtpConnection extends XPObject implements Traceable {
     protected
       $url      = NULL,
       $root     = NULL,

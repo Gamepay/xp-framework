@@ -18,7 +18,7 @@
    * @see      http://www.netrino.com/Publications/Glossary/Endianness.html
    * @purpose  Utility class
    */
-  class ByteOrder extends Object {
+  class ByteOrder extends XPObject {
   
     /**
      * Retrieves the name of a byteorder

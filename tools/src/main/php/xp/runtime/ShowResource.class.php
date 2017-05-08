@@ -19,7 +19,7 @@
    *
    * @purpose  Tool
    */
-  class xp·runtime·ShowResource extends Object {
+  class xp·runtime·ShowResource extends XPObject {
 
     /**
      * Main

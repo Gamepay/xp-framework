@@ -135,7 +135,7 @@
     /**
      * Retrieve map as a PHP hashmap
      *
-     * @return  [:lang.Object]
+     * @return  [:lang.XPObject]
      */
     public function getMap() {
       return $this->map;
@@ -162,7 +162,7 @@
     /**
      * Initialize map to default values
      *
-     * @param   [:lang.Object] map
+     * @param   [:lang.XPObject] map
      */
     final public function setMap($map) {
       $this->map= $map;
@@ -180,7 +180,7 @@
     /**
      * Create a new instance statically
      *
-     * @param   [:lang.Object] map
+     * @param   [:lang.XPObject] map
      * @return  net.xp_framework.unittest.reflection.TestClass
      */
     public static function fromMap(array $map) {
@@ -192,10 +192,10 @@
     /**
      * Retrieve values
      *
-     * @return  util.collections.Vector<lang.Object>
+     * @return  util.collections.Vector<lang.XPObject>
      */
     public function mapValues() {
-      $c= create('new Vector<lang.Object>');
+      $c= create('new Vector<lang.XPObject>');
       $c->addAll(array_values($this->map));
       return $c;
     }
@@ -204,7 +204,7 @@
      * Retrieve values filtered by a given pattern
      *
      * @param   string pattern default NULL
-     * @return  util.collections.Vector<lang.Object>
+     * @return  util.collections.Vector<lang.XPObject>
      */
     public function filterMap($pattern= NULL) {
       // TBI

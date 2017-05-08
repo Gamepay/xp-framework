@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'net.xp_framework.unittest.core.generics.Lookup',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -24,7 +24,7 @@
      *
      */  
     public function setUp() {
-      $this->fixture= create('new net.xp_framework.unittest.core.generics.Lookup<String, TestCase>()');
+      $this->fixture= create('new net.xp_framework.unittest.core.generics.Lookup<XPString, TestCase>()');
     }
   
     /**
@@ -34,7 +34,7 @@
     #[@test]
     public function getClassNameMethod() {
       $this->assertEquals(
-        'net.xp_framework.unittest.core.generics.Lookup<lang.types.String,unittest.TestCase>', 
+        'net.xp_framework.unittest.core.generics.Lookup<lang.types.XPString,unittest.TestCase>', 
         $this->fixture->getClassName()
       );
     }
@@ -47,7 +47,7 @@
     public function nameOfClass() {
       $class= $this->fixture->getClass();
       $this->assertEquals(
-        'net.xp_framework.unittest.core.generics.Lookup<lang.types.String,unittest.TestCase>', 
+        'net.xp_framework.unittest.core.generics.Lookup<lang.types.XPString,unittest.TestCase>', 
         $class->getName()
       );
     }
@@ -60,7 +60,7 @@
     public function simpleNameOfClass() {
       $class= $this->fixture->getClass();
       $this->assertEquals(
-        'Lookup<lang.types.String,unittest.TestCase>', 
+        'Lookup<lang.types.XPString,unittest.TestCase>', 
         $class->getSimpleName()
       );
     }
@@ -115,7 +115,7 @@
     #[@test]
     public function genericArguments() {
       $this->assertEquals(
-        array(XPClass::forName('lang.types.String'), XPClass::forName('unittest.TestCase')),
+        array(XPClass::forName('lang.types.XPString'), XPClass::forName('unittest.TestCase')),
         $this->fixture->getClass()->genericArguments()
       );
     }
@@ -140,7 +140,7 @@
     public function putParameters() {
       $params= $this->fixture->getClass()->getMethod('put')->getParameters();
       $this->assertEquals(2, sizeof($params));
-      $this->assertEquals(XPClass::forName('lang.types.String'), $params[0]->getType());
+      $this->assertEquals(XPClass::forName('lang.types.XPString'), $params[0]->getType());
       $this->assertEquals(XPClass::forName('unittest.TestCase'), $params[1]->getType());
     }
 

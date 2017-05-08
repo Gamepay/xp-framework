@@ -106,7 +106,7 @@
      */
     #[@test]
     public function objectArray() {
-      $this->assertTrue(is('lang.Object[]', array(new Object(), new Object(), new Object())));
+      $this->assertTrue(is('lang.XPObject[]', array(new XPObject(), new XPObject(), new XPObject())));
     }
 
     /**
@@ -115,7 +115,7 @@
      */
     #[@test]
     public function objectArrayWithNull() {
-      $this->assertFalse(is('lang.Object[]', array(new Object(), new Object(), NULL)));
+      $this->assertFalse(is('lang.XPObject[]', array(new XPObject(), new XPObject(), NULL)));
     }
 
     /**
@@ -250,7 +250,7 @@
      */
     #[@test]
     public function shortClassName() {
-      $this->assertTrue(is('Generic', new Object()));
+      $this->assertTrue(is('Generic', new XPObject()));
     }
 
     /**
@@ -260,7 +260,7 @@
     #[@test]
     public function undefinedClassName() {
       $this->assertFalse(class_exists('Undefined_Class', FALSE));
-      $this->assertFalse(is('Undefined_Class', new Object()));
+      $this->assertFalse(is('Undefined_Class', new XPObject()));
     }
 
     /**
@@ -269,7 +269,7 @@
      */
     #[@test]
     public function fullyQualifiedClassName() {
-      $this->assertTrue(is('lang.Generic', new Object()));
+      $this->assertTrue(is('lang.Generic', new XPObject()));
     }
 
     /**
@@ -280,7 +280,7 @@
     public function interfaces() {
       ClassLoader::defineClass(
         'net.xp_framework.unittest.core.DestructionCallbackImpl', 
-        'lang.Object',
+        'lang.XPObject',
         array('net.xp_framework.unittest.core.DestructionCallback'),
         '{
           public function onDestruction($object) { 
@@ -297,7 +297,7 @@
       
       $this->assertTrue(is('net.xp_framework.unittest.core.DestructionCallback', new DestructionCallbackImpl()));
       $this->assertTrue(is('net.xp_framework.unittest.core.DestructionCallback', new DestructionCallbackImplEx()));
-      $this->assertFalse(is('net.xp_framework.unittest.core.DestructionCallback', new Object()));
+      $this->assertFalse(is('net.xp_framework.unittest.core.DestructionCallback', new XPObject()));
     }
 
     /**

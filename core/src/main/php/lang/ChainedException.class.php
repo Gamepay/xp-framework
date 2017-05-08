@@ -7,7 +7,7 @@
   /**
    * Chained Exception
    *
-   * @deprecated Feature has been integrated into lang.Throwable
+   * @deprecated Feature has been integrated into lang.XPThrowable
    */
   class ChainedException extends XPException {
 

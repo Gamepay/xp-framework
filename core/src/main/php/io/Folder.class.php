@@ -24,7 +24,7 @@
    *
    * @test  xp://net.xp_framework.unittest.io.FolderTest
    */
-  class Folder extends Object {
+  class Folder extends XPObject {
     public 
       $uri      = '',
       $dirname  = '',

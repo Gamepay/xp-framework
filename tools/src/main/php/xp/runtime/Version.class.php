@@ -13,7 +13,7 @@
    *
    * @purpose  Tool
    */
-  class xp·runtime·Version extends Object {
+  class xp·runtime·Version extends XPObject {
     
     /**
      * Main

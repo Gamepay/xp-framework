@@ -19,7 +19,7 @@
    * @see      xp://io.archive.zip.ZipArchive#create
    * @purpose  Write to a zip archive
    */
-  class ZipArchiveWriter extends Object {
+  class ZipArchiveWriter extends XPObject {
     protected
       $stream   = NULL,
       $dir      = array(), 

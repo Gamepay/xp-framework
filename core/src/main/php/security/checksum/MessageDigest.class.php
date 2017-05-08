@@ -34,7 +34,7 @@
    * @test     xp://net.xp_framework.unittest.security.checksum.MessageDigestTest
    * @see      xp://security.checksum.DefaultDigestImpl
    */
-  class MessageDigest extends Object {
+  class MessageDigest extends XPObject {
     protected static $implementations= array();
     
     /**

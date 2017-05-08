@@ -20,7 +20,7 @@
    * @see     xp://rdbms.pgsql.PostgresqlConnection
    * @purpose Format database query strings
    */
-  class StatementFormatter extends Object {
+  class StatementFormatter extends XPObject {
     public
       $dialect = NULL,
       $conn    = NULL;

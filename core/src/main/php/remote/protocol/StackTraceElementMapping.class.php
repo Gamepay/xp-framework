@@ -12,7 +12,7 @@
    * @see      xp://remote.protocol.Serializer
    * @purpose  Mapping
    */
-  class StackTraceElementMapping extends Object implements SerializerMapping {
+  class StackTraceElementMapping extends XPObject implements SerializerMapping {
 
     /**
      * Returns a value for the given serialized string
@@ -46,7 +46,7 @@
      * Returns an on-the-wire representation of the given value
      *
      * @param   server.protocol.Serializer serializer
-     * @param   lang.Object value
+     * @param   lang.XPObject value
      * @param   [:var] context default array()
      * @return  string
      */

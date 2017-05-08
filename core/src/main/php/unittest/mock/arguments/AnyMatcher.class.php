@@ -10,7 +10,7 @@
    * Trivial argument matcher, that just returns true.
    *
    */
-  class AnyMatcher extends Object implements IArgumentMatcher {
+  class AnyMatcher extends XPObject implements IArgumentMatcher {
 
     /**
      * Trivial matches implementations.

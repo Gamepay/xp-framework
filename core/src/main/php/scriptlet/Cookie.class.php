@@ -29,7 +29,7 @@
    * @test     xp://net.xp_framework.unittest.scriptlet.CookieTest
    * @purpose  Cookie header
    */
-  class Cookie extends Object {
+  class Cookie extends XPObject {
     public 
       $name         = '',
       $value        = '',

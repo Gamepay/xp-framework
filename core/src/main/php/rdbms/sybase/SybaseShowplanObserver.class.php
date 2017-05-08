@@ -13,7 +13,7 @@
    * @ext      sybase
    * @purpose  Observe SybaseConnection
    */
-  class SybaseShowplanObserver extends Object implements BoundLogObserver {
+  class SybaseShowplanObserver extends XPObject implements BoundLogObserver {
     protected
       $messages     = array(),
       $queries      = array();

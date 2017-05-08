@@ -8,7 +8,7 @@
     'unittest.TestCase',
     'xml.Tree',
     'xml.XPath',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -223,14 +223,14 @@
      */
     #[@test]
     public function queryTreeWithEncoding() {
-      $value= new String('value öäü', 'iso-8859-1');
+      $value= new XPString('value öäü', 'iso-8859-1');
       $xpath= new XPath(Tree::fromString(sprintf(
         '<?xml version="1.0" encoding="iso-8859-1"?>'.
         '<document><node>%s</node></document>',
         $value->getBytes('iso-8859-1')
       )));
 
-      $this->assertEquals($value, new String($xpath->query('string(/document/node)'), 'utf-8'));
+      $this->assertEquals($value, new XPString($xpath->query('string(/document/node)'), 'utf-8'));
     }
     
     /**
@@ -239,13 +239,13 @@
      */
     #[@test]
     public function queryTreeWithDefaultEncoding() {
-      $value= new String('value Ã¶Ã¤Ã¼', 'utf-8');
+      $value= new XPString('value Ã¶Ã¤Ã¼', 'utf-8');
       $xpath= new XPath($s= sprintf(
         '<document><node>%s</node></document>',
         $value->getBytes('utf-8')
       ));
 
-      $this->assertEquals($value, new String($xpath->query('string(/document/node)'), 'utf-8'));
+      $this->assertEquals($value, new XPString($xpath->query('string(/document/node)'), 'utf-8'));
     }
   }
 ?>

@@ -141,7 +141,7 @@
    *
    * @purpose  Constants
    */
-  class IRCConstants extends Object {
+  class IRCConstants extends XPObject {
   
     /**
      * Get the name of a code

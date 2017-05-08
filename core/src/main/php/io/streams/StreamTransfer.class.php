@@ -21,7 +21,7 @@
    *
    * @test    xp://net.xp_framework.unittest.io.streams.StreamTransferTest
    */
-  class StreamTransfer extends Object implements Closeable {
+  class StreamTransfer extends XPObject implements Closeable {
     protected $in= NULL;
     protected $out= NULL;
     

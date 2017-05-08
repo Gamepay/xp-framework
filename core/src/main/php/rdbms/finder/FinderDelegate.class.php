@@ -10,7 +10,7 @@
    * Abstract base class for finder delegates
    *
    */
-  abstract class FinderDelegate extends Object {
+  abstract class FinderDelegate extends XPObject {
     protected $finder= NULL;
 
     /**

@@ -13,7 +13,7 @@
    * @see      xp://webservices.soap.xp.XPSoapClient
    * @purpose  Mapping for QNames
    */
-  class XPSoapMapping extends Object {
+  class XPSoapMapping extends XPObject {
     public
       $_classes     = array(),
       $_qnames      = array(),

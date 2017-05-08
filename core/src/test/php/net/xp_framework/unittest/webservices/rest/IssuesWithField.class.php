@@ -10,7 +10,7 @@
    * Issues
    *
    */
-  class net·xp_framework·unittest·webservices·rest·IssuesWithField extends Object {
+  class net·xp_framework·unittest·webservices·rest·IssuesWithField extends XPObject {
     #[@type('net.xp_framework.unittest.webservices.rest.IssueWithField[]')]
     public $issues= NULL;
 

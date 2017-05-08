@@ -9,7 +9,7 @@
    *
    * @see   xp://rdbms.DefaultDrivers
    */
-  abstract class DriverImplementationsProvider extends Object {
+  abstract class DriverImplementationsProvider extends XPObject {
     protected $parent= NULL;
 
     /**

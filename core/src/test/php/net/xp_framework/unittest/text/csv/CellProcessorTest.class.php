@@ -215,7 +215,7 @@
       $this->newWriter()->withProcessors(array(
         new FormatDate('Y-m-d H:i'),
         NULL
-      ))->write(array(new Object(), 'Order placed'));
+      ))->write(array(new XPObject(), 'Order placed'));
     }
 
     /**
@@ -451,7 +451,7 @@
       $this->newWriter()->withProcessors(array(
         NULL,
         new FormatEnum()
-      ))->write(array('200', new Object()));
+      ))->write(array('200', new XPObject()));
     }
 
     /**

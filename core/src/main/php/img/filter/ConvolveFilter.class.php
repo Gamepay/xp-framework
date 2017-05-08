@@ -13,7 +13,7 @@
    * @see      php://imageconvolution  
    * @purpose  Filter implementation
    */
-  class ConvolveFilter extends Object implements ImageFilter {
+  class ConvolveFilter extends XPObject implements ImageFilter {
     public
       $kernel   = NULL,
       $divisor  = 0.0,

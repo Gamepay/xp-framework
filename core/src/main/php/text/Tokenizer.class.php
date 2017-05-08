@@ -13,7 +13,7 @@
    * @see      php://strtok
    * @purpose  Abstract base class
    */
-  abstract class Tokenizer extends Object implements IteratorAggregate {
+  abstract class Tokenizer extends XPObject implements IteratorAggregate {
     public 
       $delimiters   = '',
       $returnDelims = FALSE;

@@ -14,7 +14,7 @@
    * @test     xp://net.xp_framework.unittest.peer.ftp.FtpEntryListTest
    * @purpose  Abstract base class
    */
-  abstract class FtpEntry extends Object {
+  abstract class FtpEntry extends XPObject {
     protected
       $connection   = NULL,
       $name         = '',

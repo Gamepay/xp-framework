@@ -48,7 +48,7 @@
    * @see      rfc://977
    * @purpose  Base class
    */
-  class NntpReply extends Object {
+  class NntpReply extends XPObject {
   
     /**
      * Check if a status code is informational.

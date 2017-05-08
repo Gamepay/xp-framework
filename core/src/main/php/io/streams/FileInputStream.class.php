@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.FileInputStreamTest
    * @purpose  InputStream implementation
    */
-  class FileInputStream extends Object implements InputStream, Seekable {
+  class FileInputStream extends XPObject implements InputStream, Seekable {
     protected
       $file= NULL;
     

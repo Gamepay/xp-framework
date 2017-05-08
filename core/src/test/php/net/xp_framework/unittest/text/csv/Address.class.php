@@ -10,7 +10,7 @@
    * Address value object
    *
    */
-  class net·xp_framework·unittest·text·csv·Address extends Object {
+  class net·xp_framework·unittest·text·csv·Address extends XPObject {
     public 
       $name   = '', 
       $city   = '',

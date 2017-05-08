@@ -11,7 +11,7 @@
    *
    * @purpose  Certificate base class
    */
-  class Certificate extends Object {
+  class Certificate extends XPObject {
   
   }
 ?>

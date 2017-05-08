@@ -11,7 +11,7 @@
    * @see      http://news.xp-framework.net/article/187/2007/05/12/
    * @purpose  Reflection
    */
-  class Package extends Object {
+  class Package extends XPObject {
     protected
       $name= '';
 

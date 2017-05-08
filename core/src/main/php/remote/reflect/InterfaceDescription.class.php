@@ -12,7 +12,7 @@
    * @see      xp://remote.Remote
    * @purpose  Reflection
    */
-  class InterfaceDescription extends Object {
+  class InterfaceDescription extends XPObject {
     public 
       $className = '',
       $methods   = NULL;

@@ -17,7 +17,7 @@
    *
    * @purpose  Base Instruction
    */
-  abstract class AbstractInstruction extends Object {
+  abstract class AbstractInstruction extends XPObject {
     protected
       $out        = NULL,
       $err        = NULL,

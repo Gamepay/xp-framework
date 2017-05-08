@@ -36,7 +36,7 @@
    * @see      xp://webservices.xmlrpc.XmlRpcClient
    * @purpose  Represent message
    */
-  class XmlRpcMessage extends Object implements AbstractRpcMessage {
+  class XmlRpcMessage extends XPObject implements AbstractRpcMessage {
     public
       $tree = NULL;
 

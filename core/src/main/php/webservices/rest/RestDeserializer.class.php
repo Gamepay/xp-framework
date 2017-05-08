@@ -8,7 +8,7 @@
    * Deserializer abstract base class
    *
    */
-  abstract class RestDeserializer extends Object {
+  abstract class RestDeserializer extends XPObject {
 
     /**
      * Calculate variants of a given name

@@ -33,7 +33,7 @@
    *
    * @see xp://img.Image
    */
-  class Polygon extends Object implements Drawable {
+  class Polygon extends XPObject implements Drawable {
     public
       $col=     NULL,
       $points=  array(),

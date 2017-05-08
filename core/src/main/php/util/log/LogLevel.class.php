@@ -11,7 +11,7 @@
    * @test     xp://net.xp_framework.unittest.logging.LogLevelTest
    * @purpose  Constants
    */
-  abstract class LogLevel extends Object {
+  abstract class LogLevel extends XPObject {
     const 
       INFO  = 0x0001,
       WARN  = 0x0002,

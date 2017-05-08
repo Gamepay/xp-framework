@@ -19,7 +19,7 @@
    * @see      xp://unittest.TestSuite
    * @purpose  Wrapper class
    */
-  class TestResult extends Object {
+  class TestResult extends XPObject {
     public
       $succeeded    = array(),
       $failed       = array(),

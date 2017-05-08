@@ -15,7 +15,7 @@
    *
    * @purpose  Authenticator
    */
-  class HtpasswdAuthenticator extends Object implements Authenticator {
+  class HtpasswdAuthenticator extends XPObject implements Authenticator {
     public
       $_modified = 0,
       $_file     = NULL,

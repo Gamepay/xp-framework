@@ -11,7 +11,7 @@
    *
    */
   #[@attribute(key= 'value']
-  class net·xp_framework·unittest·annotations·UnmatchedBracket extends Object {
+  class net·xp_framework·unittest·annotations·UnmatchedBracket extends XPObject {
     
   }
 ?>

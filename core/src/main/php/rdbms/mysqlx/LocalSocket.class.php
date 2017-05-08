@@ -17,7 +17,7 @@
    *
    * @see     http://dev.mysql.com/doc/refman/5.1/en/option-files.html
    */
-  abstract class LocalSocket extends Object {
+  abstract class LocalSocket extends XPObject {
 
     /**
      * Returns the implementation for the given operating system.

@@ -28,7 +28,7 @@
    * @test     xp://net.xp_framework.unittest.rdbms.StatementTest
    * @purpose  Expression
    */
-  class Statement extends Object implements SQLExpression {
+  class Statement extends XPObject implements SQLExpression {
     public
       $arguments = array();
 

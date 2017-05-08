@@ -12,7 +12,7 @@
    * @ext      posix
    * @purpose  StorageElement
    */
-  class FilesystemStorageElement extends Object implements StorageElement {
+  class FilesystemStorageElement extends XPObject implements StorageElement {
     public
       $path = NULL,
       $f    = NULL,

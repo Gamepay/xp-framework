@@ -72,7 +72,7 @@
 
       $this->add($archive, $this->classname, '
         uses("util.Comparator", "'.$this->interfacename.'");
-        class '.$this->classname.' extends Object implements '.$this->interfacename.', Comparator { 
+        class '.$this->classname.' extends XPObject implements '.$this->interfacename.', Comparator { 
           public function compare($a, $b) {
             return strcmp($a, $b);
           }

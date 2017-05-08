@@ -74,7 +74,7 @@
     public function differentStrings() {
       $this->assertMessageEquals(
         'expected [abc] but was [] using: \'equals\'',
-        new AssertionFailedError('equals', new String(''), new String('abc'))
+        new AssertionFailedError('equals', new XPString(''), new XPString('abc'))
       );
     }
 
@@ -97,8 +97,8 @@
     #[@test]
     public function stringAndStringPrimitive() {
       $this->assertMessageEquals(
-        'expected [lang.types.String:] but was [string:""] using: \'equals\'',
-        new AssertionFailedError('equals', '', new String(''))
+        'expected [lang.types.XPString:] but was [string:""] using: \'equals\'',
+        new AssertionFailedError('equals', '', new XPString(''))
       );
     }
 
@@ -110,7 +110,7 @@
     public function differentTypes() {
       $this->assertMessageEquals(
         'expected [] but was [net.xp_framework.unittest.tests.AssertionMessagesTest<differentTypes>] using: \'equals\'',
-        new AssertionFailedError('equals', $this, new String(''))
+        new AssertionFailedError('equals', $this, new XPString(''))
       );
     }
 

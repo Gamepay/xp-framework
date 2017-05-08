@@ -65,7 +65,7 @@
    * @test     xp://net.xp_framework.unittest.peer.LDAPTest
    * @purpose  LDAP client
    */
-  class LDAPClient extends Object {
+  class LDAPClient extends XPObject {
     public 
       $host,
       $port;

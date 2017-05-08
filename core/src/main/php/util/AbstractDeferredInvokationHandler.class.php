@@ -11,14 +11,14 @@
    *
    * @purpose  proxy
    */
-  class AbstractDeferredInvokationHandler extends Object implements InvocationHandler {
+  class AbstractDeferredInvokationHandler extends XPObject implements InvocationHandler {
     public
       $_instance = NULL;
 
     /**
      * Lazy initialization callback
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function initialize() { }
 
@@ -36,7 +36,7 @@
       if (!isset($this->_instance)) {
         try {
           $this->_instance= $this->initialize();
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           $this->_instance= NULL;
           throw new DeferredInitializationException($method, $e);
         }

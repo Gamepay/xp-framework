@@ -17,7 +17,7 @@
    * @see      rfc://1642
    * @purpose  UTF encoder / decoder
    */
-  class UTF7 extends Object {
+  class UTF7 extends XPObject {
   
     /**
      * Encode string

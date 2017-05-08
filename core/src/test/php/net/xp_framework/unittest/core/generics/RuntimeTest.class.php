@@ -9,7 +9,7 @@
   uses(
     'unittest.TestCase',
     'net.xp_framework.unittest.core.generics.Lookup',
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.Integer'
   );
 
@@ -27,7 +27,7 @@
      *
      */  
     public function setUp() {
-      $this->fixture= create('new net.xp_framework.unittest.core.generics.Lookup<String, TestCase>()');
+      $this->fixture= create('new net.xp_framework.unittest.core.generics.Lookup<XPString, TestCase>()');
     }
   
     /**
@@ -36,7 +36,7 @@
      */
     #[@test]
     public function putStringAndThis() {
-      $this->fixture->put(new String($this->name), $this);
+      $this->fixture->put(new XPString($this->name), $this);
     }
 
     /**
@@ -45,7 +45,7 @@
      */
     #[@test]
     public function putAndGetRoundTrip() {
-      $key= new String($this->name);
+      $key= new XPString($this->name);
       $this->fixture->put($key, $this);
       $this->assertEquals($this, $this->fixture->get($key));
     }
@@ -65,7 +65,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function valueTypeIncorrect() {
-      $this->fixture->put(new String($this->name), new Object());
+      $this->fixture->put(new XPString($this->name), new XPObject());
     }
   }
 ?>

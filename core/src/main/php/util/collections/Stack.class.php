@@ -19,10 +19,10 @@
    *   
    *   // Fill stack
    *   with ($s= new Stack()); {
-   *     $s->push(new String('One'));
-   *     $s->push(new String('Two'));
-   *     $s->push(new String('Three'));
-   *     $s->push(new String('Four'));
+   *     $s->push(new XPString('One'));
+   *     $s->push(new XPString('Two'));
+   *     $s->push(new XPString('Three'));
+   *     $s->push(new XPString('Four'));
    *   }
    *   
    *   // Empty stack
@@ -39,7 +39,7 @@
    * @see      http://java.sun.com/j2se/1.4.2/docs/api/java/util/Stack.html 
    */
   #[@generic(self= 'T')]
-  class Stack extends Object {
+  class Stack extends XPObject {
     protected
       $_elements = array(),
       $_hash     = 0;

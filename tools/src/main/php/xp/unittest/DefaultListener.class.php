@@ -16,7 +16,7 @@
    * ----------------
    * Only shows details for failed tests. This listener has no options.
    */
-  class DefaultListener extends Object implements TestListener, ColorizingListener {
+  class DefaultListener extends XPObject implements TestListener, ColorizingListener {
     const OUTPUT_WIDTH  = 72;
 
     public $out= NULL;

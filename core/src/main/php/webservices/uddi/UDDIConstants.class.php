@@ -25,7 +25,7 @@
    *
    * @purpose  Constants and utility methods for these
    */
-  class UDDIConstants extends Object {
+  class UDDIConstants extends XPObject {
 
     /**
      * Retrieve namespace for a specified version

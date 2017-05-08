@@ -12,7 +12,7 @@
    * @purpose  Add power to an application
    * @see      http://www.binford.de/
    */
-  class Binford extends Object { 
+  class Binford extends XPObject { 
     public 
       $poweredBy= 0;
 

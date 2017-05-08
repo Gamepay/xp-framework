@@ -11,7 +11,7 @@
    *
    * @see   xp://io.archive.zip.ZipCipher
    */
-  class DecipheringInputStream extends Object implements InputStream {
+  class DecipheringInputStream extends XPObject implements InputStream {
     protected $in= NULL;
     protected $cipher= NULL;
 

@@ -18,7 +18,7 @@
    * @see      xp://rdbms.finder.Finder
    * @purpose  Method wrapper
    */
-  class FinderMethod extends Object {
+  class FinderMethod extends XPObject {
     protected
       $finder= NULL, 
       $method= NULL;
@@ -85,7 +85,7 @@
     public function invoke($args= array()) {
       try {
         return $this->method->invoke($this->finder, $args);
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         throw new FinderException($this->method->getName().' invocation failed', $e);
       }
     }

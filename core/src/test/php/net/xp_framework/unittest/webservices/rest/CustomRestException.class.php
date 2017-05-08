@@ -18,7 +18,7 @@
      * Creates a new custom error
      * 
      * @param   [:var] details
-     * @param   lang.Throwable cause
+     * @param   lang.XPThrowable cause
      */
     public function __construct($details, $cause= NULL) {
       parent::__construct($details['server.message'], $cause);

@@ -9,7 +9,7 @@
    *
    * @see      xp://security.checksum.MessageDigest
    */
-  abstract class MessageDigestImpl extends Object {
+  abstract class MessageDigestImpl extends XPObject {
     protected $finalized= FALSE;
 
     /**

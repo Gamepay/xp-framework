@@ -25,7 +25,7 @@
    * @see      xp://io.collections.iterate.FilteredIOCollectionIterator
    * @purpose  Iterator
    */
-  class IOCollectionIterator extends Object implements XPIterator, IteratorAggregate {
+  class IOCollectionIterator extends XPObject implements XPIterator, IteratorAggregate {
     public
       $collections = array(),
       $recursive   = FALSE;

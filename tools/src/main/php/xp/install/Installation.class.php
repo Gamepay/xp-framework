@@ -15,7 +15,7 @@
    * @see      reference
    * @purpose  purpose
    */
-  class Installation extends Object {
+  class Installation extends XPObject {
     protected $base;
     protected $cl= array();
     

@@ -12,7 +12,7 @@
    * @see      xp://io.collections.IOCollection
    * @purpose  Mock object
    */
-  class MockCollection extends Object implements IOCollection {
+  class MockCollection extends XPObject implements IOCollection {
     protected
       $uri       = '',
       $_elements = array(),

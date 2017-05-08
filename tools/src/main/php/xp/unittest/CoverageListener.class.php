@@ -16,7 +16,7 @@
    *
    * @purpose  TestListener
    */
-  class CoverageListener extends Object implements TestListener {
+  class CoverageListener extends XPObject implements TestListener {
 
     private
       $paths    = array(),

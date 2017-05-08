@@ -10,7 +10,7 @@
    * Represents a decimal value.
    *
    */
-  class SOAPDecimal extends Object implements SoapType {
+  class SOAPDecimal extends XPObject implements SoapType {
     public
       $decimal;
       

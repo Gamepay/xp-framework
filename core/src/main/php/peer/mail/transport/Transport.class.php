@@ -11,7 +11,7 @@
    *
    * @purpose  Provide an interface
    */
-  abstract class Transport extends Object implements Traceable {
+  abstract class Transport extends XPObject implements Traceable {
     public
       $cat    = NULL;
 

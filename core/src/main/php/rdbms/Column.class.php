@@ -20,7 +20,7 @@
    *   $criteria= create(new Criteria())->add($col->equal(5));
    * </code>
    */
-  class Column extends Object implements SQLFragment {
+  class Column extends XPObject implements SQLFragment {
     
     private
       $peer= NULL,

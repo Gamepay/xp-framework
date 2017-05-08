@@ -11,7 +11,7 @@
    *
    * @see   http://forge.mysql.com/wiki/MySQL_Internals_ClientServer_Protocol
    */
-  class MySqlxProtocol extends Object {
+  class MySqlxProtocol extends XPObject {
     protected $pkt= 0;
     protected $sock= NULL;
     public $connected= FALSE;

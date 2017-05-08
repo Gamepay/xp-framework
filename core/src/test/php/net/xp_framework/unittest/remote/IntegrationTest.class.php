@@ -86,7 +86,7 @@
         $s->connect();
         $s->write(pack('Nc4Na*', DEFAULT_PROTOCOL_MAGIC_NUMBER, 1, 0, 61, FALSE, 0, NULL));
         $s->close();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         // Fall through, below should terminate the process anyway
       }
 
@@ -185,7 +185,7 @@
      * Test calling a method
      *
      */
-    #[@test, @expect(class = 'lang.Error', withMessage= '/Call to undefined method .+::doesNotExist()/')]
+    #[@test, @expect(class = 'lang.XPError', withMessage= '/Call to undefined method .+::doesNotExist()/')]
     public function callNonExistantMethod() {
       $this->remote->lookup('xp/test/Calculator')->doesNotExist();
     }

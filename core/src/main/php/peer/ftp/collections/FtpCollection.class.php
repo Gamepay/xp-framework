@@ -16,7 +16,7 @@
    * @test     xp://net.xp_framework.unittest.peer.ftp.FtpCollectionsTest
    * @purpose  IOCollection implementation
    */
-  class FtpCollection extends Object implements IOCollection {
+  class FtpCollection extends XPObject implements IOCollection {
     protected 
       $dir    = NULL,
       $origin = NULL;

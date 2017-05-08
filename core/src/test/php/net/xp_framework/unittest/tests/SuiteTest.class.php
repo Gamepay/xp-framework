@@ -65,7 +65,7 @@
      */    
     #[@test, @expect('lang.IllegalArgumentException')]
     public function addNonTest() {
-      $this->suite->addTest(new Object());
+      $this->suite->addTest(new XPObject());
     }
 
     /**
@@ -74,7 +74,7 @@
      */    
     #[@test, @expect('lang.IllegalArgumentException')]
     public function runNonTest() {
-      $this->suite->runTest(new Object());
+      $this->suite->runTest(new XPObject());
     }
 
     /**
@@ -152,7 +152,7 @@
      */    
     #[@test, @expect('lang.IllegalArgumentException')]
     public function addingANonTestClass() {
-      $this->suite->addTestClass(XPClass::forName('lang.Object'));
+      $this->suite->addTestClass(XPClass::forName('lang.XPObject'));
     }    
 
     /**

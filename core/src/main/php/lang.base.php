@@ -107,7 +107,7 @@
         return $arg ? 'true' : 'false';
       } else if (is_null($arg)) {
         return 'null';
-      } else if ($arg instanceof null) {
+      } else if ($arg instanceof xpnull) {
         return '<null>';
       } else if (is_int($arg) || is_float($arg)) {
         return (string)$arg;
@@ -168,7 +168,7 @@
     }
     // }}}
 
-    // {{{ public <null> null()
+    // {{{ public <xpnull> null()
     //     Runs a fatal-error safe version of NULL
     static function null() {
       return xp::$registry['null'];
@@ -267,7 +267,7 @@
       static $version= NULL;
 
       if (NULL === $version) {
-        $version= trim(XPClass::forName('lang.Object')->getClass()->getClassLoader()->getResource('VERSION'));
+        $version= trim(XPClass::forName('lang.XPObject')->getClass()->getClassLoader()->getResource('VERSION'));
       }
       return $version;
     }
@@ -275,8 +275,8 @@
   }
   // }}}
 
-  // {{{ final class null
-  class null {
+  // {{{ final class xpnull
+  class xpnull {
 
     // {{{ public object __construct(void)
     //     Constructor to avoid magic __call invokation
@@ -326,16 +326,27 @@
     //     Archive instance handling pool function, opens an archive and reads header only once
     static function acquire($archive) {
       static $archives= array();
-      static $unpack= array(
-        1 => 'a80id/a80*filename/a80*path/V1size/V1offset/a*reserved',
-        2 => 'a240id/V1size/V1offset/a*reserved'
-      );
+      static $unpack= array();
+      if (version_compare(PHP_VERSION, '5.5.0-dev', '>=')) {
+        // unpack-format after PHP 5.5
+        $unpack[1]= 'Z80id/Z80*filename/Z80*path/V1size/V1offset/Z*reserved';
+        $unpack[2]= 'Z240id/V1size/V1offset/Z*reserved';
+      } else {
+        // unpack-format before PHP 5.5
+        $unpack[1]= 'a80id/a80*filename/a80*path/V1size/V1offset/a*reserved';
+        $unpack[2]= 'a240id/V1size/V1offset/a*reserved';
+      }
       
       if (!isset($archives[$archive])) {
         $archives[$archive]= array();
         $current= &$archives[$archive];
         $current['handle']= fopen($archive, 'rb');
-        $header= unpack('a3id/c1version/V1indexsize/a*reserved', fread($current['handle'], 0x0100));
+        $headerFormat= 'a3id/c1version/V1indexsize/a*reserved';
+        if (version_compare(PHP_VERSION, '5.5.0-dev', '>=')) {
+          // unpack format after PHP 5.5
+          $headerFormat= 'Z3id/c1version/V1indexsize/Z*reserved';
+        }
+        $header= unpack($headerFormat, fread($current['handle'], 0x0100));
         if ('CCA' != $header['id']) raise('lang.FormatException', 'Malformed archive '.$archive);
         for ($current['index']= array(), $i= 0; $i < $header['indexsize']; $i++) {
           $entry= unpack(
@@ -523,7 +534,7 @@
   //     Checks whether a given object is an instance of the type given
   function is($type, $object) {
     if (NULL === $type) {
-      return $object instanceof null;
+      return $object instanceof xpnull;
     } else if ('int' === $type) {
       return is_int($object);
     } else if ('double' === $type) {
@@ -555,7 +566,7 @@
   }
   // }}}
 
-  // {{{ proto void delete(&lang.Object object)
+  // {{{ proto void delete(&lang.XPObject object)
   //     Destroys an object
   function delete(&$object) {
     $object= NULL;
@@ -589,7 +600,7 @@
   }
   // }}}
   
-  // {{{ proto lang.Object newinstance(string spec, var[] args, string bytes)
+  // {{{ proto lang.XPObject newinstance(string spec, var[] args, string bytes)
   //     Anonymous instance creation
   function newinstance($spec, $args, $bytes) {
     static $u= 0;
@@ -603,7 +614,7 @@
       FALSE === strrpos($spec, '.') && $spec= xp::nameOf($spec);
       $type= xp::reflect($spec);
       if (!class_exists($type, FALSE) && !interface_exists($type, FALSE)) {
-        xp::error(xp::stringOf(new Error('Class "'.$spec.'" does not exist')));
+        xp::error(xp::stringOf(new XPError('Class "'.$spec.'" does not exist')));
         // Bails
       }
       $p= strrpos($type, '·');
@@ -629,7 +640,7 @@
     // Checks whether an interface or a class was given
     $cl= DynamicClassLoader::instanceFor(__FUNCTION__);
     if (interface_exists($type)) {
-      $cl->setClassBytes($spec, $ns.'class '.$decl.' extends Object implements '.$type.' '.$bytes);
+      $cl->setClassBytes($spec, $ns.'class '.$decl.' extends XPObject implements '.$type.' '.$bytes);
     } else {
       $cl->setClassBytes($spec, $ns.'class '.$decl.' extends '.$type.' '.$bytes);
     }
@@ -661,7 +672,7 @@
     // so that the constructur can already use generic types.
     $class= XPClass::forName(strstr($base, '.') ? $base : xp::nameOf($base));
     if ($class->hasField('__generic')) {
-      $__id= microtime();
+      $__id= microtime().' '.spl_object_hash(new stdClass());
       $name= $class->literal();
       $instance= unserialize('O:'.strlen($name).':"'.$name.'":1:{s:4:"__id";s:'.strlen($__id).':"'.$__id.'";}');
       foreach ($typeargs as $type) {
@@ -715,7 +726,7 @@
   function __load($class) {
     $name= strtr($class, '\\', '.');
     $cl= xp::$registry['loader']->findClass($name);
-    if ($cl instanceof null) return FALSE;
+    if ($cl instanceof xpnull) return FALSE;
 
     $decl= $cl->loadClass0($name);
     strstr($decl, '\\') || class_alias($decl, $class);
@@ -740,7 +751,7 @@
   ini_set('magic_quotes_runtime', FALSE);
   
   // Registry initialization
-  xp::$registry['null']= new null();
+  xp::$registry['null']= new xpnull();
   xp::$registry['loader']= new xp();
   xp::$registry['classpath']= explode(PATH_SEPARATOR, get_include_path());
 
@@ -749,8 +760,8 @@
 
   // Omnipresent classes
   uses(
-    'lang.Object',
-    'lang.Error',
+    'lang.XPObject',
+    'lang.XPError',
     'lang.XPException',
     'lang.XPClass',
     'lang.NullPointerException',

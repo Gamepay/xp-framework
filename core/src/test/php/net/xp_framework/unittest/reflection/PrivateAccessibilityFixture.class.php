@@ -9,7 +9,7 @@
    *
    * @see      xp://net.xp_framework.unittest.reflection.PrivateAccessibilityTest
    */
-  class PrivateAccessibilityFixture extends Object {
+  class PrivateAccessibilityFixture extends XPObject {
     private $target= 'Target';
     private static $staticTarget= 'Target';
 

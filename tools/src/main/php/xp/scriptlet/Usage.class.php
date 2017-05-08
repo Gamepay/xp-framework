@@ -10,7 +10,7 @@
    * Scriptlet usage
    *
    */
-  class xp·scriptlet·Usage extends Object {
+  class xp·scriptlet·Usage extends XPObject {
 
     /**
      * Entry point method

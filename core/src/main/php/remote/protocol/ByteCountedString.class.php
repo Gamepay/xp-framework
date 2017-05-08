@@ -27,7 +27,7 @@
    * 
    * @test  xp://net.xp_framework.unittest.remote.ByteCountedStringTest
    */
-  class ByteCountedString extends Object {
+  class ByteCountedString extends XPObject {
     public
       $string= '';
       

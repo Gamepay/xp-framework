@@ -14,7 +14,7 @@
    * @see      http://www.w3.org/TR/xmlschema-2/#dateTime
    * @purpose  DateTime type
    */
-  class SOAPDateTime extends Object implements SoapType {
+  class SOAPDateTime extends XPObject implements SoapType {
     public
       $value= NULL;
       

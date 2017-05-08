@@ -13,7 +13,7 @@
    *
    * @purpose  Tool
    */
-  class xp·runtime·Reflect extends Object {
+  class xp·runtime·Reflect extends XPObject {
   
     /**
      * Gets class name (and generic components if this class is a 

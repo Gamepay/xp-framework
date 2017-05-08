@@ -91,12 +91,12 @@
     }
 
     /**
-     * Test lang.Object
+     * Test lang.XPObject
      *
      */
     #[@test]
     public function objectType() {
-      $this->assertEquals(XPClass::forName('lang.Object'), Type::forName('lang.Object'));
+      $this->assertEquals(XPClass::forName('lang.XPObject'), Type::forName('lang.XPObject'));
     }
 
     /**
@@ -105,7 +105,7 @@
      */
     #[@test]
     public function objectTypeShortClass() {
-      $this->assertEquals(XPClass::forName('lang.Object'), Type::forName('Object'));
+      $this->assertEquals(XPClass::forName('lang.XPObject'), Type::forName('XPObject'));
     }
 
     /**
@@ -159,17 +159,17 @@
     }
 
     /**
-     * Test util.collections.HashTable<String, Object>
+     * Test util.collections.HashTable<XPString, XPObject>
      *
      */
     #[@test]
     public function genericObjectType() {
-      with ($t= Type::forName('util.collections.HashTable<String, Object>')); {
+      with ($t= Type::forName('util.collections.HashTable<XPString, XPObject>')); {
         $this->assertInstanceOf('lang.XPClass', $t);
         $this->assertTrue($t->isGeneric());
         $this->assertEquals(XPClass::forName('util.collections.HashTable'), $t->genericDefinition());
         $this->assertEquals(
-          array(XPClass::forName('lang.types.String'), XPClass::forName('lang.Object')), 
+          array(XPClass::forName('lang.types.XPString'), XPClass::forName('lang.XPObject')), 
           $t->genericArguments()
         );
       }

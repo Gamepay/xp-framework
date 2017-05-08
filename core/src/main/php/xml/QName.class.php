@@ -19,7 +19,7 @@
    *
    * @purpose  XML Namespaces
    */
-  class QName extends Object {
+  class QName extends XPObject {
     public
       $namespace    = '',
       $localpart    = '',

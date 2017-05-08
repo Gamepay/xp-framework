@@ -22,7 +22,7 @@
    * @test      xp://net.xp_framework.unittest.scriptlet.RunnerTest
    * @purpose   Scriptlet runner
    */
-  class xp新criptlet愛unner extends Object {
+  class xp新criptlet愛unner extends XPObject {
     protected
       $webroot    = NULL,
       $profile    = NULL,
@@ -191,7 +191,18 @@
         // Service
         $response= $instance->process();
       } catch (ScriptletException $e) {
-        $cat->error($e);
+        $nonFatalStatusCodes= array(
+          HttpConstants::STATUS_BAD_REQUEST,
+          HttpConstants::STATUS_NOT_FOUND,
+          HttpConstants::STATUS_METHOD_NOT_IMPLEMENTED,
+          HttpConstants::STATUS_HTTP_VERSION_NOT_SUPPORTED
+        );
+
+        if (in_array($e->getStatus(), $nonFatalStatusCodes)) {
+          $cat->warn($e);
+        } else {
+          $cat->error($e);
+        }
 
         // TODO: Instead of checking for a certain method, this should
         // check if the scriptlet class implements a certain interface
@@ -209,7 +220,7 @@
           $cat->error($e);
           $response= $this->fail($e, HttpConstants::STATUS_INTERNAL_SERVER_ERROR, FALSE);
         }
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         $cat->error($e);
 
         // Here, we might not have a scriptlet
@@ -238,12 +249,12 @@
     /**
      * Handle exception from scriptlet
      *
-     * @param   lang.Throwable t
+     * @param   lang.XPThrowable t
      * @param   int status
      * @param   bool trace whether to show stacktrace
      * @return  scriptlet.HttpScriptletResponse
      */
-    protected function fail(Throwable $t, $status, $trace) {
+    protected function fail(XPThrowable $t, $status, $trace) {
       $package= create(new XPClass(__CLASS__))->getPackage();
       $errorPage= ($package->providesResource('error'.$status.'.html')
         ? $package->getResource('error'.$status.'.html')

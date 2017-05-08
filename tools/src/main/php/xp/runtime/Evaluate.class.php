@@ -12,7 +12,7 @@
    * Evaluates sourcecode
    *
    */
-  class xp·runtime·Evaluate extends Object {
+  class xp·runtime·Evaluate extends XPObject {
     
     /**
      * Main

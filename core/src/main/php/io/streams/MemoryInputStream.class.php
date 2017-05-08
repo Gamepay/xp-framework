@@ -11,7 +11,7 @@
    *
    * @purpose  InputStream implementation
    */
-  class MemoryInputStream extends Object implements InputStream, Seekable {
+  class MemoryInputStream extends XPObject implements InputStream, Seekable {
     protected
       $pos   = 0,
       $bytes = '';

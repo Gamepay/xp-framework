@@ -20,7 +20,7 @@
    *
    * @see xp://img.Image
    */
-  class Rectangle extends Object implements Drawable {
+  class Rectangle extends XPObject implements Drawable {
     public
       $col=  NULL,
       $x1=   0,

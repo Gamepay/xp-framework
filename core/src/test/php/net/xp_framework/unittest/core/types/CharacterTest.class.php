@@ -6,7 +6,7 @@
 
   uses(
     'unittest.TestCase',
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.Character'
   );
 
@@ -108,7 +108,7 @@
      */
     #[@test, @ignore('Does not work with all iconv implementations')]
     public function transliteration() {
-      $this->assertEquals('c', create(new String('č', 'utf-8'))->toString());
+      $this->assertEquals('c', create(new XPString('č', 'utf-8'))->toString());
     }
 
     /**

@@ -13,7 +13,7 @@
    * @see      http://openssl.org
    * @purpose  Crypto key base
    */
-  class CryptoKey extends Object {
+  class CryptoKey extends XPObject {
     public
       $_hdl = NULL;
 

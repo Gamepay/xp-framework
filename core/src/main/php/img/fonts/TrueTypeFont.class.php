@@ -11,7 +11,7 @@
    * @see      xp://img.shapes.Text
    * @purpose  Font
    */
-  class TrueTypeFont extends Object {
+  class TrueTypeFont extends XPObject {
     public
       $name=            '',
       $size=            0.0,

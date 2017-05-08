@@ -26,7 +26,7 @@
    *
    * @see   xp://net.xp_framework.unittest.peer.server.AbstractServerTest
    */
-  class net·xp_framework·unittest·peer·server·TestingServer extends Object {
+  class net·xp_framework·unittest·peer·server·TestingServer extends XPObject {
 
     /**
      * Start server
@@ -41,7 +41,7 @@
         Console::writeLinef('+ Service %s:%d', $s->socket->host, $s->socket->port);
         $s->service();
         Console::writeLine('+ Done');
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         Console::writeLine('- ', $e->getMessage());
       }
     }

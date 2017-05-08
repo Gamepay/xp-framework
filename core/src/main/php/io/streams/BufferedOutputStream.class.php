@@ -13,7 +13,7 @@
    *
    * @purpose  OuputStream implementation
    */
-  class BufferedOutputStream extends Object implements OutputStream {
+  class BufferedOutputStream extends XPObject implements OutputStream {
     protected 
       $out  = NULL,
       $buf  = '',

@@ -24,7 +24,7 @@
    *
    * @purpose  Lock process so it can only be run once
    */  
-  class SingleProcess extends Object {
+  class SingleProcess extends XPObject {
     public 
       $lockfile     = NULL;
 

@@ -65,7 +65,7 @@
     /**
      * Invoke a method
      *
-     * @param   lang.Object proxy
+     * @param   lang.XPObject proxy
      * @param   string method
      * @param   var args
      * @return  var

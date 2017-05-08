@@ -11,7 +11,7 @@
    * @see      xp://lang.XPClass
    * @purpose  Reflection
    */
-  class Field extends Object {
+  class Field extends XPObject {
     protected
       $accessible = FALSE,
       $_class     = NULL;
@@ -144,7 +144,7 @@
      * Returns the value of the field represented by this Field, on the 
      * specified object.
      *
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      * @return  var  
      * @throws  lang.IllegalArgumentException in case the passed object is not an instance of the declaring class
      * @throws  lang.IllegalAccessException in case this field is not public
@@ -197,7 +197,7 @@
         } else {
           return $instance->__get("\7".$this->_reflect->getName());
         }
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         throw $e;
       } catch (Exception $e) {
         throw new XPException($e->getMessage());
@@ -208,7 +208,7 @@
      * Changes the value of the field represented by this Field, on the 
      * specified object.
      *
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      * @param   var value
      * @throws  lang.IllegalArgumentException in case the passed object is not an instance of the declaring class
      * @throws  lang.IllegalAccessException in case this field is not public
@@ -262,7 +262,7 @@
         } else {
           $instance->__set("\7".$this->_reflect->getName(), $value);
         }
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         throw $e;
       } catch (Exception $e) {
         throw new XPException($e->getMessage());

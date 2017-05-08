@@ -38,7 +38,7 @@
    * @test    xp://net.xp_framework.unittest.io.archive.ZipFileIteratorTest
    * @see     xp://io.archive.zip.ZipArchive#open
    */
-  class ZipArchiveReader extends Object {
+  class ZipArchiveReader extends XPObject {
     protected
       $impl = NULL;
 

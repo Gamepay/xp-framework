@@ -9,7 +9,7 @@
    *
    * @purpose  Abstract base class
    */
-  abstract class AbstractGenerator extends Object {
+  abstract class AbstractGenerator extends XPObject {
     public 
       $storage = NULL,
       $output  = NULL;

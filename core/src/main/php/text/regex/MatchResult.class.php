@@ -12,7 +12,7 @@
    * @see      xp://text.regex.Pattern#matches
    * @purpose  Result
    */
-  class MatchResult extends Object {
+  class MatchResult extends XPObject {
     protected $length  = 0;
     protected $matches = array();
     

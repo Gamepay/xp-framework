@@ -302,8 +302,8 @@
     #[@test]
     public function genericDeclaration() {
       $this->assertEquals(
-        'Generic: util.collections.Vector&lt;lang.types.String&gt;',
-        $this->builder->markupFor('Generic: util.collections.Vector<lang.types.String>')
+        'Generic: util.collections.Vector&lt;lang.types.XPString&gt;',
+        $this->builder->markupFor('Generic: util.collections.Vector<lang.types.XPString>')
       );
     }
 

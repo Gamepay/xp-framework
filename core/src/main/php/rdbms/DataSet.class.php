@@ -82,7 +82,7 @@
    * @see      xp://rdbms.ConnectionManager
    * @purpose  Base class
    */
-  abstract class DataSet extends Object implements JoinExtractable {
+  abstract class DataSet extends XPObject implements JoinExtractable {
     public
       $_new         = TRUE,
       $_changed     = array();

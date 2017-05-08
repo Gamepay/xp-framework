@@ -17,7 +17,7 @@
      * Constructor
      *
      * @param   string file
-     * @param   lang.Throwable cause default NULL
+     * @param   lang.XPThrowable cause default NULL
      */
     public function __construct($file, $cause= NULL) {
       parent::__construct('File "'.$file.'" not found', $cause);

@@ -10,7 +10,7 @@
    * @see      xp://io.File
    * @purpose  Simplify often used file operations
    */
-  class FileUtil extends Object {
+  class FileUtil extends XPObject {
   
     /**
      * Retrieve file contents as a string

@@ -16,7 +16,7 @@
    *
    * @purpose  ImageLoader
    */
-  class FilesystemImageLoader extends Object implements ImageLoader {
+  class FilesystemImageLoader extends XPObject implements ImageLoader {
 
     /**
      * Load an image

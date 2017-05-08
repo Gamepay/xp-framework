@@ -156,7 +156,7 @@
     #[@test]
     public function iteratorMethods() {
       $expected= array(
-        'hashcode', 'equals', 'getclassname', 'getclass', 'tostring', // lang.Object
+        'hashcode', 'equals', 'getclassname', 'getclass', 'tostring', // lang.XPObject
         'getproxyclass', 'newproxyinstance',                          // lang.reflect.Proxy
         'hasnext', 'next'                                             // util.XPIterator
       );
@@ -190,7 +190,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function cannotCreateProxiesForClasses() {
-      $this->proxyInstanceFor(array(XPClass::forName('lang.Object')));
+      $this->proxyInstanceFor(array(XPClass::forName('lang.XPObject')));
     }
     
     /**

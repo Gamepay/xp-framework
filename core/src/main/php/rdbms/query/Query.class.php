@@ -31,7 +31,7 @@
    * @see      xp://rdbms.query.UpdateQuery
    * @purpose  Base class for SelectQuery, DeleteQuery and UpdateQuery
    */
-  abstract class Query extends Object implements QueryExecutable {
+  abstract class Query extends XPObject implements QueryExecutable {
     protected
       $criteria=     NULL,
       $peer=         NULL;

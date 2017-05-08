@@ -12,7 +12,7 @@
    * @test    xp://net.xp_framework.unittest.rdbms.tds.FreeTdsLookupTest
    * @test    xp://net.xp_framework.unittest.rdbms.tds.FreeTdsConfigLocationTest
    */
-  class FreeTdsLookup extends Object implements rdbms·tds·ConnectionLookup {
+  class FreeTdsLookup extends XPObject implements rdbms·tds·ConnectionLookup {
     protected $conf= NULL;
     
     /**

@@ -14,13 +14,13 @@
    * @test     xp://net.xp_framework.unittest.io.streams.GzDecompressingInputStreamTest
    * @purpose  InputStream implementation
    */
-  class GzDecompressingInputStream extends Object implements InputStream {
+  class GzDecompressingInputStream extends XPObject implements InputStream {
     protected $in= NULL;
     public static $wrapped= array();
     public $context = NULL;
 
     static function __static() {
-      stream_wrapper_register('zlib.bounded', get_class(newinstance('lang.Object', array(), '{
+      stream_wrapper_register('zlib.bounded', get_class(newinstance('lang.XPObject', array(), '{
         protected $id, $st= NULL;
         protected $buffer= "";
         public $context = NULL;

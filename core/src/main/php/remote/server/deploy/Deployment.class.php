@@ -12,7 +12,7 @@
    * @see      xp://remote.server.deploy.Deployable
    * @purpose  Deployment
    */
-  class Deployment extends Object implements Deployable {
+  class Deployment extends XPObject implements Deployable {
     public
       $origin           = '',
       $classloader      = NULL,
@@ -32,7 +32,7 @@
     /**
      * Set Classloader
      *
-     * @param   lang.Object classloader
+     * @param   lang.XPObject classloader
      */
     public function setClassloader($classloader) {
       $this->classloader= $classloader;
@@ -41,7 +41,7 @@
     /**
      * Get Classloader
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getClassloader() {
       return $this->classloader;

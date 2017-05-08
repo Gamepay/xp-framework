@@ -11,7 +11,7 @@
    *
    * @see      xp://net.xp_framework.unittest.text.doclet.ClassIteratorTest
    */
-  class net·xp_framework·unittest·text·doclet·classes·sub·D extends Object {
+  class net·xp_framework·unittest·text·doclet·classes·sub·D extends XPObject {
     
   }
 ?>

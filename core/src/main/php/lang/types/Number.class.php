@@ -11,7 +11,7 @@
    * @test     xp://net.xp_framework.unittest.core.types.NumberTest
    * @purpose  Base class
    */
-  abstract class Number extends Object {
+  abstract class Number extends XPObject {
     public
       $value = '';
 
@@ -78,7 +78,7 @@
     /**
      * Indicates whether some other object is "equal to" this one.
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool TRUE if the compared object is equal to this object
      */
     public function equals($cmp) {

@@ -23,7 +23,7 @@
    * @see      http://www.opengroup.org/onlinepubs/007908799/xcu/uuencode.html 
    * @purpose  UUEncode encoder / decoder
    */
-  class UUCode extends Object {
+  class UUCode extends XPObject {
 
     /**
      * Encode string

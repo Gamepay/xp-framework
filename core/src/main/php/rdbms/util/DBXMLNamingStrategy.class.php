@@ -8,7 +8,7 @@
    * Generate Names for database generated classes
    *
    */
-  abstract class DBXMLNamingStrategy extends Object {
+  abstract class DBXMLNamingStrategy extends XPObject {
     
     /**
      * assemble th name of a foreign key constraint

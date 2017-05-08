@@ -13,7 +13,7 @@
    * @see      xp://peer.ftp.FtpListParser
    * @purpose  FTP LIST parser implementation
    */
-  class WindowsFtpListParser extends Object implements FtpListParser {
+  class WindowsFtpListParser extends XPObject implements FtpListParser {
 
     /**
      * Parse raw listing entry.

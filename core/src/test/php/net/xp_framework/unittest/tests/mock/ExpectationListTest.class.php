@@ -102,7 +102,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function cannotAddObjects() {
-      $this->sut->add(new Object());
+      $this->sut->add(new XPObject());
     }
 
 

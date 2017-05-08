@@ -24,7 +24,7 @@
    *
    * @purpose  Criterion
    */
-  class SimpleExpression extends Object implements Criterion {
+  class SimpleExpression extends XPObject implements Criterion {
     public
       $lhs    = NULL,
       $value  = NULL,

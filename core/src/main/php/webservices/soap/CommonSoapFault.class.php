@@ -9,7 +9,7 @@
    *
    * @purpose  XML subtree
    */
-  class CommonSoapFault extends Object {
+  class CommonSoapFault extends XPObject {
     public 
       $faultcode    = '', 
       $faultstring  = '', 

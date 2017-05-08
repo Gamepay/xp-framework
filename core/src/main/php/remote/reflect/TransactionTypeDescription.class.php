@@ -9,7 +9,7 @@
    *
    * @purpose  Enumeration
    */
-  class TransactionTypeDescription extends Object {
+  class TransactionTypeDescription extends XPObject {
     public static
       $NOT_SUPPORTED,
       $REQUIRED,

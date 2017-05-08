@@ -12,7 +12,7 @@
    * @see      php://language.oop5.iterations
    * @purpose  Iterator implementation
    */
-  class FtpListIterator extends Object implements Iterator {
+  class FtpListIterator extends XPObject implements Iterator {
     private 
       $i= 0, 
       $v= array(), 

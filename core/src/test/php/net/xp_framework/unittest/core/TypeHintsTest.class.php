@@ -23,7 +23,7 @@
   class TypeHintsTest extends TestCase {
   
     static function __static() {
-      ClassLoader::defineClass('net.xp_framework.unittest.core.TypeHintedClass', 'lang.Object', array(), '{
+      ClassLoader::defineClass('net.xp_framework.unittest.core.TypeHintedClass', 'lang.XPObject', array(), '{
         public static function passObject(Generic $o) { return $o; }
         public static function passNullable(Generic $o= NULL) { return $o; }
       }');
@@ -35,7 +35,7 @@
      */
     #[@test]
     public function passObject() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertEquals($o, TypeHintedClass::passObject($o));
     }
 
@@ -63,7 +63,7 @@
      */
     #[@test]
     public function passObjectNullable() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertEquals($o, TypeHintedClass::passNullable($o));
     }
 

@@ -8,7 +8,7 @@
    * Class representing an index
    *
    */
-  class DBIndex extends Object {
+  class DBIndex extends XPObject {
     public
       $name=     '',
       $keys=     array(),

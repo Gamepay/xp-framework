@@ -51,14 +51,14 @@
     /**
      * Set Data
      *
-     * @param   lang.Object data
+     * @param   lang.XPObject data
      */
     public function setData($data);
 
     /**
      * Get Data
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getData();
     

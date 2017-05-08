@@ -21,7 +21,7 @@
    *
    * @purpose  purpose
    */
-  class TagletManager extends Object {
+  class TagletManager extends XPObject {
     protected static
       $instance = NULL;
 

@@ -12,7 +12,7 @@
    * @see   xp://lang.types.ArrayList
    * @see   xp://net.xp_framework.unittest.core.extensions.ExtensionInvocationTest
    */
-  class ArrayListExtensions extends Object {
+  class ArrayListExtensions extends XPObject {
 
     static function __import($scope) {
       xp::extensions(__CLASS__, $scope);

@@ -24,16 +24,16 @@
      *
      * Example:
      * <code>
-     *   $method= XPClass::forName('lang.Object')->getMethod('toString');
+     *   $method= XPClass::forName('lang.XPObject')->getMethod('toString');
      *
-     *   var_dump($method->invoke(new Object()));
+     *   var_dump($method->invoke(new XPObject()));
      * </code>
      *
      * Example (passing arguments)
      * <code>
-     *   $method= XPClass::forName('lang.types.String')->getMethod('concat');
+     *   $method= XPClass::forName('lang.types.XPString')->getMethod('concat');
      *
-     *   var_dump($method->invoke(new String('Hello'), array('World')));
+     *   var_dump($method->invoke(new XPString('Hello'), array('World')));
      * </code>
      *
      * Example (static invokation):
@@ -43,7 +43,7 @@
      *   var_dump($method->invoke(NULL));
      * </code>
      *
-     * @param   lang.Object obj
+     * @param   lang.XPObject obj
      * @param   var[] args default array()
      * @return  var
      * @throws  lang.IllegalArgumentException in case the passed object is not an instance of the declaring class
@@ -107,7 +107,7 @@
         }
       } catch (SystemExit $e) {
         throw $e;
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         throw new TargetInvocationException($this->_class.'::'.$this->_reflect->getName(), $e);
       } catch (Exception $e) {
         throw new TargetInvocationException($this->_class.'::'.$this->_reflect->getName(), new XPException($e->getMessage()));

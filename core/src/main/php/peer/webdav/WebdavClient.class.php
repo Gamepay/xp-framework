@@ -43,7 +43,7 @@
    * @see       rfc://3648
    * @purpose   Provide a client to access an webdav server
    */
-  class WebdavClient extends Object {
+  class WebdavClient extends XPObject {
     public 
       $url=     NULL,
       $uri=     '',

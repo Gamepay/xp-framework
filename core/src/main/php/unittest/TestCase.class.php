@@ -15,7 +15,7 @@
    * @see      php://assert
    * @purpose  Base class
    */
-  class TestCase extends Object {
+  class TestCase extends XPObject {
     public
       $name     = '';
       

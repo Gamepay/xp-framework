@@ -171,7 +171,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]    
     public function mergeWithIllegalArgument() {
-      $this->map->merge(new Object());
+      $this->map->merge(new XPObject());
     }
 
     /**

@@ -10,7 +10,7 @@
    * @test  xp://net.xp_framework.unittest.img.ColorTest
    * @see   xp://img.Image
    */
-  class Color extends Object {
+  class Color extends XPObject {
     public
       $red      = 0,
       $green    = 0,

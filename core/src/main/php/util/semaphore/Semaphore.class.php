@@ -10,7 +10,7 @@
    * @purpose  Semaphore to serialize request
    * @deprecated
    */
-  class Semaphore extends Object {
+  class Semaphore extends XPObject {
     public
       $name=    '',
       $storage= NULL;

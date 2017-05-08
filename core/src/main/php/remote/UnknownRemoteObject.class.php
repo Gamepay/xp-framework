@@ -11,7 +11,7 @@
    * @test     xp://net.xp_framework.unittest.remote.UnknownRemoteObjectTest
    * @purpose  Fallback for situations when no class can be found for a remote object
    */
-  class UnknownRemoteObject extends Object {
+  class UnknownRemoteObject extends XPObject {
     public
       $__name     = '',
       $__members  = array();

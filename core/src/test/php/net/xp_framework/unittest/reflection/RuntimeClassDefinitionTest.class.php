@@ -63,7 +63,7 @@
     #[@test]
     public function defineClassWithInitializer() {
       $name= 'net.xp_framework.unittest.reflection.RuntimeDefinedClass';
-      $class= $this->defineClass($name, 'lang.Object', NULL, '{
+      $class= $this->defineClass($name, 'lang.XPObject', NULL, '{
         public static $initializerCalled= FALSE;
         
         static function __static() { 
@@ -82,7 +82,7 @@
     #[@test]
     public function defineTraceableClass() {
       $name= 'net.xp_framework.unittest.reflection.RuntimeDefinedClassWithInterface';
-      $class= $this->defineClass($name, 'lang.Object', array('util.log.Traceable'), '{
+      $class= $this->defineClass($name, 'lang.XPObject', array('util.log.Traceable'), '{
         public function setTrace($cat) { } 
       }');
 
@@ -96,7 +96,7 @@
      */
     #[@test]
     public function newInstance() {
-      $i= newinstance('lang.Object', array(), '{ public function bar() { return TRUE; }}');
+      $i= newinstance('lang.XPObject', array(), '{ public function bar() { return TRUE; }}');
       $this->assertClass($i->getClass()->getClassLoader(), 'lang.DynamicClassLoader');
     }
 
@@ -165,7 +165,7 @@
     #[@test]
     public function defaultClassLoaderProvidesDefinedClass() {
       $class= 'net.xp_framework.unittest.reflection.lostandfound.CL1';
-      $this->defineClass($class, 'lang.Object', array(), '{ }');
+      $this->defineClass($class, 'lang.XPObject', array(), '{ }');
 
       $this->assertTrue(ClassLoader::getDefault()->providesClass($class));
     }
@@ -191,7 +191,7 @@
     #[@test]
     public function defaultClassLoaderProvidesPackageOfDefinedClass() {
       $package= 'net.xp_framework.unittest.reflection.lostandfound';
-      $this->defineClass($package.'.CL2', 'lang.Object', array(), '{ }');
+      $this->defineClass($package.'.CL2', 'lang.XPObject', array(), '{ }');
 
       $this->assertTrue(ClassLoader::getDefault()->providesPackage($package));
     }

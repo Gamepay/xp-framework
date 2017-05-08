@@ -9,7 +9,7 @@
    *
    * @purpose  Abstract base class
    */
-  abstract class ParamChecker extends Object {
+  abstract class ParamChecker extends XPObject {
   
     /**
      * Check a given value

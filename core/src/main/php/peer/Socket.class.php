@@ -19,7 +19,7 @@
    * @see      php://network
    * @purpose  Basic TCP/IP socket
    */
-  class Socket extends Object {
+  class Socket extends XPObject {
     public
       $_eof     = FALSE,
       $host     = '',

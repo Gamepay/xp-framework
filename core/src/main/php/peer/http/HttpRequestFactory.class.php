@@ -15,13 +15,13 @@
    * @see      xp://peer.http.HttpConnection
    * @purpose  Factory for HTTP / HTTPS
    */
-  class HttpRequestFactory extends Object {
+  class HttpRequestFactory extends XPObject {
   
     /**
      * Factory method
      *
      * @param   peer.URL an url object
-     * @return  lang.Object a request object
+     * @return  lang.XPObject a request object
      * @throws  lang.IllegalArgumentException in case the scheme is not supported
      */
     public static function factory($url) {

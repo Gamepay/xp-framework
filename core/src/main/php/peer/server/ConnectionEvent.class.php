@@ -11,7 +11,7 @@
    * @see      xp://peer.server.Server#service
    * @purpose  Event
    */
-  class ConnectionEvent extends Object {
+  class ConnectionEvent extends XPObject {
     public
       $type     = '',
       $stream   = NULL,

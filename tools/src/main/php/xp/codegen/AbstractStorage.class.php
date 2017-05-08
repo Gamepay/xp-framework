@@ -11,7 +11,7 @@
    *
    * @purpose  Abstract base class
    */
-  abstract class AbstractStorage extends Object {
+  abstract class AbstractStorage extends XPObject {
     
     /**
      * get URI

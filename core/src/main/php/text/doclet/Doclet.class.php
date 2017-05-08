@@ -24,7 +24,7 @@
    * @see      http://java.sun.com/j2se/1.5.0/docs/guide/javadoc/
    * @purpose  Abstract base class
    */
-  abstract class Doclet extends Object {
+  abstract class Doclet extends XPObject {
     public $options= array();
     public $classes= NULL;
 

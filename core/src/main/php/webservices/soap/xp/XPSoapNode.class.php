@@ -123,7 +123,7 @@
     protected function _marshall($child, $value, $mapping) {
       static $ns= 0;
 
-      if ($value instanceof String) {
+      if ($value instanceof XPString) {
         $value= (string)$value;
         // Fallthrough intended
       }

@@ -11,7 +11,7 @@
    * @see      xp://net.xp_framework.unittest.xml.MarshallerTest
    * @purpose  Test class
    */
-  class WindowType extends Object {
+  class WindowType extends XPObject {
     protected $window= NULL;
 
     /**

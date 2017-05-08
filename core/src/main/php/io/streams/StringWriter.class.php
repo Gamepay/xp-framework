@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.StringWriterTest
    * @purpose  OutputStreamWriter implementation
    */
-  class StringWriter extends Object implements OutputStreamWriter {
+  class StringWriter extends XPObject implements OutputStreamWriter {
     protected
       $out= NULL;
     

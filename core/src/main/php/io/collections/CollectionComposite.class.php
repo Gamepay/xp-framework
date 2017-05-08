@@ -26,7 +26,7 @@
    * @test     xp://net.xp_framework.unittest.io.collections.CollectionCompositeTest 
    * @purpose  Collection implementation
    */
-  class CollectionComposite extends Object {
+  class CollectionComposite extends XPObject {
     public
       $collections = array();
     

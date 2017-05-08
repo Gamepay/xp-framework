@@ -12,7 +12,7 @@
    * @see      xp://remote.Remote
    * @purpose  Reflection
    */
-  class MethodDescription extends Object {
+  class MethodDescription extends XPObject {
     public
       $name             = '',
       $returnType       = '',

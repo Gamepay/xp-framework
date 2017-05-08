@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'util.collections.HashSet',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -43,7 +43,7 @@
      */
     #[@test]
     public function equalsClone() {
-      $this->set->add(new String('green'));
+      $this->set->add(new XPString('green'));
       $this->assertTrue($this->set->equals(clone($this->set)));
     }
  
@@ -54,8 +54,8 @@
     #[@test]
     public function equalsOtherSetWithSameContents() {
       $other= new HashSet();
-      $this->set->add(new String('color'));
-      $other->add(new String('color'));
+      $this->set->add(new XPString('color'));
+      $other->add(new XPString('color'));
       $this->assertTrue($this->set->equals($other));
     }
 
@@ -66,8 +66,8 @@
     #[@test]
     public function doesNotEqualSetWithDifferentContents() {
       $other= new HashSet();
-      $this->set->add(new String('blue'));
-      $other->add(new String('yellow'));
+      $this->set->add(new XPString('blue'));
+      $other->add(new XPString('yellow'));
       $this->assertFalse($this->set->equals($other));
     }
    
@@ -77,7 +77,7 @@
      */
     #[@test]
     public function add() {
-      $this->set->add(new String('green'));
+      $this->set->add(new XPString('green'));
       $this->assertFalse($this->set->isEmpty());
       $this->assertEquals(1, $this->set->size());
     }
@@ -88,7 +88,7 @@
      */
     #[@test]
     public function addAll() {
-      $array= array(new String('one'), new String('two'), new String('three'));
+      $array= array(new XPString('one'), new XPString('two'), new XPString('three'));
       $this->set->addAll($array);
       $this->assertFalse($this->set->isEmpty());
       $this->assertEquals(3, $this->set->size());
@@ -100,7 +100,7 @@
      */
     #[@test]
     public function addAllUniques() {
-      $array= array(new String('one'), new String('one'), new String('two'));
+      $array= array(new XPString('one'), new XPString('one'), new XPString('two'));
       $this->set->addAll($array);
       $this->assertFalse($this->set->isEmpty());
       $this->assertEquals(2, $this->set->size());   // String{"one"} and String{"two"}
@@ -113,10 +113,10 @@
      */
     #[@test]
     public function addAllReturnsWhetherSetHasChanged() {
-      $array= array(new String('caffeine'), new String('nicotine'));
+      $array= array(new XPString('caffeine'), new XPString('nicotine'));
       $this->assertTrue($this->set->addAll($array));
       $this->assertFalse($this->set->addAll($array));
-      $this->assertFalse($this->set->addAll(array(new String('caffeine'))));
+      $this->assertFalse($this->set->addAll(array(new XPString('caffeine'))));
       $this->assertFalse($this->set->addAll(array()));
     }
 
@@ -126,9 +126,9 @@
      */
     #[@test]
     public function contains() {
-      $this->set->add(new String('key'));
-      $this->assertTrue($this->set->contains(new String('key')));
-      $this->assertFalse($this->set->contains(new String('non-existant-key')));
+      $this->set->add(new XPString('key'));
+      $this->assertTrue($this->set->contains(new XPString('key')));
+      $this->assertFalse($this->set->contains(new XPString('non-existant-key')));
     }
 
     /**
@@ -138,7 +138,7 @@
      */
     #[@test]
     public function addSameValueTwice() {
-      $color= new String('green');
+      $color= new XPString('green');
       $this->assertTrue($this->set->add($color));
       $this->assertFalse($this->set->add($color));
     }
@@ -149,8 +149,8 @@
      */
     #[@test]
     public function remove() {
-      $this->set->add(new String('key'));
-      $this->assertTrue($this->set->remove(new String('key')));
+      $this->set->add(new XPString('key'));
+      $this->assertTrue($this->set->remove(new XPString('key')));
       $this->assertTrue($this->set->isEmpty());
     }
 
@@ -161,7 +161,7 @@
      */
     #[@test]
     public function removeOnEmptySet() {
-      $this->assertFalse($this->set->remove(new String('irrelevant-set-is-empty-anyway')));
+      $this->assertFalse($this->set->remove(new XPString('irrelevant-set-is-empty-anyway')));
     }
 
     /**
@@ -171,8 +171,8 @@
      */
     #[@test]
     public function removeNonExistantObject() {
-      $this->set->add(new String('key'));
-      $this->assertFalse($this->set->remove(new String('non-existant-key')));
+      $this->set->add(new XPString('key'));
+      $this->assertFalse($this->set->remove(new XPString('non-existant-key')));
     }
 
     /**
@@ -181,7 +181,7 @@
      */
     #[@test]
     public function clear() {
-      $this->set->add(new String('key'));
+      $this->set->add(new XPString('key'));
       $this->set->clear();
       $this->assertTrue($this->set->isEmpty());
     }
@@ -192,7 +192,7 @@
      */
     #[@test]
     public function toArray() {
-      $color= new String('red');
+      $color= new XPString('red');
       $this->set->add($color);
       $this->assertEquals(array($color), $this->set->toArray());
     }
@@ -212,12 +212,12 @@
      */
     #[@test]
     public function iteration() {
-      $this->set->add(new String('1'));
-      $this->set->add(new String('2'));
-      $this->set->add(new String('3'));
+      $this->set->add(new XPString('1'));
+      $this->set->add(new XPString('2'));
+      $this->set->add(new XPString('3'));
       
       foreach ($this->set as $i => $value) {
-        $this->assertEquals(new String($i+ 1), $value);
+        $this->assertEquals(new XPString($i+ 1), $value);
       }
     }
 
@@ -227,8 +227,8 @@
      */
     #[@test]
     public function stringRepresentation() {
-      $this->set->add(new String('color'));
-      $this->set->add(new String('price'));
+      $this->set->add(new XPString('color'));
+      $this->set->add(new XPString('price'));
       $this->assertEquals(
         "util.collections.HashSet[2] {\n  color,\n  price\n}",
         $this->set->toString()

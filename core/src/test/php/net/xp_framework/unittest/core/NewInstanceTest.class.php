@@ -48,8 +48,8 @@
      */
     #[@test]
     public function newObject() {
-      $o= newinstance('lang.Object', array(), '{}');
-      $this->assertInstanceOf('lang.Object', $o);
+      $o= newinstance('lang.XPObject', array(), '{}');
+      $this->assertInstanceOf('lang.XPObject', $o);
     }
 
     /**
@@ -68,7 +68,7 @@
      */
     #[@test]
     public function argumentsArePassedToConstructor() {
-      $instance= newinstance('lang.Object', array($this), '{
+      $instance= newinstance('lang.XPObject', array($this), '{
         public $test= NULL;
         public function __construct($test) {
           $this->test= $test;
@@ -133,7 +133,7 @@
      */
     #[@test]
     public function packageOfNewInstancedClass() {
-      $i= newinstance('lang.Object', array(), '{}');
+      $i= newinstance('lang.XPObject', array(), '{}');
       $this->assertEquals(
         Package::forName('lang'),
         $i->getClass()->getPackage()
@@ -159,10 +159,10 @@
      */
     #[@test]
     public function className() {
-      $instance= newinstance('Object', array(), '{ }');
+      $instance= newinstance('XPObject', array(), '{ }');
       $n= $instance->getClassName();
       $this->assertEquals(
-        'lang.Object',
+        'lang.XPObject',
         substr($n, 0, strrpos($n, '·')),
         $n
       );
@@ -174,10 +174,10 @@
      */
     #[@test]
     public function classNameWithFullyQualifiedClassName() {
-      $instance= newinstance('lang.Object', array(), '{ }');
+      $instance= newinstance('lang.XPObject', array(), '{ }');
       $n= $instance->getClassName();
       $this->assertEquals(
-        'lang.Object',
+        'lang.XPObject',
         substr($n, 0, strrpos($n, '·')),
         $n
       );

@@ -15,7 +15,7 @@
    * @purpose  Abstract data type
    */
   #[@generic(self= 'T')]
-  class LRUBuffer extends Object {
+  class LRUBuffer extends XPObject {
     protected
       $size      = 0,
       $_access   = array(),

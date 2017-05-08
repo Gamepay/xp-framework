@@ -16,8 +16,8 @@
     /**
      * Helper method that asserts to objects are references to each other
      *
-     * @param   &lang.Object a
-     * @param   &lang.Object b
+     * @param   &lang.XPObject a
+     * @param   &lang.XPObject b
      * @throws  unittest.AssertionFailedError
      */
     protected function assertReference($a, $b) {
@@ -32,7 +32,7 @@
      */
     #[@test]
     public function deref() {
-      $object= new Object();
+      $object= new XPObject();
       $this->assertReference($object, deref($object));
     }
 
@@ -42,7 +42,7 @@
      */
     #[@test]
     public function derefOfRef() {
-      $object= new Object();
+      $object= new XPObject();
       $r= ref($object);
       $this->assertReference($object, deref($r));
     }
@@ -53,8 +53,8 @@
      */
     #[@test]
     public function objectReference() {
-      $object= new Object();
-      $ref= newinstance('lang.Object', array(ref($object)), '{
+      $object= new XPObject();
+      $ref= newinstance('lang.XPObject', array(ref($object)), '{
         var $object= NULL;
         
         function __construct(&$object) {

@@ -15,7 +15,7 @@
    * @purpose  Set implemenentation
    */
   #[@generic(self= 'T', implements= array('T'))]
-  class HashSet extends Object implements Set {
+  class HashSet extends XPObject implements Set {
     protected static
       $iterate   = NULL;
 

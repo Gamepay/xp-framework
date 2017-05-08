@@ -18,7 +18,7 @@
    * @test     xp://net.xp_framework.unittests.tests.XmlListenerTest
    * @purpose  TestListener
    */
-  class XmlTestListener extends Object implements TestListener {
+  class XmlTestListener extends XPObject implements TestListener {
     public $out= NULL;
     protected $tree= NULL;
     protected $classes= NULL;
@@ -197,7 +197,7 @@
      * @param   unittest.TestSkipped skipped
      */
     public function testSkipped(TestSkipped $skipped) {
-      if ($skipped->reason instanceof Throwable) {
+      if ($skipped->reason instanceof XPThrowable) {
         $reason= trim($skipped->reason->compoundMessage());
       } else {
         $reason= $skipped->reason;

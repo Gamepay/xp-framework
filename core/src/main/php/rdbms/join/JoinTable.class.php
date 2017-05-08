@@ -11,7 +11,7 @@
    * @purpose rdbms.join
    * @see     xp://rdbms.join.JoinPart
    */
-  class JoinTable extends Object {
+  class JoinTable extends XPObject {
     private
       $alias= '',
       $name=  '';

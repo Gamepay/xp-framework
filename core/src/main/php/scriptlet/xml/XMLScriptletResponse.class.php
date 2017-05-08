@@ -288,6 +288,9 @@
      */
     public function process() {
       if (!$this->_processed) return FALSE;
+      if (!$this->hasStylesheet()) throw new IllegalStateException(
+        'No stylesheet set'
+      );
 
       switch ($this->_stylesheet[0]) {
         case self::XSLT_FILE:

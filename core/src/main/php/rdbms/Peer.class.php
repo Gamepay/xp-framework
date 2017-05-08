@@ -27,7 +27,7 @@
    * @see      xp://rdbms.DataSet
    * @purpose  Part of DataSet model
    */
-  class Peer extends Object {
+  class Peer extends XPObject {
     protected static 
       $instance   = array();
 
@@ -183,7 +183,7 @@
     /**
      * Retrieve an instance by a given instance
      *
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      * @return  rdbms.Peer
      */
     public static function forInstance($instance) {

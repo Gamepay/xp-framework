@@ -12,7 +12,7 @@
    *
    * @purpose  Interceptor
    */
-  class DefaultInterceptor extends Object implements StorageActionInterceptor {
+  class DefaultInterceptor extends XPObject implements StorageActionInterceptor {
 
     /**
      * Invoked when chdir'ing into a directory

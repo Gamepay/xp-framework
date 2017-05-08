@@ -16,7 +16,7 @@
    * @test xp://net.xp_framework.webservices.rest.server.routing.RestPathTest
    * @purpose Path
    */
-  class RestPath extends Object {
+  class RestPath extends XPObject {
     protected
       $path= '',
       $query= array(),

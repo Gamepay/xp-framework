@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.text.encode.Base64OutputStreamTest
    * @purpose  OuputStream implementation
    */
-  class Base64OutputStream extends Object implements OutputStream {
+  class Base64OutputStream extends XPObject implements OutputStream {
     protected $out= NULL;
     
     /**

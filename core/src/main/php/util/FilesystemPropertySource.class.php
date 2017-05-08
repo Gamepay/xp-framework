@@ -10,7 +10,7 @@
    * Filesystem-based property source
    *
    */
-  class FilesystemPropertySource extends Object implements PropertySource {
+  class FilesystemPropertySource extends XPObject implements PropertySource {
     protected $cache= array();
 
     /**

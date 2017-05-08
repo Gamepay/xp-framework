@@ -57,7 +57,7 @@
     public function returns_valueSetInExpectation() {
       $expectation=new Expectation('foo');
       $sut= new MethodOptions($expectation, 'foo');
-      $expected= new Object();
+      $expected= new XPObject();
 
       $sut->returns($expected);
 

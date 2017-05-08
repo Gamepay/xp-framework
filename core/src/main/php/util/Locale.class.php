@@ -25,7 +25,7 @@
    * @see      http://groups.google.com/groups?threadm=DREPPER.96Aug8030605%40i44d2.ipd.info.uni-karlsruhe.de#link1
    * @purpose  Represent a locale
    */
-  class util·Locale extends Object {
+  class util·Locale extends XPObject {
     public
       $lang     = '',
       $country  = '',

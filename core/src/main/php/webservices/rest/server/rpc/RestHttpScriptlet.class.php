@@ -88,7 +88,7 @@
       
       try {
         $this->execute($req, $res);
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         if(!$this->errorFormatter)
           throw $e;
 

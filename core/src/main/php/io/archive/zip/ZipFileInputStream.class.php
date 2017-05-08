@@ -12,7 +12,7 @@
    *
    * @purpose  InputStream implementation
    */
-  class ZipFileInputStream extends Object implements InputStream {
+  class ZipFileInputStream extends XPObject implements InputStream {
     protected 
       $reader      = NULL,
       $start       = 0,

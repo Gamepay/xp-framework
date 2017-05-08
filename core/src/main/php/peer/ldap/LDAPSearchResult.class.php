@@ -12,7 +12,7 @@
    * @see      php://ldap_get_entries
    * @test     xp://net.xp_framework.unittest.peer.LDAPResultTest
    */
-  class LDAPSearchResult extends Object {
+  class LDAPSearchResult extends XPObject {
     public
       $size     = NULL;
 

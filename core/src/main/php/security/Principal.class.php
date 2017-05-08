@@ -11,7 +11,7 @@
    * @see      xp://security.cert.X509Certificate
    * @purpose  Principal
    */
-  class Principal extends Object {
+  class Principal extends XPObject {
     public
       $dn= array();
       

@@ -19,7 +19,7 @@
    * @see       xp://util.Date
    * @purpose   Date calculations
    */
-  class DateMath extends Object {
+  class DateMath extends XPObject {
 
     /**
      * Diff two date objects. Only full units are returned.

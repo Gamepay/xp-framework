@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'lang.types.Bytes',
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.Character'
   );
 
@@ -434,62 +434,62 @@
     /**
      * Test creating a String object from a Bytes object
      *
-     * @see     xp://lang.types.String#__construct
+     * @see     xp://lang.types.XPString#__construct
      */
     #[@test]
     public function stringFromIso88591Bytes() {
       $this->assertEquals(
-        new String('Hällo', 'iso-8859-1'),
-        new String(new Bytes("H\344llo"), 'iso-8859-1')
+        new XPString('Hällo', 'iso-8859-1'),
+        new XPString(new Bytes("H\344llo"), 'iso-8859-1')
       );
     }
 
     /**
      * Test creating a String object from a Bytes object
      *
-     * @see     xp://lang.types.String#__construct
+     * @see     xp://lang.types.XPString#__construct
      */
     #[@test]
     public function stringFromUtf8Bytes() {
       $this->assertEquals(
-        new String('Hällo', 'iso-8859-1'),
-        new String(new Bytes("H\303\244llo"), 'utf-8')
+        new XPString('Hällo', 'iso-8859-1'),
+        new XPString(new Bytes("H\303\244llo"), 'utf-8')
       );
     }
 
     /**
      * Test creating a String object from a Bytes object
      *
-     * @see     xp://lang.types.String#__construct
+     * @see     xp://lang.types.XPString#__construct
      */
     #[@test, @expect('lang.FormatException')]
     public function stringFromInvalidUtf8Bytes() {
-      new String(new Bytes("H\344llo"), 'utf-8');
+      new XPString(new Bytes("H\344llo"), 'utf-8');
     }
 
     /**
      * Test creating a Bytes object from a String object
      *
-     * @see     xp://lang.types.String#getBytes
+     * @see     xp://lang.types.XPString#getBytes
      */
     #[@test]
     public function utf8BytesFromString() {
       $this->assertEquals(
         new Bytes("H\303\244llo"),
-        create(new String('Hällo', 'iso-8859-1'))->getBytes('utf-8')
+        create(new XPString('Hällo', 'iso-8859-1'))->getBytes('utf-8')
       );
     }
 
     /**
      * Test creating a Bytes object from a String object
      *
-     * @see     xp://lang.types.String#getBytes
+     * @see     xp://lang.types.XPString#getBytes
      */
     #[@test]
     public function iso88591BytesFromString() {
       $this->assertEquals(
         new Bytes("H\344llo"),
-        create(new String('Hällo', 'iso-8859-1'))->getBytes('iso-8859-1')
+        create(new XPString('Hällo', 'iso-8859-1'))->getBytes('iso-8859-1')
       );
     }
 

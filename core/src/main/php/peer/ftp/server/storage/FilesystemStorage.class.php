@@ -15,7 +15,7 @@
    *
    * @purpose  Storage
    */
-  class FilesystemStorage extends Object {
+  class FilesystemStorage extends XPObject {
     public
       $base   = array(),
       $root   = '';

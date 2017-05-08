@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.core.EnumTest
    * @purpose  Abstract base class   
    */
-  abstract class Enum extends Object {
+  abstract class Enum extends XPObject {
     public
       $name     = '';
     

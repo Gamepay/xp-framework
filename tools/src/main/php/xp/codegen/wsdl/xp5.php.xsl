@@ -360,7 +360,7 @@
    */
   class ]]></xsl:text>
   <xsl:value-of select="func:ucfirst(concat($prefix, @name))"/>
-  <xsl:text> extends Object {&#10;</xsl:text>
+  <xsl:text> extends XPObject {&#10;</xsl:text>
     <xsl:for-each select="xsd:all/xsd:element">
       <xsl:text>    public $</xsl:text><xsl:value-of select="@name"/><xsl:text>&#10;</xsl:text>
     </xsl:for-each>
@@ -433,7 +433,7 @@
    */
   class ]]></xsl:text>
   <xsl:value-of select="func:ucfirst(concat($prefix, @name))"/>
-  <xsl:text> extends Object {&#10;</xsl:text>
+  <xsl:text> extends XPObject {&#10;</xsl:text>
     <xsl:for-each select="child::*[local-name() = 'sequence']/xsd:element">
       <xsl:text>    public $</xsl:text><xsl:value-of select="@name"/><xsl:text>;&#10;</xsl:text>
     </xsl:for-each>
@@ -579,7 +579,7 @@
    */  
   class ]]></xsl:text>
     <xsl:value-of select="func:class(concat($prefix, wsdl:service/@name))"/>
-    <xsl:text><![CDATA[Client extends Object implements Traceable {
+    <xsl:text><![CDATA[Client extends XPObject implements Traceable {
     protected
       $client = NULL;
     

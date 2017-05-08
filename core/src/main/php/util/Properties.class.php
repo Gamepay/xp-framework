@@ -38,7 +38,7 @@
    * @test    xp://net.xp_framework.unittest.util.FileBasedPropertiesTest
    * @see     php://parse_ini_file
    */
-  class Properties extends Object implements PropertyAccess {
+  class Properties extends XPObject implements PropertyAccess {
     public
       $_file    = '',
       $_data    = NULL;

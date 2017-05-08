@@ -12,7 +12,7 @@
    * @see      xp://net.xp_framework.unittest.io.collections.MockCollection
    * @purpose  Mock object
    */
-  class MockElement extends Object implements IOElement {
+  class MockElement extends XPObject implements IOElement {
     protected
       $uri    = '',
       $size   = 0,

@@ -12,7 +12,7 @@
    *
    * TextObserver class:
    * <code>
-   *   class TextObserver extends Object implements Observer {
+   *   class TextObserver extends XPObject implements Observer {
    *
    *     function update($obs, $arg= NULL) {
    *       echo __CLASS__, ' was notified of update in value, is now ';
@@ -61,7 +61,7 @@
    * @see      http://www.javaworld.com/javaworld/jw-10-1996/jw-10-howto.html
    * @purpose  Base class
    */
-  class Observable extends Object {
+  class Observable extends XPObject {
     public
       $_obs      = array(),
       $_changed  = FALSE;

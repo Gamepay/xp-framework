@@ -11,7 +11,7 @@
    *
    * @purpose  Hold instances of deployed beans
    */
-  class InstancePool extends Object {
+  class InstancePool extends XPObject {
     public
       $_pool    = NULL,
       $_h2id    = NULL;
@@ -27,7 +27,7 @@
     /**
      * Register a new instance
      *
-     * @param   lang.Object object
+     * @param   lang.XPObject object
      * @return  bool
      */
     public function registerInstance($object) {

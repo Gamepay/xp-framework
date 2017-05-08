@@ -6,7 +6,7 @@
 
   uses(
     'unittest.TestCase',
-    'lang.types.String',
+    'lang.types.XPString',
     'util.collections.HashTable',
     'util.collections.HashSet',
     'util.collections.Vector'
@@ -28,9 +28,9 @@
     #[@test]
     public function hashTableReadElement() {
       $c= new HashTable();
-      $world= new String('world');
-      $c->put(new String('hello'), $world);
-      $this->assertEquals($world, $c[new String('hello')]);
+      $world= new XPString('world');
+      $c->put(new XPString('hello'), $world);
+      $this->assertEquals($world, $c[new XPString('hello')]);
     }
 
     /**
@@ -40,7 +40,7 @@
     #[@test]
     public function hashTableReadNonExistantElement() {
       $c= new HashTable();
-      $this->assertEquals(NULL, $c[new String('hello')]);
+      $this->assertEquals(NULL, $c[new XPString('hello')]);
     }
 
     /**
@@ -49,7 +49,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function hashTableReadIllegalElement() {
-      $c= create('new HashTable<string, Object>()');
+      $c= create('new HashTable<string, XPObject>()');
       $c[STDIN];
     }
 
@@ -60,9 +60,9 @@
     #[@test]
     public function hashTableWriteElement() {
       $c= new HashTable();
-      $world= new String('world');
-      $c[new String('hello')]= $world;
-      $this->assertEquals($world, $c->get(new String('hello')));
+      $world= new XPString('world');
+      $c[new XPString('hello')]= $world;
+      $this->assertEquals($world, $c->get(new XPString('hello')));
     }
 
     /**
@@ -71,8 +71,8 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function hashTableWriteIllegalKey() {
-      $c= create('new HashTable<string, Object>()');
-      $c[STDIN]= new String('Hello');
+      $c= create('new HashTable<string, XPObject>()');
+      $c[STDIN]= new XPString('Hello');
     }
 
     /**
@@ -81,7 +81,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function hashTableWriteIllegalValue() {
-      $c= create('new HashTable<string, Object>()');
+      $c= create('new HashTable<string, XPObject>()');
       $c['hello']= 'scalar';
     }
 
@@ -92,9 +92,9 @@
     #[@test]
     public function hashTableTestElement() {
       $c= new HashTable();
-      $c->put(new String('hello'), new String('world'));
-      $this->assertTrue(isset($c[new String('hello')]));
-      $this->assertFalse(isset($c[new String('world')]));
+      $c->put(new XPString('hello'), new XPString('world'));
+      $this->assertTrue(isset($c[new XPString('hello')]));
+      $this->assertFalse(isset($c[new XPString('world')]));
     }
 
     /**
@@ -104,10 +104,10 @@
     #[@test]
     public function hashTableRemoveElement() {
       $c= new HashTable();
-      $c->put(new String('hello'), new String('world'));
-      $this->assertTrue(isset($c[new String('hello')]));
-      unset($c[new String('hello')]);
-      $this->assertFalse(isset($c[new String('hello')]));
+      $c->put(new XPString('hello'), new XPString('world'));
+      $this->assertTrue(isset($c[new XPString('hello')]));
+      unset($c[new XPString('hello')]);
+      $this->assertFalse(isset($c[new XPString('hello')]));
     }
 
     /**
@@ -117,7 +117,7 @@
     #[@test]
     public function vectorReadElement() {
       $v= new Vector();
-      $world= new String('world');
+      $world= new XPString('world');
       $v->add($world);
       $this->assertEquals($world, $v[0]);
     }
@@ -139,7 +139,7 @@
     #[@test]
     public function vectorAddElement() {
       $v= new Vector();
-      $world= new String('world');
+      $world= new XPString('world');
       $v[]= $world;
       $this->assertEquals($world, $v[0]);
     }
@@ -150,8 +150,8 @@
      */
     #[@test]
     public function vectorWriteElement() {
-      $v= new Vector(array(new String('hello')));
-      $world= new String('world');
+      $v= new Vector(array(new XPString('hello')));
+      $world= new XPString('world');
       $v[0]= $world;
       $this->assertEquals($world, $v[0]);
     }
@@ -163,7 +163,7 @@
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function vectorWriteElementBeyondBoundsKey() {
       $v= new Vector();
-      $v[0]= new String('world');
+      $v[0]= new XPString('world');
     }
 
     /**
@@ -173,7 +173,7 @@
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function vectorWriteElementNegativeKey() {
       $v= new Vector();
-      $v[-1]= new String('world');
+      $v[-1]= new XPString('world');
     }
 
     /**
@@ -183,7 +183,7 @@
     #[@test]
     public function vectorTestElement() {
       $v= new Vector();
-      $v[]= new String('world');
+      $v[]= new XPString('world');
       $this->assertTrue(isset($v[0]));
       $this->assertFalse(isset($v[1]));
       $this->assertFalse(isset($v[-1]));
@@ -196,7 +196,7 @@
     #[@test]
     public function vectorRemoveElement() {
       $v= new Vector();
-      $v[]= new String('world');
+      $v[]= new XPString('world');
       unset($v[0]);
       $this->assertFalse(isset($v[0]));
     }
@@ -207,7 +207,7 @@
      */
     #[@test]
     public function vectorIsUsableInForeach() {
-      $values= array(new String('hello'), new String('world'));
+      $values= array(new XPString('hello'), new XPString('world'));
       foreach (new Vector($values) as $i => $value) {
         $this->assertEquals($values[$i], $value);
       }
@@ -220,7 +220,7 @@
      */
     #[@test]
     public function stringReadChar() {
-      $s= new String('Hello');
+      $s= new XPString('Hello');
       $this->assertEquals(new Character('H'), $s[0]);
       $this->assertEquals(new Character('e'), $s[1]);
       $this->assertEquals(new Character('l'), $s[2]);
@@ -234,7 +234,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function stringReadBeyondOffset() {
-      $s= new String('Hello');
+      $s= new XPString('Hello');
       $s[5];
     }
 
@@ -244,7 +244,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function stringReadNegativeOffset() {
-      $s= new String('Hello');
+      $s= new XPString('Hello');
       $s[-1];
     }
 
@@ -254,7 +254,7 @@
      */
     #[@test]
     public function stringReadUtfChar() {
-      $s= new String('Übercoder', 'iso-8859-1');
+      $s= new XPString('Übercoder', 'iso-8859-1');
       $this->assertEquals(new Character('Ü', 'iso-8859-1'), $s[0]);
     }
 
@@ -264,9 +264,9 @@
      */
     #[@test]
     public function stringWriteChar() {
-      $s= new String('Übercoder', 'iso-8859-1');
+      $s= new XPString('Übercoder', 'iso-8859-1');
       $s[0]= 'U';
-      $this->assertEquals(new String('Ubercoder'), $s);
+      $this->assertEquals(new XPString('Ubercoder'), $s);
     }
 
     /**
@@ -275,9 +275,9 @@
      */
     #[@test]
     public function stringWriteUtfChar() {
-      $s= new String('Ubercoder');
+      $s= new XPString('Ubercoder');
       $s[0]= new Character('Ü', 'iso-8859-1');
-      $this->assertEquals(new String('Übercoder', 'iso-8859-1'), $s);
+      $this->assertEquals(new XPString('Übercoder', 'iso-8859-1'), $s);
     }
 
     /**
@@ -286,7 +286,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function stringWriteMoreThanOneChar() {
-      $s= new String('Hallo');
+      $s= new XPString('Hallo');
       $s[0]= 'Halli H';   // Hoping somehow this would become "Halli Hallo":)
     }
 
@@ -296,7 +296,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function stringWriteBeyondOffset() {
-      $s= new String('Hello');
+      $s= new XPString('Hello');
       $s[5]= 's';
     }
 
@@ -306,7 +306,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function stringWriteNegativeOffset() {
-      $s= new String('Hello');
+      $s= new XPString('Hello');
       $s[-1]= "\x00";
     }
 
@@ -316,7 +316,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function stringAppend() {
-      $s= new String('Hello');
+      $s= new XPString('Hello');
       $s[]= ' ';   // use concat() instead
     }
 
@@ -326,7 +326,7 @@
      */
     #[@test]
     public function stringTestChar() {
-      $s= new String('Übercoder', 'iso-8859-1');
+      $s= new XPString('Übercoder', 'iso-8859-1');
       $this->assertTrue(isset($s[0]));
       $this->assertTrue(isset($s[$s->length()- 1]));
       $this->assertFalse(isset($s[$s->length()]));
@@ -339,9 +339,9 @@
      */
     #[@test]
     public function stringRemoveChar() {
-      $s= new String('Übercoder', 'iso-8859-1');
+      $s= new XPString('Übercoder', 'iso-8859-1');
       unset($s[0]);
-      $this->assertEquals(new String('bercoder'), $s);
+      $this->assertEquals(new XPString('bercoder'), $s);
     }
 
     /**
@@ -351,8 +351,8 @@
     #[@test]
     public function hashSetAddElement() {
       $s= new HashSet();
-      $s[]= new String('X');
-      $this->assertTrue($s->contains(new String('X')));
+      $s[]= new XPString('X');
+      $this->assertTrue($s->contains(new XPString('X')));
     }
 
     /**
@@ -362,7 +362,7 @@
     #[@test, @expect('lang.IllegalArgumentException')]
     public function hashSetWriteElement() {
       $s= new HashSet();
-      $s[0]= new String('X');
+      $s[0]= new XPString('X');
     }
 
     /**
@@ -372,7 +372,7 @@
     #[@test, @expect('lang.IllegalArgumentException')]
     public function hashSetReadElement() {
       $s= new HashSet();
-      $s[]= new String('X');
+      $s[]= new XPString('X');
       $x= $s[0];
     }
 
@@ -383,9 +383,9 @@
     #[@test]
     public function hashSetTestElement() {
       $s= new HashSet();
-      $this->assertFalse(isset($s[new String('X')]));
-      $s[]= new String('X');
-      $this->assertTrue(isset($s[new String('X')]));
+      $this->assertFalse(isset($s[new XPString('X')]));
+      $s[]= new XPString('X');
+      $this->assertTrue(isset($s[new XPString('X')]));
     }
 
     /**
@@ -395,9 +395,9 @@
     #[@test]
     public function hashSetRemoveElement() {
       $s= new HashSet();
-      $s[]= new String('X');
-      unset($s[new String('X')]);
-      $this->assertFalse(isset($s[new String('X')]));
+      $s[]= new XPString('X');
+      unset($s[new XPString('X')]);
+      $this->assertFalse(isset($s[new XPString('X')]));
     }
 
     /**
@@ -407,9 +407,9 @@
     #[@test]
     public function hashSetUsableInForeach() {
       $s= new HashSet();
-      $s->addAll(array(new String('0'), new String('1'), new String('2')));
+      $s->addAll(array(new XPString('0'), new XPString('1'), new XPString('2')));
       foreach ($s as $i => $element) {
-        $this->assertEquals(new String($i), $element);
+        $this->assertEquals(new XPString($i), $element);
       }
     }
   }

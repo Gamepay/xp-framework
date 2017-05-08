@@ -11,7 +11,7 @@
    * @test      xp://net.xp_framework.unittest.peer.http.FormDataRequestTest
    * @purpose   Single form data part
    */
-  class FormData extends Object {
+  class FormData extends XPObject {
     const
       CRLF  = "\r\n",
       DEFAULT_CONTENTTYPE = 'text/plain',

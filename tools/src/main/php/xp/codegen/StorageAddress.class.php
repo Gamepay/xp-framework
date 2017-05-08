@@ -9,7 +9,7 @@
    *
    * @purpose  purpose
    */
-  class StorageAddress extends Object {
+  class StorageAddress extends XPObject {
     protected 
       $storage= NULL,
       $name   = '';    

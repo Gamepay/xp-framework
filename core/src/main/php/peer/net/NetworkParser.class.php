@@ -15,7 +15,7 @@
    * @test      xp://net.xp_framework.unittest.peer.net.NetworkParserTest
    * @purpose   Parse network addresses
    */
-  class NetworkParser extends Object {
+  class NetworkParser extends XPObject {
     protected
       $addressParser  = NULL;
 

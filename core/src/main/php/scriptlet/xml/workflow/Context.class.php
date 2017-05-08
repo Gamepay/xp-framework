@@ -9,7 +9,7 @@
    *
    * @purpose  Context
    */
-  class Context extends Object {
+  class Context extends XPObject {
     public
       $_changed  = FALSE;
 

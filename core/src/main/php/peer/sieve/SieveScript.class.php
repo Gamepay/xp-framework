@@ -10,7 +10,7 @@
    * @see      xp://peer.sieve.SieveClient
    * @purpose  Wrappper
    */
-  class SieveScript extends Object {
+  class SieveScript extends XPObject {
     public
       $name     = '',
       $code     = '',

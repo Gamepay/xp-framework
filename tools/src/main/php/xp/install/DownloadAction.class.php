@@ -20,7 +20,7 @@
    * Downloads a file
    *
    */
-  class DownloadAction extends Object {
+  class DownloadAction extends XPObject {
     const BASE_URL = 'http://releases.xp-framework.net/download/';
     const PROGRESS_INDICATOR_WIDTH= 10;
   

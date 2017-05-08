@@ -9,7 +9,7 @@
    *
    * @see   xp://img.Image#setStyle
    */
-  class ImgStyle extends Object {
+  class ImgStyle extends XPObject {
     public
       $colors   = array(),
       $pixels   = array();

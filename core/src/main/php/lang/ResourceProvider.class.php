@@ -11,7 +11,7 @@
    * @test      xp://net.xp_framework.unittest.core.ResourceProviderTest
    * @purpose   Provide schemes that resolve resources
    */
-  class ResourceProvider extends Object {
+  class ResourceProvider extends XPObject {
     protected static
       $instance   = NULL;
 

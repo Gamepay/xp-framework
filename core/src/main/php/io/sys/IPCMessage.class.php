@@ -10,7 +10,7 @@
    * @ext      http://de3.php.net/manual/en/ref.sem.php
    * @purpose  create an ipc message
    */
-  class IPCMessage extends Object {
+  class IPCMessage extends XPObject {
     public
       $message        = '',
       $type           = 0;

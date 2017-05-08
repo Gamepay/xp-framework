@@ -81,7 +81,7 @@
      * @param   string text
      */
     public function write($text) {
-      $this->stream->write($text instanceof String || $text instanceof Character
+      $this->stream->write($text instanceof XPString || $text instanceof Character
         ? $text->getBytes($this->charset)
         : iconv(xp::ENCODING, $this->charset, $text)
       );
@@ -93,7 +93,7 @@
      * @param   string text
      */
     public function writeLine($text= '') {
-      $this->stream->write(($text instanceof String || $text instanceof Character
+      $this->stream->write(($text instanceof XPString || $text instanceof Character
         ? $text->getBytes($this->charset)
         : iconv(xp::ENCODING, $this->charset, $text)
       ).$this->newLine);

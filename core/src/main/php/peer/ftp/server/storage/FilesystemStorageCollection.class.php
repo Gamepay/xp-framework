@@ -16,7 +16,7 @@
    * @ext      posix
    * @purpose  StorageCollection
    */
-  class FilesystemStorageCollection extends Object implements StorageCollection {
+  class FilesystemStorageCollection extends XPObject implements StorageCollection {
     public
       $root = NULL,
       $path = NULL,

@@ -12,7 +12,7 @@
    * @see      xp://peer.mail.InternetAddress
    * @purpose  Parse internet addresses
    */
-  class InternetAddressParser extends Object {
+  class InternetAddressParser extends XPObject {
     public
       $_str= NULL;
 

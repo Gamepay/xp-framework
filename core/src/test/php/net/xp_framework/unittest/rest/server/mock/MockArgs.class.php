@@ -8,7 +8,7 @@
    * Mock args class
    *
    */
-  class MockArgs extends Object {
+  class MockArgs extends XPObject {
     
     /**
      * Method without functionality to be used by tests.
@@ -37,7 +37,7 @@
     /**
      * Method without functionality to be used by tests.
      *
-     * @param   lang.Object another
+     * @param   lang.XPObject another
      */
     private function methodWithAnotherArgument($another) { }
   }

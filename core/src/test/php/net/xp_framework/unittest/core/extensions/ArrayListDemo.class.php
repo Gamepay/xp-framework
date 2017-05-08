@@ -11,7 +11,7 @@
    *
    * @see   xp://net.xp_framework.unittest.core.extensions.ArrayListExtensions
    */
-  class ArrayListDemo extends Object {
+  class ArrayListDemo extends XPObject {
     
     /**
      * Main method

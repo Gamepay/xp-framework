@@ -40,7 +40,7 @@
    *
    * @purpose  LDIF Writer
    */
-  class LDIFWriter extends Object {
+  class LDIFWriter extends XPObject {
     public
       $stream       = NULL;
       

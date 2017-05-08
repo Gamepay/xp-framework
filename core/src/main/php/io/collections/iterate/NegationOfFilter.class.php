@@ -11,7 +11,7 @@
    *
    * @purpose  Iteration Filter
    */
-  class NegationOfFilter extends Object implements IterationFilter {
+  class NegationOfFilter extends XPObject implements IterationFilter {
     public
       $filter= NULL;
       

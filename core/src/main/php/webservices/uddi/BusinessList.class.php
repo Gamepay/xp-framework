@@ -12,7 +12,7 @@
    * @see      xp://webservices.uddi.FindBusinessesCommand
    * @purpose  Return wrapper
    */
-  class BusinessList extends Object {
+  class BusinessList extends XPObject {
     public 
       $operator  = '',
       $truncated = FALSE,

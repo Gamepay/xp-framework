@@ -33,7 +33,7 @@
    *
    * @purpose  Base class for charts
    */
-  class Chart extends Object {
+  class Chart extends XPObject {
     public
       $series = array(),
       $colors = array(),

@@ -11,7 +11,7 @@
    *
    * @purpose  Authenticator
    */
-  class PropertyAuthenticator extends Object implements Authenticator {
+  class PropertyAuthenticator extends XPObject implements Authenticator {
     public
       $users = NULL;
 

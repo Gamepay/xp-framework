@@ -17,7 +17,7 @@
    * @ext      bcmath
    * @purpose  Base 57 encoder/decoder
    */
-  class Base57 extends Object {
+  class Base57 extends XPObject {
   
     /**
      * Encode number

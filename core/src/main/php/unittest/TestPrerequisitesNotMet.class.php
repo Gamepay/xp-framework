@@ -11,7 +11,7 @@
    *
    * @see      xp://unittest.TestSkipped
    */
-  class TestPrerequisitesNotMet extends Object implements TestSkipped {
+  class TestPrerequisitesNotMet extends XPObject implements TestSkipped {
     public
       $reason   = NULL,
       $test     = NULL,

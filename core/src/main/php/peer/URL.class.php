@@ -20,7 +20,7 @@
    * @test   xp://net.xp_framework.unittest.peer.URLTest
    * @see    php://parse_url
    */
-  class URL extends Object {
+  class URL extends XPObject {
     protected static
       $defaultPorts= array(
         'http' => 80,
@@ -43,7 +43,7 @@
      * Creates a string representation of this URL
      *
      * @return  string
-     * @see     xp://lang.Object#toString
+     * @see     xp://lang.XPObject#toString
      */
     public function toString() {
       return sprintf(
@@ -190,14 +190,8 @@
     protected function buildQuery($key, $value, $postfix= '') {
       $query= '';
       if (is_array($value)) {
-        if (is_int(key($value))) {
-          foreach ($value as $i => $v) {
-            $query.= $this->buildQuery(NULL, $v, $postfix.$key.'[]');
-          }
-        } else {
-          foreach ($value as $k => $v) {
-            $query.= $this->buildQuery(NULL, $v, $postfix.$key.'['.$k.']');
-          }
+        foreach ($value as $k => $v) {
+          $query.= $this->buildQuery(NULL, $v, $postfix.$key.'['.$k.']');
         }
       } else if ('' === $value) {
         $query.= '&'.urlencode($key).$postfix;
@@ -531,7 +525,7 @@
     /**
      * Returns whether a given object is equal to this.
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool
      */
     public function equals($cmp) {

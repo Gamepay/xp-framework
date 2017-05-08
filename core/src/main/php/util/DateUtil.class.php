@@ -16,7 +16,7 @@
    * @test    xp://net.xp_framework.unittest.util.DateUtilTest
    * @purpose Utils to calculate with Date objects
    */
-  class DateUtil extends Object {
+  class DateUtil extends XPObject {
 
     /**
      * Returns a Date object which represents the date at

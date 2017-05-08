@@ -12,7 +12,7 @@
    * @see      xp://scriptlet.xml.portlet.Portlet
    * @purpose  Abstract base class
    */
-  class AbstractPortlet extends Object implements Portlet {
+  class AbstractPortlet extends XPObject implements Portlet {
     public
       $name       = '',
       $properties = NULL,

@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.peer.ftp.FtpCollectionsTest
    * @purpose  Interface
    */
-  class FtpElement extends Object implements IOElement {
+  class FtpElement extends XPObject implements IOElement {
     protected 
       $file   = NULL,
       $origin = NULL;

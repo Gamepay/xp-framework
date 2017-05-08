@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'util.collections.HashTable',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -43,7 +43,7 @@
      */
     #[@test]
     public function equalsClone() {
-      $this->map->put(new String('color'), new String('green'));
+      $this->map->put(new XPString('color'), new XPString('green'));
       $this->assertTrue($this->map->equals(clone($this->map)));
     }
  
@@ -54,8 +54,8 @@
     #[@test]
     public function equalsOtherMapWithSameContents() {
       $other= new HashTable();
-      $this->map->put(new String('color'), new String('green'));
-      $other->put(new String('color'), new String('green'));
+      $this->map->put(new XPString('color'), new XPString('green'));
+      $other->put(new XPString('color'), new XPString('green'));
       $this->assertTrue($this->map->equals($other));
     }
 
@@ -66,8 +66,8 @@
     #[@test]
     public function doesNotEqualMapWithDifferentContents() {
       $other= new HashTable();
-      $this->map->put(new String('color'), new String('blue'));
-      $other->put(new String('color'), new String('yellow'));
+      $this->map->put(new XPString('color'), new XPString('blue'));
+      $other->put(new XPString('color'), new XPString('yellow'));
       $this->assertFalse($this->map->equals($other));
     }
    
@@ -77,7 +77,7 @@
      */
     #[@test]
     public function put() {
-      $this->map->put(new String('color'), new String('green'));
+      $this->map->put(new XPString('color'), new XPString('green'));
       $this->assertFalse($this->map->isEmpty());
       $this->assertEquals(1, $this->map->size());
     }
@@ -88,10 +88,10 @@
      */
     #[@test]
     public function putReturnsPreviousValue() {
-      $color= new String('color');
-      $this->assertNull($this->map->put($color, new String('green')));
-      $this->assertEquals(new String('green'), $this->map->put($color, new String('red')));
-      $this->assertEquals(new String('red'), $this->map->get($color));
+      $color= new XPString('color');
+      $this->assertNull($this->map->put($color, new XPString('green')));
+      $this->assertEquals(new XPString('green'), $this->map->put($color, new XPString('red')));
+      $this->assertEquals(new XPString('red'), $this->map->get($color));
     }
 
     /**
@@ -100,8 +100,8 @@
      */
     #[@test]
     public function get() {
-      $this->map->put(new String('key'), new String('value'));
-      $this->assertEquals(new String('value'), $this->map->get(new String('key')));
+      $this->map->put(new XPString('key'), new XPString('value'));
+      $this->assertEquals(new XPString('value'), $this->map->get(new XPString('key')));
     }
 
     /**
@@ -111,7 +111,7 @@
     #[@test]
     public function getReturnsNullOnEmptyList() {
       $this->assertTrue($this->map->isEmpty());
-      $this->assertNull($this->map->get(new String('key')));
+      $this->assertNull($this->map->get(new XPString('key')));
     }
 
     /**
@@ -120,8 +120,8 @@
      */
     #[@test]
     public function remove() {
-      $this->map->put(new String('key'), new String('value'));
-      $this->map->remove(new String('key'));
+      $this->map->put(new XPString('key'), new XPString('value'));
+      $this->map->remove(new XPString('key'));
       $this->assertTrue($this->map->isEmpty());
     }
 
@@ -131,8 +131,8 @@
      */
     #[@test]
     public function removeReturnsPreviousValue() {
-      $this->map->put(new String('key'), new String('value'));
-      $this->assertEquals(new String('value'), $this->map->remove(new String('key')));
+      $this->map->put(new XPString('key'), new XPString('value'));
+      $this->assertEquals(new XPString('value'), $this->map->remove(new XPString('key')));
     }
 
     /**
@@ -141,9 +141,9 @@
      */
     #[@test]
     public function containsKey() {
-      $this->map->put(new String('key'), new String('value'));
-      $this->assertTrue($this->map->containsKey(new String('key')));
-      $this->assertFalse($this->map->containsKey(new String('non-existant-key')));
+      $this->map->put(new XPString('key'), new XPString('value'));
+      $this->assertTrue($this->map->containsKey(new XPString('key')));
+      $this->assertFalse($this->map->containsKey(new XPString('non-existant-key')));
     }
     
     /**
@@ -152,7 +152,7 @@
      */
     #[@test]
     public function clear() {
-      $this->map->put(new String('key'), new String('value'));
+      $this->map->put(new XPString('key'), new XPString('value'));
       $this->map->clear();
       $this->assertTrue($this->map->isEmpty());
     }
@@ -163,9 +163,9 @@
      */
     #[@test]
     public function containsValue() {
-      $this->map->put(new String('key'), new String('value'));
-      $this->assertTrue($this->map->containsValue(new String('value')));
-      $this->assertFalse($this->map->containsValue(new String('non-existant-value')));
+      $this->map->put(new XPString('key'), new XPString('value'));
+      $this->assertTrue($this->map->containsValue(new XPString('value')));
+      $this->assertFalse($this->map->containsValue(new XPString('non-existant-value')));
     }
 
     /**
@@ -174,8 +174,8 @@
      */
     #[@test]
     public function keys() {
-      $this->map->put(new String('key'), new String('value'));
-      $this->assertEquals(array(new String('key')), $this->map->keys());
+      $this->map->put(new XPString('key'), new XPString('value'));
+      $this->assertEquals(array(new XPString('key')), $this->map->keys());
     }
 
     /**
@@ -184,8 +184,8 @@
      */
     #[@test]
     public function values() {
-      $this->map->put(new String('key'), new String('value'));
-      $this->assertEquals(array(new String('value')), $this->map->values());
+      $this->map->put(new XPString('key'), new XPString('value'));
+      $this->assertEquals(array(new XPString('value')), $this->map->values());
     }
 
     /**
@@ -194,8 +194,8 @@
      */
     #[@test]
     public function stringRepresentation() {
-      $this->map->put(new String('color'), new String('purple'));
-      $this->map->put(new String('price'), new String('25 USD'));
+      $this->map->put(new XPString('color'), new XPString('purple'));
+      $this->map->put(new XPString('price'), new XPString('25 USD'));
       $this->assertEquals(
         "util.collections.HashTable[2] {\n  color => purple,\n  price => 25 USD\n}",
         $this->map->toString()

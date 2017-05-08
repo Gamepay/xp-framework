@@ -14,7 +14,7 @@
    *
    * @test  xp://net.xp_framework.unittest.tests.mock.TypeMatcherTest
    */
-  class TypeMatcher extends Object implements IArgumentMatcher, InvocationHandler  {
+  class TypeMatcher extends XPObject implements IArgumentMatcher, InvocationHandler  {
     private 
       $type,
       $matchNull;

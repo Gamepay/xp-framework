@@ -25,7 +25,7 @@
      *
      * @param   var faultcode faultcode (can be int or string)
      * @param   string message
-     * @param   lang.Throwable default NULL cause causing exception
+     * @param   lang.XPThrowable default NULL cause causing exception
      */
     public function __construct($faultcode, $message, $cause= NULL) {
       $this->faultcode= $faultcode;

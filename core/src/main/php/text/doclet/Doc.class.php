@@ -17,7 +17,7 @@
    * @test     xp://net.xp_framework.unittest.doclet.CommentParserTest
    * @purpose  Base class
    */
-  class Doc extends Object {
+  class Doc extends XPObject {
     public
       $name         = '',
       $rawComment   = '',

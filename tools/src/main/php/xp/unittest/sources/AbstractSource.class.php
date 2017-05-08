@@ -11,7 +11,7 @@
    *
    * @purpose  Abstract base class
    */
-  abstract class xp·unittest·sources·AbstractSource extends Object {
+  abstract class xp·unittest·sources·AbstractSource extends XPObject {
 
     /**
      * Get all test cases

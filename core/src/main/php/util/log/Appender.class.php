@@ -10,7 +10,7 @@
    * @see      xp://util.log.LogCategory#addAppender
    * @purpose  Base class
    */
-  abstract class Appender extends Object {
+  abstract class Appender extends XPObject {
     protected $layout= NULL;
 
     /**

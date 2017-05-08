@@ -24,7 +24,7 @@
    * @see      rfc://2831
    * @purpose  Digest challenge wrapper
    */
-  class DigestChallenge extends Object {
+  class DigestChallenge extends XPObject {
     public
       $realm        = '',
       $maxbuf       = 65536,

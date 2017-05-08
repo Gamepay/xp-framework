@@ -56,8 +56,8 @@
         return $this->fail('Exception should have been caught in Exception block', 'IllegalArgumentException');
       } catch (XPException $caught) {
         return TRUE;
-      } catch (Throwable $caught) {
-        return $this->fail('Exception should have been caught in Exception block', 'Throwable');
+      } catch (XPThrowable $caught) {
+        return $this->fail('Exception should have been caught in Exception block', 'XPThrowable');
       }
 
       $this->fail('Thrown Exception not caught');
@@ -69,7 +69,7 @@
      */
     #[@test]
     public function stackTrace() {
-      $trace= create(new Throwable('Test'))->getStackTrace();
+      $trace= create(new XPThrowable('Test'))->getStackTrace();
       $this->assertArray($trace);
       $this->assertNotEmpty($trace);
       foreach ($trace as $element) {
@@ -83,7 +83,7 @@
      */
     #[@test]
     public function firstFrame() {
-      $trace= create(new Throwable('Test'))->getStackTrace();
+      $trace= create(new XPThrowable('Test'))->getStackTrace();
       
       $this->assertEquals(get_class($this), $trace[0]->class);
       $this->assertEquals($this->getName(), $trace[0]->method);
@@ -99,7 +99,7 @@
      */
     #[@test]
     public function allExceptionsAreUnique() {
-      $this->assertNotEquals(new Throwable('Test'), new Throwable('Test'));
+      $this->assertNotEquals(new XPThrowable('Test'), new XPThrowable('Test'));
     }
 
     /**
@@ -109,8 +109,8 @@
     #[@test]
     public function hashCodesAreUnique() {
       $this->assertNotEquals(
-        create(new Throwable('Test'))->hashCode(),
-        create(new Throwable('Test'))->hashCode()
+        create(new XPThrowable('Test'))->hashCode(),
+        create(new XPThrowable('Test'))->hashCode()
       );
     }
 
@@ -120,7 +120,7 @@
      */
     #[@test]
     public function message() {
-      $this->assertEquals('Test', create(new Throwable('Test'))->getMessage());
+      $this->assertEquals('Test', create(new XPThrowable('Test'))->getMessage());
     }
 
     /**
@@ -129,7 +129,7 @@
      */
     #[@test]
     public function classMethod() {
-      $this->assertEquals(XPClass::forName('lang.Throwable'), create(new Throwable('Test'))->getClass());
+      $this->assertEquals(XPClass::forName('lang.XPThrowable'), create(new XPThrowable('Test'))->getClass());
     }
 
     /**
@@ -138,7 +138,7 @@
      */
     #[@test]
     public function classNameMethod() {
-      $this->assertEquals('lang.Throwable', create(new Throwable('Test'))->getClassName());
+      $this->assertEquals('lang.XPThrowable', create(new XPThrowable('Test'))->getClassName());
     }
 
     /**
@@ -148,8 +148,8 @@
     #[@test]
     public function compoundMessage() {
       $this->assertEquals(
-        'Exception lang.Throwable (Test)', 
-        create(new Throwable('Test'))->compoundMessage()
+        'Exception lang.XPThrowable (Test)', 
+        create(new XPThrowable('Test'))->compoundMessage()
       );
     }
 
@@ -160,7 +160,7 @@
     #[@test]
     public function printStackTrace() {
       $out= new MemoryOutputStream();
-      $e= new Throwable('Test');
+      $e= new XPThrowable('Test');
       create($e)->printStackTrace(Streams::writeableFd($out));
       $this->assertEquals($e->toString(), $out->getBytes());
     }

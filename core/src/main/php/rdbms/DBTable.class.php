@@ -14,7 +14,7 @@
    * Represents a database table
    *
    */  
-  class DBTable extends Object {
+  class DBTable extends XPObject {
     public 
       $name=          '',
       $attributes=    array(),

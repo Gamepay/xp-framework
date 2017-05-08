@@ -13,7 +13,7 @@
    * @see      php://preg
    * @purpose  Regular Expression
    */
-  class Pattern extends Object implements Matcher {
+  class Pattern extends XPObject implements Matcher {
     const 
       CASE_INSENSITIVE = 0x0001,
       MULTILINE        = 0x0002,
@@ -92,7 +92,7 @@
      * @throws  lang.FormatException
      */  
     public function matches($input) {
-      if ($input instanceof String) {
+      if ($input instanceof XPString) {
         $n= preg_match($this->regex, (string)$input->getBytes($this->utf8 ? 'utf-8' : 'iso-8859-1'));
       } else {
         $n= preg_match($this->regex, (string)$input);
@@ -113,7 +113,7 @@
      * @throws  lang.FormatException
      */  
     public function match($input) {
-      if ($input instanceof String) {
+      if ($input instanceof XPString) {
         $n= preg_match_all($this->regex, (string)$input->getBytes($this->utf8 ? 'utf-8' : 'iso-8859-1'), $m, PREG_SET_ORDER);
       } else {
         $n= preg_match_all($this->regex, (string)$input, $m, PREG_SET_ORDER);
@@ -135,7 +135,7 @@
      * @throws  lang.FormatException
      */  
     public function replaceWith($replacement, $input) {
-      if ($input instanceof String) {
+      if ($input instanceof XPString) {
         $r= preg_replace($this->regex, $replacement, (string)$input->getBytes($this->utf8 ? 'utf-8' : 'iso-8859-1'));
       } else {
         $r= preg_replace($this->regex, $replacement, (string)$input);

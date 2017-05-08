@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'util.collections.Queue',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -43,7 +43,7 @@
      */
     #[@test]
     public function equalsClone() {
-      $this->queue->put(new String('green'));
+      $this->queue->put(new XPString('green'));
       $this->assertTrue($this->queue->equals(clone($this->queue)));
     }
 
@@ -53,7 +53,7 @@
      */
     #[@test]
     public function put() {
-      $this->queue->put(new String('green'));
+      $this->queue->put(new XPString('green'));
       $this->assertFalse($this->queue->isEmpty());
       $this->assertEquals(1, $this->queue->size());
     }
@@ -64,7 +64,7 @@
      */
     #[@test]
     public function get() {
-      $color= new String('red');
+      $color= new XPString('red');
       $this->queue->put($color);
       $this->assertEquals($color, $this->queue->get());
       $this->assertTrue($this->queue->isEmpty());
@@ -86,7 +86,7 @@
      */
     #[@test]
     public function peek() {
-      $color= new String('blue');
+      $color= new XPString('blue');
       $this->queue->put($color);
       $this->assertEquals($color, $this->queue->peek());
       $this->assertFalse($this->queue->isEmpty());
@@ -108,7 +108,7 @@
      */
     #[@test]
     public function remove() {
-      $color= new String('blue');
+      $color= new XPString('blue');
       $this->queue->put($color);
       $this->queue->remove($color);
       $this->assertTrue($this->queue->isEmpty());
@@ -120,13 +120,13 @@
      */
     #[@test]
     public function removeReturnsWhetherDeleted() {
-      $color= new String('pink');
+      $color= new XPString('pink');
       $this->queue->put($color);
       $this->assertTrue($this->queue->remove($color));
-      $this->assertFalse($this->queue->remove(new String('purple')));
+      $this->assertFalse($this->queue->remove(new XPString('purple')));
       $this->assertTrue($this->queue->isEmpty());
       $this->assertFalse($this->queue->remove($color));
-      $this->assertFalse($this->queue->remove(new String('purple')));
+      $this->assertFalse($this->queue->remove(new XPString('purple')));
     }
 
     /**
@@ -135,12 +135,12 @@
      */
     #[@test]
     public function elementAt() {
-      $this->queue->put(new String('red'));
-      $this->queue->put(new String('green'));
-      $this->queue->put(new String('blue'));
-      $this->assertEquals(new String('red'), $this->queue->elementAt(0));
-      $this->assertEquals(new String('green'), $this->queue->elementAt(1));
-      $this->assertEquals(new String('blue'), $this->queue->elementAt(2));
+      $this->queue->put(new XPString('red'));
+      $this->queue->put(new XPString('green'));
+      $this->queue->put(new XPString('blue'));
+      $this->assertEquals(new XPString('red'), $this->queue->elementAt(0));
+      $this->assertEquals(new XPString('green'), $this->queue->elementAt(1));
+      $this->assertEquals(new XPString('blue'), $this->queue->elementAt(2));
     }
 
     /**
@@ -151,10 +151,10 @@
      *   
      *   // Fill queue
      *   with ($q= new Queue()); {
-     *     $q->put(new String('One'));
-     *     $q->put(new String('Two'));
-     *     $q->put(new String('Three'));
-     *     $q->put(new String('Four'));
+     *     $q->put(new XPString('One'));
+     *     $q->put(new XPString('Two'));
+     *     $q->put(new XPString('Three'));
+     *     $q->put(new XPString('Four'));
      *   }
      *   
      *   // Empty queue
@@ -166,7 +166,7 @@
      */
     #[@test]
     public function iterativeUse() {
-      $input= array(new String('red'), new String('green'), new String('blue'));
+      $input= array(new XPString('red'), new XPString('green'), new XPString('blue'));
       
       // Add
       for ($i= 0, $s= sizeof($input); $i < sizeof($input); $i++) {
@@ -203,7 +203,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function elementAtOffsetOutOfBounds() {
-      $this->queue->put(new String('one'));
+      $this->queue->put(new XPString('one'));
       $this->queue->elementAt($this->queue->size() + 1);
     }
 

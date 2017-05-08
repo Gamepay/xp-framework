@@ -12,7 +12,7 @@
    * @see   xp://io.collections.iterate.AnyOfFilter
    * @see   xp://io.collections.iterate.AllOfFilter
    */
-  abstract class AbstractCombinedFilter extends Object implements IterationFilter {
+  abstract class AbstractCombinedFilter extends XPObject implements IterationFilter {
     public $list;
     protected $_size;
       

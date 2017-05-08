@@ -25,7 +25,7 @@
      * Returns an on-the-wire representation of the given value
      *
      * @param   server.protocol.Serializer serializer
-     * @param   lang.Object value
+     * @param   lang.XPObject value
      * @param   [:var] context default array()
      * @return  string
      */

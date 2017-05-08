@@ -16,7 +16,7 @@
     static function __static() {
       
       // For singletonInstance test
-      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousSingleton', 'lang.Object', array(), '{
+      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousSingleton', 'lang.XPObject', array(), '{
         protected static $instance= NULL;
 
         static function getInstance() {
@@ -26,17 +26,17 @@
       }');
 
       // For returnNewObject and returnNewObjectViaReflection tests
-      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousList', 'lang.Object', array(), '{
+      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousList', 'lang.XPObject', array(), '{
         function __construct() {
           ReferencesTest::registry("list", $this);
         }
       }');
-      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousFactory', 'lang.Object', array(), '{
+      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousFactory', 'lang.XPObject', array(), '{
         static function factory() {
           return new AnonymousList();
         }
       }');
-      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousNewInstanceFactory', 'lang.Object', array(), '{
+      ClassLoader::defineClass('net.xp_framework.unittest.core.AnonymousNewInstanceFactory', 'lang.XPObject', array(), '{
         static function factory() {
           return XPClass::forName("net.xp_framework.unittest.core.AnonymousList")->newInstance();
         }
@@ -46,8 +46,8 @@
     /**
      * Helper method that asserts to objects are references to each other
      *
-     * @param   &lang.Object a
-     * @param   &lang.Object b
+     * @param   &lang.XPObject a
+     * @param   &lang.XPObject b
      * @throws  unittest.AssertionFailedError
      */
     protected function assertReference($a, $b) {

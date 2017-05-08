@@ -15,7 +15,7 @@
    * @see      xp://io.streams.ChannelInputStream
    * @purpose  Outputstream implementation
    */
-  class ChannelOutputStream extends Object implements OutputStream {
+  class ChannelOutputStream extends XPObject implements OutputStream {
     protected
       $name = NULL,
       $fd   = NULL;

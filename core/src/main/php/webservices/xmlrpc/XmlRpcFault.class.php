@@ -10,7 +10,7 @@
    * @see      xp://webservices.xmlrpc.XmlRpcMessage
    * @purpose  Wrap fault
    */
-  class XmlRpcFault extends Object {
+  class XmlRpcFault extends XPObject {
     public
       $faultCode=     0,
       $faultString=   '';

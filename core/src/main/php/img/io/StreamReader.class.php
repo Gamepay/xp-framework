@@ -15,7 +15,7 @@
    * @see      xp://img.Image#loadFrom
    * @purpose  Base class
    */
-  class StreamReader extends Object implements ImageReader {
+  class StreamReader extends XPObject implements ImageReader {
     public $stream= NULL;
     
     /**

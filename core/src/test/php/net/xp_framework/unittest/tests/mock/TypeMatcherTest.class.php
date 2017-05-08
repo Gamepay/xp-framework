@@ -8,7 +8,7 @@
     'unittest.mock.arguments.TypeMatcher',
     'unittest.mock.MockRepository',
     'lang.Type',
-    'lang.Object',
+    'lang.XPObject',
     'util.Date'   
   );
 
@@ -34,7 +34,7 @@
      */
     #[@test]
     public function object_matches_object() {
-      $this->assertTrue(create(new TypeMatcher('lang.Object'))->matches(new Object()));
+      $this->assertTrue(create(new TypeMatcher('lang.XPObject'))->matches(new XPObject()));
     }
 
     /**
@@ -43,7 +43,7 @@
      */
     #[@test]
     public function object_does_not_match_string() {
-      $this->assertFalse(create(new TypeMatcher('lang.Object'))->matches('a string'));
+      $this->assertFalse(create(new TypeMatcher('lang.XPObject'))->matches('a string'));
     }
 
     /**
@@ -52,7 +52,7 @@
      */
     #[@test]
     public function object_does_not_match_subtype() {
-      $this->assertFalse(create(new TypeMatcher('lang.Object'))->matches(new Date()));
+      $this->assertFalse(create(new TypeMatcher('lang.XPObject'))->matches(new Date()));
     }
 
     /**
@@ -61,7 +61,7 @@
      */
     #[@test]
     public function matches_should_not_match_parenttype() {
-      $this->assertFalse(create(new TypeMatcher('unittest.mock.arguments.TypeMatcher'))->matches(new Object()));
+      $this->assertFalse(create(new TypeMatcher('unittest.mock.arguments.TypeMatcher'))->matches(new XPObject()));
     }
     
     /**
@@ -70,7 +70,7 @@
      */
     #[@test]
     public function object_matches_null() {
-      $this->assertTrue(create(new TypeMatcher('lang.Object'))->matches(NULL));
+      $this->assertTrue(create(new TypeMatcher('lang.XPObject'))->matches(NULL));
     }
     
     /**
@@ -79,7 +79,7 @@
      */
     #[@test]
     public function matches_should_not_match_null_if_defined_so() {
-      $this->assertFalse(create(new TypeMatcher('lang.Object', FALSE))->matches(NULL));
+      $this->assertFalse(create(new TypeMatcher('lang.XPObject', FALSE))->matches(NULL));
     }
     
     /**

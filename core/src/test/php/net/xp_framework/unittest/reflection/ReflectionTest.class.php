@@ -61,7 +61,7 @@
      */
     #[@test]
     public function subClass() {
-      $this->assertTrue($this->class->isSubclassOf('lang.Object'));
+      $this->assertTrue($this->class->isSubclassOf('lang.XPObject'));
       $this->assertFalse($this->class->isSubclassOf('util.Date'));
       $this->assertFalse($this->class->isSubclassOf('net.xp_framework.unittest.reflection.TestClass'));
     }
@@ -73,7 +73,7 @@
      */
     #[@test]
     public function subClassOfClass() {
-      $this->assertTrue($this->class->isSubclassOf(XPClass::forName('lang.Object')));
+      $this->assertTrue($this->class->isSubclassOf(XPClass::forName('lang.XPObject')));
       $this->assertFalse($this->class->isSubclassOf(XPClass::forName('util.Date')));
       $this->assertFalse($this->class->isSubclassOf(XPClass::forName('net.xp_framework.unittest.reflection.TestClass')));
     }
@@ -88,7 +88,7 @@
       $parent= $this->class->getParentClass();
       $this->assertClass($parent, 'lang.XPClass');
       $this->assertEquals('net.xp_framework.unittest.reflection.AbstractTestClass', $parent->getName());
-      $this->assertEquals('lang.Object', $parent->getParentClass()->getName());
+      $this->assertEquals('lang.XPObject', $parent->getParentClass()->getName());
       $this->assertNull($parent->getParentClass()->getParentClass());
     }
 
@@ -131,7 +131,7 @@
     public function objectClassDeclaredInterfaces() {
       $this->assertEquals(
         array(XPClass::forName('lang.Generic')), 
-        XPClass::forName('lang.Object')->getDeclaredInterfaces()
+        XPClass::forName('lang.XPObject')->getDeclaredInterfaces()
       );
     }
 
@@ -174,23 +174,23 @@
     }
 
     /**
-     * Tests lang.Object class has no constructor
+     * Tests lang.XPObject class has no constructor
      *
      * @see     xp://lang.XPClass#hasConstructor
      */
     #[@test]
     public function checkNoConstructor() {
-      $this->assertFalse(XPClass::forName('lang.Object')->hasConstructor());
+      $this->assertFalse(XPClass::forName('lang.XPObject')->hasConstructor());
     }
 
     /**
-     * Tests lang.Object class has no constructor
+     * Tests lang.XPObject class has no constructor
      *
      * @see     xp://lang.XPClass#getConstructor
      */
     #[@test, @expect('lang.ElementNotFoundException')]
     public function noConstructor() {
-      XPClass::forName('lang.Object')->getConstructor();
+      XPClass::forName('lang.XPObject')->getConstructor();
     }
 
     /**

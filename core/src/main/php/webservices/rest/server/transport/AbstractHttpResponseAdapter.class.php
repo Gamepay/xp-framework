@@ -11,7 +11,7 @@
    *
    * @purpose Adapter
    */
-  abstract class AbstractHttpResponseAdapter extends Object implements HttpResponseAdapter {
+  abstract class AbstractHttpResponseAdapter extends XPObject implements HttpResponseAdapter {
     protected $response= NULL;
     
     /**

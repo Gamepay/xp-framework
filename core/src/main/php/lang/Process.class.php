@@ -24,7 +24,7 @@
    * @see      php://proc_open
    * @purpose  Execute external programs
    */
-  class Process extends Object {
+  class Process extends XPObject {
     public
       $in     = NULL,
       $out    = NULL,

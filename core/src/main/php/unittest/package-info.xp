@@ -11,7 +11,7 @@
  * =======
  * Given the following class (abbreviated):
  * <code>
- *   class Calculator extends Object {
+ *   class Calculator extends XPObject {
  *     
  *     public function add($a, $b) {
  *       return $a + $b;

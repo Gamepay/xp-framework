@@ -6,7 +6,7 @@
  
   uses(
     'unittest.TestCase',
-    'lang.types.String',
+    'lang.types.XPString',
     'xml.Tree'
   );
 
@@ -180,7 +180,7 @@
     #[@test]
     public function utf8EncodingWithIso88591StringObject() {
       $t= create(new Tree('unicode'))->withEncoding('UTF-8');
-      $t->root->setContent(new String('Hällo', 'iso-8859-1'));
+      $t->root->setContent(new XPString('Hällo', 'iso-8859-1'));
 
       $this->assertEquals('<?xml version="1.0" encoding="UTF-8"?>', $t->getDeclaration());
       $this->assertEquals('<unicode>HÃ¤llo</unicode>', $this->sourceOf($t));
@@ -193,7 +193,7 @@
     #[@test]
     public function iso88591EncodingWithIso88591StringObject() {
       $t= create(new Tree('unicode'))->withEncoding('iso-8859-1');
-      $t->root->setContent(new String('Hällo', 'iso-8859-1'));
+      $t->root->setContent(new XPString('Hällo', 'iso-8859-1'));
 
       $this->assertEquals('<?xml version="1.0" encoding="ISO-8859-1"?>', $t->getDeclaration());
       $this->assertEquals('<unicode>Hällo</unicode>', $this->sourceOf($t));
@@ -206,7 +206,7 @@
     #[@test]
     public function utf8EncodingWithUtf8StringObject() {
       $t= create(new Tree('unicode'))->withEncoding('UTF-8');
-      $t->root->setContent(new String('HÃ¤llo', 'UTF-8'));
+      $t->root->setContent(new XPString('HÃ¤llo', 'UTF-8'));
 
       $this->assertEquals('<?xml version="1.0" encoding="UTF-8"?>', $t->getDeclaration());
       $this->assertEquals('<unicode>HÃ¤llo</unicode>', $this->sourceOf($t));
@@ -219,7 +219,7 @@
     #[@test]
     public function iso88591EncodingWithUtf8StringObject() {
       $t= create(new Tree('unicode'))->withEncoding('iso-8859-1');
-      $t->root->setContent(new String('HÃ¤llo', 'UTF-8'));
+      $t->root->setContent(new XPString('HÃ¤llo', 'UTF-8'));
 
       $this->assertEquals('<?xml version="1.0" encoding="ISO-8859-1"?>', $t->getDeclaration());
       $this->assertEquals('<unicode>Hällo</unicode>', $this->sourceOf($t));

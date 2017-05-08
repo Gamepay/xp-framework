@@ -9,7 +9,7 @@
    *
    * @purpose  Error
    */
-  class RuntimeError extends Error {
+  class RuntimeError extends XPError {
   
   }
 ?>

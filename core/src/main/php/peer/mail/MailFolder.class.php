@@ -14,7 +14,7 @@
    *
    * @purpose  Wrap
    */
-  class MailFolder extends Object {
+  class MailFolder extends XPObject {
     public
       $name  = '',
       $store = NULL;

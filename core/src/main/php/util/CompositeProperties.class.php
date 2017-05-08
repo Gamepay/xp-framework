@@ -15,7 +15,7 @@
    *
    * @test    xp://net.xp_framework.unittest.util.CompositePropertiesTest
    */
-  class CompositeProperties extends Object implements PropertyAccess {
+  class CompositeProperties extends XPObject implements PropertyAccess {
     protected $props  = array();
     private $sections = NULL;
 

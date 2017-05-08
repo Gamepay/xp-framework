@@ -37,7 +37,7 @@
    * @see      xp://text.doclet.Doclet
    * @purpose  Entry point
    */
-  class RootDoc extends Object {
+  class RootDoc extends XPObject {
     protected $sourcepath= array();
 
     const ST_INITIAL            = 'initial';

@@ -14,7 +14,7 @@
    * @see   php://crypt
    * @see   xp://security.crypto.UnixCrypt
    */
-  abstract class security·crypto·CryptImpl extends Object {
+  abstract class security·crypto·CryptImpl extends XPObject {
     
     /**
      * Crypt a given plain-text string

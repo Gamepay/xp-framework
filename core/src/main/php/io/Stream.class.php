@@ -21,7 +21,7 @@
    * @test     xp://net.xp_framework.unittest.io.StreamTest
    * @purpose  Represent a generic stream
    */
-  class Stream extends Object {
+  class Stream extends XPObject {
     public
       $buffer   = '',
       $flags    = 0,

@@ -5,8 +5,8 @@
  */
  
   /**
-   * Class Object is the root of the class hierarchy. Every class has 
-   * Object as a superclass. 
+   * Class XPObject is the root of the class hierarchy. Every class has 
+   * XPObject as a superclass. 
    *
    * @purpose  Base class for all others
    */
@@ -22,7 +22,7 @@
     /**
      * Indicates whether some other object is "equal to" this one.
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool TRUE if the compared object is equal to this object
      */
     public function equals($cmp);
@@ -56,7 +56,7 @@
      * 
      * Example:
      * <xmp>
-     * lang.Object@class object {
+     * lang.XPObject@class object {
      *   var $__id = '0.06823200 1062749651';
      * }
      * </xmp>

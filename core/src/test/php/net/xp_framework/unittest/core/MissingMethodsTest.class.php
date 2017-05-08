@@ -7,7 +7,7 @@
   uses('unittest.TestCase');
 
   /**
-   * Verifies lang.Object's <tt>__call()</tt> implementation
+   * Verifies lang.XPObject's <tt>__call()</tt> implementation
    *
    */
   class MissingMethodsTest extends TestCase {
@@ -16,9 +16,9 @@
      * Tests missing methods
      *
      */
-    #[@test, @expect(class= 'lang.Error', withMessage= '/Call to undefined method lang.Object::run()/')]
+    #[@test, @expect(class= 'lang.XPError', withMessage= '/Call to undefined method lang.XPObject::run()/')]
     public function missingMethodInvocation() {
-      $o= new Object();
+      $o= new XPObject();
       $o->run();
     }
 
@@ -27,9 +27,9 @@
      *
      * @see   https://github.com/xp-framework/xp-framework/issues/133
      */
-    #[@test, @expect(class= 'lang.Error', withMessage= '/Call to undefined method lang.Object::run()/')]
+    #[@test, @expect(class= 'lang.XPError', withMessage= '/Call to undefined method lang.XPObject::run()/')]
     public function missingParentMethodInvocation() {
-      $o= newinstance('lang.Object', array(), '{
+      $o= newinstance('lang.XPObject', array(), '{
         public function run() {
           parent::run();
         }

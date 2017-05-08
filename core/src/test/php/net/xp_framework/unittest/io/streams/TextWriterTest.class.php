@@ -166,7 +166,7 @@
      */
     #[@test]
     public function writeUtf8StringInstance() {
-      $this->newWriter('utf-8')->write(new String('Übercoder', 'iso-8859-1'));
+      $this->newWriter('utf-8')->write(new XPString('Übercoder', 'iso-8859-1'));
       $this->assertEquals('Ãœbercoder', $this->out->getBytes());
     }
 
@@ -176,7 +176,7 @@
      */
     #[@test]
     public function writeLineUtf8StringInstance() {
-      $this->newWriter('utf-8')->writeLine(new String('Übercoder', 'iso-8859-1'));
+      $this->newWriter('utf-8')->writeLine(new XPString('Übercoder', 'iso-8859-1'));
       $this->assertEquals("Ãœbercoder\n", $this->out->getBytes());
     }
 

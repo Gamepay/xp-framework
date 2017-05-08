@@ -10,7 +10,7 @@
    * @see      xp://peer.http.HttpConnection#setProxy
    * @purpose  Value object
    */
-  class HttpProxy extends Object {
+  class HttpProxy extends XPObject {
     public
       $host     = '',
       $port     = 0,

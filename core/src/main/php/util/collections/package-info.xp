@@ -30,9 +30,9 @@
  * Example:
  * <code>
  *   $ht= new HashTable();
- *   $hg= create('new HashTable<lang.types.String, lang.Object>()');
+ *   $hg= create('new HashTable<lang.types.XPString, lang.XPObject>()');
  *   
- *   with ($key= new Integer(1); $value= new String('one')); {
+ *   with ($key= new Integer(1); $value= new XPString('one')); {
  *     $ht->put($key, $value);  // OK
  *     $hg->put($key, $value);  // *** IllegalArgumentException, key not a string!
  *   }

@@ -14,7 +14,7 @@
    *
    * @purpose  Base class
    */
-  class Tag extends Object {
+  class Tag extends XPObject {
     public
       $name = '',
       $text = '';

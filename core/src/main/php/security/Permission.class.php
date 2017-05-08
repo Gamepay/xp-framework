@@ -11,7 +11,7 @@
    * @see      http://java.sun.com/j2se/1.4.1/docs/guide/security/permissions.html
    * @see      xp://security.Policy
    */
-  class Permission extends Object {
+  class Permission extends XPObject {
     public
       $name     = '',
       $actions  = array();

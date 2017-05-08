@@ -17,7 +17,7 @@
    *
    * @test  xp://net.xp_framework.unittest.tests.mock.ArgumentMatcherTest
    */
-  class Arg extends Object {
+  class Arg extends XPObject {
     private static $any;
     
     static function __static() {

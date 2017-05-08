@@ -116,7 +116,7 @@
     public function canDefineReturnValue() {
       $object= $this->fixture->createMock('net.xp_framework.unittest.tests.mock.IComplexInterface');
 
-      $return = new Object();
+      $return = new XPObject();
       $object->foo()->returns($return);
 
       $object->_replayMock();
@@ -321,7 +321,7 @@
 
       $this->assertEquals($expect, $object->bar(NULL, NULL));
       $this->assertEquals($expect, $object->bar(34, 'foo'));
-      $this->assertEquals($expect, $object->bar(23.0, new Object));
+      $this->assertEquals($expect, $object->bar(23.0, new XPObject));
     }
 
     /**

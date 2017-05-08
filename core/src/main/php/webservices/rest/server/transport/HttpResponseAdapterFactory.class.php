@@ -15,7 +15,7 @@
    * @test    xp://net.xp_framework.unittest.rest.server.transport.HttpResponseAdapterFactoryTest
    * @purpose Factory
    */
-  class HttpResponseAdapterFactory extends Object {
+  class HttpResponseAdapterFactory extends XPObject {
     
     /**
      * Create adapter for response based on accept header

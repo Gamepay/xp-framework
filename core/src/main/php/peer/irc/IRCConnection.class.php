@@ -44,7 +44,7 @@
    * @see      xp://peer.irc.IRCUser
    * @purpose  A socket connection to a RFC-1459 compatible IRC server.
    */
-  class IRCConnection extends Object implements Traceable {
+  class IRCConnection extends XPObject implements Traceable {
     public
       $sock         = NULL,
       $cat          = NULL,

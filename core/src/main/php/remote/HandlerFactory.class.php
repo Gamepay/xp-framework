@@ -17,7 +17,7 @@
    * @see      xp://remote.protocol.XpProtocolHandler
    * @purpose  Factory
    */
-  class HandlerFactory extends Object {
+  class HandlerFactory extends XPObject {
     protected static 
       $instance     = NULL;
 

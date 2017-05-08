@@ -19,7 +19,7 @@
      */
     #[@test]
     public function list_of_string() {
-      ClassLoader::defineClass('GenericsBCTest_List', 'lang.Object', array(), '{
+      ClassLoader::defineClass('GenericsBCTest_List', 'lang.XPObject', array(), '{
         public $__generic;
 
         public function getClassName() {
@@ -27,8 +27,8 @@
         }
       }');
       $this->assertEquals(
-        'List<String>',
-        create('new GenericsBCTest_List<String>')->getClassName()
+        'List<XPString>',
+        create('new GenericsBCTest_List<XPString>')->getClassName()
       );
     }
 
@@ -38,7 +38,7 @@
      */
     #[@test]
     public function map_of_string_to_object() {
-      ClassLoader::defineClass('GenericsBCTest_Map', 'lang.Object', array(), '{
+      ClassLoader::defineClass('GenericsBCTest_Map', 'lang.XPObject', array(), '{
         public $__generic;
 
         public function getClassName() {
@@ -46,8 +46,8 @@
         }
       }');
       $this->assertEquals(
-        'Map<String, Object>',
-        create('new GenericsBCTest_Map<String, Object>')->getClassName()
+        'Map<XPString, XPObject>',
+        create('new GenericsBCTest_Map<XPString, XPObject>')->getClassName()
       );
     }
   }

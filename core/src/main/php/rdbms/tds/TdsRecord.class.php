@@ -10,7 +10,7 @@
    * Abstract base class for TDS records
    *
    */
-  abstract class TdsRecord extends Object {
+  abstract class TdsRecord extends XPObject {
     protected static $precision;
 
     static function __static() {

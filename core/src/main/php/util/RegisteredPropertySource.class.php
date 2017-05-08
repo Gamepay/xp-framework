@@ -11,7 +11,7 @@
    *
    * @test     xp://net.xp_framework.unittest.RegisteredPropertySourceTest
    */
-  class RegisteredPropertySource extends Object implements PropertySource {
+  class RegisteredPropertySource extends XPObject implements PropertySource {
     protected
       $name = NULL,
       $prop = NULL;

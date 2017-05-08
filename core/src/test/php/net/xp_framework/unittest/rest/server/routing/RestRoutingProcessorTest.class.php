@@ -40,7 +40,7 @@
      */
     #[@test]
     public function bind() {
-      $this->fixture->bind('test', $obj= new Object());
+      $this->fixture->bind('test', $obj= new XPObject());
       
       $this->assertEquals($obj, $this->fixture->getBinding('test'));
     }
@@ -92,7 +92,7 @@
      */
     #[@test]
     public function bindObjectKey() {
-      $this->fixture->bind('test', newinstance('lang.Object', array(), '{
+      $this->fixture->bind('test', newinstance('lang.XPObject', array(), '{
         public $first= 1;
       }'));
       $this->fixture->getBinding('test[first]');

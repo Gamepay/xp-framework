@@ -47,7 +47,7 @@
    *
    * @purpose  Tool
    */
-  class xp·codegen·Runner extends Object {
+  class xp·codegen·Runner extends XPObject {
 
     /**
      * Converts api-doc "markup" to plain text w/ ASCII "art"
@@ -81,7 +81,7 @@
      * @param   util.collections.HashTable targets
      * @return  var result
      */
-    protected static function invoke(AbstractGenerator $generator, Method $method, Object $targets) {
+    protected static function invoke(AbstractGenerator $generator, Method $method, XPObject $targets) {
       $target= $targets->get($method);
       if ($target->containsKey('result')) return $target['result'][0];
 

@@ -23,7 +23,7 @@
      * but inside another class which is imported here.
      *
      */
-    #[@test, @expect('lang.Error')]
+    #[@test, @expect('lang.XPError')]
     public function test() {
       create(new ArrayList(7, 0, 10, 1, -1))->sorted();
     }

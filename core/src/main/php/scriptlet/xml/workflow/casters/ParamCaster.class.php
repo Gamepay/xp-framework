@@ -9,7 +9,7 @@
    *
    * @purpose  Abstract base class
    */
-  abstract class ParamCaster extends Object {
+  abstract class ParamCaster extends XPObject {
   
     /**
      * Cast a given value

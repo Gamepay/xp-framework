@@ -11,7 +11,7 @@
    *
    * Example:
    * <code>
-   *   class Person extends Object {
+   *   class Person extends XPObject {
    *     protected $name= '';
    *   }
    *   
@@ -46,7 +46,7 @@
      * Read a record
      *
      * @param   string[] fields if omitted, class fields are used in order of appearance
-     * @return  lang.Object or NULL if end of the file is reached
+     * @return  lang.XPObject or NULL if end of the file is reached
      */
     public function read(array $fields= array()) {
       if (NULL === ($values= $this->readValues())) return NULL;

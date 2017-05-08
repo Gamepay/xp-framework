@@ -38,7 +38,7 @@
    * @ext      xslt
    * @test     xp://net.xp_framework.unittest.xml.DomXslProcessorTest
    */
-  class DomXSLProcessor extends Object implements TemplateProcessorInterface {
+  class DomXSLProcessor extends XPObject implements TemplateProcessorInterface {
     public 
       $processor      = NULL,
       $stylesheet     = NULL,
@@ -278,7 +278,7 @@
      * for access from XSL callbacks.
      *
      * @param   string name
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      */
     function registerInstance($name, $instance) {
       $this->_instances[$name]= $instance;

@@ -23,7 +23,7 @@
    * @see     xp://rdbms.join.JoinTableAttributes
    * @purpose rdbms.join
    */
-  class JoinPart extends Object {
+  class JoinPart extends XPObject {
     public
       $peer=      NULL;
 
@@ -121,7 +121,7 @@
     /**
      * add relatives
      *
-     * @param   lang.Object relatives
+     * @param   lang.XPObject relatives
      * @param   string role
      */
     public function addRelative(JoinPart $relatives, $role) {

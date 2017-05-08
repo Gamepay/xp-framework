@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.util.cmd.ParamStringTest
    * @purpose  Easy access to commandline arguments
    */
-  class ParamString extends Object {
+  class ParamString extends XPObject {
     public 
       $list     = array(),
       $count    = 0,

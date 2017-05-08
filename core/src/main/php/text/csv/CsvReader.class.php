@@ -134,7 +134,7 @@
         if (!$raw && isset($this->processors[$v])) {
           try {
             $values[$v]= $this->processors[$v]->process($value);
-          } catch (Throwable $exception) {
+          } catch (XPThrowable $exception) {
             // Store for later
           }
         } else {

@@ -21,7 +21,7 @@
    * @see     xp://rdbms.join.Fetchmode
    * @purpose rdbms.join
    */
-  class JoinProcessor extends Object {
+  class JoinProcessor extends XPObject {
     const SEPARATOR= '->';
     const FIRST= 'start';
   

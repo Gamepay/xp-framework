@@ -5,6 +5,7 @@
  */
 
   uses(
+    'lang.FormatException',
     'peer.URL',
     'peer.http.HttpConstants',
     'scriptlet.HttpScriptletURL',
@@ -43,7 +44,7 @@
    * @test    xp://net.xp_framework.unittest.scriptlet.HttpScriptletTest
    * @test    xp://net.xp_framework.unittest.scriptlet.HttpScriptletProcessTest
    */
-  class HttpScriptlet extends Object {
+  class HttpScriptlet extends XPObject {
     
     /**
      * Create a request object. Override this method to define
@@ -261,6 +262,7 @@
      * @throws  lang.XPException to indicate failure
      */
     public function doHead($request, $response) {
+      return FALSE;
     }
     
     /**
@@ -321,11 +323,19 @@
      */
     public function service(HttpScriptletRequest $request, HttpScriptletResponse $response) {
       $host= $request->getHeader('X-Forwarded-Host', $request->getEnvValue('HTTP_HOST'));
-      $request->setURL($this->_url(
-        ('on' == $request->getEnvValue('HTTPS') ? 'https' : 'http').'://'.
-        substr($host, 0, strcspn($host, ',')).
-        $request->getEnvValue('REQUEST_URI')
-      ));
+      try {
+        $request->setURL($this->_url(
+          ('on' == $request->getEnvValue('HTTPS') ? 'https' : 'http').'://'.
+          substr($host, 0, strcspn($host, ',')).
+          $request->getEnvValue('REQUEST_URI')
+        ));
+      } catch (FormatException $e) {
+        throw new ScriptletException(
+          $e->getMessage(),
+          HttpConstants::STATUS_BAD_REQUEST,
+          $e
+        );
+      }
 
       // Check if this method can be handled. In case it can't, throw a
       // ScriptletException with the HTTP status code 501 ("Method not
@@ -426,6 +436,9 @@
         $r= call_user_func(array($this, $method), $request, $response);
         if (FALSE !== $r && !is(NULL, $r)) {
           $response->process();
+        }
+        if ($request->getSessionId() && method_exists($request->session, 'write')) {
+          $request->session->write();
         }
       } catch (ScriptletException $e) {
         throw $e;

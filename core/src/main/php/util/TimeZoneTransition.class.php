@@ -10,7 +10,7 @@
    * @see   xp://util.TimeZone
    * @test  xp://net.xp_framework.unittest.util.TimeZoneTest
    */
-  class TimeZoneTransition extends Object {
+  class TimeZoneTransition extends XPObject {
     protected
       $tz     = NULL,
       $date   = NULL,

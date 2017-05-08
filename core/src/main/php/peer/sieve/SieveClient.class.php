@@ -65,7 +65,7 @@
    * @see      http://www.cyrusoft.com/sieve/
    * @purpose  Sieve Implementation
    */
-  class SieveClient extends Object implements Traceable {
+  class SieveClient extends XPObject implements Traceable {
     public
       $cat      = NULL;
 

@@ -29,7 +29,7 @@
    * @see      xp://security.password.StandardAlgorithm
    * @purpose  Entry point class
    */
-  class PasswordStrength extends Object {
+  class PasswordStrength extends XPObject {
     protected static
       $algorithms= array();
       

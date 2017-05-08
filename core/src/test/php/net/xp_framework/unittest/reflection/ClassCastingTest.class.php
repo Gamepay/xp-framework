@@ -37,7 +37,7 @@
      */
     #[@test]
     public function objectClassCastingThis() {
-      $this->assertEquals($this, XPClass::forName('lang.Object')->cast($this));
+      $this->assertEquals($this, XPClass::forName('lang.XPObject')->cast($this));
     }
 
     /**
@@ -46,7 +46,7 @@
      */
     #[@test, @expect('lang.ClassCastException')]
     public function thisClassCastingAnObject() {
-      $this->getClass()->cast(new Object());
+      $this->getClass()->cast(new XPObject());
     }
 
     /**
@@ -55,7 +55,7 @@
      */
     #[@test, @expect('lang.ClassCastException')]
     public function thisClassCastingAnUnrelatedClass() {
-      $this->getClass()->cast(new String('Hello'));
+      $this->getClass()->cast(new XPString('Hello'));
     }
 
     /**

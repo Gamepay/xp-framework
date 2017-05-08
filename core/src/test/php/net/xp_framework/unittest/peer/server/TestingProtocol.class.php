@@ -26,7 +26,7 @@
    * 
    * Status reporting is performed on STDERR
    */
-  class net·xp_framework·unittest·peer·server·TestingProtocol extends Object implements ServerProtocol {
+  class net·xp_framework·unittest·peer·server·TestingProtocol extends XPObject implements ServerProtocol {
 
     /**
      * Initialize the protocol

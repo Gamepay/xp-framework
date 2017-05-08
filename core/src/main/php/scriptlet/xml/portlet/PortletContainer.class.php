@@ -11,7 +11,7 @@
    *
    * @purpose  Container class
    */
-  class PortletContainer extends Object {
+  class PortletContainer extends XPObject {
     public
       $portlets= array();
 
@@ -52,7 +52,7 @@
         
         try {
           $content= $this->portlets[$i]->getContent($rundata);
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           $response->addFormError($e->getClassName(), '*', $e->getMessage());
           return;
         }

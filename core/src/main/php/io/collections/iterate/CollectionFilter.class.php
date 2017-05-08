@@ -11,7 +11,7 @@
    *
    * @purpose  Iteration Filter
    */
-  class CollectionFilter extends Object implements IterationFilter {
+  class CollectionFilter extends XPObject implements IterationFilter {
       
     /**
      * Accepts an element

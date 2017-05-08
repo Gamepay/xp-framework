@@ -15,7 +15,7 @@
    *
    * @test    xp://net.xp_framework.unittest.webservices.rest.RestResponseTest
    */
-  class RestResponse extends Object {
+  class RestResponse extends XPObject {
     protected $response= NULL;
     protected $deserializer= NULL;
     protected $type= NULL;

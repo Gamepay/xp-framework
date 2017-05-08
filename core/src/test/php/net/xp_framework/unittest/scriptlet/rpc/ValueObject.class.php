@@ -12,7 +12,7 @@
    * @see      xp://net.xp_framework.unittest.scriptlet.rpc.XmlRpcDecoderTest
    * @purpose  Test
    */
-  class net·xp_framework·unittest·scriptlet·rpc·ValueObject extends Object {
+  class net·xp_framework·unittest·scriptlet·rpc·ValueObject extends XPObject {
     public static
       $cache= NULL;
     

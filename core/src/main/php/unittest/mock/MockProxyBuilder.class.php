@@ -16,7 +16,7 @@
    * classes and instances.
    *
    */
-  class MockProxyBuilder extends Object {   
+  class MockProxyBuilder extends XPObject {   
     private
       $classLoader       = NULL,
       $overwriteExisting = FALSE,
@@ -63,7 +63,7 @@
       $this->added= array();
 
       if (!$baseClass) {
-        $baseClass= XPClass::forName('lang.Object');
+        $baseClass= XPClass::forName('lang.XPObject');
       }
 
       // Check if class is already in cache

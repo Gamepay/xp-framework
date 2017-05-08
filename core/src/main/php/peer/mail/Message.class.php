@@ -67,7 +67,7 @@
    * @test     xp://net.xp_framework.unittest.peer.MessageTest
    * @purpose  Provide a basic e-mail message (single-part)
    */
-  class Message extends Object {
+  class Message extends XPObject {
     public 
       $headers          = array(),
       $body             = '',

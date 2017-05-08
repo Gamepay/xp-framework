@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.rdbms.SQLDialectTest
    * @purpose  Base class for all dialects 
    */
-  abstract class SQLDialect extends Object {
+  abstract class SQLDialect extends XPObject {
     private static
       $dateparts= array(
         'day'         => 'day',

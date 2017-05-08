@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'net.xp_framework.unittest.core.generics.Lookup',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -57,7 +57,7 @@
     #[@test, @expect('lang.IllegalArgumentException')]
     public function instanceVerification() {
       $l= create('new net.xp_framework.unittest.core.generics.Lookup<string, TestCase>()');
-      $l->put(new String('Hello'), $this);
+      $l->put(new XPString('Hello'), $this);
     }
 
     /**

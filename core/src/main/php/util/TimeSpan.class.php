@@ -11,7 +11,7 @@
    * @test     xp://net.xp_framework.unittest.util.TimeSpanTest
    * @purpose  Time and date
    */
-  class TimeSpan extends Object {
+  class TimeSpan extends XPObject {
     protected $_seconds = 0;
     
     /**

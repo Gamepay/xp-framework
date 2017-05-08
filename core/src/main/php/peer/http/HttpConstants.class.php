@@ -11,7 +11,7 @@
    * @see      http://tools.ietf.org/html/rfc6585
    * @purpose  HTTP constants
    */
-  class HttpConstants extends Object {
+  class HttpConstants extends XPObject {
     const 
       GET     = 'GET',
       POST    = 'POST',

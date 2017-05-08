@@ -31,7 +31,7 @@
    * @see      xp://remote.protocol.XpProtocolHandler
    * @purpose  Constant container class
    */
-  class XpProtocolConstants extends Object {
+  class XpProtocolConstants extends XPObject {
   
     /**
      * Fetch name of message constant by its value

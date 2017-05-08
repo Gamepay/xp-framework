@@ -59,28 +59,28 @@
       self::$stdClassThree->two= '2';
       self::$stdClassThree->three= '3';
       
-      self::$objPrivateFields= newinstance('lang.Object', array(), '{
+      self::$objPrivateFields= newinstance('lang.XPObject', array(), '{
         public $one= "1";
         public $two= "2";
         protected $three= "3";
       }');
-      self::$objTwoFields= newinstance('lang.Object', array(), '{
+      self::$objTwoFields= newinstance('lang.XPObject', array(), '{
         public $one= "1";
         public $two= "2";
       }');
-      self::$objThreeFields= newinstance('lang.Object', array(), '{
+      self::$objThreeFields= newinstance('lang.XPObject', array(), '{
         public $one= "1";
         public $two= "2";
         public $three= "3";
         public function equals($o) { return $this->one == $o->one && $this->two == $o->two && $this->three == $o->three; }
       }');
-      self::$objThreeTypedFields= newinstance('lang.Object', array(), '{
+      self::$objThreeTypedFields= newinstance('lang.XPObject', array(), '{
         public $one= "1";
         public $two= "2";
         #[@type(\''.self::$objTwoFields->getClassName().'\')]
         public $three= "3";
       }');
-      self::$objThreeMethods= newinstance('lang.Object', array(), '{
+      self::$objThreeMethods= newinstance('lang.XPObject', array(), '{
         protected $one= "1";
         protected $two= "2";
         protected $three= "3";
@@ -92,16 +92,16 @@
         public function getThree() { return $this->three; }
         public function setThree($v) { $this->three= $v; }
       }');
-      self::$objNullField= newinstance('lang.Object', array(), '{
+      self::$objNullField= newinstance('lang.XPObject', array(), '{
         public $nullField= NULL;
       }');
-      self::$objArrayField= newinstance('lang.Object', array(), '{
-        #[@type(\'lang.types.String[]\')]
+      self::$objArrayField= newinstance('lang.XPObject', array(), '{
+        #[@type(\'lang.types.XPString[]\')]
         public $arrayThreeHash= NULL;
       }');
 
-      self::$objPrivateArrayField= newinstance('lang.Object', array(), '{
-        #[@type(\'lang.types.String[]\')]
+      self::$objPrivateArrayField= newinstance('lang.XPObject', array(), '{
+        #[@type(\'lang.types.XPString[]\')]
         protected $arrayThreeHash= NULL;
 
         public function setArrayThreeHash($value) { $this->arrayThreeHash= $value; }
@@ -134,7 +134,7 @@
     #[@test]
     public function simplifyPrimitivesObject() {
       $this->assertEquals(1, $this->sut->simple(new Integer(1)));
-      $this->assertEquals('test', $this->sut->simple(new String('test')));
+      $this->assertEquals('test', $this->sut->simple(new XPString('test')));
       $this->assertEquals(TRUE, $this->sut->simple(new Boolean(TRUE)));
     }
     
@@ -251,7 +251,7 @@
     #[@test]
     public function complexifyPrimitives() {
       $this->assertEquals(1, $this->sut->complex(1, XPClass::forName('lang.types.Integer')));
-      $this->assertEquals('test', $this->sut->complex('test', XPClass::forName('lang.types.String')));
+      $this->assertEquals('test', $this->sut->complex('test', XPClass::forName('lang.types.XPString')));
       $this->assertTrue($this->sut->simple(TRUE, XPClass::forName('lang.types.Boolean')));
     }
     
@@ -274,15 +274,15 @@
     public function complexifyToPrimitiveTypesFails() {
       $casts= array(
         array(Primitive::$INT, array()),
-        array(Primitive::$INT, new Object()),
+        array(Primitive::$INT, new XPObject()),
         array(Primitive::$INT, '1.3'),
         array(Primitive::$INT, 'test'),
         
         array(Primitive::$BOOLEAN, array()),
-        array(Primitive::$BOOLEAN, new Object()),
+        array(Primitive::$BOOLEAN, new XPObject()),
         
         array(Primitive::$STRING, array()),
-        array(Primitive::$STRING, new Object()),
+        array(Primitive::$STRING, new XPObject()),
       );
       
       foreach ($casts as $cast) {
@@ -297,7 +297,7 @@
     }
     
     /**
-     * Test complexify wrong data types to lang.Object
+     * Test complexify wrong data types to lang.XPObject
      * 
      */
     #[@test]
@@ -306,9 +306,9 @@
       
       foreach ($casts as $cast) {
         try {
-          $this->sut->complex($cast, XPClass::forName('lang.Object'));
+          $this->sut->complex($cast, XPClass::forName('lang.XPObject'));
           
-          throw new IllegalStateException('Cast '.xp::typeOf($cast).' to lang.Object should throw exception');
+          throw new IllegalStateException('Cast '.xp::typeOf($cast).' to lang.XPObject should throw exception');
         } catch (ClassCastException $e) {
           // Ignore this, because it's assumed and OK
         }
@@ -344,7 +344,7 @@
      */
     #[@test]
     public function complexifyPrimitiveHashMapAsArray() {
-      $this->assertEquals(self::$arrayThreeHash, $this->sut->complex(self::$arrayThreeHash, Type::forName('lang.types.String[]')));
+      $this->assertEquals(self::$arrayThreeHash, $this->sut->complex(self::$arrayThreeHash, Type::forName('lang.types.XPString[]')));
     }
 
     /**
@@ -353,7 +353,7 @@
      */
     #[@test]
     public function complexifyPrimitiveHashMapAsHashMap() {
-      $this->assertEquals(self::$arrayThreeHash, $this->sut->complex(self::$arrayThreeHash, Type::forName('[:lang.types.String]')));
+      $this->assertEquals(self::$arrayThreeHash, $this->sut->complex(self::$arrayThreeHash, Type::forName('[:lang.types.XPString]')));
     }  
 
     /**
@@ -362,7 +362,7 @@
      */
     #[@test]
     public function complexifyPrimitiveHashMapOfArrays() {
-      $this->assertEquals(self::$arrayOfArrays, $this->sut->complex(self::$arrayOfArrays, Type::forName('[:lang.types.String[]]')));
+      $this->assertEquals(self::$arrayOfArrays, $this->sut->complex(self::$arrayOfArrays, Type::forName('[:lang.types.XPString[]]')));
     }
 
     /**
@@ -565,7 +565,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function complexifyWithWrongType() {
-      $this->sut->complex(1, new Object());
+      $this->sut->complex(1, new XPObject());
     }
   }
 ?>

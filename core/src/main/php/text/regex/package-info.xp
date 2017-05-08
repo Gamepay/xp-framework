@@ -52,10 +52,10 @@
  *
  * Working with string objects
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * The text.regex pattern supports the lang.types.String object built-in:
+ * The text.regex pattern supports the lang.types.XPString object built-in:
  *
  * <code>
- *   $string= new String('RFC #0001');
+ *   $string= new XPString('RFC #0001');
  *   $num= Pattern::compile('RFC #([0-9]+)')->match($string)->group(1);  // "0001"
  * </code>
  *

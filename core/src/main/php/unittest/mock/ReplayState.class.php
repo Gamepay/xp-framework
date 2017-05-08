@@ -16,7 +16,7 @@
    *
    * @test  xp://net.xp_framework.unittest.tests.mock.ReplayStateTest
    */
-  class ReplayState extends Object implements IMockState {
+  class ReplayState extends XPObject implements IMockState {
     private
       $unexpectedCalls = NULL,
       $expectationMap  = NULL,

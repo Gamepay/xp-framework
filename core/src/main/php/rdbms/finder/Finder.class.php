@@ -75,7 +75,7 @@
    * @test     xp://net.xp_framework.unittest.rdbms.FinderTest
    * @purpose  Base class for all finder
    */
-  abstract class Finder extends Object {
+  abstract class Finder extends XPObject {
   
     /**
      * Returns the associated peer objects

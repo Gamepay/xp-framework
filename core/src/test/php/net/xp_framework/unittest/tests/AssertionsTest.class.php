@@ -4,7 +4,7 @@
  * $Id$ 
  */
  
-  uses('unittest.TestCase', 'lang.types.String', 'lang.types.ArrayList');
+  uses('unittest.TestCase', 'lang.types.XPString', 'lang.types.ArrayList');
 
   /**
    * Test assertion methods
@@ -101,7 +101,7 @@
      */    
     #[@test]
     public function equalsMethodIsInvoked() {
-      $instance= newinstance('lang.Object', array(), '{
+      $instance= newinstance('lang.XPObject', array(), '{
         public $equalsInvoked= 0;
 
         public function equals($other) {
@@ -146,7 +146,7 @@
       foreach (array(
         array(), 
         array(1, 2, 3),
-        array(array(1), array(), array(-1, 4), array(new String('baz')))
+        array(array(1), array(), array(-1, 4), array(new XPString('baz')))
       ) as $array) {
         $this->assertEquals($array, $array, xp::stringOf($array));
       }
@@ -161,7 +161,7 @@
       foreach (array(
         array(), 
         array('foo' => 2), 
-        array(array('bar' => 'baz'), array(), array('bool' => TRUE, 'bar' => new String('baz')))
+        array(array('bar' => 'baz'), array(), array('bool' => TRUE, 'bar' => new XPString('baz')))
       ) as $hash) {
         $this->assertEquals($hash, $hash, xp::stringOf($hash));
       }
@@ -178,12 +178,12 @@
     }    
 
     /**
-     * Test assertEquals() for lang.types.String objects
+     * Test assertEquals() for lang.types.XPString objects
      *
      */    
     #[@test]
     public function stringObjectsAreEqual() {
-      foreach (array(new String(''), new String('Hello'), new String('äöüß', 'iso-8859-1')) as $str) {
+      foreach (array(new XPString(''), new XPString('Hello'), new XPString('äöüß', 'iso-8859-1')) as $str) {
         $this->assertEquals($str, $str, xp::stringOf($str));
       }
     }
@@ -203,7 +203,7 @@
      */    
     #[@test]
     public function integersAreNotEqual() {
-      foreach (array(-1, 1.0, NULL, FALSE, TRUE, '', array(), new String('1')) as $cmp) {
+      foreach (array(-1, 1.0, NULL, FALSE, TRUE, '', array(), new XPString('1')) as $cmp) {
         $this->assertNotEquals(1, $cmp);
       }
     }    
@@ -214,7 +214,7 @@
      */    
     #[@test]
     public function stringsAreNotEqual() {
-      foreach (array(-1, 1.0, NULL, FALSE, TRUE, 1, array(), new String('1')) as $cmp) {
+      foreach (array(-1, 1.0, NULL, FALSE, TRUE, 1, array(), new XPString('1')) as $cmp) {
         $this->assertNotEquals('', $cmp);
       }
     }    
@@ -225,7 +225,7 @@
      */    
     #[@test]
     public function arraysAreNotEqual() {
-      foreach (array(-1, 1.0, NULL, FALSE, TRUE, 1, array(1), new String('1')) as $cmp) {
+      foreach (array(-1, 1.0, NULL, FALSE, TRUE, 1, array(1), new XPString('1')) as $cmp) {
         $this->assertNotEquals(array(), $cmp);
       }
     }    
@@ -263,7 +263,7 @@
      */    
     #[@test]
     public function thisIsAnInstanceOfObject() {
-      $this->assertInstanceOf('lang.Object', $this);
+      $this->assertInstanceOf('lang.XPObject', $this);
     }    
 
     /**
@@ -272,7 +272,7 @@
      */    
     #[@test]
     public function objectIsAnInstanceOfObject() {
-      $this->assertInstanceOf('lang.Object', new Object());
+      $this->assertInstanceOf('lang.XPObject', new XPObject());
     }    
 
     /**
@@ -281,7 +281,7 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function objectIsNotAnInstanceOfString() {
-      $this->assertInstanceOf('lang.types.String', new Object());
+      $this->assertInstanceOf('lang.types.XPString', new XPObject());
     }    
 
     /**
@@ -317,7 +317,7 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function thisIsNotAnInstanceOfString() {
-      $this->assertInstanceOf('lang.types.String', $this);
+      $this->assertInstanceOf('lang.types.XPString', $this);
     }    
 
     /**
@@ -425,7 +425,7 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function primitiveIsNotAnInstanceOfStringClass() {
-      $this->assertInstanceOf('string', new String());
+      $this->assertInstanceOf('string', new XPString());
     }    
 
     /**
@@ -475,7 +475,7 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function nullIsNotAClass() {
-      $this->assertClass(NULL, 'lang.Object');
+      $this->assertClass(NULL, 'lang.XPObject');
     }    
 
     /**
@@ -485,17 +485,17 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function primitiveIsNotOfStringClass() {
-      $this->assertClass('string', 'lang.types.String');
+      $this->assertClass('string', 'lang.types.XPString');
     }    
 
     /**
-     * Test assertClass() for lang.Object
+     * Test assertClass() for lang.XPObject
      *
      * @deprecated
      */    
     #[@test]
     public function objectIsOfObjectClass() {
-      $this->assertClass(new Object(), 'lang.Object');
+      $this->assertClass(new XPObject(), 'lang.XPObject');
     }    
 
     /**
@@ -505,7 +505,7 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function thisIsOfNotObjectClass() {
-      $this->assertClass($this, 'lang.Object');
+      $this->assertClass($this, 'lang.XPObject');
     }    
 
     /**
@@ -515,17 +515,17 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function nullIsNotASubClass() {
-      $this->assertClass(NULL, 'lang.Object');
+      $this->assertClass(NULL, 'lang.XPObject');
     }    
 
     /**
-     * Test assertSubclass() for lang.Object
+     * Test assertSubclass() for lang.XPObject
      *
      * @deprecated
      */    
     #[@test]
     public function objectIsOfObjectSubclass() {
-      $this->assertClass(new Object(), 'lang.Object');
+      $this->assertClass(new XPObject(), 'lang.XPObject');
     }    
 
     /**
@@ -535,7 +535,7 @@
      */    
     #[@test]
     public function thisIsOfObjectSubclass() {
-      $this->assertSubClass($this, 'lang.Object');
+      $this->assertSubClass($this, 'lang.XPObject');
     }    
 
     /**
@@ -545,7 +545,7 @@
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function primitiveIsNotOfStringSubclass() {
-      $this->assertClass('string', 'lang.types.String');
+      $this->assertClass('string', 'lang.types.XPString');
     }    
 
     /**
@@ -619,13 +619,13 @@
     }    
 
     /**
-     * Test assertArray() for a lang.Object
+     * Test assertArray() for a lang.XPObject
      *
      * @deprecated
      */    
     #[@test, @expect('unittest.AssertionFailedError')]
     public function objectIsNotAnArray() {
-      $this->assertArray(new Object());
+      $this->assertArray(new XPObject());
     }    
 
     /**

@@ -25,7 +25,7 @@
    * @see      http://passwordmeter.com/
    * @purpose  Algorithm implementation
    */
-  class security·password·StandardAlgorithm extends Object implements security·password·Algorithm, Traceable {
+  class security·password·StandardAlgorithm extends XPObject implements security·password·Algorithm, Traceable {
     protected
       $cat = NULL;
 

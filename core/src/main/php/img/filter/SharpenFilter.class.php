@@ -11,7 +11,7 @@
    *
    * @purpose  Filter implementation
    */
-  class SharpenFilter extends Object implements ImageFilter {
+  class SharpenFilter extends XPObject implements ImageFilter {
     
     /**
      * Apply this filter on a given image. Note: This changes the given image!

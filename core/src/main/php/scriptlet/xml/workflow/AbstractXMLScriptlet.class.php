@@ -139,7 +139,7 @@
       } catch (IllegalAccessException $e) {
         throw new ScriptletException($e->getMessage(), HttpConstants::STATUS_FORBIDDEN, $e);
       }
-      
+
       // Call state's process() method. In case it returns FALSE, the
       // context's insertStatus() method will not be called. This, for
       // example, is useful when process() wants to send a redirect.

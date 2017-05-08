@@ -11,7 +11,7 @@
    *
    * @purpose  Criterion
    */
-  class NegationExpression extends Object implements Criterion {
+  class NegationExpression extends XPObject implements Criterion {
     public
       $criterion  = NULL;
 

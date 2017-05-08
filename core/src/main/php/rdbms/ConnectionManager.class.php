@@ -15,7 +15,7 @@
    *
    * @test    xp://net.xp_framework.rdbms.ConnectionManagerTest
    */
-  class ConnectionManager extends Object implements Configurable {
+  class ConnectionManager extends XPObject implements Configurable {
     protected static $instance= NULL;
     public $pool= array();
 

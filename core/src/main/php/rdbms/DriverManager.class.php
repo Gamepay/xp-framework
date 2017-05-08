@@ -71,7 +71,7 @@
    *
    * @test     xp://net.xp_framework.unittest.rdbms.DriverManagerTest
    */
-  class DriverManager extends Object {
+  class DriverManager extends XPObject {
     protected static $instance= NULL;
     public $drivers= array();
     protected $lookup= array();

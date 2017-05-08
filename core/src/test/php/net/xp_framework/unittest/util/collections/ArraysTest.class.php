@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'lang.types.Integer',
-    'lang.types.Float',
+    'lang.types.XPFloat',
     'util.collections.Arrays'
   );
 
@@ -114,7 +114,7 @@
       $a= new ArrayList(new Integer(1), new Integer(2), new Integer(3));
       $this->assertTrue(Arrays::contains($a, new Integer(1)));
       $this->assertFalse(Arrays::contains($a, new Integer(5)));
-      $this->assertFalse(Arrays::contains($a, new Float(1.0)));
+      $this->assertFalse(Arrays::contains($a, new XPFloat(1.0)));
     }
   }
 ?>

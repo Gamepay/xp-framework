@@ -10,7 +10,7 @@
    * @see      xp://remote.reflect.BeanDescription
    * @purpose  Wrapper
    */
-  class DescriptionList extends Object {
+  class DescriptionList extends XPObject {
     public
       $beans= array();
       

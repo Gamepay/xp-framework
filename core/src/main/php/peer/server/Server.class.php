@@ -33,7 +33,7 @@
    * @see   xp://peer.ServerSocket
    * @test  xp://net.xp_framework.unittest.peer.server.ServerTest
    */
-  class Server extends Object {
+  class Server extends XPObject {
     public
       $protocol   = NULL,
       $socket     = NULL,

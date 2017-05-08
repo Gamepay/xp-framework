@@ -41,7 +41,7 @@
    * @see      xp://webservices.soap.SOAPClient
    * @purpose  Access to UDDI
    */
-  class UDDIServer extends Object implements Traceable {
+  class UDDIServer extends XPObject implements Traceable {
     public
       $cat      = NULL,
       $conn     = array(),
@@ -82,7 +82,7 @@
      * Invoke a command
      *
      * @param   webservices.uddi.UDDICommand
-     * @return  lang.Object
+     * @return  lang.XPObject
      * @throws  lang.IllegalArgumentException in case an illegal command was passed
      * @throws  io.IOException in case the HTTP request failed
      * @throws  webservices.soap.SOAPFaultException in case a SOAP fault was returned

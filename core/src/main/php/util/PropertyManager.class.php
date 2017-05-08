@@ -28,7 +28,7 @@
    * @test      xp://net.xp_framework.unittest.util.PropertyManagerTest
    * @purpose  Container
    */
-  class PropertyManager extends Object {
+  class PropertyManager extends XPObject {
     protected static 
       $instance     = NULL;
 

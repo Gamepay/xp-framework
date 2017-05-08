@@ -12,7 +12,7 @@
    * @see      xp://util.Observable
    * @purpose  Interface
    */
-  class LogObserver extends Object implements BoundLogObserver {
+  class LogObserver extends XPObject implements BoundLogObserver {
     public $cat= NULL;
     
     /**

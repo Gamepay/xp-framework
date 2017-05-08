@@ -19,7 +19,7 @@
    * @see     php://datetime
    * @see     php://timezones
    */
-  class TimeZone extends Object {
+  class TimeZone extends XPObject {
     protected $tz= NULL;
 
     /**

@@ -9,7 +9,7 @@
    *
    */
   #[@xmlmapping(factory= 'forName')]
-  class NameBasedTypeFactory extends Object {
+  class NameBasedTypeFactory extends XPObject {
     
     /**
      * Factory method

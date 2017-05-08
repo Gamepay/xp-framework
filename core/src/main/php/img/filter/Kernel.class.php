@@ -16,7 +16,7 @@
    * @see      xp://img.filter.ConvolveFilter
    * @purpose  3x3 kernel
    */
-  class Kernel extends Object {
+  class Kernel extends XPObject {
     public
       $matrix= array();
     

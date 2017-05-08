@@ -18,7 +18,7 @@
    * @test     xp://net.xp_framework.unittest.text.spelling.SpellCheckerTest
    * @ext      pspell
    */
-  class SpellChecker extends Object {
+  class SpellChecker extends XPObject {
     protected $handle= NULL;
     
     /**

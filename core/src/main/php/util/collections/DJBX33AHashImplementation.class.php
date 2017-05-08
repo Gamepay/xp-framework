@@ -40,7 +40,7 @@
    * @see      xp://util.collections.HashProvider
    * @purpose  Hashing
    */
-  class DJBX33AHashImplementation extends Object implements HashImplementation {
+  class DJBX33AHashImplementation extends XPObject implements HashImplementation {
 
     /**
      * Retrieve hash code for a given string

@@ -19,7 +19,7 @@
    * @see   xp://xp.scriptlet.WebApplication
    * @test  xp://net.xp_framework.unittest.scriptlet.WebConfigurationTest
    */
-  class xp·scriptlet·WebConfiguration extends Object {
+  class xp·scriptlet·WebConfiguration extends XPObject {
     protected $prop= NULL;
     
     /**

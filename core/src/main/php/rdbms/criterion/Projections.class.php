@@ -63,7 +63,7 @@
    * @see      xp://rdbms.criterion.CountProjection
    * @purpose  Projection factory
    */
-  class Projections extends Object {
+  class Projections extends XPObject {
 
     /**
      * manufactor a new ProjectionList

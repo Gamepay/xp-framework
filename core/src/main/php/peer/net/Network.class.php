@@ -9,7 +9,7 @@
    *
    * @purpose   Represent IP network
    */
-  class Network extends Object {
+  class Network extends XPObject {
 
     /**
      * Constructor
@@ -74,7 +74,7 @@
     /**
      * Check if object is equal
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      */
     public function equals($cmp) {
       return $cmp instanceof self &&

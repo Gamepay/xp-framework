@@ -9,7 +9,7 @@
   uses(
     'unittest.TestCase',
     'net.xp_framework.unittest.core.generics.ArrayFilter',
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.Integer'
   );
 
@@ -43,11 +43,11 @@
      */
     #[@test]
     public function classNameOfGeneric() {
-      $instance= newinstance('util.collections.Vector<Object>', array(), '{
+      $instance= newinstance('util.collections.Vector<XPObject>', array(), '{
       }');
       $n= $instance->getClassName();
       $this->assertEquals(
-        'util.collections.Vector··Object',
+        'util.collections.Vector··XPObject',
         substr($n, 0, strrpos($n, '·')),
         $n
       );
@@ -59,12 +59,12 @@
      */
     #[@test]
     public function classNameOfGenericInPackage() {
-      $instance= newinstance('net.xp_framework.unittest.core.generics.ArrayFilter<Object>', array(), '{
+      $instance= newinstance('net.xp_framework.unittest.core.generics.ArrayFilter<XPObject>', array(), '{
         protected function accept($e) { return TRUE; }
       }');
       $n= $instance->getClassName();
       $this->assertEquals(
-        'net.xp_framework.unittest.core.generics.ArrayFilter··Object',
+        'net.xp_framework.unittest.core.generics.ArrayFilter··XPObject',
         substr($n, 0, strrpos($n, '·')),
         $n
       );

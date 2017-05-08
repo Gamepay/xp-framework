@@ -6,7 +6,7 @@
 
   uses(
     'lang.Type',
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.Short',
     'lang.types.Integer',
     'lang.types.Double',
@@ -18,12 +18,12 @@
    * Maps primitive or boxed primitives to soap types
    *
    */
-  abstract class SoapTypeMapper extends Object {
+  abstract class SoapTypeMapper extends XPObject {
     protected
       $handler= array(
         'Parameter' => TRUE,
         'SoapType'  => TRUE,
-        'String'    => TRUE,
+        'XPString'    => TRUE,
         'Long'      => TRUE,
         'Integer'   => TRUE,
         'Short'     => TRUE,
@@ -84,7 +84,7 @@
     /**
      * Box string
      *
-     * @param   lang.types.String object
+     * @param   lang.types.XPString object
      * @return  mixed
      */
     protected abstract function boxString($object);

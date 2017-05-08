@@ -32,7 +32,7 @@
             try {
               uses($class);
               echo "+OK ", $class, "\n";
-            } catch (Throwable $e) {
+            } catch (XPThrowable $e) {
               echo "-ERR ", $class, ": ", $e->getClassName(), "\n";
               $errors++;
             }
@@ -97,21 +97,21 @@
      * <code>
      *   uses('B');
      *
-     *   class A extends Object { }
+     *   class A extends XPObject { }
      * </code>
      *
      * B.class.php
      * <code>
      *   uses('C');
      *
-     *   class B extends Object { }
+     *   class B extends XPObject { }
      * </code>
      *
      * C.class.php
      * <code>
      *   uses('A');
      *
-     *   class C extends Object { }
+     *   class C extends XPObject { }
      * </code>
      *
      */

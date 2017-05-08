@@ -29,7 +29,7 @@
      */
     #[@test]
     public function createReturnsObjects() {
-      $fixture= new Object();
+      $fixture= new XPObject();
       $this->assertEquals($fixture, create($fixture));
     }
 
@@ -39,9 +39,9 @@
      */
     #[@test]
     public function createWithShortNames() {
-      $h= create('new HashTable<String, String>');
+      $h= create('new HashTable<XPString, XPString>');
       $this->assertEquals(
-        array(XPClass::forName('lang.types.String'), XPClass::forName('lang.types.String')), 
+        array(XPClass::forName('lang.types.XPString'), XPClass::forName('lang.types.XPString')), 
         $h->getClass()->genericArguments()
       );
     }
@@ -53,8 +53,8 @@
     #[@test]
     public function createInvokesConstructor() {
       $this->assertEquals(
-        new String('Hello'), 
-        create('new util.collections.Vector<lang.types.String>', array(new String('Hello')))->get(0)
+        new XPString('Hello'), 
+        create('new util.collections.Vector<lang.types.XPString>', array(new XPString('Hello')))->get(0)
       );
     }
 
@@ -64,9 +64,9 @@
      */
     #[@test]
     public function createWithQualifiedNames() {
-      $h= create('new util.collections.HashTable<lang.types.String, lang.types.String>');
+      $h= create('new util.collections.HashTable<lang.types.XPString, lang.types.XPString>');
       $this->assertEquals(
-        array(XPClass::forName('lang.types.String'), XPClass::forName('lang.types.String')), 
+        array(XPClass::forName('lang.types.XPString'), XPClass::forName('lang.types.XPString')), 
         $h->getClass()->genericArguments()
       );
     }
@@ -77,7 +77,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function createWithNonGeneric() {
-      create('new lang.Object<String>');
+      create('new lang.XPObject<XPString>');
     }
   }
 ?>

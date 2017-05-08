@@ -6,7 +6,7 @@
 
   uses(
     'lang.Type',
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.Integer',
     'lang.types.Double',
     'lang.types.Boolean',
@@ -53,7 +53,7 @@
      */
     public function wrapperClass() {
       switch ($this) {
-        case self::$STRING: return XPClass::forName('lang.types.String');
+        case self::$STRING: return XPClass::forName('lang.types.XPString');
         case self::$INT: return XPClass::forName('lang.types.Integer');
         case self::$DOUBLE: return XPClass::forName('lang.types.Double');
         case self::$BOOL: return XPClass::forName('lang.types.Boolean');
@@ -69,7 +69,7 @@
      * @throws  lang.IllegalArgumentException in case in cannot be unboxed.
      */
     public static function unboxed($in) {
-      if ($in instanceof String) return $in->toString();
+      if ($in instanceof XPString) return $in->toString();
       if ($in instanceof Double) return $in->floatValue();
       if ($in instanceof Integer) return $in->intValue();
       if ($in instanceof Boolean) return $in->value;
@@ -90,7 +90,7 @@
     public static function boxed($in) {
       if (NULL === $in || $in instanceof Generic) return $in;
       $t= gettype($in);
-      if ('string' === $t) return new String($in);
+      if ('string' === $t) return new XPString($in);
       if ('integer' === $t) return new Integer($in);
       if ('double' === $t) return new Double($in);
       if ('boolean' === $t) return new Boolean($in);

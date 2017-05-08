@@ -79,7 +79,7 @@
      */
     public function classLoaderInformation() {
       with ($p= Package::forName('net.xp_framework.unittest.reflection.classes')); {
-        Console::writeLine('Object     : ', XPClass::forName('lang.Object')->getClassLoader());
+        Console::writeLine('Object     : ', XPClass::forName('lang.XPObject')->getClassLoader());
         Console::writeLine('This       : ', $this->getClass()->getClassLoader());
         Console::writeLine('ClassOne   : ', $p->loadClass('ClassOne')->getClassLoader());
         Console::writeLine('ClassTwo   : ', $p->loadClass('ClassTwo')->getClassLoader());
@@ -158,7 +158,7 @@
      */
     #[@test]
     public function loadClass() {
-      $this->assertXPClass('lang.Object', ClassLoader::getDefault()->loadClass('lang.Object'));
+      $this->assertXPClass('lang.XPObject', ClassLoader::getDefault()->loadClass('lang.XPObject'));
     }
 
     /**

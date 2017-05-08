@@ -6,7 +6,7 @@
 
   uses(
     'unittest.TestCase',
-    'lang.types.String',
+    'lang.types.XPString',
     'lang.types.ArrayList',
     'util.collections.Vector'
   );
@@ -43,7 +43,7 @@
      */
     #[@test]
     public function nonEmptyVector() {
-      $v= new Vector(array(new Object()));
+      $v= new Vector(array(new XPObject()));
       $this->assertEquals(1, $v->size());
       $this->assertFalse($v->isEmpty());
     }
@@ -55,7 +55,7 @@
     #[@test]
     public function adding() {
       $v= new Vector();
-      $v->add(new Object());
+      $v->add(new XPObject());
       $this->assertEquals(1, $v->size());
     }
 
@@ -66,7 +66,7 @@
     #[@test]
     public function addAllArray() {
       $v= new Vector();
-      $this->assertTrue($v->addAll(array(new Object(), new Object())));
+      $this->assertTrue($v->addAll(array(new XPObject(), new XPObject())));
       $this->assertEquals(2, $v->size());
     }
 
@@ -78,8 +78,8 @@
     public function addAllVector() {
       $v1= new Vector();
       $v2= new Vector();
-      $v2->add(new Object());
-      $v2->add(new Object());
+      $v2->add(new XPObject());
+      $v2->add(new XPObject());
       $this->assertTrue($v1->addAll($v2));
       $this->assertEquals(2, $v1->size());
     }
@@ -91,7 +91,7 @@
     #[@test]
     public function addAllArrayList() {
       $v= new Vector();
-      $this->assertTrue($v->addAll(new ArrayList(new Object(), new Object())));
+      $this->assertTrue($v->addAll(new ArrayList(new XPObject(), new XPObject())));
       $this->assertEquals(2, $v->size());
     }
 
@@ -128,9 +128,9 @@
      */
     #[@test]
     public function unchangedAfterNullInAddAll() {
-      $v= create('new Vector<Object>()');
+      $v= create('new Vector<XPObject>()');
       try {
-        $v->addAll(array(new Object(), NULL));
+        $v->addAll(array(new XPObject(), NULL));
         $this->fail('addAll() did not throw an exception', NULL, 'lang.IllegalArgumentException');
       } catch (IllegalArgumentException $expected) {
       }
@@ -158,7 +158,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function addingNull() {
-      create('new Vector<Object>()')->add(NULL);
+      create('new Vector<XPObject>()')->add(NULL);
     }
 
     /**
@@ -168,9 +168,9 @@
     #[@test]
     public function replacing() {
       $v= new Vector();
-      $o= new String('one');
+      $o= new XPString('one');
       $v->add($o);
-      $r= $v->set(0, new String('two'));
+      $r= $v->set(0, new XPString('two'));
       $this->assertEquals(1, $v->size());
       $this->assertEquals($o, $r);
     }
@@ -181,7 +181,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function replacingWithNull() {
-      create('new Vector<Object>', array(new Object()))->set(0, NULL);
+      create('new Vector<XPObject>', array(new XPObject()))->set(0, NULL);
     }
 
     /**
@@ -190,7 +190,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function settingPastEnd() {
-      create(new Vector())->set(0, new Object());
+      create(new Vector())->set(0, new XPObject());
     }
 
     /**
@@ -199,7 +199,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function settingNegative() {
-      create(new Vector())->set(-1, new Object());
+      create(new Vector())->set(-1, new XPObject());
     }
 
     /**
@@ -209,7 +209,7 @@
     #[@test]
     public function reading() {
       $v= new Vector();
-      $o= new String('one');
+      $o= new XPString('one');
       $v->add($o);
       $r= $v->get(0);
       $this->assertEquals($o, $r);
@@ -240,7 +240,7 @@
     #[@test]
     public function removing() {
       $v= new Vector();
-      $o= new String('one');
+      $o= new XPString('one');
       $v->add($o);
       $r= $v->remove(0);
       $this->assertEquals(0, $v->size());
@@ -271,7 +271,7 @@
      */
     #[@test]
     public function clearing() {
-      $v= new Vector(array(new String('Goodbye cruel world')));
+      $v= new Vector(array(new XPString('Goodbye cruel world')));
       $this->assertFalse($v->isEmpty());
       $v->clear();
       $this->assertTrue($v->isEmpty());
@@ -292,7 +292,7 @@
      */
     #[@test]
     public function elementsOf() {
-      $el= array(new String('a'), new Object());
+      $el= array(new XPString('a'), new XPObject());
       $this->assertEquals($el, create(new Vector($el))->elements());
     }
 
@@ -303,7 +303,7 @@
     #[@test]
     public function addedStringIsContained() {
       $v= new Vector();
-      $o= new String('one');
+      $o= new XPString('one');
       $v->add($o);
       $this->assertTrue($v->contains($o));
     }
@@ -314,7 +314,7 @@
      */
     #[@test]
     public function emptyVectorDoesNotContainString() {
-      $this->assertFalse(create(new Vector())->contains(new Object()));
+      $this->assertFalse(create(new Vector())->contains(new XPObject()));
     }
 
     /**
@@ -323,7 +323,7 @@
      */
     #[@test]
     public function indexOfOnEmptyVector() {
-      $this->assertFalse(create(new Vector())->indexOf(new Object()));
+      $this->assertFalse(create(new Vector())->indexOf(new XPObject()));
     }
 
     /**
@@ -332,7 +332,7 @@
      */
     #[@test]
     public function indexOf() {
-      $a= new String('A');
+      $a= new XPString('A');
       $this->assertEquals(0, create(new Vector(array($a)))->indexOf($a));
     }
 
@@ -342,8 +342,8 @@
      */
     #[@test]
     public function indexOfElementContainedTwice() {
-      $a= new String('A');
-      $this->assertEquals(0, create(new Vector(array($a, new Object(), $a)))->indexOf($a));
+      $a= new XPString('A');
+      $this->assertEquals(0, create(new Vector(array($a, new XPObject(), $a)))->indexOf($a));
     }
 
     /**
@@ -352,7 +352,7 @@
      */
     #[@test]
     public function lastIndexOfOnEmptyVector() {
-      $this->assertFalse(create(new Vector())->lastIndexOf(new Object()));
+      $this->assertFalse(create(new Vector())->lastIndexOf(new XPObject()));
     }
 
     /**
@@ -361,7 +361,7 @@
      */
     #[@test]
     public function lastIndexOf() {
-      $a= new String('A');
+      $a= new XPString('A');
       $this->assertEquals(0, create(new Vector(array($a)))->lastIndexOf($a));
     }
 
@@ -371,8 +371,8 @@
      */
     #[@test]
     public function lastIndexOfElementContainedTwice() {
-      $a= new String('A');
-      $this->assertEquals(2, create(new Vector(array($a, new Object(), $a)))->lastIndexOf($a));
+      $a= new XPString('A');
+      $this->assertEquals(2, create(new Vector(array($a, new XPObject(), $a)))->lastIndexOf($a));
     }
 
     /**
@@ -395,7 +395,7 @@
     public function stringOf() {
       $this->assertEquals(
         "util.collections.Vector[2]@{\n  0: One\n  1: Two\n}",
-        create(new Vector(array(new String('One'), new String('Two'))))->toString()
+        create(new Vector(array(new XPString('One'), new XPString('Two'))))->toString()
       );
     }
 
@@ -407,13 +407,13 @@
     public function iteration() {
       $v= new Vector();
       for ($i= 0; $i < 5; $i++) {
-        $v->add(new String('#'.$i));
+        $v->add(new XPString('#'.$i));
       }
       
       $i= 0;
       foreach ($v as $offset => $string) {
         $this->assertEquals($offset, $i);
-        $this->assertEquals(new String('#'.$i), $string);
+        $this->assertEquals(new XPString('#'.$i), $string);
         $i++;
       }
     }
@@ -433,7 +433,7 @@
      */
     #[@test]
     public function sameVectorsAreEqual() {
-      $a= new Vector(array(new String('One'), new String('Two')));
+      $a= new Vector(array(new XPString('One'), new XPString('Two')));
       $this->assertTrue($a->equals($a));
     }
 
@@ -443,8 +443,8 @@
      */
     #[@test]
     public function vectorsWithSameContentsAreEqual() {
-      $a= new Vector(array(new String('One'), new String('Two')));
-      $b= new Vector(array(new String('One'), new String('Two')));
+      $a= new Vector(array(new XPString('One'), new XPString('Two')));
+      $b= new Vector(array(new XPString('One'), new XPString('Two')));
       $this->assertTrue($a->equals($b));
     }
 
@@ -463,7 +463,7 @@
      */
     #[@test]
     public function twoVectorsOfDifferentSizeAreNotEqual() {
-      $this->assertFalse(create(new Vector(array(new Object())))->equals(new Vector()));
+      $this->assertFalse(create(new Vector(array(new XPObject())))->equals(new Vector()));
     }
 
     /**
@@ -472,8 +472,8 @@
      */
     #[@test]
     public function orderMattersForEquality() {
-      $a= array(new String('a'), new String('b'));
-      $b= array(new String('b'), new String('a'));
+      $a= array(new XPString('a'), new XPString('b'));
+      $b= array(new XPString('b'), new XPString('a'));
       $this->assertFalse(create(new Vector($a))->equals(new Vector($b)));
     }
   }

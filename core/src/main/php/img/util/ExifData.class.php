@@ -28,7 +28,7 @@
    * @ext      exif
    * @purpose  Utility
    */
-  class ExifData extends Object {
+  class ExifData extends XPObject {
     public static
       $EMPTY= NULL;
 

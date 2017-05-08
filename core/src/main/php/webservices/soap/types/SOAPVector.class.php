@@ -12,7 +12,7 @@
    * @see      xp://webservices.soap.types.SoapType
    * @purpose  Vector type
    */
-  class SOAPVector extends Object implements SoapType {
+  class SOAPVector extends XPObject implements SoapType {
     public 
       $_vector;
     

@@ -18,7 +18,7 @@
    * @see      xp://xml.parser.XMLParser
    * @purpose  Tree
    */
-  class Tree extends Object implements ParserCallback {
+  class Tree extends XPObject implements ParserCallback {
     public 
       $root     = NULL,
       $nodeType = NULL;
@@ -30,8 +30,8 @@
 
     protected 
       $version  = '1.0',
-      $encoding = 'iso-8859-1',
-      $node_encoding_hint = 'iso-8859-1';
+      $encoding = 'utf-8',
+      $node_encoding_hint = 'utf-8';
     
     /**
      * Constructor
@@ -154,14 +154,14 @@
      * @throws  xml.XMLFormatException in case of a parser error
      */
     public static function fromString($string, $class= __CLASS__) {
-      $parser= new XMLParser();
+      $parser= new XMLParser('utf-8');
       $tree= new $class();
 
       $parser->setCallback($tree);
       $parser->parse($string, 1);
 
       // Fetch actual encoding from parser
-      $tree->setEncoding($parser->getEncoding());
+      $tree->setNodeEncodingHint($parser->getEncoding());
 
       delete($parser);
       return $tree;
@@ -181,7 +181,7 @@
      * @throws  io.IOException in case reading the file fails
      */ 
     public static function fromFile($file, $class= __CLASS__) {
-      $parser= new XMLParser();
+      $parser= new XMLParser('utf-8');
       $tree= new $class();
       
       $parser->setCallback($tree);
@@ -191,7 +191,7 @@
       $parser->parse($string);
 
       // Fetch actual encoding from parser
-      $tree->setEncoding($parser->getEncoding());
+      $tree->setNodeEncodingHint($parser->getEncoding());
 
       delete($parser);
       return $tree;
@@ -268,7 +268,7 @@
      * @param   xml.parser.XMLParser instance
      */
     public function onBegin($instance) {
-      $this->encoding= $instance->getEncoding();
+      $this->node_encoding_hint= $instance->getEncoding();
     }
 
     /**
@@ -300,7 +300,7 @@
         "%s(version=%s encoding=%s)@{\n  %s\n}",
         $this->getClassName(),
         $this->version,
-        $this->encoding,
+        $this->node_encoding_hint,
         str_replace("\n", "\n  ", xp::stringOf($this->root))
       );
     }

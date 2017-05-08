@@ -41,7 +41,7 @@
    * @see      php://crypt
    * @purpose  One-way string encryption (hashing)
    */
-  class UnixCrypt extends Object {
+  class UnixCrypt extends XPObject {
     public static $DEFAULT;
     public static $STANDARD;
     public static $EXTENDED;

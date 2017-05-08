@@ -17,7 +17,7 @@
    * @purpose  Map interface implementation
    */
   #[@generic(self= 'K, V', implements= array('K, V'))]
-  class HashTable extends Object implements Map, IteratorAggregate {
+  class HashTable extends XPObject implements Map, IteratorAggregate {
     protected
       $_buckets  = array(),
       $_hash     = 0;

@@ -14,7 +14,7 @@
    * @test    xp://net.xp_framework.unittest.peer.LDAPQueryTest
    * @purpose Wrap LDAP queries
    */
-  class LDAPQuery extends Object {
+  class LDAPQuery extends XPObject {
     const RECEIVE_TYPES=  1;
     const RECEIVE_VALUES= 0;
 

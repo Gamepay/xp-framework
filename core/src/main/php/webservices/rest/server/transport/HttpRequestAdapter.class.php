@@ -43,7 +43,7 @@
     /**
      * Retrieve body
      * 
-     * @return lang.Object
+     * @return lang.XPObject
      */
     public function getData();
   }

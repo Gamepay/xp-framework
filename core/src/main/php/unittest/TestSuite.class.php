@@ -39,7 +39,7 @@
    * @see      http://junit.sourceforge.net/doc/testinfected/testing.htm
    * @purpose  Testcase container
    */
-  class TestSuite extends Object {
+  class TestSuite extends XPObject {
     public
       $tests     = array();
 
@@ -253,7 +253,7 @@
         ));
         xp::gc();
         return;
-      } catch (Throwable $t) {
+      } catch (XPThrowable $t) {
         $timer->stop();
         $this->notifyListeners('testFailed', array(
           $result->set($test, new TestError($test, $t, $timer->elapsedTime()))
@@ -277,7 +277,7 @@
           ));
           xp::gc();
           return;
-        } catch (Throwable $t1) {
+        } catch (XPThrowable $t1) {
           $timer->stop();
           $this->notifyListeners('testFailed', array(
             $result->set($test, new TestError($test, $t1, $timer->elapsedTime()))
@@ -364,7 +364,7 @@
         ));
         xp::gc();
         return;
-      } catch (Throwable $t) {
+      } catch (XPThrowable $t) {
         $timer->stop();
         $this->notifyListeners('testFailed', array(
           $result->set($test, new TestError($test, $t, $timer->elapsedTime()))

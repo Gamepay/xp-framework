@@ -13,7 +13,7 @@
    * @see      xp://RemoteInterfaceMapping
    * @purpose  InvocationHandler
    */
-  class RemoteInvocationHandler extends Object implements InvocationHandler {
+  class RemoteInvocationHandler extends XPObject implements InvocationHandler {
     public
       $oid      = NULL,
       $handler  = NULL;

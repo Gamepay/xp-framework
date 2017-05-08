@@ -52,7 +52,7 @@
    * @see      xp://rdbms.query.Query
    * @purpose  rdbms.query
    */
-  class SetOperation extends Object implements SelectQueryExecutable {
+  class SetOperation extends XPObject implements SelectQueryExecutable {
     const UNION=         'union';
     const UNION_ALL=     'union_all';
     const INTERCEPT=     'intercept';

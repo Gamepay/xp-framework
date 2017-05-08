@@ -74,7 +74,7 @@
         $c->connect();
         $c->sendCommand('SHUTDOWN');
         $c->close();
-      } catch (Throwable $ignored) {
+      } catch (XPThrowable $ignored) {
         // Fall through, below should terminate the process anyway
       }
 
@@ -345,7 +345,7 @@
         $this->assertTrue($file->exists());
         $this->assertEquals(strlen($this->name), $file->getSize());
         $file->delete();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
 
         // Unfortunately, try { } finally does not exist...
         try {
@@ -374,7 +374,7 @@
         $file= $dir->file('renamed.txt');
         $this->assertTrue($file->exists(), 'Renamed file does not exist');
         $file->delete();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
 
         // Unfortunately, try { } finally does not exist...
         try {
@@ -405,7 +405,7 @@
         $file= $trash->file('name.txt');
         $this->assertTrue($file->exists());
         $file->delete();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
 
         // Unfortunately, try { } finally does not exist...
         try {
@@ -489,7 +489,7 @@
         $this->assertTrue($file->exists());
         $this->assertEquals(strlen($this->name), $file->getSize());
         $file->delete();
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
 
         // Unfortunately, try { } finally does not exist...
         try {

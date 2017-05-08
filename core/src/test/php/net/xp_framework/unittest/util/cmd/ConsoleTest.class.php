@@ -212,7 +212,7 @@
      */
     #[@test]
     public function writeObject() {
-      Console::write(newinstance('lang.Object', array(), '{
+      Console::write(newinstance('lang.XPObject', array(), '{
         public function toString() { return "Hello"; }
       }'));
       $this->assertEquals('Hello', $this->streams[1]->getBytes());
@@ -225,7 +225,7 @@
     #[@test]
     public function exceptionFromToString() {
       try {
-        Console::write(newinstance('lang.Object', array(), '{
+        Console::write(newinstance('lang.XPObject', array(), '{
           public function toString() { throw new IllegalStateException("Cannot render string"); }
         }'));
         $this->fail('Expected exception not thrown', NULL, 'lang.IllegalStateException');

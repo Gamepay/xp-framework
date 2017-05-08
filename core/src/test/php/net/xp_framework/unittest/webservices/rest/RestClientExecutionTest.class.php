@@ -37,7 +37,7 @@
 
         public function __construct($status, $body, $headers) {
           parent::__construct("http://test");
-          if ($status instanceof Throwable) {
+          if ($status instanceof XPThrowable) {
             $this->exception= $status;
           } else {
             $this->result= "HTTP/1.1 ".$status."\r\n";

@@ -15,7 +15,7 @@
    *
    * @purpose  Authenticator
    */
-  class LdapAuthenticator extends Object implements Authenticator {
+  class LdapAuthenticator extends XPObject implements Authenticator {
     public
       $lc     = NULL,
       $basedn = '';

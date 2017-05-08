@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'text.regex.Pattern',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
@@ -59,14 +59,14 @@
     }
 
     /**
-     * Tests "." as a pattern with lang.types.String instances
+     * Tests "." as a pattern with lang.types.XPString instances
      *
      */
     #[@test]
     public function stringObjectInput() {
-      $this->assertEquals(0, Pattern::compile('.')->match(new String(''))->length());
-      $this->assertEquals(1, Pattern::compile('.')->match(new String('a'))->length());
-      $this->assertEquals(2, Pattern::compile('.')->match(new String('ab'))->length());
+      $this->assertEquals(0, Pattern::compile('.')->match(new XPString(''))->length());
+      $this->assertEquals(1, Pattern::compile('.')->match(new XPString('a'))->length());
+      $this->assertEquals(2, Pattern::compile('.')->match(new XPString('ab'))->length());
     }
 
     /**
@@ -77,7 +77,7 @@
     public function unicodePattern() {
       $this->assertEquals(
         array('GÃ¼n'), 
-        Pattern::compile('.Ã¼.', Pattern::UTF8)->match(new String('Günter', 'iso-8859-1'))->group(0)
+        Pattern::compile('.Ã¼.', Pattern::UTF8)->match(new XPString('Günter', 'iso-8859-1'))->group(0)
       );
     }
 
@@ -89,7 +89,7 @@
     public function nonUnicodePattern() {
       $this->assertEquals(
         array('Gün'), 
-        Pattern::compile('.ü.')->match(new String('Günter', 'iso-8859-1'))->group(0)
+        Pattern::compile('.ü.')->match(new XPString('Günter', 'iso-8859-1'))->group(0)
       );
     }
 
@@ -301,7 +301,7 @@
       $pattern= Pattern::compile('<[\p{L}]>', Pattern::UTF8);
       $this->assertEquals(
         'G.nter',
-        $pattern->replaceWith('.', new String('G<ü>nter', 'iso-8859-1'))
+        $pattern->replaceWith('.', new XPString('G<ü>nter', 'iso-8859-1'))
       );
     }
 

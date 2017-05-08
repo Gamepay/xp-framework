@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.InflatingInputStreamTest
    * @purpose  InputStream implementation
    */
-  class InflatingInputStream extends Object implements InputStream {
+  class InflatingInputStream extends XPObject implements InputStream {
     protected $in = NULL;
     
     /**

@@ -15,7 +15,7 @@
    * Updates the window title bar of an xterm or xterm-compatible shell
    * window. This listener has no options.
    */
-  class XTermTitleListener extends Object implements TestListener {
+  class XTermTitleListener extends XPObject implements TestListener {
     const PROGRESS_WIDTH= 20;
     private $out= NULL;
     private $cur, $sum;

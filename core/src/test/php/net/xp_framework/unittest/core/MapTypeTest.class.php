@@ -94,7 +94,7 @@
      */
     #[@test]
     public function objectComponentType() {
-      $this->assertEquals(XPClass::forName('lang.Object'), MapType::forName('[:lang.Object]')->componentType());
+      $this->assertEquals(XPClass::forName('lang.XPObject'), MapType::forName('[:lang.XPObject]')->componentType());
     }
 
     /**

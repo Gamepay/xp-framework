@@ -12,7 +12,7 @@
    * @see      xp://rdbms.Criteria
    * @purpose  purpose
    */
-  class SQLFunctions extends Object {
+  class SQLFunctions extends XPObject {
 
     /**
      * return a substring from col1, that start at

@@ -15,7 +15,7 @@
    *
    * @test  xp://net.xp_framework.unittest.tests.mock.MockeryTest
    */
-  class MockRepository extends Object {
+  class MockRepository extends XPObject {
     private $mocks= array();
 
     /**
@@ -23,7 +23,7 @@
      *
      * @param   string typeName
      * @param   boolean overrideAll
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function createMock($typeName, $overrideAll= TRUE) {
       $type= Type::forName($typeName);

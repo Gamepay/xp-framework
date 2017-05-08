@@ -42,7 +42,7 @@
   //     Output handler. Checks for fatal errors
   function __output($buf) {
     if (FALSE !== ($p= strpos($buf, EPREPEND_IDENTIFIER))) {
-      $e= new Error(str_replace(EPREPEND_IDENTIFIER, '', substr($buf, $p)));
+      $e= new XPError(str_replace(EPREPEND_IDENTIFIER, '', substr($buf, $p)));
       fputs(STDERR, $e->toString());
     }
 

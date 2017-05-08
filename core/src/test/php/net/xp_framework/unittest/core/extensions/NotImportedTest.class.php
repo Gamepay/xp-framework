@@ -21,7 +21,7 @@
      * Tests situation when ArrayListExtensions hasn't been imported
      *
      */
-    #[@test, @expect('lang.Error')]
+    #[@test, @expect('lang.XPError')]
     public function test() {
       create(new ArrayList(7, 0, 10, 1, -1))->sorted();
     }

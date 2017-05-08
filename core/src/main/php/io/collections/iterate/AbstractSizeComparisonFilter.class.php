@@ -11,7 +11,7 @@
    *
    * @purpose  Iteration Filter
    */
-  class AbstractSizeComparisonFilter extends Object implements IterationFilter {
+  class AbstractSizeComparisonFilter extends XPObject implements IterationFilter {
     public
       $size= 0;
       

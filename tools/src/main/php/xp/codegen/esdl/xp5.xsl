@@ -191,7 +191,7 @@
    *
    * @purpose  Wrapper class
    */
-  class ]]></xsl:text><xsl:value-of select="func:shortname(@name)"/><xsl:text><![CDATA[ extends Object {
+  class ]]></xsl:text><xsl:value-of select="func:shortname(@name)"/><xsl:text><![CDATA[ extends XPObject {
     public
 ]]></xsl:text>
 

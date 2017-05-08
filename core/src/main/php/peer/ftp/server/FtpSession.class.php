@@ -13,7 +13,7 @@
    * @see      xp://peer.ftp.server.FtpConnectionListener
    * @purpose  Session information
    */
-  class FtpSession extends Object {
+  class FtpSession extends XPObject {
     public
       $username       = '',
       $authenticated  = FALSE,

@@ -11,7 +11,7 @@
    *
    * @purpose  Iteration Filter
    */
-  class NameEqualsFilter extends Object implements IterationFilter {
+  class NameEqualsFilter extends XPObject implements IterationFilter {
     public
       $compare= '';
       

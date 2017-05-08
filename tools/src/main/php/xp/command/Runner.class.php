@@ -46,7 +46,7 @@
    * @see      xp://util.cmd.Command
    * @purpose  Runner
    */
-  class xp·command·Runner extends Object {
+  class xp·command·Runner extends XPObject {
     private static
       $in     = NULL,
       $out    = NULL,
@@ -348,7 +348,7 @@
         } catch (TargetInvocationException $e) {
           self::$err->writeLine('*** Error injecting '.$type.' '.$inject['name'].': '.$e->getCause()->compoundMessage());
           return 2;
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           self::$err->writeLine('*** Error injecting '.$type.' '.$inject['name'].': '.$e->compoundMessage());
           return 2;
         }
@@ -379,7 +379,7 @@
           }
           try {
             $method->invoke($instance, array($pass));
-          } catch (Throwable $e) {
+          } catch (XPThrowable $e) {
             self::$err->writeLine('*** Error for arguments '.$begin.'..'.$end.': ', $this->verbose ? $e : $e->getMessage());
             return 2;
           }
@@ -423,7 +423,7 @@
 
       try {
         $instance->run();
-      } catch (Throwable $t) {
+      } catch (XPThrowable $t) {
         self::$err->writeLine('*** ', $t->toString());
         return 70;    // EX_SOFTWARE according to sysexits.h
       }

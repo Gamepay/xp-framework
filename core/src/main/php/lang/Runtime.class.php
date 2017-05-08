@@ -20,7 +20,7 @@
    * @test     xp://net.xp_framework.unittest.core.RuntimeTest
    * @purpose  Access to PHP runtime
    */
-  class Runtime extends Object {
+  class Runtime extends XPObject {
     protected static 
       $instance   = NULL;
       

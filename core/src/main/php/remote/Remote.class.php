@@ -37,7 +37,7 @@
    * @see      xp://remote.HandlerFactory
    * @purpose  RMI
    */
-  class Remote extends Object {
+  class Remote extends XPObject {
     public
       $_handler       = NULL;
 
@@ -103,7 +103,7 @@
      * Look up an object by its name
      *
      * @param   string name
-     * @return  lang.Object
+     * @return  lang.XPObject
      * @throws  remote.NameNotFoundException in case the given name could not be found
      * @throws  remote.RemoteException for any other error
      */

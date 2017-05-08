@@ -33,7 +33,7 @@
    * @see      xp://peer.http.HttpConnection
    * @purpose  Utility class
    */
-  class HttpUtil extends Object {
+  class HttpUtil extends XPObject {
   
     /**
      * Fetch an URL's content. Follows redirects up until the defined 
@@ -50,7 +50,7 @@
       do {
         try {
           $response= $connection->get($params, $headers);
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           throw new UnexpectedResponseException(
             $e->getMessage(),
             -1

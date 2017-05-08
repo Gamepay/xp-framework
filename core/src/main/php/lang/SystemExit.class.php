@@ -16,7 +16,7 @@
    * @see      http://docs.python.org/library/exceptions.html#exceptions.SystemExit
    * @see      xp://lang.Runtime#halt
    */
-  class SystemExit extends Throwable {
+  class SystemExit extends XPThrowable {
 
     /**
      * Constructor
@@ -33,7 +33,7 @@
      * Fills in stack trace information. For this class, does not include
      * any information.
      *
-     * @return  lang.Throwable this
+     * @return  lang.XPThrowable this
      */
     public function fillInStackTrace() {
       return $this;

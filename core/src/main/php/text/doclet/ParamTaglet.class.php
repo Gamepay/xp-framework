@@ -13,7 +13,7 @@
    * @see      xp://text.doclet.TagletManager
    * @purpose  Taglet
    */
-  class ParamTaglet extends Object implements Taglet {
+  class ParamTaglet extends XPObject implements Taglet {
      
     /**
      * Create tag from text

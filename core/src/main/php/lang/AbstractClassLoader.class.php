@@ -12,7 +12,7 @@
    * @test  xp://net.xp_framework.unittest.reflection.ClassLoaderTest
    * @see   xp://lang.XPClass#forName
    */
-  abstract class AbstractClassLoader extends Object implements IClassLoader {
+  abstract class AbstractClassLoader extends XPObject implements IClassLoader {
     public $path= '';
     
     /**

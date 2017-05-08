@@ -19,12 +19,12 @@
      *   TestString(6) { String }
      * </pre>
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     protected function testStringInstance() {
-      return newinstance('lang.Object', array(), '{
+      return newinstance('lang.XPObject', array(), '{
         function toString() {
-          return "TestString(6) { String }";
+          return "TestString(8) { XPString }";
         }
       }');
     }
@@ -86,7 +86,7 @@
      */
     #[@test]
     public function objectArgument() {
-      $this->assertEquals('TestString(6) { String }', xp::stringOf($this->testStringInstance()));
+      $this->assertEquals('TestString(8) { XPString }', xp::stringOf($this->testStringInstance()));
     }
 
     /**
@@ -120,7 +120,7 @@
     #[@test]
     public function hashmapArgument() {
       $this->assertEquals(
-        "[\n  foo => \"bar\"\n  bar => 2\n  baz => TestString(6) { String }\n]", 
+        "[\n  foo => \"bar\"\n  bar => 2\n  baz => TestString(8) { XPString }\n]", 
         xp::stringOf(array(
           'foo' => 'bar', 
           'bar' => 2, 
@@ -194,7 +194,7 @@
      */
     #[@test]
     public function noRecursion() {
-      $test= newinstance('lang.Object', array(), '{
+      $test= newinstance('lang.XPObject', array(), '{
         public function toString() {
           return "Test";
         }
@@ -215,7 +215,7 @@
      */
     #[@test]
     public function noRecursionWithLargeNumbers() {
-      $test= newinstance('lang.Object', array(), '{
+      $test= newinstance('lang.XPObject', array(), '{
         public function hashCode() {
           return 9E100;
         }
@@ -236,7 +236,7 @@
     /**
      * Tests toString() isn't invoked recursively by sourcecode such as:
      * <code>
-     *   class MaliciousRecursionGenerator extends Object {
+     *   class MaliciousRecursionGenerator extends XPObject {
      *     function toString() {
      *       return xp::stringOf($this);
      *     }
@@ -248,7 +248,7 @@
      */
     #[@test]
     public function toStringRecursion() {
-      $test= newinstance('lang.Object', array(), '{
+      $test= newinstance('lang.XPObject', array(), '{
         public function toString() {
           return xp::stringOf($this);
         }
@@ -265,7 +265,7 @@
      */
     #[@test]
     public function repeatedCalls() {
-      $object= new Object();
+      $object= new XPObject();
       $stringRep= $object->toString();
       
       $this->assertEquals($stringRep, xp::stringOf($object), 'first');

@@ -12,7 +12,7 @@
    * @purpose  Factory
    * @deprecated use rdbms.Column instead
    */
-  class Property extends Object {
+  class Property extends XPObject {
     protected static 
       $instances = array();
 

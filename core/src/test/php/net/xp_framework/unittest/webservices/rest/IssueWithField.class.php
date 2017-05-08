@@ -10,7 +10,7 @@
    * Issue
    *
    */
-  class net·xp_framework·unittest·webservices·rest·IssueWithField extends Object {
+  class net·xp_framework·unittest·webservices·rest·IssueWithField extends XPObject {
     #[@type('int')]
     public $issueId= 0;
     #[@type('string')]

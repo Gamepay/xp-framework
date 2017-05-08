@@ -19,7 +19,7 @@
      * Constructor
      *
      * @param   string message
-     * @param   lang.Throwable cause 
+     * @param   lang.XPThrowable cause 
      * @param   array prerequisites default array()
      */
     public function __construct($message, $cause= NULL, $prerequisites= array()) {

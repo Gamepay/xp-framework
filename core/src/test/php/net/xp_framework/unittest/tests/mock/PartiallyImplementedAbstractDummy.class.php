@@ -10,7 +10,7 @@
    * An abstract class for tests
    *
    */
-  abstract class PartiallyImplementedAbstractDummy extends Object implements IComplexInterface {
+  abstract class PartiallyImplementedAbstractDummy extends XPObject implements IComplexInterface {
 
     /**
      * Static method

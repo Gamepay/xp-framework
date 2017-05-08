@@ -9,7 +9,7 @@
    *
    */
   #[@webservice]
-  class MockRestHandler extends Object {
+  class MockRestHandler extends XPObject {
     
     /**
      * Some handler function with parameters

@@ -11,7 +11,7 @@
    * @see      reference
    * @purpose  purpose
    */
-  class SoapMappingTestTarget extends Object {
+  class SoapMappingTestTarget extends XPObject {
     public
       $string     = '',
       $integer    = 0;  

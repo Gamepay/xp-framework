@@ -47,7 +47,7 @@
    * @see      xp://lang.reflect.Package#loadClass
    * @purpose  Class loading
    */
-  final class ClassLoader extends Object implements IClassLoader {
+  final class ClassLoader extends XPObject implements IClassLoader {
     protected static
       $delegates  = array();
 

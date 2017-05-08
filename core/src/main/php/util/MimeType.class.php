@@ -94,7 +94,7 @@
    *
    * @see http://www.stalkpire.de/mime-types-liste.aspx
    */
-  class MimeType extends Object {
+  class MimeType extends XPObject {
   
     /**
      * Get mime type by filename (guess)

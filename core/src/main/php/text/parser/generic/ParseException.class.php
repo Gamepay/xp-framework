@@ -20,7 +20,7 @@
      * Constructor
      * 
      * @param string message
-     * @param lang.Throwable cause
+     * @param lang.XPThrowable cause
      * @param text.parser.generic.ParserMessage[] errors 
      */
     public function __construct($message, $cause= NULL, $errors= array()) {

@@ -11,7 +11,7 @@
    *
    * @test    xp://net.xp_framework.unittest.rdbms.tds.InterfacesLookupTest
    */
-  class InterfacesLookup extends Object implements rdbms·tds·ConnectionLookup {
+  class InterfacesLookup extends XPObject implements rdbms·tds·ConnectionLookup {
     protected $file= NULL;
     
     /**

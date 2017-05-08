@@ -14,7 +14,7 @@
    * @see      xp://lang.types.ArrayList
    * @purpose  Extension methods for arrays
    */
-  abstract class Arrays extends Object {
+  abstract class Arrays extends XPObject {
     public static $EMPTY= NULL;
 
     static function __static() {

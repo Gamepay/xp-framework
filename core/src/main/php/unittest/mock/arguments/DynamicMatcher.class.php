@@ -10,7 +10,7 @@
    * Argument matcher that uses a user function for matching.
    *
    */
-  class DynamicMatcher extends Object implements IArgumentMatcher {
+  class DynamicMatcher extends XPObject implements IArgumentMatcher {
     private
       $function      = NULL,
       $classOrObject = NULL;

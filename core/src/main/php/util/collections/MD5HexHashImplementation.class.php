@@ -23,7 +23,7 @@
    * @see      xp://util.collections.HashProvider
    * @purpose  Hashing
    */
-  class MD5HexHashImplementation extends Object implements HashImplementation {
+  class MD5HexHashImplementation extends XPObject implements HashImplementation {
 
     /**
      * Retrieve hash code for a given string

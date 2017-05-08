@@ -9,7 +9,7 @@
    *
    * @purpose  Dummy implementation
    */
-  class DummyRpcImplementationHandler extends Object {
+  class DummyRpcImplementationHandler extends XPObject {
   
     /**
      * Dummy method
@@ -52,7 +52,7 @@
      */
     #[@webmethod]
     public function checkMultipleParameters($string, $int, $array, $struct) {
-      if (!is_string($string) && !$string instanceof String) throw new IllegalArgumentException('String not string');
+      if (!is_string($string) && !$string instanceof XPString) throw new IllegalArgumentException('String not string');
       if (!is_int($int)) throw new IllegalArgumentException('Int not Int');
       if (!is_array($array)) throw new IllegalArgumentException('Array not array');
       if (!is_array($struct)) throw new IllegalArgumentException('Struct not struct');

@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.Bz2CompressingOutputStreamTest
    * @purpose  OuputStream implementation
    */
-  class Bz2CompressingOutputStream extends Object implements OutputStream {
+  class Bz2CompressingOutputStream extends XPObject implements OutputStream {
     protected $out= NULL;
     
     /**

@@ -32,7 +32,7 @@
    * @test    xp://net.xp_framework.unittest.scriptlet.HttpSessionTest
    * @purpose Session implementation                                                    
    */
-  class HttpSession extends Object implements Session {
+  class HttpSession extends XPObject implements Session {
     public 
       $id    = '',
       $isNew = FALSE;

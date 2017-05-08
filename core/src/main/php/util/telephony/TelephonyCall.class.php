@@ -8,7 +8,7 @@
    * Represents a call
    *
    */
-  class TelephonyCall extends Object {
+  class TelephonyCall extends XPObject {
     public 
       $origin       = NULL,
       $destination  = NULL;

@@ -20,7 +20,7 @@
    * @see      xp://lang.reflect.Constructor
    * @purpose  Reflection
    */
-  class Routine extends Object {
+  class Routine extends XPObject {
     protected
       $accessible = FALSE,
       $_class     = NULL;

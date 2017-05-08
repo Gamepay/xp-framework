@@ -11,7 +11,7 @@
    *
    * @purpose  Abstract base class
    */
-  abstract class Command extends Object implements Runnable {
+  abstract class Command extends XPObject implements Runnable {
     public
       #[@type('io.streams.StringReader')]
       $in  = NULL,

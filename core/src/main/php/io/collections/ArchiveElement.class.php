@@ -12,7 +12,7 @@
    * @see      xp://io.collections.ArchiveCollection
    * @purpose  Interface
    */
-  class ArchiveElement extends Object implements IOElement {
+  class ArchiveElement extends XPObject implements IOElement {
     protected
       $archive = NULL,
       $name    = '',

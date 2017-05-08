@@ -33,7 +33,7 @@
    * @see      http://java.sun.com/j2se/1.4.1/docs/api/java/security/package-summary.html
    * @see      xp://security.Permission
    */
-  class Policy extends Object {
+  class Policy extends XPObject {
     public
       $permissions  = array();
       

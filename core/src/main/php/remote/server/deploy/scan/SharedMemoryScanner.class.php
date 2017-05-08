@@ -15,7 +15,7 @@
    *
    * @purpose  Interface
    */
-  class SharedMemoryScanner extends Object implements DeploymentScanner {
+  class SharedMemoryScanner extends XPObject implements DeploymentScanner {
 
     /**
      * Constructor

@@ -12,7 +12,7 @@
    * @see      http://www.opengroup.org/onlinepubs/007908799/xsh/stdin.html
    * @purpose  Wrap standard I/O streams with File objects
    */
-  class StdStream extends Object {
+  class StdStream extends XPObject {
   
     /**
      * Retrieve a file object

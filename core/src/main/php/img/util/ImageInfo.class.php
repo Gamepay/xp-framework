@@ -12,7 +12,7 @@
    * @see      php://getimagesize
    * @purpose  Utility
    */
-  class ImageInfo extends Object {
+  class ImageInfo extends XPObject {
     public
       $width      = 0,
       $height     = 0,

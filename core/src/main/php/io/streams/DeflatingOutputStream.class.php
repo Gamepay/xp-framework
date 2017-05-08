@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.DeflatingOutputStreamTest
    * @purpose  OuputStream implementation
    */
-  class DeflatingOutputStream extends Object implements OutputStream {
+  class DeflatingOutputStream extends XPObject implements OutputStream {
     protected $out= NULL;
     
     /**

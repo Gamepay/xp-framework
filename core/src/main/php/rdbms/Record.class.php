@@ -7,7 +7,7 @@
   /**
    * A Record saves key value pairs
    */
-  class Record extends Object {
+  class Record extends XPObject {
     
     /**
      * Constructor. Supports the array syntax, where an associative

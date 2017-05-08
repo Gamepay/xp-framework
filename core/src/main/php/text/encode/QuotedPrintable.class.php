@@ -15,7 +15,7 @@
    * @see      rfc://2045#6.7
    * @purpose  Quoted Printable encoder / decoder
    */
-  class QuotedPrintable extends Object {
+  class QuotedPrintable extends XPObject {
   
     /**
      * Get ASCII values of characters that need to be encoded

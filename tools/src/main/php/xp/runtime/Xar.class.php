@@ -13,7 +13,7 @@
    *
    * @purpose  Tool
    */
-  class xp·runtime·Xar extends Object {
+  class xp·runtime·Xar extends XPObject {
     const MANIFEST = 'META-INF/manifest.ini';
     
     /**

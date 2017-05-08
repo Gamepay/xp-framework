@@ -12,7 +12,7 @@
    * @see      xp://peer.ftp.FtpDownload
    * @purpose  Abstract base class
    */
-  abstract class FtpTransfer extends Object {
+  abstract class FtpTransfer extends XPObject {
     const ASCII  = 1;
     const BINARY = 2;
 

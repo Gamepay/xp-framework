@@ -40,7 +40,7 @@
    *
    * @see   xp://rdbms.DBTable
    */
-  class DBTableAttribute extends Object {
+  class DBTableAttribute extends XPObject {
     public 
       $name=        '',
       $type=        -1,

@@ -76,7 +76,7 @@
    * @test     xp://net.xp_framework.unittest.logging.LoggerTest
    * @purpose  Singleton logger
    */
-  class Logger extends Object implements Configurable {
+  class Logger extends XPObject implements Configurable {
     const DFLT= "default";
 
     protected static $instance= NULL;

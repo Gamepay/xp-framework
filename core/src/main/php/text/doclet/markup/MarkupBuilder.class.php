@@ -18,7 +18,7 @@
    * @test     xp://net.xp_framework.unittest.text.doclet.MarkupTest
    * @purpose  Plain text to markup converter
    */
-  class MarkupBuilder extends Object {
+  class MarkupBuilder extends XPObject {
     public 
       $stack      = array(),
       $processors = array(),

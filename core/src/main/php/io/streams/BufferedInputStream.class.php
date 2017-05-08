@@ -11,7 +11,7 @@
    *
    * @purpose  InputStream implementation
    */
-  class BufferedInputStream extends Object implements InputStream {
+  class BufferedInputStream extends XPObject implements InputStream {
     protected 
       $in   = NULL,
       $buf  = '',

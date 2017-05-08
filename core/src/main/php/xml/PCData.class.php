@@ -26,7 +26,7 @@
    *
    * @purpose  Wrapper
    */
-  class PCData extends Object {
+  class PCData extends XPObject {
     public $pcdata= '';
       
     /**

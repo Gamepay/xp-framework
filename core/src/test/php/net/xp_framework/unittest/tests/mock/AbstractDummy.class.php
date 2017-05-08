@@ -8,7 +8,7 @@
    * A abstract dummy class for testing.
    *
    */
-  abstract class AbstractDummy extends Object {
+  abstract class AbstractDummy extends XPObject {
 
     /**
      * A concrete method

@@ -12,7 +12,7 @@
    * @see     xp://rdbms.tds.TdsV7Protocolo#read
    * @test    xp://net.xp_framework.unittest.rdbms.tds.TdsDataStreamTest
    */
-  class TdsDataStream extends Object {
+  class TdsDataStream extends XPObject {
     protected $pkt= 0;
     protected $packetSize= 0;
     protected $sock= NULL;

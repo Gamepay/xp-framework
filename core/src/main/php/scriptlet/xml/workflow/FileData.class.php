@@ -11,7 +11,7 @@
    *
    * @purpose  Wrapper
    */
-  class FileData extends Object {
+  class FileData extends XPObject {
     public
       $name = '',
       $type = '',

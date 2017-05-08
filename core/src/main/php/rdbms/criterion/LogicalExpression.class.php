@@ -14,7 +14,7 @@
    *
    * @purpose  Criterion
    */
-  class LogicalExpression extends Object implements Criterion {
+  class LogicalExpression extends XPObject implements Criterion {
     public
       $criterions = array(),
       $op         = '';

@@ -20,7 +20,7 @@
    * @see      xp://remote.protocol.ProtocolHandler
    * @purpose  Protocol Handler
    */
-  class XpProtocolHandler extends Object implements ProtocolHandler {
+  class XpProtocolHandler extends XPObject implements ProtocolHandler {
     public
       $versionMajor   = 0,
       $versionMinor   = 0,
@@ -121,7 +121,7 @@
      * Look up an object by its name
      *
      * @param   string name
-     * @param   lang.Object
+     * @param   lang.XPObject
      */
     public function lookup($name) {
       $this->cat && $this->cat->debugf(
@@ -231,7 +231,7 @@
      * @param   string data default ''
      * @return  var
      * @throws  remote.RemoteException for server errors
-     * @throws  lang.Error for unrecoverable errors
+     * @throws  lang.XPError for unrecoverable errors
      */
     protected function sendPacket($type, $data= '', $bytes= array()) {
       $bsize= sizeof($bytes);
@@ -270,7 +270,7 @@
       
       if (DEFAULT_PROTOCOL_MAGIC_NUMBER != $header['magic']) {
         $this->_sock->close();
-        throw new Error('Magic number mismatch (have: '.$header['magic'].' expect: '.DEFAULT_PROTOCOL_MAGIC_NUMBER);
+        throw new XPError('Magic number mismatch (have: '.$header['magic'].' expect: '.DEFAULT_PROTOCOL_MAGIC_NUMBER);
       }
 
       // Perform actions based on response type
@@ -298,13 +298,13 @@
             $message= ByteCountedString::readFrom($this->_sock);    // Not serialized!
             $this->cat && $this->cat->debug('<<< Response:', addcslashes($message, "\0..\37!@\177..\377"));
             $this->_sock->close();
-            throw new RemoteException($message, new Error($message));
+            throw new RemoteException($message, new XPError($message));
 
           default:
             $data= $this->readBytes($header['length']);   // Read all left-over bytes
             $this->cat && $this->cat->debug('<<< Response:', addcslashes($data, "\0..\37!@\177..\377"));
             $this->_sock->close();
-            throw new Error('Unknown message type '.xp::stringOf($header['type']));
+            throw new XPError('Unknown message type '.xp::stringOf($header['type']));
         }
       } catch (IOException $e) {
         throw new RemoteException($e->getMessage(), $e);

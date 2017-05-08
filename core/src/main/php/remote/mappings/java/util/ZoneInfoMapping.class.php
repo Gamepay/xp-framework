@@ -11,7 +11,7 @@
    *
    * @purpose  Mapping
    */
-  class ZoneInfoMapping extends Object {
+  class ZoneInfoMapping extends XPObject {
 
     var
       $rawOffset= NULL,
@@ -27,7 +27,7 @@
     /**
      * Set rawOffset
      *
-     * @param   lang.Object rawOffset
+     * @param   lang.XPObject rawOffset
      */
     public function setRawOffset($rawOffset) {
       $this->rawOffset= $rawOffset;
@@ -36,7 +36,7 @@
     /**
      * Get rawOffset
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getRawOffset() {
       return $this->rawOffset;
@@ -45,7 +45,7 @@
     /**
      * Set rawOffsetDiff
      *
-     * @param   lang.Object rawOffsetDiff
+     * @param   lang.XPObject rawOffsetDiff
      */
     public function setRawOffsetDiff($rawOffsetDiff) {
       $this->rawOffsetDiff= $rawOffsetDiff;
@@ -54,7 +54,7 @@
     /**
      * Get rawOffsetDiff
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getRawOffsetDiff() {
       return $this->rawOffsetDiff;
@@ -63,7 +63,7 @@
     /**
      * Set checksum
      *
-     * @param   lang.Object checksum
+     * @param   lang.XPObject checksum
      */
     public function setChecksum($checksum) {
       $this->checksum= $checksum;
@@ -72,7 +72,7 @@
     /**
      * Get checksum
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getChecksum() {
       return $this->checksum;
@@ -81,7 +81,7 @@
     /**
      * Set dstSavings
      *
-     * @param   lang.Object dstSavings
+     * @param   lang.XPObject dstSavings
      */
     public function setDstSavings($dstSavings) {
       $this->dstSavings= $dstSavings;
@@ -90,7 +90,7 @@
     /**
      * Get dstSavings
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getDstSavings() {
       return $this->dstSavings;
@@ -99,7 +99,7 @@
     /**
      * Set transitions
      *
-     * @param   lang.Object transitions
+     * @param   lang.XPObject transitions
      */
     public function setTransitions($transitions) {
       $this->transitions= $transitions;
@@ -108,7 +108,7 @@
     /**
      * Get transitions
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getTransitions() {
       return $this->transitions;
@@ -117,7 +117,7 @@
     /**
      * Set offsets
      *
-     * @param   lang.Object offsets
+     * @param   lang.XPObject offsets
      */
     public function setOffsets($offsets) {
       $this->offsets= $offsets;
@@ -126,7 +126,7 @@
     /**
      * Get offsets
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getOffsets() {
       return $this->offsets;
@@ -135,7 +135,7 @@
     /**
      * Set simpleTimeZoneParams
      *
-     * @param   lang.Object simpleTimeZoneParams
+     * @param   lang.XPObject simpleTimeZoneParams
      */
     public function setSimpleTimeZoneParams($simpleTimeZoneParams) {
       $this->simpleTimeZoneParams= $simpleTimeZoneParams;
@@ -144,7 +144,7 @@
     /**
      * Get simpleTimeZoneParams
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getSimpleTimeZoneParams() {
       return $this->simpleTimeZoneParams;
@@ -153,7 +153,7 @@
     /**
      * Set willGMTOffsetChange
      *
-     * @param   lang.Object willGMTOffsetChange
+     * @param   lang.XPObject willGMTOffsetChange
      */
     public function setWillGMTOffsetChange($willGMTOffsetChange) {
       $this->willGMTOffsetChange= $willGMTOffsetChange;
@@ -162,7 +162,7 @@
     /**
      * Get willGMTOffsetChange
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getWillGMTOffsetChange() {
       return $this->willGMTOffsetChange;
@@ -171,7 +171,7 @@
     /**
      * Set ID
      *
-     * @param   lang.Object ID
+     * @param   lang.XPObject ID
      */
     public function setID($ID) {
       $this->ID= $ID;
@@ -180,7 +180,7 @@
     /**
      * Get ID
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getID() {
       return $this->ID;

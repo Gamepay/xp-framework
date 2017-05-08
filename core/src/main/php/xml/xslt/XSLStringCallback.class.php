@@ -10,7 +10,7 @@
    * @purpose   XSL callback
    * @test      xp://net.xp_framework.unittest.xml.XslCallbackTest
    */
-  class XSLStringCallback extends Object {
+  class XSLStringCallback extends XPObject {
   
     /**
      * urlencode() string

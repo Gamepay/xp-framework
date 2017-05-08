@@ -24,7 +24,7 @@
    *
    * @purpose  Deployer
    */
-  class Deployer extends Object implements Traceable {
+  class Deployer extends XPObject implements Traceable {
     protected
       $cat      = NULL;
 

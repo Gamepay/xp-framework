@@ -13,7 +13,7 @@
    * @see      xp://io.collections.IOCollection
    * @purpose  IOCollection implementation
    */
-  class ArchiveCollection extends Object implements IOCollection {
+  class ArchiveCollection extends XPObject implements IOCollection {
     protected
       $archive = NULL,
       $origin  = NULL,

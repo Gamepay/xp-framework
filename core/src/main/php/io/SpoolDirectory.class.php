@@ -15,7 +15,7 @@
    *
    * @purpose   Reliable spool directory class
    */    
-  class SpoolDirectory extends Object {
+  class SpoolDirectory extends XPObject {
     public
       $root;
     

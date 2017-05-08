@@ -226,7 +226,7 @@
     public function stringTypeToken() {
       $this->assertEquals(
         'select \'"Hello", Tom\'\'s friend said\' as strval',
-        $this->fixture->prepare('select %s as strval', new String('"Hello", Tom\'s friend said'))
+        $this->fixture->prepare('select %s as strval', new XPString('"Hello", Tom\'s friend said'))
       );
     }
 

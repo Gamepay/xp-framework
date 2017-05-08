@@ -77,7 +77,7 @@
     /**
      * Looks up service description
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     #[@target]
     public function serviceDescription() {
@@ -96,7 +96,7 @@
         } catch (RemoteException $e) {
           Console::$err->writeLine('*** unable to lookup remote class: ', $classref->referencedName());
           continue;
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           Console::$err->writeLine('*** ', $classref->referencedName(), ' ~ ', $e);
           continue;
         }
@@ -143,7 +143,7 @@
         } catch (IOException $e) {
           Console::$err->writeLine('*** ', $wrapper->getName(), ' ("', $e->getMessage(), '")');
           continue;
-        } catch (Throwable $e) {
+        } catch (XPThrowable $e) {
           Console::$err->writeLine('*** ', $wrapper->getName(), ' ~ ', $e->toString);
           continue;
         }

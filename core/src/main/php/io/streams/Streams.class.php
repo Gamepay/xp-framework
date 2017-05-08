@@ -13,7 +13,7 @@
    * @see      php://streams
    * @purpose  Utility
    */
-  abstract class Streams extends Object {
+  abstract class Streams extends XPObject {
     protected static 
       $streams = array();
     

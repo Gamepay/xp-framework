@@ -15,7 +15,7 @@
    * @test    xp://net.xp_framework.unittest.text.parser.CSVParserTest
    * @deprecated Use the text.csv package instead
    */
-  class CSVParser extends Object {
+  class CSVParser extends XPObject {
     public
       $stream=    NULL,
       $hasHeader= FALSE,

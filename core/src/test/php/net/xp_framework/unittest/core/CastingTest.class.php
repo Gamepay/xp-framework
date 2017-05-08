@@ -39,7 +39,7 @@
      */
     #[@test]
     public function null() {
-      $this->assertEquals(xp::null(), cast(NULL, 'lang.Object'));
+      $this->assertEquals(xp::null(), cast(NULL, 'lang.XPObject'));
     }
 
     /**
@@ -70,12 +70,12 @@
     }
 
     /**
-     * Test casting to lang.Object class
+     * Test casting to lang.XPObject class
      *
      */
     #[@test]
     public function objectClass() {
-      $this->assertTrue($this === cast($this, 'lang.Object'));
+      $this->assertTrue($this === cast($this, 'lang.XPObject'));
     }
 
     /**
@@ -93,7 +93,7 @@
      */
     #[@test, @expect('lang.ClassCastException')]
     public function unrelated() {
-      cast($this, 'lang.types.String');
+      cast($this, 'lang.types.XPString');
     }
 
     /**
@@ -102,7 +102,7 @@
      */
     #[@test, @expect('lang.ClassCastException')]
     public function subClass() {
-      cast(new Object(), 'lang.types.String');
+      cast(new XPObject(), 'lang.types.XPString');
     }
 
     /**
@@ -129,7 +129,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function primitive() {
-      cast('primitive', 'lang.Object');
+      cast('primitive', 'lang.XPObject');
     }
   }
 ?>

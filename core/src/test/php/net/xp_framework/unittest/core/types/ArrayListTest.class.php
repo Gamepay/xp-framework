@@ -310,7 +310,7 @@
      */
     #[@test]
     public function listOfObjectsContainsTheObject() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertTrue(create(new ArrayList($o))->contains($o));
     }
 
@@ -320,7 +320,7 @@
      */
     #[@test]
     public function listOfObjectsDoesNotContainNull() {
-      $this->assertFalse(create(new ArrayList(new Object()))->contains(NULL));
+      $this->assertFalse(create(new ArrayList(new XPObject()))->contains(NULL));
     }
 
     /**
@@ -329,7 +329,7 @@
      */
     #[@test]
     public function listOfStringsDoesNotContainObject() {
-      $this->assertFalse(create(new ArrayList('o'))->contains(new Object()));
+      $this->assertFalse(create(new ArrayList('o'))->contains(new XPObject()));
     }
   }
 ?>

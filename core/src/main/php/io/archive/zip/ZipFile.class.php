@@ -51,7 +51,7 @@
    * @see      http://www.pkware.com/documents/casestudies/APPNOTE.TXT
    * @purpose  Entry point class
    */
-  abstract class ZipFile extends Object {
+  abstract class ZipFile extends XPObject {
     
     /**
      * Creation constructor

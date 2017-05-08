@@ -12,7 +12,7 @@
    * @see      xp://peer.ldap.LDAPClient
    * @test     xp://net.xp_framework.unittest.peer.LDAPEntryTest
    */
-  class LDAPEntry extends Object {
+  class LDAPEntry extends XPObject {
     public
       $dn=          '',
       $attributes=  array();

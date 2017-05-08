@@ -6,22 +6,22 @@
 
   namespace net\xp_framework\unittest\core;
   
-  use lang\types\String;
+  use lang\types\XPString;
 
   /**
    * Fixture for namespaces tests
    *
    * @see   xp://net.xp_framework.unittest.core.NamespacedClassesTest
    */
-  class NamespacedClassUsingUnqualified extends \lang\Object {
+  class NamespacedClassUsingUnqualified extends \lang\XPObject {
     
     /**
      * Returns an empty string
      *
-     * @return  lang.types.String
+     * @return  lang.types.XPString
      */
     public function getEmptyString() {
-      return String::$EMPTY;
+      return XPString::$EMPTY;
     }
   }
 ?>

@@ -16,7 +16,7 @@
    * @test    xp://net.xp_framework.unittest.rest.server.RestRoutingItemTest
    * @purpose Routing item
    */
-  class RestRoutingItem extends Object {
+  class RestRoutingItem extends XPObject {
     protected $verb= NULL;
     protected $path= NULL;
     protected $target= NULL;

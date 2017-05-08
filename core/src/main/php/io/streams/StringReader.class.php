@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.StringReaderTest
    * @purpose  InputStreamReader implementation
    */
-  class StringReader extends Object implements InputStreamReader {
+  class StringReader extends XPObject implements InputStreamReader {
     protected
       $in  = NULL,
       $buf = '';

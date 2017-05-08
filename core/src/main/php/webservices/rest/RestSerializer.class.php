@@ -9,7 +9,7 @@
    *
    * @see   xp://webservices.rest.RestRequest#setPayload
    */
-  abstract class RestSerializer extends Object {
+  abstract class RestSerializer extends XPObject {
 
     /**
      * Calculate variants of a given name

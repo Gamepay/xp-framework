@@ -10,7 +10,7 @@
    * @test     xp://remote.protocol.Serializer
    * @purpose  Value object
    */
-  class SerializedData extends Object {
+  class SerializedData extends XPObject {
     public
       $buffer= '',
       $offset= 0;

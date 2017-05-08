@@ -29,12 +29,12 @@
       $this->file= new TempFile();
       $this->archive= new Archive($this->file);
       $this->archive->open(ARCHIVE_CREATE);
-      $this->archive->addBytes('lang/Object.xp', 'class Object { }');
-      $this->archive->addBytes('lang/Type.xp', 'class Type extends Object { }');
-      $this->archive->addBytes('lang/reflect/Method.xp', 'class Method extends Object { }');
-      $this->archive->addBytes('lang/reflect/Ctor.xp', 'class Ctor extends Object { }');
-      $this->archive->addBytes('lang/types/String.xp', 'class String extends Object { }');
-      $this->archive->addBytes('lang/types/map/Uint.xp', 'class Uint extends Object { }');
+      $this->archive->addBytes('lang/XPObject.xp', 'class XPObject { }');
+      $this->archive->addBytes('lang/Type.xp', 'class Type extends XPObject { }');
+      $this->archive->addBytes('lang/reflect/Method.xp', 'class Method extends XPObject { }');
+      $this->archive->addBytes('lang/reflect/Ctor.xp', 'class Ctor extends XPObject { }');
+      $this->archive->addBytes('lang/types/XPString.xp', 'class XPString extends XPObject { }');
+      $this->archive->addBytes('lang/types/map/Uint.xp', 'class Uint extends XPObject { }');
       $this->archive->addBytes('lang/Runnable.xp', 'interface Runnable { }');
       $this->archive->create();
     }
@@ -78,7 +78,7 @@
         $this->assertXarUri('lang', $first->getURI());
         $this->assertEquals(0, $first->getSize());
         $this->assertEquals(NULL, $c->next());
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
       } ensure($e); {
         $c->close();
         if ($e) throw $e;
@@ -96,7 +96,7 @@
       try {
         $c->open();
         $expect= array(
-          'lang/Object.xp'    => 'io.collections.IOElement', 
+          'lang/XPObject.xp'    => 'io.collections.IOElement', 
           'lang/Type.xp'      => 'io.collections.IOElement',
           'lang/reflect'      => 'io.collections.IOCollection',
           'lang/types'        => 'io.collections.IOCollection',
@@ -107,7 +107,7 @@
           $this->assertXarUri($name, $element->getURI());
         }
         $this->assertEquals(NULL, $c->next());
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
       } ensure($e); {
         $c->close();
         if ($e) throw $e;
@@ -157,7 +157,7 @@
     public function readObjectEntry() {
       with ($first= $this->firstElement(new ArchiveCollection($this->archive, 'lang'))); {
         $this->assertEquals(
-          'class Object { }', 
+          'class XPObject { }', 
           $first->getInputStream()->read($first->getSize())
         );
       }

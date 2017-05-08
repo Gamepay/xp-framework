@@ -10,7 +10,7 @@
    * @see      xp://peer.irc.IRCConnection
    * @purpose  User
    */
-  class IRCUser extends Object {
+  class IRCUser extends XPObject {
     public
       $nick     = '',
       $username = '',

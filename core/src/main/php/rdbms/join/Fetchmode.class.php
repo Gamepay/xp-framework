@@ -13,7 +13,7 @@
    * @purpose rdbms.join
    * @see     xp://rdbms.Criteria#setFetchmode
    */
-  class Fetchmode extends Object {
+  class Fetchmode extends XPObject {
     private
       $path= '',
       $mode= '';

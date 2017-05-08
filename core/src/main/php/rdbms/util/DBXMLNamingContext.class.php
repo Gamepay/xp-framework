@@ -9,7 +9,7 @@ uses('rdbms.util.DBXMLNamingStrategyDefault');
    * Generate Names for database generated classes
    *
    */
-  class DBXMLNamingContext extends Object {
+  class DBXMLNamingContext extends XPObject {
   
     private static $strategy= NULL;
     

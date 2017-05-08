@@ -13,7 +13,7 @@
    *
    * @purpose   Generator
    */
-  class RandomPasswordGenerator extends Object {
+  class RandomPasswordGenerator extends XPObject {
     public
       $lc= 'abcdefghijklmnopqrstuvwxyz',
       $uc= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',

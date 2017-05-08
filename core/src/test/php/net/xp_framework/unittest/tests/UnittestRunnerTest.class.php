@@ -159,9 +159,9 @@
      */
     #[@test]
     public function runNonTest() {
-      $return= $this->runner->run(array('lang.Object'));
+      $return= $this->runner->run(array('lang.XPObject'));
       $this->assertEquals(1, $return);
-      $this->assertOnStream($this->err, '*** Error: Given argument is not a TestCase class (lang.XPClass<lang.Object>)');
+      $this->assertOnStream($this->err, '*** Error: Given argument is not a TestCase class (lang.XPClass<lang.XPObject>)');
       $this->assertEquals('', $this->out->getBytes());
     }
 

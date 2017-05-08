@@ -11,7 +11,7 @@
    *
    * @see      xp://xml.parser.XMLParser#parse
    */
-  class TreeInputSource extends Object implements InputSource {
+  class TreeInputSource extends XPObject implements InputSource {
     protected
       $stream = NULL,
       $source = '';

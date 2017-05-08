@@ -15,7 +15,7 @@
    * @see       http://json-rpc.org/wiki/specification
    * @purpose   Contains the Json message
    */
-  class JsonMessage extends Object implements AbstractRpcMessage {
+  class JsonMessage extends XPObject implements AbstractRpcMessage {
     public
       $method   = '',
       $id       = '',
@@ -86,14 +86,14 @@
     /**
      * Set Data
      *
-     * @param   lang.Object data
+     * @param   lang.XPObject data
      */
     public function setData($data) { }
 
     /**
      * Get Data
      *
-     * @return  lang.Object
+     * @return  lang.XPObject
      */
     public function getData() {
       return $this->data;

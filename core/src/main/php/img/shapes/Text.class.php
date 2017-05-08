@@ -11,7 +11,7 @@
    *
    * @see xp://img.Image
    */
-  class Text extends Object implements Drawable {
+  class Text extends XPObject implements Drawable {
     public
       $font=    NULL,
       $col=     NULL,

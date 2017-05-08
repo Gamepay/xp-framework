@@ -11,7 +11,7 @@
    *
    * @purpose  Iteration Filter
    */
-  class NullFilter extends Object implements IterationFilter {
+  class NullFilter extends XPObject implements IterationFilter {
   
     /**
      * Accepts an element

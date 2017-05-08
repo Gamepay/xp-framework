@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'util.collections.LRUBuffer',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   define('LRUTEST_BUFFER_DEAULT_SIZE',  3);
@@ -54,7 +54,7 @@
      */
     #[@test]
     public function add() {
-      $this->buffer->add(new String('one'));
+      $this->buffer->add(new XPString('one'));
       $this->assertEquals(1, $this->buffer->numElements());
     }
 
@@ -69,7 +69,7 @@
       // elements to the LRUBuffer. Nothing should be deleted from it
       // during this loop.
       for ($i= 0, $s= $this->buffer->getSize(); $i < $s; $i++) {
-        if (NULL === ($victim= $this->buffer->add(new String('item #'.$i)))) continue;
+        if (NULL === ($victim= $this->buffer->add(new XPString('item #'.$i)))) continue;
         
         return $this->fail(
           'Victim '.xp::stringOf($victim).' when inserting item #'.($i + 1).'/'.$s, 
@@ -81,8 +81,8 @@
       // The LRUBuffer is now "full". Next time we add something, the
       // element last recently used should be returned.
       $this->assertEquals(
-        new String('item #0'), 
-        $this->buffer->add(new String('last item'))
+        new XPString('item #0'), 
+        $this->buffer->add(new XPString('last item'))
       );
     }
     
@@ -93,7 +93,7 @@
      */
     protected function addElements($num) {
       for ($i= 0; $i < $num; $i++) {
-        $this->buffer->add(new String('item #'.$i));
+        $this->buffer->add(new XPString('item #'.$i));
       }
     }
     
@@ -118,13 +118,13 @@
       $this->addElements($this->buffer->getSize());
       
       // Update the first item
-      $this->buffer->update(new String('item #0'));
+      $this->buffer->update(new XPString('item #0'));
       
       // Now the second item should be chosen the victim when adding 
       // another element
       $this->assertEquals(
-        new String('item #1'), 
-        $this->buffer->add(new String('last item'))
+        new XPString('item #1'), 
+        $this->buffer->add(new XPString('last item'))
       );
     }
 
@@ -172,7 +172,7 @@
     #[@test]
     public function doesNotEqualWithSameElements() {
       $other= new LRUBuffer(LRUTEST_BUFFER_DEAULT_SIZE);
-      with ($string= new String('Hello')); {
+      with ($string= new XPString('Hello')); {
         $other->add($string);
         $this->buffer->add($string);
       }

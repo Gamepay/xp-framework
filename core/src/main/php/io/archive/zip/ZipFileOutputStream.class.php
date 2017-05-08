@@ -17,7 +17,7 @@
    * @see      xp://io.archive.zip.ZipArchiveWriter#addFile
    * @purpose  Stream
    */
-  class ZipFileOutputStream extends Object implements OutputStream {
+  class ZipFileOutputStream extends XPObject implements OutputStream {
     protected
       $writer      = NULL,
       $compression = NULL,

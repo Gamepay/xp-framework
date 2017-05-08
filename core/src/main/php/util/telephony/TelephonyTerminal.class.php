@@ -8,7 +8,7 @@
    * Represents a terminal
    *
    */
-  class TelephonyTerminal extends Object {
+  class TelephonyTerminal extends XPObject {
     public 
       $address  = NULL,
       $observed = FALSE;

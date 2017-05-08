@@ -6,7 +6,7 @@
   uses('util.cmd.ParamString');
   
   // {{{ void runnable(void)
-  //     Syntax: class Test extends Object { ... } runnable();
+  //     Syntax: class Test extends XPObject { ... } runnable();
   function runnable() {
     $p= new ParamString();
     $class= xp::reflect(basename($p->value(0), '.class.php'));

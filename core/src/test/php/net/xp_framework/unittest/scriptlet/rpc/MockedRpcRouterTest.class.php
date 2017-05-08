@@ -35,7 +35,7 @@
      * @param   
      * @return  
      */
-    protected function assertStringContained(String $haystack, String $needle) {
+    protected function assertStringContained(XPString $haystack, XPString $needle) {
       if (FALSE === strpos((string)$needle, (string)$haystack)) {
         $this->fail('Expected sub-string not found', $needle, $haystack);
       }

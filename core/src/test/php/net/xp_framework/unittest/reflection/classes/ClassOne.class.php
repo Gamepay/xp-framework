@@ -11,7 +11,7 @@
    * @see      reference
    * @purpose  purpose
    */
-  class ClassOne extends Object {
+  class ClassOne extends XPObject {
   
   }
 ?>

@@ -25,7 +25,7 @@
    * @see      xp://rdbms.DataSet
    * @purpose  purpose
    */
-  class Criteria extends Object implements SQLExpression {
+  class Criteria extends XPObject implements SQLExpression {
     public 
       $conditions   = array(),
       $orderings    = array(),

@@ -13,7 +13,7 @@
    *
    */
   #[@generic(self= 'V', implements= array('lang.Type, V'))]
-  abstract class net·xp_framework·unittest·core·generics·AbstractTypeDictionary extends Object implements net·xp_framework·unittest·core·generics·IDictionary {
+  abstract class net·xp_framework·unittest·core·generics·AbstractTypeDictionary extends XPObject implements net·xp_framework·unittest·core·generics·IDictionary {
 
   }
 ?>

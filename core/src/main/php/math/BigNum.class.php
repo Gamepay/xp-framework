@@ -13,7 +13,7 @@
    * @see      http://sine.codeplex.com/SourceControl/changeset/view/57274#1535069 
    * @ext      bcmath
    */
-  abstract class BigNum extends Object {
+  abstract class BigNum extends XPObject {
   
     static function __static() {
       bcscale(ini_get('precision'));

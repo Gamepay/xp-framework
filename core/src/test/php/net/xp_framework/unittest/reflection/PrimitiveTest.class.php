@@ -76,17 +76,17 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function nonPrimitive() {
-      Primitive::forName('lang.Object');
+      Primitive::forName('lang.XPObject');
     }
 
     /**
-     * Test string is boxed to lang.types.String
+     * Test string is boxed to lang.types.XPString
      *
      * @see   xp://lang.Primitive#boxed
      */
     #[@test]
     public function boxString() {
-      $this->assertEquals(new String('Hello'), Primitive::boxed('Hello'));
+      $this->assertEquals(new XPString('Hello'), Primitive::boxed('Hello'));
     }
 
     /**
@@ -137,7 +137,7 @@
      */
     #[@test]
     public function boxObject() {
-      $o= new Object();
+      $o= new XPObject();
       $this->assertEquals($o, Primitive::boxed($o));
     }
 
@@ -171,13 +171,13 @@
     }
 
     /**
-     * Test lang.types.String is unboxed to string
+     * Test lang.types.XPString is unboxed to string
      *
      * @see   xp://lang.Primitive#unboxed
      */
     #[@test]
     public function unboxString() {
-      $this->assertEquals('Hello', Primitive::unboxed(new String('Hello')));
+      $this->assertEquals('Hello', Primitive::unboxed(new XPString('Hello')));
     }
 
     /**
@@ -228,7 +228,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function unboxObject() {
-      Primitive::unboxed(new Object());
+      Primitive::unboxed(new XPObject());
     }
 
     /**
@@ -275,7 +275,7 @@
      */
     #[@test]
     public function stringObjectIsNotInstanceOfStringPrimitive() {
-      $this->assertFalse(Primitive::$STRING->isInstance(new String('Hello')));
+      $this->assertFalse(Primitive::$STRING->isInstance(new XPString('Hello')));
     }
 
     /**

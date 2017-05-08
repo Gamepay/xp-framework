@@ -12,7 +12,7 @@
    * Evaluates code and dumps its output.
    *
    */
-  class xp·runtime·Dump extends Object {
+  class xp·runtime·Dump extends XPObject {
     
     /**
      * Main

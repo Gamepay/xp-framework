@@ -25,7 +25,7 @@
    * </code>
    */
   #[@generic(self= 'T')]
-  abstract class net·xp_framework·unittest·core·generics·ArrayFilter extends Object {
+  abstract class net·xp_framework·unittest·core·generics·ArrayFilter extends XPObject {
     
     /**
      * Accept method - called for each element in the specified list.

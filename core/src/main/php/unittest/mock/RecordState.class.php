@@ -19,7 +19,7 @@
    *
    * @test  xp://net.xp_framework.unittest.tests.mock.RecordStateTest
    */
-  class RecordState extends Object implements IMockState {
+  class RecordState extends XPObject implements IMockState {
     private $expectationMap = NULL;
 
     /**

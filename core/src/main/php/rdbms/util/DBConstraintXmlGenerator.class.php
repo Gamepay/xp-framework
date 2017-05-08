@@ -17,7 +17,7 @@
    *
    * @see   xp://rdbms.DBTable
    */
-  class DBConstraintXmlGenerator extends Object implements Traceable {
+  class DBConstraintXmlGenerator extends XPObject implements Traceable {
     protected
       $cat= NULL,
       $tables= NULL;

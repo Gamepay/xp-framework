@@ -12,7 +12,7 @@
    * @see      xp://net.xp_framework.unittest.remote.SerializerTest
    * @purpose  Helper class for SerializerTest
    */
-  class net·xp_framework·unittest·remote·Person extends Object {
+  class net·xp_framework·unittest·remote·Person extends XPObject {
     public
       $id     = 1549,
       $name   = 'Timm Friebe';

@@ -12,7 +12,7 @@
    * Takes care of formatting log entries
    *
    */
-  abstract class util·log·Layout extends Object {
+  abstract class util·log·Layout extends XPObject {
     
     /**
      * Formats a logging event according to this layout

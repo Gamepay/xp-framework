@@ -15,7 +15,7 @@
    * @test      xp://net.xp_framework.unittest.xml.XslCallbackTest
    * @purpose   XSL callback
    */
-  class XSLDateCallback extends Object {
+  class XSLDateCallback extends XPObject {
   
     /**
      * Format the given date with the format specifier

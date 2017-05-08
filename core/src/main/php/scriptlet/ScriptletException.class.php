@@ -27,7 +27,7 @@
      *
      * @param   string message
      * @param   int statusCode default HttpConstants::STATUS_INTERNAL_SERVER_ERROR
-     * @param   lang.Throwable cause
+     * @param   lang.XPThrowable cause
      */
     public function __construct($message, $statusCode= HttpConstants::STATUS_INTERNAL_SERVER_ERROR, $cause= NULL) {
       parent::__construct($message, $cause);

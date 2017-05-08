@@ -16,7 +16,7 @@
    * @see      http://json.org
    * @purpose  Factory
    */
-  class JsonFactory extends Object {
+  class JsonFactory extends XPObject {
   
     /**
      * Create an instance of a decoder

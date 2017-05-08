@@ -10,7 +10,7 @@
     'rdbms.DBObserver',
     'util.Date',
     'util.collections.Vector',
-    'lang.types.String',
+    'lang.types.XPString',
     'util.DateUtil',
     'rdbms.Statement',
     'net.xp_framework.unittest.rdbms.mock.MockConnection',
@@ -629,7 +629,7 @@
      */
     #[@test]
     public function percentSign() {
-      $observer= $this->getConnection()->addObserver(newinstance('rdbms.DBObserver', array(create('new Vector<lang.types.String>')), '{
+      $observer= $this->getConnection()->addObserver(newinstance('rdbms.DBObserver', array(create('new Vector<lang.types.XPString>')), '{
         public $statements;
         public function __construct($statements) {
           $this->statements= $statements;
@@ -637,7 +637,7 @@
         public static function instanceFor($arg) { }
         public function update($observable, $event= NULL) {
           if ($event instanceof DBEvent && "query" == $event->getName()) {
-            $this->statements[]= new String($event->getArgument());
+            $this->statements[]= new XPString($event->getArgument());
           }
         }
       }'));
@@ -646,7 +646,7 @@
       $j->insert();
       
       $this->assertEquals(
-        new String('insert into JOBS.job (title) values ("Percent%20Sign")'),
+        new XPString('insert into JOBS.job (title) values ("Percent%20Sign")'),
         $observer->statements[0]
       );
     }

@@ -27,7 +27,7 @@
    * @test     xp://net.xp_framework.unittest.xml.XPathTest
    * @purpose  Provide XPath functionality
    */
-  class XPath extends Object {
+  class XPath extends XPObject {
     public $context= NULL;
 
     static function __static() {

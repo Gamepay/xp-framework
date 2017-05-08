@@ -10,7 +10,7 @@
    * @see      http://www.loria.fr/~molli/cvs/doc/cvsclient_4.html#SEC4
    * @purpose  CVS password encoder/decoder
    */
-  class CvsPassword extends Object {
+  class CvsPassword extends XPObject {
 
     /**
      * Encode a given string

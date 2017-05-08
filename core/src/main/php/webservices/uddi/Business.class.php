@@ -11,7 +11,7 @@
    * @see      reference
    * @purpose  purpose
    */
-  class Business extends Object {
+  class Business extends XPObject {
     public
       $names        = array(),
       $description  = '',

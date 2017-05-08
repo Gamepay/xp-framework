@@ -66,7 +66,7 @@
    * @test     xp://net.xp_framework.unittest.tests.UnittestRunnerTest
    * @purpose  Tool
    */
-  class xp·unittest·Runner extends Object {
+  class xp·unittest·Runner extends XPObject {
     protected $out= NULL;
     protected $err= NULL;
 
@@ -314,7 +314,7 @@
             $sources->add(new xp·unittest·sources·ClassSource(XPClass::forName($args[$i])));
           }
         }
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         $this->err->writeLine('*** ', $e->getMessage());
         xp::gc();
         return 1;

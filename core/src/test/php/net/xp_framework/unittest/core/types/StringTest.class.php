@@ -6,13 +6,13 @@
 
   uses(
     'unittest.TestCase',
-    'lang.types.String'
+    'lang.types.XPString'
   );
 
   /**
    * TestCase
    *
-   * @see      xp://lang.types.String
+   * @see      xp://lang.types.XPString
    * @purpose  Unittest
    */
   class StringTest extends TestCase {
@@ -32,7 +32,7 @@
      */
     #[@test]
     public function stringIsEqualToItself() {
-      $a= new String('');
+      $a= new XPString('');
       $this->assertTrue($a->equals($a));
     }
 
@@ -42,7 +42,7 @@
      */
     #[@test]
     public function stringIsEqualSameString() {
-      $this->assertTrue(create(new String('ABC'))->equals(new String('ABC')));
+      $this->assertTrue(create(new XPString('ABC'))->equals(new XPString('ABC')));
     }
 
     /**
@@ -51,7 +51,7 @@
      */
     #[@test]
     public function stringIsNotEqualToDifferentString() {
-      $this->assertFalse(create(new String('ABC'))->equals(new String('CBA')));
+      $this->assertFalse(create(new XPString('ABC'))->equals(new XPString('CBA')));
     }
 
     /**
@@ -60,7 +60,7 @@
      */
     #[@test, @expect('lang.FormatException')]
     public function incompleteMultiByteCharacter() {
-      new String('ä', 'utf-8');
+      new XPString('ä', 'utf-8');
     }
   
     /**
@@ -69,7 +69,7 @@
      */
     #[@test, @expect('lang.FormatException')]
     public function illegalCharacter() {
-      new String('ä', 'US-ASCII');
+      new XPString('ä', 'US-ASCII');
     }
 
     /**
@@ -78,7 +78,7 @@
      */
     #[@test]
     public function usAsciiString() {
-      $str= new String('Hello');
+      $str= new XPString('Hello');
       $this->assertEquals(new Bytes('Hello'), $str->getBytes());
       $this->assertEquals(5, $str->length());
     }
@@ -89,7 +89,7 @@
      */
     #[@test]
     public function integerString() {
-      $str= new String(1);
+      $str= new XPString(1);
       $this->assertEquals(new Bytes('1'), $str->getBytes());
       $this->assertEquals(1, $str->length());
     }
@@ -100,7 +100,7 @@
      */
     #[@test]
     public function characterString() {
-      $str= new String(new Character('Ä'));
+      $str= new XPString(new Character('Ä'));
       $this->assertEquals(new Bytes("\304"), $str->getBytes('iso-8859-1'));
       $this->assertEquals(1, $str->length());
     }
@@ -111,7 +111,7 @@
      */
     #[@test]
     public function doubleString() {
-      $str= new String(1.1);
+      $str= new XPString(1.1);
       $this->assertEquals(new Bytes('1.1'), $str->getBytes());
       $this->assertEquals(3, $str->length());
     }
@@ -122,7 +122,7 @@
      */
     #[@test]
     public function trueString() {
-      $str= new String(TRUE);
+      $str= new XPString(TRUE);
       $this->assertEquals(new Bytes('1'), $str->getBytes());
       $this->assertEquals(1, $str->length());
     }
@@ -133,7 +133,7 @@
      */
     #[@test]
     public function falseString() {
-      $str= new String(FALSE);
+      $str= new XPString(FALSE);
       $this->assertEquals(new Bytes(''), $str->getBytes());
       $this->assertEquals(0, $str->length());
     }
@@ -144,7 +144,7 @@
      */
     #[@test]
     public function nullString() {
-      $str= new String(NULL);
+      $str= new XPString(NULL);
       $this->assertEquals(new Bytes(''), $str->getBytes());
       $this->assertEquals(0, $str->length());
     }
@@ -155,7 +155,7 @@
      */
     #[@test]
     public function umlautString() {
-      $str= new String('Hällo');
+      $str= new XPString('Hällo');
       $this->assertEquals(new Bytes('HÃ¤llo'), $str->getBytes('utf-8'));
       $this->assertEquals(5, $str->length());
     }
@@ -167,8 +167,8 @@
     #[@test]
     public function utf8String() {
       $this->assertEquals(
-        new String('HÃ¤llo', 'utf-8'),
-        new String('Hällo', 'iso-8859-1')
+        new XPString('HÃ¤llo', 'utf-8'),
+        new XPString('Hällo', 'iso-8859-1')
       );
     }
 
@@ -180,7 +180,7 @@
     public function transliteration() {
       $this->assertEquals(
         'Trenciansky kraj', 
-        create(new String('TrenÄiansky kraj', 'utf-8'))->toString()
+        create(new XPString('TrenÄiansky kraj', 'utf-8'))->toString()
       );
     }
 
@@ -190,10 +190,10 @@
      */
     #[@test]
     public function indexOf() {
-      $str= new String('Hällo');
+      $str= new XPString('Hällo');
       $this->assertEquals(0, $str->indexOf('H'));
       $this->assertEquals(1, $str->indexOf('ä'));
-      $this->assertEquals(1, $str->indexOf(new String('ä')));
+      $this->assertEquals(1, $str->indexOf(new XPString('ä')));
       $this->assertEquals(-1, $str->indexOf(''));
       $this->assertEquals(-1, $str->indexOf('4'));
     }
@@ -204,10 +204,10 @@
      */
     #[@test]
     public function lastIndexOf() {
-      $str= new String('HälloH');
+      $str= new XPString('HälloH');
       $this->assertEquals($str->length()- 1, $str->lastIndexOf('H'));
       $this->assertEquals(1, $str->lastIndexOf('ä'));
-      $this->assertEquals(1, $str->lastIndexOf(new String('ä')));
+      $this->assertEquals(1, $str->lastIndexOf(new XPString('ä')));
       $this->assertEquals(-1, $str->lastIndexOf(''));
       $this->assertEquals(-1, $str->lastIndexOf('4'));
     }
@@ -218,7 +218,7 @@
      */
     #[@test]
     public function contains() {
-      $str= new String('Hällo');
+      $str= new XPString('Hällo');
       $this->assertTrue($str->contains('H'));
       $this->assertTrue($str->contains('ä'));
       $this->assertTrue($str->contains('o'));
@@ -232,10 +232,10 @@
      */
     #[@test]
     public function substring() {
-      $str= new String('Hällo');
-      $this->assertEquals(new String('ällo'), $str->substring(1));
-      $this->assertEquals(new String('ll'), $str->substring(2, -1));
-      $this->assertEquals(new String('o'), $str->substring(-1, 1));
+      $str= new XPString('Hällo');
+      $this->assertEquals(new XPString('ällo'), $str->substring(1));
+      $this->assertEquals(new XPString('ll'), $str->substring(2, -1));
+      $this->assertEquals(new XPString('o'), $str->substring(-1, 1));
     }
 
     /**
@@ -244,7 +244,7 @@
      */
     #[@test]
     public function startsWith() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $this->assertTrue($str->startsWith('www.'));
       $this->assertFalse($str->startsWith('ww.'));
       $this->assertFalse($str->startsWith('müller'));
@@ -256,7 +256,7 @@
      */
     #[@test]
     public function endsWith() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $this->assertTrue($str->endsWith('.com'));
       $this->assertTrue($str->endsWith('üller.com'));
       $this->assertFalse($str->endsWith('.co'));
@@ -269,7 +269,7 @@
      */
     #[@test]
     public function concat() {
-      $this->assertEquals(new String('www.müller.com'), create(new String('www'))
+      $this->assertEquals(new XPString('www.müller.com'), create(new XPString('www'))
         ->concat(new Character('.'))
         ->concat('müller')
         ->concat('.com')
@@ -283,8 +283,8 @@
     #[@test]
     public function hashesOfSameStringEqual() {
       $this->assertEquals(
-        create(new String(''))->hashCode(),
-        create(new String(''))->hashCode()
+        create(new XPString(''))->hashCode(),
+        create(new XPString(''))->hashCode()
       );
     }
 
@@ -295,8 +295,8 @@
     #[@test]
     public function hashesOfDifferentStringsNotEqual() {
       $this->assertNotEquals(
-        create(new String('A'))->hashCode(),
-        create(new String('B'))->hashCode()
+        create(new XPString('A'))->hashCode(),
+        create(new XPString('B'))->hashCode()
       );
     }
     
@@ -306,7 +306,7 @@
      */
     #[@test]
     public function charAt() {
-      $this->assertEquals(new Character('ü'), create(new String('www.müller.com'))->charAt(5));
+      $this->assertEquals(new Character('ü'), create(new XPString('www.müller.com'))->charAt(5));
     }
 
     /**
@@ -315,7 +315,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function charAtNegative() {
-      create(new String('ABC'))->charAt(-1);
+      create(new XPString('ABC'))->charAt(-1);
     }
 
     /**
@@ -324,7 +324,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function charAtAfterEnd() {
-      create(new String('ABC'))->charAt(4);
+      create(new XPString('ABC'))->charAt(4);
     }
 
 
@@ -334,7 +334,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function charAtEnd() {
-      create(new String('ABC'))->charAt(3);
+      create(new XPString('ABC'))->charAt(3);
     }
 
     /**
@@ -343,9 +343,9 @@
      */
     #[@test]
     public function replace() {
-      $str= new String('www.müller.com');
-      $this->assertEquals(new String('müller'), $str->replace('www.')->replace('.com'));
-      $this->assertEquals(new String('muller'), $str->replace('ü', 'u'));
+      $str= new XPString('www.müller.com');
+      $this->assertEquals(new XPString('müller'), $str->replace('www.')->replace('.com'));
+      $this->assertEquals(new XPString('muller'), $str->replace('ü', 'u'));
     }
 
     /**
@@ -354,9 +354,9 @@
      */
     #[@test]
     public function offsetSet() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $str[5]= 'u';
-      $this->assertEquals(new String('www.muller.com'), $str);
+      $this->assertEquals(new XPString('www.muller.com'), $str);
     }
 
     /**
@@ -365,7 +365,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function offsetSetNegative() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $str[-1]= 'u';
     }
 
@@ -375,7 +375,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function offsetSetAfterEnd() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $str[$str->length()]= 'u';
     }
 
@@ -385,7 +385,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function offsetSetIncorrectLength() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $str[5]= 'ue';
     }
 
@@ -395,7 +395,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function offsetAdd() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $str[]= '.';
     }
 
@@ -405,7 +405,7 @@
      */
     #[@test]
     public function offsetGet() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $this->assertEquals(new Character('ü'), $str[5]);
     }
 
@@ -415,7 +415,7 @@
      */
     #[@test]
     public function offsetExists() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       $this->assertTrue(isset($str[0]), 0);
       $this->assertTrue(isset($str[5]), 5);
       $this->assertFalse(isset($str[-1]), -1);
@@ -428,9 +428,9 @@
      */
     #[@test]
     public function offsetUnsetAtBeginning() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       unset($str[0]);
-      $this->assertEquals(new String('ww.müller.com'), $str);
+      $this->assertEquals(new XPString('ww.müller.com'), $str);
     }
 
     /**
@@ -439,9 +439,9 @@
      */
     #[@test]
     public function offsetUnsetAtEnd() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       unset($str[$str->length()- 1]);
-      $this->assertEquals(new String('www.müller.co'), $str);
+      $this->assertEquals(new XPString('www.müller.co'), $str);
     }
 
     /**
@@ -450,9 +450,9 @@
      */
     #[@test]
     public function offsetUnsetInBetween() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       unset($str[5]);
-      $this->assertEquals(new String('www.mller.com'), $str);
+      $this->assertEquals(new XPString('www.mller.com'), $str);
     }
 
     /**
@@ -461,7 +461,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function offsetUnsetNegative() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       unset($str[-1]);
     }
 
@@ -471,7 +471,7 @@
      */
     #[@test, @expect('lang.IndexOutOfBoundsException')]
     public function offsetUnsetAfterEnd() {
-      $str= new String('www.müller.com');
+      $str= new XPString('www.müller.com');
       unset($str[1024]);
     }
 
@@ -482,7 +482,7 @@
     #[@test]
     public function worksWithEchoStatement() {
       ob_start();
-      echo new String('www.müller.com');
+      echo new XPString('www.müller.com');
       $this->assertEquals('www.müller.com', ob_get_clean());
     }
 
@@ -492,7 +492,7 @@
      */
     #[@test]
     public function stringCast() {
-      $this->assertEquals('www.müller.com', (string)new String('www.müller.com'));
+      $this->assertEquals('www.müller.com', (string)new XPString('www.müller.com'));
     }
 
     /**
@@ -503,7 +503,7 @@
     public function usedInStringFunction() {
       $this->assertEquals(
         'ftp.müller.com', 
-        str_replace('www', 'ftp', new String('www.müller.com')
+        str_replace('www', 'ftp', new XPString('www.müller.com')
       ));
     }
 
@@ -513,7 +513,7 @@
      */
     #[@test, @expect('lang.FormatException')]
     public function getUmlautsAsAsciiBytes() {
-      create(new String('äöü', 'iso-8859-1'))->getBytes('ASCII');
+      create(new XPString('äöü', 'iso-8859-1'))->getBytes('ASCII');
     }
 
     /**
@@ -524,7 +524,7 @@
     public function getAsciiAsAsciiBytes() {
       $this->assertEquals(
         new Bytes('aou'), 
-        create(new String('aou', 'iso-8859-1'))->getBytes('ASCII')
+        create(new XPString('aou', 'iso-8859-1'))->getBytes('ASCII')
       );
     }
   }

@@ -11,7 +11,7 @@
    *
    * @purpose  invocation handler
    */
-  class ContainerInvocationHandler extends Object implements InvocationHandler {
+  class ContainerInvocationHandler extends XPObject implements InvocationHandler {
     public
       $container  = NULL;
     

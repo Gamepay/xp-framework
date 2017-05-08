@@ -26,7 +26,7 @@
    * @ext      sem
    * @purpose  Provide a static class for getting System V IPC keys
    */
-  class Ftok extends Object {
+  class Ftok extends XPObject {
     
     /**
      * Convert a pathname and a project identifier to a System V IPC key 

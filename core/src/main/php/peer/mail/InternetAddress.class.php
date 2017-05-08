@@ -20,7 +20,7 @@
    * @see       rfc://2822#3.4.1
    * @purpose   Represents an Internet address
    */
-  class InternetAddress extends Object implements MessagingAddress {
+  class InternetAddress extends XPObject implements MessagingAddress {
     public 
       $personal  = '',
       $localpart = '',
@@ -63,7 +63,7 @@
     /**
      * Retrieve whether another object is equal to this
      *
-     * @param   lang.Object cmp
+     * @param   lang.XPObject cmp
      * @return  bool
      */
     public function equals($cmp) {

@@ -95,7 +95,7 @@
         $proc->setXSLDoc($style);
         $proc->setInputBuffer('<document/>');
         $proc->run();
-      } catch (Throwable $t) {
+      } catch (XPThrowable $t) {
       } ensure($t); {
         ClassLoader::removeLoader($added);
       

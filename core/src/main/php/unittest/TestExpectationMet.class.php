@@ -11,7 +11,7 @@
    *
    * @see      xp://unittest.TestSuccess
    */
-  class TestExpectationMet extends Object implements TestSuccess {
+  class TestExpectationMet extends XPObject implements TestSuccess {
     public
       $test     = NULL,
       $elapsed  = 0.0;

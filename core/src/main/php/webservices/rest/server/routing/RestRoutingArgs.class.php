@@ -16,7 +16,7 @@
    * @test    xp://net.xp_framework.unittest.rest.server.routing.RestRoutingArgsTest
    * @purpose Routing table
    */
-  class RestRoutingArgs extends Object {
+  class RestRoutingArgs extends XPObject {
     protected $args= array();
     public $injects= array();
     

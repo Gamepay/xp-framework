@@ -9,7 +9,7 @@
    *
    * @purpose  Base class
    */
-  class Article extends Object {
+  class Article extends XPObject {
     public
       $articleId        = NULL,
       $messageId        = NULL,

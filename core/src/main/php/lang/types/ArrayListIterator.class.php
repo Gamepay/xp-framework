@@ -10,7 +10,7 @@
    * @test  xp://net.xp_framework.unittest.core.types.ArrayListTest
    * @see   php://language.oop5.iterations
    */
-  class ArrayListIterator extends Object implements Iterator {
+  class ArrayListIterator extends XPObject implements Iterator {
     protected $iterator = 0;
     protected $list = NULL;
 

@@ -14,7 +14,7 @@
    * @test     xp://net.xp_framework.unittest.reflection.TypeTest 
    * @purpose  Base class
    */
-  class Type extends Object {
+  class Type extends XPObject {
     public static
       $ANY,           // deprecated
       $VAR,
@@ -104,7 +104,7 @@
      *   <li>Array notations (string[] or string*)</li>
      *   <li>Resources</li>
      *   <li>Any type (var or *)</li>
-     *   <li>Generic notations (util.collections.HashTable<lang.types.String, lang.Generic>)</li>
+     *   <li>Generic notations (util.collections.HashTable<lang.types.XPString, lang.Generic>)</li>
      *   <li>Anything else will be passed to XPClass::forName()</li>
      * </ul>
      *

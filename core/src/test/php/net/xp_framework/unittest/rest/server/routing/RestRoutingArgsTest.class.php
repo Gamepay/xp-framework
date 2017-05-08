@@ -97,7 +97,7 @@
         ->newInstance()->getClass()->getMethod('methodWithAnotherArgument')->getParameters();
       $this->args->addArgument('another', $params[0]);
       
-      $this->assertEquals(XPClass::forName('lang.Object'), $this->args->getArgumentType('another'));
+      $this->assertEquals(XPClass::forName('lang.XPObject'), $this->args->getArgumentType('another'));
     }
     
     /**

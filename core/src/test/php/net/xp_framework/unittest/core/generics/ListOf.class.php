@@ -11,7 +11,7 @@
    *
    */
   #[@generic(self= 'T')]
-  class net·xp_framework·unittest·core·generics·ListOf extends Object {
+  class net·xp_framework·unittest·core·generics·ListOf extends XPObject {
     public $elements= array();
 
     /**

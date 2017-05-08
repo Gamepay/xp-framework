@@ -305,7 +305,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function invokeSetTraceOnWrongObject() {
-      $this->fixture->getMethod('setTrace')->invoke(new Object(), array(NULL));
+      $this->fixture->getMethod('setTrace')->invoke(new XPObject(), array(NULL));
     }
 
     /**
@@ -412,8 +412,8 @@
      */
     #[@test]
     public function genericReturnValue() {
-      $this->assertEquals('[:lang.Object]', $this->fixture->getMethod('getMap')->getReturnTypeName());
-      $this->assertEquals(MapType::forName('[:lang.Object]'), $this->fixture->getMethod('getMap')->getReturnType());
+      $this->assertEquals('[:lang.XPObject]', $this->fixture->getMethod('getMap')->getReturnTypeName());
+      $this->assertEquals(MapType::forName('[:lang.XPObject]'), $this->fixture->getMethod('getMap')->getReturnType());
     }
 
     /**
@@ -425,7 +425,7 @@
     #[@test]
     public function getMapString() {
       $this->assertEquals(
-        'public [:lang.Object] getMap()', 
+        'public [:lang.XPObject] getMap()', 
         $this->fixture->getMethod('getMap')->toString()
       );
     }
@@ -439,7 +439,7 @@
     #[@test]
     public function filterMapString() {
       $this->assertEquals(
-        'public util.collections.Vector<lang.Object> filterMap([string $pattern= null])',
+        'public util.collections.Vector<lang.XPObject> filterMap([string $pattern= null])',
         $this->fixture->getMethod('filterMap')->toString()
       );
     }
@@ -481,7 +481,7 @@
     #[@test]
     public function fromMapString() {
       $this->assertEquals(
-        'public static net.xp_framework.unittest.reflection.TestClass fromMap([:lang.Object] $map)', 
+        'public static net.xp_framework.unittest.reflection.TestClass fromMap([:lang.XPObject] $map)', 
         $this->fixture->getMethod('fromMap')->toString()
       );
     }

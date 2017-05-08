@@ -17,7 +17,7 @@
    * @see     xp://peer.http.HttpConnection
    * @test    xp://net.xp_framework.unittest.peer.http.HttpTransportTest
    */
-  abstract class HttpTransport extends Object {
+  abstract class HttpTransport extends XPObject {
     protected static
       $transports = array();
     

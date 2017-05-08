@@ -56,7 +56,7 @@
    * @see   rfc://4122
    * @see   http://www.ietf.org/internet-drafts/draft-mealling-uuid-urn-00.txt
    */
-  class UUID extends Object {
+  class UUID extends XPObject {
     const FORMAT = '%04x%04x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x';
 
     public static

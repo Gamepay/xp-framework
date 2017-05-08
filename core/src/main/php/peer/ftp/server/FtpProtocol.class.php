@@ -22,7 +22,7 @@
    * @see      xp://peer.server.ServerProtocol
    * @purpose  Connection listener
    */
-  class FtpProtocol extends Object implements ServerProtocol, Traceable {
+  class FtpProtocol extends XPObject implements ServerProtocol, Traceable {
     const DATA_PASSIVE=    0x0001;
     const DATA_ACTIVE=     0x0002;
     const STRU_FILE=       'F';

@@ -39,7 +39,7 @@
    * @see      rfc://977
    * @purpose  News protocol implementation
    */
-  class NntpConnection extends Object implements Traceable {
+  class NntpConnection extends XPObject implements Traceable {
     public
       $url      = NULL,
       $cat      = NULL,

@@ -44,7 +44,7 @@
    * @ext      openssl
    * @purpose  Represent a CSR
    */
-  class CSR extends Object {
+  class CSR extends XPObject {
   
     /**
      * Constructor

@@ -22,7 +22,7 @@
    * @test    xp://net.xp_framework.unittest.webservices.rest.RestClientSendTest
    * @test    xp://net.xp_framework.unittest.webservices.rest.RestClientExecutionTest
    */
-  class RestClient extends Object implements Traceable {
+  class RestClient extends XPObject implements Traceable {
     protected $connection= NULL;
     protected $cat= NULL;
     protected $deserializers= array();

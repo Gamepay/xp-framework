@@ -16,7 +16,7 @@
    * @see      xp://peer.server.Server#addListener
    * @purpose  BC Wrapper 
    */
-  class ListenerWrapperProtocol extends Object implements ServerProtocol {
+  class ListenerWrapperProtocol extends XPObject implements ServerProtocol {
     public
       $listeners= array();
 

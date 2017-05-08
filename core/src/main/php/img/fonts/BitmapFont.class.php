@@ -11,7 +11,7 @@
    * @see      xp://img.shapes.Text
    * @purpose  Font
    */
-  class BitmapFont extends Object {
+  class BitmapFont extends XPObject {
     public
       $id= 0;
       

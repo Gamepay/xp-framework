@@ -14,7 +14,7 @@
    *
    * @see   xp://net.xp_framework.unittest.rdbms.integration.AbstractDeadlockTest
    */
-  class SQLRunner extends Object {
+  class SQLRunner extends XPObject {
     
     /**
      * Entry point

@@ -15,7 +15,7 @@
    * @see      xp://remote.Remote
    * @purpose  Reflection
    */
-  class BeanDescription extends Object {
+  class BeanDescription extends XPObject {
     public 
       $jndiName   = '',
       $interfaces = NULL;

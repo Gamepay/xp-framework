@@ -15,7 +15,7 @@
    * @test    xp://net.xp_framework.unittest.rest.server.RestDataCasterTest
    * @purpose Caster
    */
-  class RestDataCaster extends Object {
+  class RestDataCaster extends XPObject {
     private
       $ignoreNullFields= TRUE;
     
@@ -63,7 +63,7 @@
           return $result;
 
         case 'lang.types.Integer':
-        case 'lang.types.String':
+        case 'lang.types.XPString':
         case 'lang.types.Boolean':
           return Primitive::unboxed($data);
         
@@ -133,7 +133,7 @@
             throw new ClassCastException('Can not convert '.xp::typeOf($data).' to '.$typeName);
           }
           
-        case 'lang.types.String':
+        case 'lang.types.XPString':
         case 'lang.types.Boolean':
           if (!is_scalar($data)) {
             throw new ClassCastException('Can not convert '.xp::typeOf($data).' to '.$typeName);
@@ -147,7 +147,7 @@
           
           $result= array();
           foreach ($data as $key => $value) {
-            $result[$key]= $this->complex($value, XPClass::forName('lang.types.String'));
+            $result[$key]= $this->complex($value, XPClass::forName('lang.types.XPString'));
           }
           return $result;
         
@@ -172,17 +172,17 @@
           
           $result= new stdClass();
           foreach ($data as $key => $value) {
-            $result->$key= $this->complex($value, XPClass::forName('lang.types.String'));
+            $result->$key= $this->complex($value, XPClass::forName('lang.types.XPString'));
           }
           return $result;
           
         default:
           if ($type instanceof XPClass) {
             if (!is_array($data)) {
-              throw new ClassCastException('Can not convert '.xp::typeOf($data).' to lang.Object');
+              throw new ClassCastException('Can not convert '.xp::typeOf($data).' to lang.XPObject');
             }
             
-            $string= XPClass::forName('lang.types.String');
+            $string= XPClass::forName('lang.types.XPString');
             $result= $type->newInstance();
             foreach ($type->getFields() as $field) {
               if ($field->getModifiers() & MODIFIER_PUBLIC) {

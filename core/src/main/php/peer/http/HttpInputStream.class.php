@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.peer.http.HttpInputStreamTest
    * @purpose  InputStream implementation
    */
-  class HttpInputStream extends Object implements InputStream {
+  class HttpInputStream extends XPObject implements InputStream {
     protected
       $response  = NULL,
       $buffer    = '',

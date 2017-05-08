@@ -46,7 +46,7 @@
    * @see      rfc://1893
    * @purpose  DaemonMail Parser
    */
-  class DaemonMailParser extends Object {
+  class DaemonMailParser extends XPObject {
     const
       DMP_SEARCH  = 0x0000,
       DMP_ORIGMSG = 0x0001,

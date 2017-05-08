@@ -16,7 +16,7 @@
    * @see      xp://peer.server.Server#notify
    * @purpose  Abstract base class for listeners
    */
-  class ConnectionListener extends Object {
+  class ConnectionListener extends XPObject {
     public
       $server = NULL;
 

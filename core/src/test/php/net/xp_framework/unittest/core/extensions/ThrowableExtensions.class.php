@@ -7,12 +7,12 @@
   $package= 'net.xp_framework.unittest.core.extensions';
 
   /**
-   * Throwable extension methods
+   * XPThrowable extension methods
    *
    * @see   https://gist.github.com/2168311
    * @see   xp://net.xp_framework.unittest.core.extensions.ExtensionInvocationTest
    */
-  class net·xp_framework·unittest·core·extensions·ThrowableExtensions extends Object {
+  class net·xp_framework·unittest·core·extensions·XPThrowableExtensions extends XPObject {
 
     static function __import($scope) {
       xp::extensions(__CLASS__, $scope);
@@ -21,9 +21,9 @@
     /**
      * Clears stacktrace
      *
-     * @param   lang.Throwable self
+     * @param   lang.XPThrowable self
      */
-    public static function clearStackTrace(Throwable $self) {
+    public static function clearStackTrace(XPThrowable $self) {
       $self->trace= array();
     }
   }

@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'util.Date',
-    'lang.types.String',
+    'lang.types.XPString',
     'webservices.json.JsonDecoder'
   );
 

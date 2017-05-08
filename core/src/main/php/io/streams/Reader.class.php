@@ -13,7 +13,7 @@
    * sets, there is no difference, obviously).
    *
    */
-  abstract class Reader extends Object implements Closeable {
+  abstract class Reader extends XPObject implements Closeable {
     protected $stream= NULL;
     
     /**

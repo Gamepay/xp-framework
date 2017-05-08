@@ -17,7 +17,7 @@
    *
    * @purpose  Run scriptlets
    */
-  class ScriptletRunner extends Object {
+  class ScriptletRunner extends XPObject {
     public
       $flags    = 0x0000;
       
@@ -59,8 +59,9 @@
       try {
         $scriptlet->init();
         $response= $scriptlet->process();
-      } catch (HttpScriptletException $e) {
-        $response= $e->getResponse();
+      } catch (ScriptletException $e) {
+        $response= new HttpScriptletResponse();
+        $response->setStatus($e->getStatus());
         $this->except($response, $e);
       }
 

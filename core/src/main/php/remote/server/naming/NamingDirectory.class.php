@@ -15,7 +15,7 @@
    *
    * @purpose  Naming directory
    */
-  class NamingDirectory extends Object {
+  class NamingDirectory extends XPObject {
     protected
       $map   = NULL,
       $cat   = NULL;
@@ -50,7 +50,7 @@
      * Bind a name with an object
      *
      * @param   string name
-     * @param   lang.Object object
+     * @param   lang.XPObject object
      */
     public function bind($name, $object) {
       $this->cat->info($this->getClassName(), 'binding new naming entry', $name);
@@ -61,7 +61,7 @@
      * Look up object by its bound name
      *
      * @param   string name
-     * @return  lang.Object
+     * @return  lang.XPObject
      * @throws  remote.NameNotFoundException if name has not been bound
      */
     public function lookup($name) {

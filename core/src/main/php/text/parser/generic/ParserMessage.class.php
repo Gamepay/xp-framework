@@ -9,7 +9,7 @@
    *
    * @purpose  Value object
    */
-  class ParserMessage extends Object {
+  class ParserMessage extends XPObject {
     public
       $code     = 0,
       $message  = '',

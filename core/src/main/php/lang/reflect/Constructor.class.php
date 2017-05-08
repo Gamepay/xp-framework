@@ -80,7 +80,7 @@
         return $instance;
       } catch (SystemExit $e) {
         throw $e;
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         throw new TargetInvocationException($this->_class.'::<init>', $e);
       } catch (Exception $e) {
         throw new TargetInvocationException($this->_class.'::<init>', new XPException($e->getMessage()));

@@ -12,7 +12,7 @@
    * @see      xp://remote.protocol.XpProtocolHandler
    * @purpose  Protocol Handler
    */
-  class MockProtocolHandler extends Object implements ProtocolHandler {
+  class MockProtocolHandler extends XPObject implements ProtocolHandler {
     public
       $server= array('initialized' => FALSE);
 
@@ -36,7 +36,7 @@
      * Look up an object by its name
      *
      * @param   string name
-     * @param   lang.Object
+     * @param   lang.XPObject
      * @throws  remote.NameNotFoundException in case the given name could not be found
      * @throws  remote.RemoteException for any other error
      */

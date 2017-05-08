@@ -13,7 +13,7 @@
    * @test     xp://net.xp_framework.unittest.text.encode.Base64InputStreamTest
    * @purpose  InputStream implementation
    */
-  class Base64InputStream extends Object implements InputStream {
+  class Base64InputStream extends XPObject implements InputStream {
     protected $in = NULL;
     
     /**

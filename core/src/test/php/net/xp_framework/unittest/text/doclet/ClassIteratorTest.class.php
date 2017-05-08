@@ -51,7 +51,7 @@
      */
     #[@test]
     public function hasNext() {
-      $it= new ClassIterator(array('lang.Object'), $this->rootDoc);
+      $it= new ClassIterator(array('lang.XPObject'), $this->rootDoc);
       $this->assertTrue($it->hasNext());
     }
 
@@ -61,7 +61,7 @@
      */
     #[@test]
     public function hasNextMultiple() {
-      $it= new ClassIterator(array('lang.Object'), $this->rootDoc);
+      $it= new ClassIterator(array('lang.XPObject'), $this->rootDoc);
       $this->assertTrue($it->hasNext());
       $this->assertTrue($it->hasNext());
     }
@@ -72,8 +72,8 @@
      */
     #[@test]
     public function next() {
-      $it= new ClassIterator(array('lang.Object'), $this->rootDoc);
-      $this->assertEquals($this->rootDoc->classNamed('lang.Object'), $it->next());
+      $it= new ClassIterator(array('lang.XPObject'), $this->rootDoc);
+      $this->assertEquals($this->rootDoc->classNamed('lang.XPObject'), $it->next());
     }
 
     /**
@@ -82,7 +82,7 @@
      */
     #[@test, @expect('util.NoSuchElementException')]
     public function nextThrowsExceptionAfterFirstElement() {
-      $it= new ClassIterator(array('lang.Object'), $this->rootDoc);
+      $it= new ClassIterator(array('lang.XPObject'), $this->rootDoc);
       $it->next();
       $it->next();
     }
@@ -120,9 +120,9 @@
      */
     #[@test]
     public function hasNextAndNext() {
-      $it= new ClassIterator(array('lang.Object', 'lang.Type'), $this->rootDoc);
+      $it= new ClassIterator(array('lang.XPObject', 'lang.Type'), $this->rootDoc);
       $this->assertTrue($it->hasNext());
-      $this->assertEquals($this->rootDoc->classNamed('lang.Object'), $it->next());
+      $this->assertEquals($this->rootDoc->classNamed('lang.XPObject'), $it->next());
       $this->assertTrue($it->hasNext());
       $this->assertEquals($this->rootDoc->classNamed('lang.Type'), $it->next());
       $this->assertFalse($it->hasNext());

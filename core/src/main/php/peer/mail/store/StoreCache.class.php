@@ -17,7 +17,7 @@
    * @see      xp://peer.mail.MailStore
    * @purpose  Provide an API for caching of MailStore objects
    */
-  class StoreCache extends Object {
+  class StoreCache extends XPObject {
     public
       $data = array();
     

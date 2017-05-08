@@ -254,7 +254,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function getDateFieldValueOnWrongObject() {
-      $this->fixture->getField('date')->get(new Object());
+      $this->fixture->getField('date')->get(new XPObject());
     }
 
     /**
@@ -264,7 +264,7 @@
      */
     #[@test, @expect('lang.IllegalArgumentException')]
     public function setDateFieldValueOnWrongObject() {
-      $this->fixture->getField('date')->set(new Object(), Date::now());
+      $this->fixture->getField('date')->set(new XPObject(), Date::now());
     }
 
     /**
@@ -415,7 +415,7 @@
      */
     #[@test]
     public function fieldTypeForInheritedField() {
-      $this->assertEquals(XPClass::forName('lang.Object'), $this->fixture->getField('inherited')->getType());
+      $this->assertEquals(XPClass::forName('lang.XPObject'), $this->fixture->getField('inherited')->getType());
     }
 
     /**
@@ -424,7 +424,7 @@
      */
     #[@test]
     public function fieldTypeNameForInheritedField() {
-      $this->assertEquals('lang.Object', $this->fixture->getField('inherited')->getTypeName());
+      $this->assertEquals('lang.XPObject', $this->fixture->getField('inherited')->getTypeName());
     }
   }
 ?>

@@ -12,7 +12,7 @@
    * @see      xp://remote.Remote
    * @purpose  Reflection
    */
-  class ClassWrapper extends Object {
+  class ClassWrapper extends XPObject {
     public 
       $className   = '',
       $fields      = array(); 

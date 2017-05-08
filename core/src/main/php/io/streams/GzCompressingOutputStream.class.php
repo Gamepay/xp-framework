@@ -16,7 +16,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.GzCompressingOutputStreamTest
    * @purpose  OuputStream implementation
    */
-  class GzCompressingOutputStream extends Object implements OutputStream {
+  class GzCompressingOutputStream extends XPObject implements OutputStream {
     protected $out= NULL;
     protected $md= NULL;
     protected $length= NULL;

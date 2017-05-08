@@ -21,7 +21,7 @@
      *
      * @param   string role
      * @param   string unique key
-     * @param   lang.Object obj
+     * @param   lang.XPObject obj
      */
     public function setCachedObj($role, $key, $obj);
 

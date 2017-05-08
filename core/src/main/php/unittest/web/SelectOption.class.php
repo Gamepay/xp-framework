@@ -13,7 +13,7 @@
    * @see      http://www.w3schools.com/TAGS/tag_option.asp
    * @see      xp://unittest.web.SelectField#getOptions
    */
-  class unittest·web·SelectOption extends Object {
+  class unittest·web·SelectOption extends XPObject {
     protected
       $form   = NULL,
       $node   = NULL;

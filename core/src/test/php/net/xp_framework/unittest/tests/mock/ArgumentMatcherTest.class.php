@@ -40,7 +40,7 @@
      */
     #[@test]
     public function any_should_match_an_object() {
-      $this->assertTrue(Arg::any()->matches(new Object));
+      $this->assertTrue(Arg::any()->matches(new XPObject));
     }
 
     /**
@@ -95,7 +95,7 @@
      */
     #[@test]
     public function dynamic_with_matchEmpty_should_not_match_objects() {
-      $this->assertFalse(Arg::func('matchEmpty', $this)->matches(new Object()));
+      $this->assertFalse(Arg::func('matchEmpty', $this)->matches(new XPObject()));
     }
 
     /**
@@ -122,7 +122,7 @@
      */
     #[@test]
     public function typeof_date_should_not_match_objects() {
-      $this->assertFalse(Arg::anyOfType('util.Date')->matches(new Object()));
+      $this->assertFalse(Arg::anyOfType('util.Date')->matches(new XPObject()));
     }
 
     /**

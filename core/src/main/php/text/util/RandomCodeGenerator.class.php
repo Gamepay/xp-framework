@@ -15,7 +15,7 @@
    * @see      php://microtime
    * @purpose  Generator
    */
-  class RandomCodeGenerator extends Object {
+  class RandomCodeGenerator extends XPObject {
     public
       $length   = 0;
       

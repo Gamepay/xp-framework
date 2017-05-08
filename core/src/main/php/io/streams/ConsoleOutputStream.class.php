@@ -17,7 +17,7 @@
    *
    * @purpose  OuputStream implementation
    */
-  class ConsoleOutputStream extends Object implements OutputStream {
+  class ConsoleOutputStream extends XPObject implements OutputStream {
     protected
       $descriptor= NULL;
     

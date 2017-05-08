@@ -26,7 +26,7 @@
    * @see      php://array
    * @purpose  Associative array wrapper class
    */
-  class Hashmap extends Object {
+  class Hashmap extends XPObject {
     public 
       $_hash= array();
 

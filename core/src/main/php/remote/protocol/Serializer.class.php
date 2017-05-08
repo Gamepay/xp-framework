@@ -32,7 +32,7 @@
    * @test     xp://net.xp_framework.unittest.remote.SerializerTest
    * @purpose  Serializer
    */
-  class Serializer extends Object {
+  class Serializer extends XPObject {
     public
       $mappings   = array(),
       $packages   = array(0 => array(), 1 => array()),
@@ -129,7 +129,7 @@
     /**
      * Fetch best fitted mapper for the given object
      *
-     * @param   lang.Object var
+     * @param   lang.XPObject var
      * @return  var FALSE in case no mapper could be found, &remote.protocol.SerializerMapping otherwise
      */
     public function mappingFor($var) {
@@ -259,7 +259,7 @@
         's'   => 'string',
         'B'   => new ClassReference('lang.types.Byte'),
         'S'   => new ClassReference('lang.types.Short'),
-        'f'   => new ClassReference('lang.types.Float'),
+        'f'   => new ClassReference('lang.types.XPFloat'),
         'l'   => new ClassReference('lang.types.Long'),
         'a'   => 'array',
         'A'   => new ClassReference('lang.types.ArrayList'),

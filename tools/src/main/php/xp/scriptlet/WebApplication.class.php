@@ -12,7 +12,7 @@
    * @see      xp://xp.scriptlet.WebDebug
    * @see      xp://xp.scriptlet.Runner
    */
-  class WebApplication extends Object {
+  class WebApplication extends XPObject {
     protected $name = '';
     protected $config = '';
     protected $scriptlet = '';

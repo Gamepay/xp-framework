@@ -10,7 +10,7 @@
    * @see      xp://net.xp_framework.unittest.reflection.ClassLoaderTest
    * @purpose  Test class
    */
-  class LoaderTestClass extends Object {
+  class LoaderTestClass extends XPObject {
     protected static
       $initializerCalled= FALSE;
 

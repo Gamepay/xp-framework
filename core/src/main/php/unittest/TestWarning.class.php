@@ -11,7 +11,7 @@
    *
    * @see      xp://unittest.TestFailure
    */
-  class TestWarning extends Object implements TestFailure {
+  class TestWarning extends XPObject implements TestFailure {
     public
       $reason   = NULL,
       $test     = NULL,

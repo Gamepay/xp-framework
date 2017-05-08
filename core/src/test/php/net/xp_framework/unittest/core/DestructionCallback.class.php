@@ -15,7 +15,7 @@
     /**
      * Callback for Destroyable class
      *
-     * @param   &lang.Object object
+     * @param   &lang.XPObject object
      */
     public function onDestruction($object);
   

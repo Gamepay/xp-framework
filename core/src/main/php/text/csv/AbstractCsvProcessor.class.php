@@ -13,7 +13,7 @@
    * @see     rfc://4180
    * @test    xp://net.xp_framework.unittest.text.csv.ProcessorAccessorsTest
    */
-  abstract class AbstractCsvProcessor extends Object {
+  abstract class AbstractCsvProcessor extends XPObject {
     protected $processors= array();
 
     /**

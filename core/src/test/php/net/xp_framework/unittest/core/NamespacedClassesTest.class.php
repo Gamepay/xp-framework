@@ -6,7 +6,7 @@
 
   uses(
     'unittest.TestCase',
-    'lang.types.String',
+    'lang.types.XPString',
     'util.collections.Vector'
   );
 
@@ -64,7 +64,7 @@
     #[@test]
     public function namespacedClassUsingUnqualified() {
       $this->assertEquals(
-        String::$EMPTY, 
+        XPString::$EMPTY, 
         self::$package->loadClass('NamespacedClassUsingUnqualified')->newInstance()->getEmptyString()
       );
     }

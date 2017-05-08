@@ -7,7 +7,7 @@
   uses(
     'unittest.TestCase',
     'util.Date',
-    'lang.types.String',
+    'lang.types.XPString',
     'webservices.json.JsonDecoder'
   );
 
@@ -403,50 +403,50 @@
     }
 
     /**
-     * Test encode lang.types.String to Json string
+     * Test encode lang.types.XPString to Json string
      *
      */
     #[@test]
     public function encodeStringObject() {
       $this->assertEquals(
         '"foobar"',
-        $this->encode(new String('foobar'))
+        $this->encode(new XPString('foobar'))
       );
     }
 
     /**
-     * Test encode lang.types.String to Json string
+     * Test encode lang.types.XPString to Json string
      *
      */
     #[@test]
     public function encodeStringObjectWithEscape() {
       $this->assertEquals(
         '"foobar\n"',
-        $this->encode(new String("foobar\n"))
+        $this->encode(new XPString("foobar\n"))
       );
     }
 
     /**
-     * Test encode lang.types.String to Json string
+     * Test encode lang.types.XPString to Json string
      *
      */
     #[@test]
     public function encodeStringObjectWithUmlat() {
       $this->assertEquals(
         '"E\u00fcro"',
-        $this->encode(new String("Eüro", 'utf-8'))
+        $this->encode(new XPString("Eüro", 'utf-8'))
       );
     }
 
     /**
-     * Test encode lang.types.String to Json string
+     * Test encode lang.types.XPString to Json string
      *
      */
     #[@test]
     public function encodeStringObjectWithEuroSign() {
       $this->assertEquals(
         '"\u20acuro"',
-        $this->encode(new String("\xe2\x82\xacuro", 'utf-8'))
+        $this->encode(new XPString("\xe2\x82\xacuro", 'utf-8'))
       );
     }
 
@@ -458,7 +458,7 @@
     public function encodeObject() {
       $this->assertEquals(
         '{ "prop" : "prop" , "__id" : null }',
-        $this->encode(newinstance('lang.Object', array(), '{
+        $this->encode(newinstance('lang.XPObject', array(), '{
           public $prop= "prop";
         }'))
       );
@@ -472,7 +472,7 @@
     public function encodeObjectWithPrivateProperty() {
       $this->assertEquals(
         '{ "prop" : "prop" , "__id" : null }',
-        $this->encode(newinstance('lang.Object', array(), '{
+        $this->encode(newinstance('lang.XPObject', array(), '{
           public $prop= "prop";
           private $priv= "priv";
         }'))
@@ -487,7 +487,7 @@
     public function encodeObjectWithProtectedProperty() {
       $this->assertEquals(
         '{ "prop" : "prop" , "__id" : null }',
-        $this->encode(newinstance('lang.Object', array(), '{
+        $this->encode(newinstance('lang.XPObject', array(), '{
           public $prop= "prop";
           protected $prot= "prot";
         }'))

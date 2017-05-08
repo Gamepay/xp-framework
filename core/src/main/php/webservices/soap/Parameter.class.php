@@ -9,7 +9,7 @@
    *
    * @purpose  Wrapper
    */
-  class Parameter extends Object {
+  class Parameter extends XPObject {
     public
       $name     = '',
       $value    = NULL;

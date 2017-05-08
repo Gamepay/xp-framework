@@ -18,7 +18,7 @@
    * A mock proxy.
    *
    */
-  class MockProxy extends Object implements InvocationHandler {
+  class MockProxy extends XPObject implements InvocationHandler {
     private
       $mockState    = NULL,
       $expectionMap = NULL,

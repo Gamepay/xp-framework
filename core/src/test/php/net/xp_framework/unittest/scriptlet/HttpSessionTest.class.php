@@ -132,10 +132,10 @@
     #[@test]
     public function putDoesNotOverwriteValue() {
       $this->session->initialize(NULL);
-      $fixture= new Object();
+      $fixture= new XPObject();
       $hash= $fixture->hashCode();
       $this->session->putValue('foo', $fixture);
-      $this->assertClass($fixture, 'lang.Object');
+      $this->assertClass($fixture, 'lang.XPObject');
       $this->assertEquals($hash, $fixture->hashCode());
     }
     

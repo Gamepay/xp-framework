@@ -12,7 +12,7 @@
    * @test      xp://net.xp_framework.unittest.peer.net.InetAddressFactoryTest
    * @purpose   Factory class
    */
-  class InetAddressFactory extends Object {
+  class InetAddressFactory extends XPObject {
 
     /**
      * Parse address from string

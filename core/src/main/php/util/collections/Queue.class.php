@@ -19,10 +19,10 @@
    *   
    *   // Fill queue
    *   with ($q= new Queue()); {
-   *     $q->put(new String('One'));
-   *     $q->put(new String('Two'));
-   *     $q->put(new String('Three'));
-   *     $q->put(new String('Four'));
+   *     $q->put(new XPString('One'));
+   *     $q->put(new XPString('Two'));
+   *     $q->put(new XPString('Three'));
+   *     $q->put(new XPString('Four'));
    *   }
    *   
    *   // Empty queue
@@ -38,7 +38,7 @@
    * @see      http://www.faqs.org/docs/javap/c12/ex-12-1-answer.html
    */
   #[@generic(self= 'T')]
-  class Queue extends Object {
+  class Queue extends XPObject {
     protected
       $_elements = array(),
       $_hash     = 0;

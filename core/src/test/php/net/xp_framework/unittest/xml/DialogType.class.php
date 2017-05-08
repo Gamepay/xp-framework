@@ -14,7 +14,7 @@
    * @see      rfc://0040
    * @purpose  Test class
    */
-  class DialogType extends Object {
+  class DialogType extends XPObject {
     public
       $id       = '',
       $caption  = '',

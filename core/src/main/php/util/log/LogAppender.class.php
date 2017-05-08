@@ -11,7 +11,7 @@
    * @see      xp://util.log.LogCategory#addAppender
    * @purpose  Base class
    */
-  abstract class LogAppender extends Object {
+  abstract class LogAppender extends XPObject {
 
     /**
      * Append data

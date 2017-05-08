@@ -11,7 +11,7 @@
    *
    * @purpose  Criterion
    */
-  class BetweenExpression extends Object implements Criterion {
+  class BetweenExpression extends XPObject implements Criterion {
     public
       $lhs    = '',
       $lo     = NULL,

@@ -141,8 +141,8 @@
     #[@test]
     public function creatingArchive() {
       $contents= array(
-        'lang/Object.class.php'    => 'class Object { }',
-        'lang/Type.class.php'      => 'class Type extends Object { }'
+        'lang/XPObject.class.php'    => 'class XPObject { }',
+        'lang/Type.class.php'      => 'class Type extends XPObject { }'
       );
       
       $a= new Archive(new Stream());

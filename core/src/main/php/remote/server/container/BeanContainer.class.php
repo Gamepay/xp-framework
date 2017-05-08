@@ -15,7 +15,7 @@
    *
    * @purpose  abstract baseclass
    */
-  abstract class BeanContainer extends Object implements Traceable {
+  abstract class BeanContainer extends XPObject implements Traceable {
     public
       $instancePool = NULL,
       $poolClass    = NULL;
@@ -45,8 +45,8 @@
     /**
      * Perform resource injection.
      *
-     * @param   lang.Object instance
-     * @param   lang.Object the given instance
+     * @param   lang.XPObject instance
+     * @param   lang.XPObject the given instance
      */
     protected function inject($instance) {
       foreach ($instance->getClass()->getMethods() as $method) {
@@ -76,7 +76,7 @@
     /**
      * Invoke a method
      *
-     * @param   lang.Object proxy
+     * @param   lang.XPObject proxy
      * @param   string method
      * @param   var args
      * @return  var

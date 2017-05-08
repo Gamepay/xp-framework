@@ -18,7 +18,7 @@
    *
    * @purpose  Create EASC message
    */
-  abstract class EascMessageFactory extends Object {
+  abstract class EascMessageFactory extends XPObject {
     protected static 
       $handlers= array();
     

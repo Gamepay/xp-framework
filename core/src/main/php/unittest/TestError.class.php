@@ -11,7 +11,7 @@
    *
    * @see      xp://unittest.TestFailure
    */
-  class TestError extends Object implements TestFailure {
+  class TestError extends XPObject implements TestFailure {
     public
       $reason   = NULL,
       $test     = NULL,
@@ -21,10 +21,10 @@
      * Constructor
      *
      * @param   unittest.TestCase test
-     * @param   lang.Throwable reason
+     * @param   lang.XPThrowable reason
      * @param   float elapsed
      */
-    public function __construct(TestCase $test, Throwable $reason, $elapsed) {
+    public function __construct(TestCase $test, XPThrowable $reason, $elapsed) {
       $this->test= $test;
       $this->reason= $reason;
       $this->elapsed= $elapsed;

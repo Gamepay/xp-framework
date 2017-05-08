@@ -12,7 +12,7 @@
    * @see      php://xslt_registerphpfunctions
    * @purpose  Provide PHP callback functions on object instances
    */
-  class XSLCallback extends Object {
+  class XSLCallback extends XPObject {
     private
       $instances  = array();  
 
@@ -36,7 +36,7 @@
      * Register new instance
      *
      * @param   string name
-     * @param   lang.Object instance
+     * @param   lang.XPObject instance
      */
     public function registerInstance($name, $instance) {
       $this->instances[$name]= $instance;

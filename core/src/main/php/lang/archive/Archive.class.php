@@ -36,7 +36,7 @@
    * @test  xp://net.xp_framework.unittest.core.ArchiveClassLoaderTest
    * @see   http://java.sun.com/javase/6/docs/api/java/util/jar/package-summary.html
    */
-  class Archive extends Object {
+  class Archive extends XPObject {
     public
       $file     = NULL,
       $version  = 2;
@@ -252,10 +252,17 @@
      * @throws  lang.FormatException in case the header is malformed
      */
     public function open($mode) {
-      static $unpack= array(
-        1 => 'a80id/a80*filename/a80*path/V1size/V1offset/a*reserved',
-        2 => 'a240id/V1size/V1offset/a*reserved'
-      );
+      static $unpack= array();
+      
+      if (version_compare(PHP_VERSION, '5.5.0-dev', '>=')) {
+        // unpack-format after PHP 5.5
+        $unpack[1] = 'Z80id/Z80*filename/Z80*path/V1size/V1offset/Z*reserved';
+        $unpack[2] = 'Z240id/V1size/V1offset/Z*reserved';
+      } else {
+        // unpack-format before PHP 5.5
+        $unpack[1] = 'a80id/a80*filename/a80*path/V1size/V1offset/a*reserved';
+        $unpack[2] = 'a240id/V1size/V1offset/a*reserved';
+      }
       
       switch ($mode) {
         case ARCHIVE_READ:      // Load
@@ -263,7 +270,13 @@
 
           // Read header
           $header= $this->file->read(ARCHIVE_HEADER_SIZE);
-          $data= unpack('a3id/c1version/V1indexsize/a*reserved', $header);
+          $dataUnpack= 'a3id/c1version/V1indexsize/a*reserved';
+          if (version_compare(PHP_VERSION, '5.5.0-dev', '>=')) {
+            // unpack-format after PHP 5.5
+            $dataUnpack= 'Z3id/c1version/V1indexsize/Z*reserved';
+          }
+          
+          $data= unpack($dataUnpack, $header);
 
           // Check header integrity
           if ('CCA' !== $data['id']) {

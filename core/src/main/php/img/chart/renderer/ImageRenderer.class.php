@@ -13,7 +13,7 @@
    * @see      xp://img.chart.GraphRenderer
    * @purpose  Renderer
    */
-  class ImageRenderer extends Object implements GraphRenderer {
+  class ImageRenderer extends XPObject implements GraphRenderer {
     public
       $width  = 0, 
       $height = 0;

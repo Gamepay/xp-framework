@@ -12,7 +12,7 @@
    * @see      xp://net.xp_framework.unittest.reflection.ClassLoaderTest#loadClassFileWithRecusionInStaticBlock
    * @purpose  Fixture
    */
-  class StaticRecursionOne extends Object {
+  class StaticRecursionOne extends XPObject {
     public static $two= NULL;
 
     static function __static() {

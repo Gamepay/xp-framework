@@ -13,7 +13,7 @@
    * @test    xp://net.xp_framework.unittest.peer.http.HttpResponseTest
    * @test    xp://net.xp_framework.unittest.peer.http.HttpInputStreamTest
    */
-  class HttpResponse extends Object {
+  class HttpResponse extends XPObject {
     public
       $statuscode    = 0,
       $message       = '',

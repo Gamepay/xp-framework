@@ -12,7 +12,7 @@
    * @test     xp://net.xp_framework.unittest.io.streams.FileOutputStreamTest
    * @purpose  OuputStream implementation
    */
-  class FileOutputStream extends Object implements OutputStream {
+  class FileOutputStream extends XPObject implements OutputStream {
     protected
       $file= NULL;
     

@@ -10,7 +10,7 @@
    * Outputs XML.
    *
    */
-  abstract class xml·io·XmlWriter extends Object {
+  abstract class xml·io·XmlWriter extends XPObject {
   
     /**
      * Start writing a document

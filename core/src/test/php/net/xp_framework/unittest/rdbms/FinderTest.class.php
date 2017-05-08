@@ -46,7 +46,7 @@
      *
      * @param   string name
      * @return  rdbms.finder.FinderMethod
-     * @throws  lang.Throwable
+     * @throws  lang.XPThrowable
      */
     protected function method($name) {
       try {
@@ -431,7 +431,7 @@
      * Tests findAll() wraps SQLExceptions into FinderExceptions
      *
      */
-    #[@test, @expect(class= 'lang.Error', withMessage= '/Call to undefined method .+JobFinder::nonExistantMethod/')]
+    #[@test, @expect(class= 'lang.XPError', withMessage= '/Call to undefined method .+JobFinder::nonExistantMethod/')]
     public function fluentNonExistantFinder() {
       $this->fixture->findAll()->nonExistantMethod(new Criteria());
     }

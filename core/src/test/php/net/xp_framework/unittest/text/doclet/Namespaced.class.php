@@ -10,7 +10,7 @@
    * Class Namespaced (used in ClassDocTest)
    *
    */
-  class Namespaced extends \Object {
+  class Namespaced extends \XPObject {
   }
 
 ?>

@@ -53,7 +53,7 @@
         $res= $this->runner->run(new ParamString($args));
         $pm->setSources($sources);
         return $res;
-      } catch (Throwable $t) {
+      } catch (XPThrowable $t) {
         $pm->setSources($sources);
         throw $t;
       }

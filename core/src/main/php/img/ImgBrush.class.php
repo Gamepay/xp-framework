@@ -9,7 +9,7 @@
    *
    * @see xp://img.Image#setBrush
    */
-  class ImgBrush extends Object {
+  class ImgBrush extends XPObject {
     public
       $image    = NULL,
       $style    = NULL;

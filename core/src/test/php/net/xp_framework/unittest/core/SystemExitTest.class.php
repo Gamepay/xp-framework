@@ -24,7 +24,7 @@
      */
     #[@beforeClass]
     public static function defineExiterClass() {
-      self::$exiterClass= ClassLoader::defineClass('net.xp_framework.unittest.core.Exiter', 'lang.Object', array(), '{
+      self::$exiterClass= ClassLoader::defineClass('net.xp_framework.unittest.core.Exiter', 'lang.XPObject', array(), '{
         public function __construct() { throw new SystemExit(0); }
         public static function doExit() { new self(); }
       }');

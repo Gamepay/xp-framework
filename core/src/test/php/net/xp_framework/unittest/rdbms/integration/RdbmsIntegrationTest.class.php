@@ -35,7 +35,7 @@
 
       try {
         $this->conn= DriverManager::getConnection($this->dsn);
-      } catch (Throwable $t) {
+      } catch (XPThrowable $t) {
         throw new PrerequisitesNotMetError($t->getMessage(), $t);
       }
     }

@@ -37,7 +37,7 @@
    *
    * @purpose  Utility class
    */
-  class IRCColor extends Object {
+  class IRCColor extends XPObject {
   
     /**
      * Retrieves color representation

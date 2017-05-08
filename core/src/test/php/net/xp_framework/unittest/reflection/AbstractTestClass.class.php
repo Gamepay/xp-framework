@@ -10,9 +10,9 @@
    * @see      xp://net.xp_framework.unittest.reflection.ReflectionTest
    * @purpose  Test class
    */
-  abstract class AbstractTestClass extends Object {
+  abstract class AbstractTestClass extends XPObject {
     protected
-      #[@type('lang.Object')]
+      #[@type('lang.XPObject')]
       $inherited= NULL;
 
     /**

@@ -13,7 +13,7 @@
    * @see      xp://img.convert.ImageConverter
    * @purpose  Converter
    */
-  class PaletteConverter extends Object implements ImageConverter {
+  class PaletteConverter extends XPObject implements ImageConverter {
     public
       $dither   = FALSE,
       $ncolors  = 0;

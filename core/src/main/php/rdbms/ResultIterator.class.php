@@ -13,7 +13,7 @@
    * @see      xp://rdbms.Peer
    * @purpose  Iterator
    */
-  class ResultIterator extends Object implements XPIterator {
+  class ResultIterator extends XPObject implements XPIterator {
     public
       $_rs         = NULL,
       $_identifier = '',

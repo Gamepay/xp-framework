@@ -31,7 +31,7 @@
    *
    * @see   xp://net.xp_framework.unittest.remote.IntegrationTest
    */
-  class net·xp_framework·unittest·remote·TestingServer extends Object {
+  class net·xp_framework·unittest·remote·TestingServer extends XPObject {
 
     /**
      * Start server
@@ -61,7 +61,7 @@
         Console::writeLinef('+ Service %s:%d', $s->socket->host, $s->socket->port);
         $s->service();
         Console::writeLine('+ Done');
-      } catch (Throwable $e) {
+      } catch (XPThrowable $e) {
         Console::writeLine('- ', $e->getMessage());
       }
     }

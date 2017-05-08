@@ -330,7 +330,7 @@
             if ($xpclass) {
               $result= $xpclass->newInstance();
             } else {
-              $result= new Object();
+              $result= new XPObject();
               $result->__qname= $regs[2];
             }
             foreach ($this->_recurseData($child, TRUE, 'OBJECT') as $key => $val) {

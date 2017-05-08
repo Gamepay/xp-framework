@@ -12,7 +12,7 @@
    * @see      xp://remote.server.deploy.Deployable
    * @purpose  Deployment
    */
-  class IncompleteDeployment extends Object implements Deployable {
+  class IncompleteDeployment extends XPObject implements Deployable {
     public
       $origin = '',
       $cause  = NULL;
@@ -21,7 +21,7 @@
      * Constructor
      *
      * @param   string origin
-     * @param   lang.Throwable cause
+     * @param   lang.XPThrowable cause
      */
     public function __construct($origin, $cause) {
       $this->origin= $origin;

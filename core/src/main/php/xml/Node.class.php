@@ -23,7 +23,7 @@
    * @see   xp://xml.Tree#addChild
    * @test  xp://net.xp_framework.unittest.xml.NodeTest
    */
-  class Node extends Object {
+  class Node extends XPObject {
     const
       XML_ILLEGAL_CHARS   = XML_ILLEGAL_CHARS;
 
@@ -72,7 +72,7 @@
         $nname= is_numeric($field) || '' == $field ? $sname : $field;
         if (is_array($a[$field])) {
           $n->addChild(self::fromArray($a[$field], $nname));
-        } else if ($a[$field] instanceof String) {
+        } else if ($a[$field] instanceof XPString) {
           $n->addChild(new self($nname, $a[$field]));
         } else if (is_object($a[$field])) {
           $n->addChild(self::fromObject($a[$field], $nname));
@@ -256,7 +256,7 @@
           ? iconv($tree_encoding, $encoding, $this->content->cdata)
           : $this->content->cdata
         ).']]>';
-      } else if ($this->content instanceof String) {
+      } else if ($this->content instanceof XPString) {
         $content= htmlspecialchars($this->content->getBytes($encoding), ENT_COMPAT, $encoding);
       } else {
         $content= $this->content; 

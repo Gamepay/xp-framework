@@ -36,7 +36,7 @@
    * @purpose  Provides an interface to telephony
    * @see      http://java.sun.com/products/jtapi/jtapi-1.3/html/overview-summary.html
    */
-  class TelephonyProvider extends Object implements Traceable {
+  class TelephonyProvider extends XPObject implements Traceable {
     public
       $cat  = NULL;
     

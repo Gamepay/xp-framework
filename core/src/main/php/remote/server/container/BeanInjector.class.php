@@ -10,7 +10,7 @@
    *
    * @purpose  Inject resources
    */
-  class BeanInjector extends Object {
+  class BeanInjector extends XPObject {
 
     /**
      * Fetch DB connection resource
