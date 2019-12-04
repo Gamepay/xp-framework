@@ -183,12 +183,7 @@
           break;
       }
 
-      $request= sprintf(
-        "%s %s HTTP/%s\r\n",
-        $this->method,
-        $target,
-        $this->version
-      );
+      $request= sprintf("%s %s HTTP/%s\r\n", $this->method, $target, $this->version);
 
       // Add request headers
       foreach ($this->headers as $k => $v) {

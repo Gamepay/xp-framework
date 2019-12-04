@@ -31,11 +31,14 @@
    *   }
    * </code>
    *
+   * Added methods "open" and "finish" from XP 10
+   *
    * @see      rfc://2616
    * @test     xp://net.xp_framework.unittest.peer.HttpTest
    * @purpose  Provide
    */
   class HttpConnection extends XPObject {
+    /* @var $transport \HttpTransport */
     protected
       $url          = NULL,
       $transport    = NULL,
@@ -133,6 +136,32 @@
     }
 
     /**
+     * Opens a HTTP transfer
+     *
+     * ```php
+     * $transfer= $this->conn->open($request);
+     * $transfer->write(...);
+     *
+     * $response= $this->conn->finish($transfer);
+     * ```
+     *
+     * @param   peer.http.HttpRequest $request
+     * @return  HttpOutputStream peer.http.HttpOutputStream
+     */
+    public function open(HttpRequest $request) {
+      return $this->transport->open($request, $this->_ctimeout, $this->_timeout);
+    }
+
+    /**
+     * Finishes a transfer and returns the response
+     *
+     * @param  peer.http.HttpOutputStream $stream
+     * @return HttpResponse peer.http.HttpResponse
+     */
+    public function finish(HttpOutputStream $stream) {
+        return $this->transport->finish($stream);
+    }
+    /**
      * Creates a new HTTP request. For use in conjunction with send(), e.g.:
      *
      * <code>
@@ -152,7 +181,7 @@
      * @return  peer.http.HttpRequest request object
      */
     public function create(HttpRequest $r) {
-      $r->setUrl($this->url);
+      $r->setUrl(clone $this->url);
       return $r;
     }
     

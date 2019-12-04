@@ -1,6 +1,8 @@
 <?php
   uses(
     'peer.Socket',
+    'peer.SSLHandshakeException',
+    'peer.SSLUnverifiedPeerException',
     'security.cert.X509Certificate'
   );
 
@@ -11,6 +13,53 @@
    */
   class CryptoSocket extends Socket {
     const CTX_WRP = 'ssl';      // stream context option key
+
+    protected $cryptoImpl= null;
+    
+    /**
+     * Constructor
+     *
+     * @param  string $host hostname or IP address
+     * @param  int $port
+     * @param  resource $socket default NULL
+     */
+    public function __construct($host, $port, $socket= null) {
+      parent::__construct($host, $port, $socket);
+      // Use "localhost" as peer name in these well-known cases.
+      if ('localhost' === $host || '127.0.0.1' === $host || '[::1]' === $host) {
+        $this->setSocketOption('ssl', 'peer_name', 'localhost');
+      }
+    }
+
+   /**
+   * Connect, then enable crypto
+   *
+   * @param   float $timeout
+   * @return  bool
+   * @throws  SSLUnverifiedPeerException if peer verification fails
+   * @throws  SSLHandshakeException if handshake fails for any other reasons
+   * @throws  ConnectException for all other reasons
+   */
+  public function connect($timeout= 2.0) {
+    if ($this->isConnected()) return true;
+    parent::connect($timeout);
+    if (stream_socket_enable_crypto($this->_sock, true, $this->cryptoImpl)) {
+      return true;
+    }
+    // Parse OpenSSL errors:
+    if (preg_match('/error:(\d+):(.+)/', key(end(\xp::$errors[__FILE__])), $matches)) {
+      switch ($matches[1]) {
+        case '14090086':
+          $e= new SSLUnverifiedPeerException($matches[2]); break;
+        default:
+          $e= new SSLHandshakeException($matches[2]); break;
+      }
+    } else {
+      $e= new SSLHandshakeException('Unable to enable crypto.');
+    }
+    $this->close();
+    throw $e;
+  }
 
     /**
      * Set verify peer

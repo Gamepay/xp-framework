@@ -7,23 +7,22 @@
   uses('peer.CryptoSocket');
 
   /**
-   * TLS socket
+ * TLS socket
+ *
+ * @ext      openssl
+ */
+class TLSSocket extends CryptoSocket {
+  /**
+   * Constructor
    *
-   * @ext      openssl
-   * @purpose  Specialized socket
+   * @param   string host hostname or IP address
+   * @param   int port
+   * @param   resource socket default NULL
    */
-  class TLSSocket extends CryptoSocket {
-
-    /**
-     * Constructor
-     *
-     * @param   string host hostname or IP address
-     * @param   int port
-     * @param   resource socket default NULL
-     */
-    public function __construct($host, $port, $socket= NULL) {
-      parent::__construct($host, $port, $socket);
-      $this->_prefix= 'tls://';
-    }
+  public function __construct($host, $port, $socket= null) {
+    parent::__construct($host, $port, $socket);
+    $this->_prefix = 'tls://';
+    $this->cryptoImpl= STREAM_CRYPTO_METHOD_TLS_CLIENT;
   }
+}
 ?>
